@@ -83,3 +83,55 @@ Menú de navegación responsive con toggle para móvil. Los `.nav-links` se ocul
 en móvil y se muestran al hacer clic en `.nav-toggle`.
 
 **Dónde se usa:** Header de `index.html` e `inicio.html`.
+
+---
+
+## Bloque 1 (revisión) — Componentes de hero agregados
+
+### `.hero__bg`
+Imagen de fondo a plena cobertura dentro del hero. Usa `object-fit: cover` para
+cubrir toda la sección sin distorsión. Es decorativa (`alt=""`).
+
+```html
+<img class="hero__bg" src="assets/images/hero-bg.jpg" alt="">
+```
+
+**Dónde se usa:** `index.html` — sección hero.
+
+---
+
+### `.hero__logo`
+Logo de Parla! posicionado en la esquina superior izquierda del hero, sobre el fondo.
+Es una imagen independiente (no un enlace), a diferencia del `.logo` del header.
+
+```html
+<img class="hero__logo" src="assets/images/logo.png" alt="Parla!">
+```
+
+**Dónde se usa:** `index.html` — sección hero.
+
+---
+
+### `.hero__title` / `.hero__title-line1` / `.hero__title-line2`
+Título del hero en dos líneas con colores distintos: línea 1 blanca, línea 2 teal
+(`--color-primary`). Usa `text-shadow` para legibilidad sobre la foto.
+
+```html
+<h1 class="hero__title">
+  <span class="hero__title-line1">Aprende</span>
+  <span class="hero__title-line2">italiano</span>
+</h1>
+```
+
+**Dónde se usa:** `index.html` — sección hero.
+
+---
+
+### `.hero__subtitle`
+Subtítulo del hero en Poppins negrita, blanco con `text-shadow`.
+
+```html
+<p class="hero__subtitle">De forma real, ligera y entretenida.</p>
+```
+
+**Dónde se usa:** `index.html` — sección hero.

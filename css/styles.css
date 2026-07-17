@@ -113,70 +113,56 @@ a {
   overflow: hidden;
 }
 
-.hero-bg {
+.hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(250, 248, 245, 0.88);
-}
-
-.hero-logo {
+.hero__logo {
   position: absolute;
   top: var(--space-md);
   left: var(--space-md);
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  color: var(--color-primary);
+  height: 36px;
+  width: auto;
   z-index: 2;
 }
 
-.hero-logo img {
-  height: 36px;
-  width: auto;
-}
-
-.hero-logo span {
-  font-size: 1.5rem;
-}
-
-.hero-content {
+.hero__content {
   position: relative;
   z-index: 2;
   text-align: center;
   max-width: 680px;
 }
 
-.hero-content h1 {
+.hero__title {
   font-family: var(--font-display);
   font-size: var(--fs-h1);
-  color: var(--color-text);
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: var(--space-sm);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.hero-content p {
+.hero__title-line1 {
+  display: block;
+  color: #fff;
+}
+
+.hero__title-line2 {
+  display: block;
+  color: var(--color-primary);
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
   font-size: 1rem;
-  color: var(--color-text-muted);
+  color: #fff;
   margin-bottom: var(--space-lg);
-}
-
-.hero-actions {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  justify-content: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -296,12 +282,13 @@ a {
     padding: var(--space-xl) var(--space-sm);
   }
 
-  .hero-logo {
+  .hero__logo {
     top: var(--space-sm);
     left: var(--space-sm);
+    height: 28px;
   }
 
-  .hero-content h1 {
+  .hero__title {
     font-size: 2rem;
   }
 
@@ -350,28 +337,17 @@ a {
 }
 
 @media (max-width: 480px) {
-  .hero-content h1 {
+  .hero__title {
     font-size: 1.75rem;
   }
 
-  .hero-logo span {
-    font-size: 1.25rem;
-  }
-
-  .hero-logo img {
-    height: 28px;
+  .hero__logo {
+    height: 24px;
+    top: var(--space-xs);
+    left: var(--space-xs);
   }
 
   .btn-lg {
-    width: 100%;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions .btn {
     width: 100%;
   }
 }
