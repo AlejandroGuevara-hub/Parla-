@@ -1,0 +1,83 @@
+/* ============================================================
+   PARLA! — Design Tokens
+   Fuente de cada valor: logo oficial + mockup "Inicio del estudiante"
+   No inventar colores fuera de este archivo. Todo componente
+   nuevo debe usar estas variables, nunca valores hardcodeados.
+   ============================================================ */
+
+:root {
+
+  /* ---------- COLOR ----------
+     Extraídos del logo (azul grisáceo + crema) y del mockup
+     (título en teal #0097b2, texto en gris oscuro #333333) */
+
+  --color-primary: #0097B2;        /* Teal — títulos principales, según mockup */
+  --color-primary-dark: #007A91;   /* Hover/active de botones primarios */
+
+  --color-secondary: #7E97AC;      /* Azul grisáceo del círculo del logo */
+  --color-secondary-light: #A9BDCC;
+
+  --color-accent: #C1633D;         /* Terracota — tomado del fondo del icono "Cultura" (imagen 2) */
+  --color-accent-olive: #6B7048;   /* Verde oliva — fondo del icono "Podcast" (imagen 2), uso puntual */
+
+  --color-cream: #F3ECDD;          /* Beige/crema del borde y texto "Parla!" del logo */
+  --color-bg: #FAF8F5;             /* Fondo general de página, variante clara del crema */
+  --color-bg-card: #FFFFFF;        /* Fondo de tarjetas, contraste sobre --color-bg */
+
+  --color-text: #333333;           /* Texto principal, según anotación del mockup */
+  --color-text-muted: #6B6B6B;     /* Texto secundario, descripciones de tarjetas */
+  --color-border: #E3DED2;         /* Bordes suaves de tarjetas y separadores */
+
+  /* Estados (pendiente / en proceso / completado) — requeridos en Doc. Fase 1 */
+  --color-state-pending: #B8B2A3;
+  --color-state-progress: var(--color-primary);
+  --color-state-done: #4C8C5B;
+
+
+  /* ---------- TIPOGRAFÍA ----------
+     Hatton: fuente de pago usada en el mockup para títulos.
+     No se cuenta con el archivo aún, así que se usa "Fraunces"
+     (Google Fonts) como reemplazo temporal: mismo carácter
+     editorial/serif con detalle, misma función de "fuente con
+     personalidad". Cambiar aquí --font-display cuando llegue
+     el archivo real de Hatton, sin tocar el resto del código. */
+
+  --font-display: "Fraunces", "Georgia", serif;   /* Placeholder de Hatton */
+  --font-body: "Poppins", sans-serif;               /* Confirmada en el mockup */
+
+  --fs-h1: 3rem;        /* 48px — título "Bienvenido" en el mockup */
+  --fs-h2: 1.375rem;    /* 22px — subtítulo "¿Qué quieres aprender hoy?" */
+  --fs-body: 0.8125rem; /* 13px — texto de tarjetas, según anotación "poppins 13" */
+  --fs-caption: 0.75rem;/* 12px — etiquetas pequeñas (nav superior) */
+
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+
+  /* ---------- ESPACIADO ----------
+     Escala de 8px, estándar para mantener ritmo vertical
+     consistente entre tarjetas, secciones y navegación. */
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+
+  /* ---------- FORMA Y PROFUNDIDAD ---------- */
+
+  --radius-card: 12px;
+  --radius-button: 8px;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+
+
+  /* ---------- TAMAÑOS DE IMAGEN (tarjetas de "Inicio") ----------
+     Valores exactos anotados en el mockup del cliente. */
+
+  --card-image-w: 300px;
+  --card-image-h: 240px;
+  --card-frame-w: 316.7px;
+  --card-frame-h: 422px;
+}

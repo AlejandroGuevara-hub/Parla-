@@ -1,0 +1,7 @@
+# System
+Thumbs.db
+.DS_Store
+*.swp
+
+# Dependencies (none yet, but por si acaso)
+node_modules/

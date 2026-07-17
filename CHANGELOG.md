@@ -1,0 +1,14 @@
+# Changelog — Parla!
+
+## [1.0.0] — 2026-07-17
+
+### Added
+- Landing Page (`index.html`) con hero, logo, CTA y sección de características.
+- Login (`login.html`) con campos de correo y contraseña (solo maqueta, sin backend).
+- Registro (`registro.html`) con campos de nombre, correo, contraseña y confirmación (solo maqueta, sin backend).
+- Placeholder de inicio (`inicio.html`) para navegación post-login.
+- Sistema de diseño con variables CSS (`css/variables.css`).
+- Componentes reutilizables (`css/components.css`): botones, inputs, logo, tarjetas.
+- Estilos de página (`css/styles.css`): layout, hero, formularios, responsive.
+- Navegación con JS vanilla (`js/nav.js`): menú mobile toggle y envío ficticio de formularios.
+- Documentación técnica: `docs/decisiones-tecnicas.md` y `docs/guia-componentes.md`.
