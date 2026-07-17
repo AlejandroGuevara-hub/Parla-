@@ -104,23 +104,64 @@ a {
 /* ---------- Landing Page — Hero ---------- */
 
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: calc(100vh - 70px);
-  padding: var(--space-lg) var(--space-md);
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-md);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(250, 248, 245, 0.88);
+}
+
+.hero-logo {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  z-index: 2;
+}
+
+.hero-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.hero-logo span {
+  font-size: 1.5rem;
 }
 
 .hero-content {
-  flex: 1;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 680px;
 }
 
 .hero-content h1 {
   font-family: var(--font-display);
   font-size: var(--fs-h1);
-  color: var(--color-primary);
+  color: var(--color-text);
   line-height: 1.2;
   margin-bottom: var(--space-sm);
 }
@@ -129,25 +170,27 @@ a {
   font-size: 1rem;
   color: var(--color-text-muted);
   margin-bottom: var(--space-lg);
-  max-width: 480px;
 }
 
 .hero-actions {
   display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
-}
-
-.hero-image {
-  flex: 1;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.hero-image img {
+
+/* ---------- Showcase Section (imagen compuesta) ---------- */
+
+.showcase {
+  padding: var(--space-lg) var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.showcase img {
   width: 100%;
-  max-width: 540px;
+  height: auto;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
@@ -249,22 +292,25 @@ a {
 
 @media (max-width: 768px) {
   .hero {
-    flex-direction: column;
-    text-align: center;
     min-height: auto;
-    padding-top: var(--space-lg);
+    padding: var(--space-xl) var(--space-sm);
   }
 
-  .hero-content p {
-    max-width: 100%;
+  .hero-logo {
+    top: var(--space-sm);
+    left: var(--space-sm);
   }
 
-  .hero-actions {
-    justify-content: center;
+  .hero-content h1 {
+    font-size: 2rem;
   }
 
   .features-grid {
     grid-template-columns: 1fr;
+  }
+
+  .showcase {
+    padding: var(--space-md) var(--space-sm);
   }
 
   .nav-links {
@@ -301,15 +347,19 @@ a {
   .auth-card {
     padding: var(--space-md);
   }
-
-  .hero-content h1 {
-    font-size: 2rem;
-  }
 }
 
 @media (max-width: 480px) {
   .hero-content h1 {
     font-size: 1.75rem;
+  }
+
+  .hero-logo span {
+    font-size: 1.25rem;
+  }
+
+  .hero-logo img {
+    height: 28px;
   }
 
   .btn-lg {

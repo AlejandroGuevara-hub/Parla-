@@ -12,3 +12,6 @@
 - Estilos de página (`css/styles.css`): layout, hero, formularios, responsive.
 - Navegación con JS vanilla (`js/nav.js`): menú mobile toggle y envío ficticio de formularios.
 - Documentación técnica: `docs/decisiones-tecnicas.md` y `docs/guia-componentes.md`.
+
+### Fixed
+- Corrige estructura de hero en Landing Page: fondo con imagen de referencia (`hero-bg.jpg`), logo repetido dentro del hero, imagen compuesta de ChatGPT movida a sección independiente (`showcase`) debajo del hero.
