@@ -35,21 +35,40 @@ Esto cumple con la regla de "prototipo clicable sin backend".
 
 ```
 /
-├── index.html          # Landing Page
-├── login.html           # Inicio de sesión
-├── registro.html        # Registro
-├── inicio.html          # Placeholder post-login
-├── css/
-│   ├── variables.css    # Design tokens (colores, tipografías, espaciados)
-│   ├── components.css   # Componentes reutilizables (btn, input, card)
-│   └── styles.css       # Estilos de página y layout
-├── js/
-│   └── nav.js           # Navegación e interacciones de UI
-├── assets/
-│   └── images/
-│       ├── logo.png     # Logo oficial del cliente
-│       └── hero.png     # Foto de referencia (mujer en calle italiana)
-└── docs/
-    ├── decisiones-tecnicas.md
-    └── guia-componentes.md
+├── src/                           ← Código fuente del sitio
+│   ├── views/                     ← Páginas HTML (Vistas)
+│   │   ├── index.html             # Landing Page
+│   │   ├── login.html             # Inicio de sesión
+│   │   ├── registro.html          # Registro
+│   │   └── inicio.html            # Placeholder post-login
+│   ├── styles/                    ← CSS (antes "css/")
+│   │   ├── variables.css          # Design tokens (colores, tipografías, espaciados)
+│   │   ├── components.css         # Componentes reutilizables (btn, input, card)
+│   │   └── styles.css             # Estilos de página y layout
+│   ├── scripts/                   ← JavaScript / Controladores (antes "js/")
+│   │   └── nav.js                 # Navegación e interacciones de UI
+│   ├── components/                ← Fragmentos HTML reutilizables
+│   ├── data/                      ← Datos de ejemplo estáticos (JSON)
+│   └── assets/                    ← Imágenes e iconos del sitio
+│       └── images/
+│           ├── logo.png           # Logo oficial del cliente
+│           ├── hero.png           # Imagen compuesta (podcast/webtoon/cultura)
+│           └── hero-bg.jpg        # Fondo del hero
+├── reference/                     ← Material original del cliente (sin modificar)
+│   ├── Diego-pagina web/
+│   ├── Requerimientos de la Fase 1.pdf
+│   └── Documento senza titolo(1).pdf
+├── docs/
+│   ├── CONTEXTO.md
+│   ├── ERRORES.md
+│   ├── GUIA-PROYECTO.md
+│   ├── PENDIENTES.md
+│   ├── decisiones-tecnicas.md
+│   ├── guia-componentes.md
+│   └── specs/                     ← Especificaciones de cada bloque
+│       └── instrucciones-opencode-bloque1.md
+├── prompts/                       ← Historial de prompts de cada sesión
+├── .gitignore
+├── README.md
+└── CHANGELOG.md
 ```

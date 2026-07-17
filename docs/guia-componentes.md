@@ -38,12 +38,12 @@ Enlace con logo + texto, para header y formularios.
 
 ```html
 <a href="index.html" class="logo">
-  <img src="assets/images/logo.png" alt="Parla! logo">
+  <img src="../assets/images/logo.png" alt="Parla! logo">
   <span>Parla!</span>
 </a>
 ```
 
-**Dónde se usa:** Header de `index.html` e `inicio.html`, encabezado de `login.html` y `registro.html`.
+**Dónde se usa:** Header de `src/views/index.html` y `src/views/inicio.html`, encabezado de `src/views/login.html` y `src/views/registro.html`.
 
 ---
 
@@ -93,7 +93,7 @@ Imagen de fondo a plena cobertura dentro del hero. Usa `object-fit: cover` para
 cubrir toda la sección sin distorsión. Es decorativa (`alt=""`).
 
 ```html
-<img class="hero__bg" src="assets/images/hero-bg.jpg" alt="">
+<img class="hero__bg" src="../assets/images/hero-bg.jpg" alt="">
 ```
 
 **Dónde se usa:** `index.html` — sección hero.
@@ -105,7 +105,7 @@ Logo de Parla! posicionado en la esquina superior izquierda del hero, sobre el f
 Es una imagen independiente (no un enlace), a diferencia del `.logo` del header.
 
 ```html
-<img class="hero__logo" src="assets/images/logo.png" alt="Parla!">
+<img class="hero__logo" src="../assets/images/logo.png" alt="Parla!">
 ```
 
 **Dónde se usa:** `index.html` — sección hero.
