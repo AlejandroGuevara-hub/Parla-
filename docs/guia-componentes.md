@@ -147,6 +147,10 @@ Botón flotante en esquina inferior derecha que alterna entre tema claro y oscur
 **JS asociado:** `src/scripts/theme.js` — lógica de alternancia y persistencia.
 
 **Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`).
+
+---
+
+### `.hero__subtitle`
 Subtítulo del hero en Poppins negrita, blanco con `text-shadow`.
 
 ```html

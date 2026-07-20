@@ -1,5 +1,19 @@
 # Changelog — Parla!
 
+## [1.2.0] — 2026-07-20
+
+### Fixed
+- Migra sección de funcionalidades "¿Qué quieres aprender hoy?" de `index.html` (Landing) a `inicio.html` (Inicio del estudiante). Las tarjetas de Podcast, Webtoon y Cultura estaban en la vista pre-login en vez de la vista post-login.
+- Reemplaza emojis por íconos de Font Awesome en las tarjetas.
+
+### Added
+- Header de usuario autenticado en `inicio.html` con iconos de Perfil (`fa-user`), Contacto (`fa-envelope`) y Salir (`fa-right-from-bracket`).
+- Estilos `.user-nav` para navegación de usuario y `.feature-card__link` para tarjetas cliqueables.
+- Sección `.dashboard` con título "Bienvenido" y subtítulo "¿Qué quieres aprender hoy?".
+
+### Changed
+- `index.html` ahora solo contiene hero y showcase (sin sección de características).
+
 ## [1.1.0] — 2026-07-19
 
 ### Added

@@ -11,8 +11,9 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Login (maqueta visual)
 - [x] Registro (maqueta visual)
 - [x] Selector de tema claro/oscuro flotante con persistencia
-- [ ] Inicio del estudiante (6 tarjetas)
-- [ ] Podcast / Video / Webtoon / Cultura / Flashcards / Quizzes
+- [x] Inicio del estudiante (6 tarjetas)
+- [ ] Páginas de contenido individuales (video, podcast, webtoon, cultura, flashcards, quizzes)
+- [ ] Barra de progreso
 - [ ] Favoritos
 
 ## Dónde está cada cosa
@@ -31,4 +32,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-19 — Agrega selector de tema claro/oscuro flotante con persistencia en localStorage en todas las vistas. Nuevo archivo: `src/scripts/theme.js`. Bloque `[data-theme="dark"]` en variables CSS.
+2026-07-20 — Migra sección de funcionalidades de Landing a Inicio del estudiante. Reconstruye `inicio.html` con header de usuario autenticado y grid de 6 tarjetas. Agrega 2 tokens de color nuevos. Elimina features de `index.html`.

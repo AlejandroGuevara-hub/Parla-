@@ -100,6 +100,32 @@ a {
   transition: all 0.3s ease;
 }
 
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+}
+
+.user-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.user-nav a:hover,
+.user-nav a:focus-visible {
+  color: var(--color-primary);
+  background-color: rgba(0, 151, 178, 0.06);
+}
+
 
 /* ---------- Landing Page — Hero ---------- */
 
@@ -184,18 +210,29 @@ a {
 
 /* ---------- Features Section (Landing) ---------- */
 
-.features {
+.dashboard {
   padding: var(--space-xl) var(--space-md);
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.features h2 {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  color: var(--color-text);
+.dashboard__header {
   text-align: center;
   margin-bottom: var(--space-lg);
+}
+
+.dashboard__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-h2);
+  color: var(--color-text-muted);
+  font-weight: var(--fw-regular);
 }
 
 .features-grid {
@@ -205,8 +242,24 @@ a {
 }
 
 .feature-card {
-  padding: var(--space-md);
   text-align: center;
+}
+
+.feature-card__link {
+  display: block;
+  padding: var(--space-md);
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-card);
+  transition: background-color 0.2s ease;
+}
+
+.feature-card__link:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .feature-card__link:hover {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .feature-card .icon {

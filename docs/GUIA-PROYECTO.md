@@ -14,10 +14,10 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 /
 ├── src/                        ← Código fuente del sitio
 │   ├── views/                  ← Páginas HTML
-│   │   ├── index.html          # Landing Page
+│   │   ├── index.html          # Landing Page (pre-login: hero + showcase)
 │   │   ├── login.html          # Inicio de sesión (maqueta)
 │   │   ├── registro.html       # Registro (maqueta)
-│   │   └── inicio.html         # Placeholder post-login
+│   │   └── inicio.html         # Inicio del estudiante (post-login: dashboard con 6 tarjetas)
 │   ├── styles/                 ← CSS
 │   │   ├── variables.css       # Design tokens
 │   │   ├── components.css      # Componentes reutilizables
@@ -56,13 +56,14 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 |---|---|
 | `src/styles/variables.css` | Tokens de diseño: colores, tipografías, espaciados, sombras. Única fuente de verdad visual. |
 | `src/styles/components.css` | Componentes reutilizables: `.btn`, `.btn-primary`, `.btn-secondary`, `.input-field`, `.logo`, `.card`, `.form-toggle`, `.auth-form`. |
-| `src/styles/styles.css` | Estilos de página: reset, header, hero, showcase, features, auth pages, footer, responsive. |
+| `src/styles/styles.css` | Estilos de página: reset, header, hero, showcase, dashboard, auth pages, footer, responsive. |
 
 ## Archivos JS
 
 | Archivo | Propósito |
 |---|---|
 | `src/scripts/nav.js` | Menú mobile toggle + captura de submit de formularios con `data-navegar`. |
+| `src/scripts/theme.js` | Selector de tema claro/oscuro con persistencia en localStorage. |
 
 ## Cómo correr el proyecto
 
