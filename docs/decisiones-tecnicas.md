@@ -28,8 +28,9 @@ breakpoints en 480px, 768px y 1024px, según especificación.
 
 ### Sin autenticación real
 Login y registro son pantallas puramente visuales. Los botones "Iniciar sesión" y
-"Crear cuenta" navegan directamente a `inicio.html` sin validar ningún campo.
-Esto cumple con la regla de "prototipo clicable sin backend".
+"Crear cuenta" no validan ningún campo, pero siguen un flujo real: registro navega
+a login, y login navega a inicio. Esto cumple con la regla de "prototipo clicable
+sin backend" y refleja mejor la experiencia real de registro.
 
 ### Font Awesome para íconos en lugar de SVG propios
 Se eligió Font Awesome vía CDN para los íconos del selector de tema porque:
@@ -45,6 +46,12 @@ Se agregaron 2 tokens de color nuevos para los círculos de las tarjetas de Flas
 - `--color-secondary-dark: #5F7A8C` — Variante más profunda de `--color-secondary`, dentro de la misma familia azul grisácea. Se aclara a `#7A94A6` en modo oscuro.
 
 Se crearon solo 2 tokens nuevos (máximo permitido) y se documentan para evitar inventar colores sin relación con la paleta existente.
+
+### Token `--feature-card-max-w` para ancho máximo de tarjetas
+Se agregó `--feature-card-max-w: 280px` en `variables.css` para limitar el ancho de las tarjetas del dashboard de inicio. El valor se eligió porque:
+- Es cercano al ancho de las tarjetas del mockup del cliente (referencia `--card-frame-w: 316.7px` para el frame completo, pero 280px para el contenido interno de la tarjeta).
+- Permite que 3 tarjetas quepan cómodamente en una fila (~280px × 3 + gaps ≈ 900px) dentro del contenedor de 1200px.
+- `auto-fit` con `minmax(240px, 280px)` da un rango estrecho que mantiene las tarjetas compactas incluso en viewports intermedios.
 
 ### localStorage para persistencia del tema
 Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema porque:

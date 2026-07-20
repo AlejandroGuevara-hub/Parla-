@@ -185,4 +185,8 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 | Flashcards | `.flashcards` | `--color-accent-gold` |
 | Quizzes | `.quizzes` | `--color-secondary-dark` |
 
+**Ancho máximo:** `--feature-card-max-w: 280px` (definido en `variables.css`). El grid usa `auto-fit, minmax(240px, var(--feature-card-max-w))` para que las tarjetas sean angostas, centradas, y se adapten a 3 columnas en escritorio, 2 en tablet y 1 en móvil sin media queries.
+
+**Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, se muestra un borde `box-shadow: 0 0 0 2px var(--color-primary)` y la tarjeta eleva su sombra (`.card:hover`).
+
 **Dónde se usa:** `inicio.html` — dashboard grid.
