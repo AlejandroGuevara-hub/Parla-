@@ -38,6 +38,14 @@ Se eligió Font Awesome vía CDN para los íconos del selector de tema porque:
 - La API de clases (`fas fa-moon` / `fas fa-sun`) es declarativa y fácil de cambiar desde JS.
 - Es una dependencia externa estándar con soporte a largo plazo; si en el futuro se necesita migrar, solo se cambia el CDN y las clases.
 
+### Tokens de color nuevos para tarjetas del dashboard
+Se agregaron 2 tokens de color nuevos para los círculos de las tarjetas de Flashcards y Quizzes en el dashboard de inicio:
+
+- `--color-accent-gold: #C9974A` — Derivado de la gama cálida de la paleta (entre `--color-cream` y `--color-accent`). Se aclara a `#D4A94E` en modo oscuro para mantener contraste sobre fondo `#2A2E32`.
+- `--color-secondary-dark: #5F7A8C` — Variante más profunda de `--color-secondary`, dentro de la misma familia azul grisácea. Se aclara a `#7A94A6` en modo oscuro.
+
+Se crearon solo 2 tokens nuevos (máximo permitido) y se documentan para evitar inventar colores sin relación con la paleta existente.
+
 ### localStorage para persistencia del tema
 Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema porque:
 - La preferencia de tema claro/oscuro es una elección del usuario que debe mantenerse entre páginas y sesiones.

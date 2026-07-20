@@ -158,3 +158,31 @@ Subtítulo del hero en Poppins negrita, blanco con `text-shadow`.
 ```
 
 **Dónde se usa:** `index.html` — sección hero.
+
+---
+
+### `.feature-card` y `.feature-card__link`
+Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.card` que contiene un enlace que envuelve todo el contenido.
+
+```html
+<article class="feature-card card">
+  <a href="#" class="feature-card__link">
+    <div class="icon podcast"><i class="fas fa-headphones"></i></div>
+    <h3>Podcast</h3>
+    <p>Episodios con transcripción para mejorar tu comprensión auditiva.</p>
+  </a>
+</article>
+```
+
+**Tokens de color para cada círculo `.icon`:**
+
+| Tarjeta | Clase CSS | Token de color |
+|---|---|---|
+| Lecciones en video | `.video` | `--color-primary` |
+| Podcast | `.podcast` | `--color-accent-olive` |
+| Webtoon | `.webtoon` | `--color-accent` |
+| Cultura | `.culture` | `--color-secondary` |
+| Flashcards | `.flashcards` | `--color-accent-gold` |
+| Quizzes | `.quizzes` | `--color-secondary-dark` |
+
+**Dónde se usa:** `inicio.html` — dashboard grid.

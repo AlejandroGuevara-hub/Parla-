@@ -19,6 +19,8 @@
 
   --color-accent: #C1633D;         /* Terracota — tomado del fondo del icono "Cultura" (imagen 2) */
   --color-accent-olive: #6B7048;   /* Verde oliva — fondo del icono "Podcast" (imagen 2), uso puntual */
+  --color-accent-gold: #C9974A;    /* Dorado cálido — fondo del icono "Flashcards", derivado de la gama crema/terracota */
+  --color-secondary-dark: #5F7A8C; /* Azul grisáceo oscuro — fondo del icono "Quizzes", variante más profunda de --color-secondary */
 
   --color-cream: #F3ECDD;          /* Beige/crema del borde y texto "Parla!" del logo */
   --color-bg: #FAF8F5;             /* Fondo general de página, variante clara del crema */
@@ -93,6 +95,8 @@
   --color-text-muted: #B5B0A6;
   --color-border: #3A3F44;
   --color-accent: #D47A55;
+  --color-accent-gold: #D4A94E;
+  --color-secondary-dark: #7A94A6;
   --color-cream: #3A3F44;
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.4);

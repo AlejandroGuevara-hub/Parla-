@@ -285,6 +285,18 @@ a {
   background-color: var(--color-secondary);
 }
 
+.feature-card .icon.video {
+  background-color: var(--color-primary);
+}
+
+.feature-card .icon.flashcards {
+  background-color: var(--color-accent-gold);
+}
+
+.feature-card .icon.quizzes {
+  background-color: var(--color-secondary-dark);
+}
+
 .feature-card h3 {
   font-family: var(--font-display);
   font-size: var(--fs-h2);

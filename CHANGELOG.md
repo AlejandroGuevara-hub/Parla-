@@ -10,6 +10,9 @@
 - Header de usuario autenticado en `inicio.html` con iconos de Perfil (`fa-user`), Contacto (`fa-envelope`) y Salir (`fa-right-from-bracket`).
 - Estilos `.user-nav` para navegación de usuario y `.feature-card__link` para tarjetas cliqueables.
 - Sección `.dashboard` con título "Bienvenido" y subtítulo "¿Qué quieres aprender hoy?".
+- Tarjetas de Lecciones en video, Flashcards y Quizzes en el dashboard (6 tarjetas total).
+- 2 tokens de color nuevos: `--color-accent-gold` (Flashcards) y `--color-secondary-dark` (Quizzes) en `variables.css`.
+- Estilos de círculo `.icon.video`, `.icon.flashcards`, `.icon.quizzes` en `styles.css`.
 
 ### Changed
 - `index.html` ahora solo contiene hero y showcase (sin sección de características).
