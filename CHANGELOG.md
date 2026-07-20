@@ -17,6 +17,17 @@
 ### Changed
 - `index.html` ahora solo contiene hero y showcase (sin sección de características).
 
+## [1.2.1] — 2026-07-20
+
+### Fixed
+- Corrige ancho de tarjetas en dashboard de inicio: agrega `--feature-card-max-w: 280px` y cambia grid a `auto-fit` con `justify-content: center` para que las tarjetas sean angostas, centradas y no se estiren al ancho disponible.
+- Elimina subrayado heredado del enlace en tarjetas; cambia retroalimentación hover a borde `box-shadow: 0 0 0 2px var(--color-primary)`.
+
+## [1.2.2] — 2026-07-20
+
+### Fixed
+- Corrige flujo de registro: el botón "Crear cuenta" ahora navega a `login.html` en vez de `inicio.html`.
+
 ## [1.1.0] — 2026-07-19
 
 ### Added

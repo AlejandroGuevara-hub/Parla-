@@ -32,4 +32,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Migra sección de funcionalidades de Landing a Inicio del estudiante. Reconstruye `inicio.html` con header de usuario autenticado y grid de 6 tarjetas. Agrega 2 tokens de color nuevos. Elimina features de `index.html`.
+2026-07-20 — Corrige ancho y centrado de tarjetas en dashboard de inicio: agrega `--feature-card-max-w`, cambia grid a `auto-fit` con `justify-content: center`, elimina subrayado. Corrige flujo de registro: ahora va a login.html antes de inicio.html.
