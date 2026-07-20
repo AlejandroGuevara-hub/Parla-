@@ -1,5 +1,15 @@
 # Changelog — Parla!
 
+## [1.1.0] — 2026-07-19
+
+### Added
+- Selector de tema claro/oscuro flotante en todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`).
+- Botón `.theme-toggle` con posición fija en esquina inferior derecha, alterna entre `fa-moon` y `fa-sun` (Font Awesome).
+- Persistencia de preferencia en `localStorage` (clave `parla-theme`) con script inline en `<head>` para evitar parpadeo.
+- Bloque `[data-theme="dark"]` en `src/styles/variables.css` con paleta oscura basada en los tokens existentes.
+- `src/scripts/theme.js`: lógica de alternancia y sincronización de ícono/aria-label.
+- Documentación del componente en `docs/guia-componentes.md` y decisión técnica en `docs/decisiones-tecnicas.md`.
+
 ## [1.0.0] — 2026-07-17
 
 ### Added

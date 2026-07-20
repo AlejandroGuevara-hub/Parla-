@@ -127,7 +127,26 @@ Título del hero en dos líneas con colores distintos: línea 1 blanca, línea 2
 
 ---
 
-### `.hero__subtitle`
+### `.theme-toggle`
+Botón flotante en esquina inferior derecha que alterna entre tema claro y oscuro.
+
+```html
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+  <i class="fas fa-moon"></i>
+</button>
+```
+
+**Comportamiento:**
+- `position: fixed` — siempre visible sin importar el scroll.
+- Cambia `data-theme="dark"` en `<html>` y guarda la preferencia en `localStorage` (clave `parla-theme`).
+- Ícono: `fa-moon` (tema claro activo) / `fa-sun` (tema oscuro activo). Depende de Font Awesome.
+- `aria-label` se actualiza dinámicamente según el estado.
+
+**Variables que usa:** `--color-bg-card`, `--color-text`, `--shadow-card-hover`, `--color-primary` (foco).
+
+**JS asociado:** `src/scripts/theme.js` — lógica de alternancia y persistencia.
+
+**Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`).
 Subtítulo del hero en Poppins negrita, blanco con `text-shadow`.
 
 ```html

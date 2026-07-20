@@ -81,3 +81,19 @@
   --card-frame-w: 316.7px;
   --card-frame-h: 422px;
 }
+
+/* ============================================================
+   MODO OSCURO — Activo con data-theme="dark" en <html>
+   ============================================================ */
+
+[data-theme="dark"] {
+  --color-bg: #1E2124;
+  --color-bg-card: #2A2E32;
+  --color-text: #EDEAE3;
+  --color-text-muted: #B5B0A6;
+  --color-border: #3A3F44;
+  --color-accent: #D47A55;
+  --color-cream: #3A3F44;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.4);
+}

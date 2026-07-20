@@ -10,6 +10,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Landing Page — hero con fondo real, logo, copy actualizado
 - [x] Login (maqueta visual)
 - [x] Registro (maqueta visual)
+- [x] Selector de tema claro/oscuro flotante con persistencia
 - [ ] Inicio del estudiante (6 tarjetas)
 - [ ] Podcast / Video / Webtoon / Cultura / Flashcards / Quizzes
 - [ ] Favoritos
@@ -30,4 +31,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-17 — Reestructuración del proyecto a esquema tipo MVC (src/, reference/, docs/, prompts/ separados).
+2026-07-19 — Agrega selector de tema claro/oscuro flotante con persistencia en localStorage en todas las vistas. Nuevo archivo: `src/scripts/theme.js`. Bloque `[data-theme="dark"]` en variables CSS.

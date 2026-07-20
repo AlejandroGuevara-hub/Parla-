@@ -31,6 +31,19 @@ Login y registro son pantallas puramente visuales. Los botones "Iniciar sesión"
 "Crear cuenta" navegan directamente a `inicio.html` sin validar ningún campo.
 Esto cumple con la regla de "prototipo clicable sin backend".
 
+### Font Awesome para íconos en lugar de SVG propios
+Se eligió Font Awesome vía CDN para los íconos del selector de tema porque:
+- No requiere empaquetar ni mantener assets de íconos propios.
+- CDN con caché del navegador: se carga una vez y se reusa en todas las páginas.
+- La API de clases (`fas fa-moon` / `fas fa-sun`) es declarativa y fácil de cambiar desde JS.
+- Es una dependencia externa estándar con soporte a largo plazo; si en el futuro se necesita migrar, solo se cambia el CDN y las clases.
+
+### localStorage para persistencia del tema
+Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema porque:
+- La preferencia de tema claro/oscuro es una elección del usuario que debe mantenerse entre páginas y sesiones.
+- `localStorage` es síncrono y está disponible inmediatamente, lo que permite un script inline en `<head>` que aplica el tema antes del primer render, eliminando el parpadeo.
+- No requiere backend ni cookies; es la solución más liviana para Fase 1.
+
 ## Estructura de carpetas
 
 ```
