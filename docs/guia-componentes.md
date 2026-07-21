@@ -202,7 +202,7 @@ Modificador que agrega un resplandor animado giratorio alrededor de una tarjeta.
 
 **Comportamiento:**
 - Un pseudo-elemento `::before` con `conic-gradient` de `--color-primary` se posiciona detrás de la tarjeta y rota infinitamente con la animación `rotar-resplandor` (4s por vuelta).
-- `isolation: isolate` evita que el resplandor se superponga a otras tarjetas.
+- `z-index: 0` en la tarjeta crea un contexto de apilamiento que, junto con `z-index: -1` en el pseudo-elemento, sitúa el resplandor detrás del contenido de la tarjeta.
 - `filter: blur(12px)` difumina el degradado para que se vea como un brillo suave, no un borde sólido.
 - Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (resplandor fijo).
 

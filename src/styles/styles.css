@@ -315,7 +315,7 @@ a {
 
 .card--featured {
   position: relative;
-  isolation: isolate;
+  z-index: 0;
 }
 
 .card--featured::before {

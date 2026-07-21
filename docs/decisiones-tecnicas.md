@@ -57,7 +57,7 @@ Se agregó `--feature-card-max-w: 280px` en `variables.css` para limitar el anch
 Se eligió un `conic-gradient` animado con difuminado (`filter: blur`) para la tarjeta de Lecciones en video en lugar de un `box-shadow` pulsante porque:
 - El degradado cónico giratorio da la sensación de un resplandor que "recorre" el borde, lo que comunica movimiento direccional y atención sin ser agresivo.
 - `filter: blur` sobre el pseudo-elemento suaviza el gradiente para que se vea como un brillo ambiental, no como un borde sólido girando (que sería más brusco).
-- `isolation: isolate` en la tarjeta evita que el glow se salga de contexto y afecte visualmente a las tarjetas vecinas.
+- `z-index: 0` en la tarjeta crea un contexto de apilamiento que, combinado con `z-index: -1` en `::before`, sitúa el resplandor detrás del contenido de la tarjeta pero permite que los bordes extendidos (inset: -4px) sean visibles alrededor.
 - La animación se detiene con `prefers-reduced-motion: reduce` para respetar las preferencias de accesibilidad del usuario. Si solo se usara un `box-shadow` pulsante no haría falta animación, pero no comunicaría direccionalidad ni destacaría tanto visualmente.
 
 ### localStorage para persistencia del tema
