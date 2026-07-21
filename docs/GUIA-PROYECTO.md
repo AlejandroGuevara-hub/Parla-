@@ -17,7 +17,13 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── index.html          # Landing Page (pre-login: hero + showcase)
 │   │   ├── login.html          # Inicio de sesión (maqueta)
 │   │   ├── registro.html       # Registro (maqueta)
-│   │   └── inicio.html         # Inicio del estudiante (post-login: dashboard con 6 tarjetas)
+│   │   ├── inicio.html         # Inicio del estudiante (post-login: dashboard con 6 tarjetas)
+│   │   ├── video.html          # Placeholder: Lecciones en video
+│   │   ├── podcast.html        # Placeholder: Podcast
+│   │   ├── webtoon.html        # Placeholder: Webtoon
+│   │   ├── cultura.html        # Placeholder: Cultura
+│   │   ├── flashcards.html     # Placeholder: Flashcards
+│   │   └── quizzes.html        # Placeholder: Quizzes
 │   ├── styles/                 ← CSS
 │   │   ├── variables.css       # Design tokens
 │   │   ├── components.css      # Componentes reutilizables

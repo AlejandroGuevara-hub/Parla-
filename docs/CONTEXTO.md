@@ -12,7 +12,8 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Registro (maqueta visual)
 - [x] Selector de tema claro/oscuro flotante con persistencia
 - [x] Inicio del estudiante (6 tarjetas)
-- [ ] Páginas de contenido individuales (video, podcast, webtoon, cultura, flashcards, quizzes)
+- [x] Páginas placeholder (6) — con navegación completa
+- [ ] Contenido real de cada sección (video, podcast, webtoon, cultura, flashcards, quizzes)
 - [ ] Barra de progreso
 - [ ] Favoritos
 
@@ -32,4 +33,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Corrige ancho y centrado de tarjetas en dashboard de inicio: agrega `--feature-card-max-w`, cambia grid a `auto-fit` con `justify-content: center`, elimina subrayado. Corrige flujo de registro: ahora va a login.html antes de inicio.html.
+2026-07-20 — Crea 6 páginas placeholder para las secciones (video, podcast, webtoon, cultura, flashcards, quizzes) con header de usuario, marcador de posición y botón de volver. Conecta las tarjetas de Inicio como hipervínculos reales a cada página.
