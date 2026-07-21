@@ -209,3 +209,20 @@ Modificador que agrega un resplandor animado giratorio alrededor de una tarjeta.
 **Variable de color:** `--color-primary` (teal del proyecto, sin introducir colores nuevos).
 
 **Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
+
+---
+
+### `.animate-in`
+Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 24px hacia abajo y opaco, y al entrar en pantalla se desliza a su posición final mientras se hace visible.
+
+**Cómo funciona:**
+- El CSS define `opacity: 0` y `transform: translateY(24px)` por defecto.
+- Al cargar la página, `animations.js` agrega `js-animations-ready` al `<body>`.
+- `IntersectionObserver` detecta cuándo cada `.animate-in` entra en el viewport (threshold 0.15) y agrega `.is-visible`, activando la transición a opacidad 1 y posición original.
+- Sin JS (fallback), `body:not(.js-animations-ready) .animate-in` lo deja todo visible desde el inicio.
+- Efecto cascada: cada elemento recibe un `transitionDelay` incremental (index % 6 × 80ms) para que aparezcan en secuencia.
+- Respeta `prefers-reduced-motion`: sin transición ni desplazamiento.
+
+**JS asociado:** `src/scripts/animations.js` — IntersectionObserver y asignación de delay.
+
+**Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`). Aplicado a secciones principales, tarjetas y bloques de contenido.

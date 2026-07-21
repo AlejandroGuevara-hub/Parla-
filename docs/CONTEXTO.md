@@ -13,6 +13,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Selector de tema claro/oscuro flotante con persistencia
 - [x] Inicio del estudiante (6 tarjetas)
 - [x] Páginas placeholder (6) — con navegación completa
+- [x] Animaciones de entrada tipo flotar en todas las vistas
 - [ ] Contenido real de cada sección (video, podcast, webtoon, cultura, flashcards, quizzes)
 - [ ] Barra de progreso
 - [ ] Favoritos
@@ -33,4 +34,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Agrega resplandor animado giratorio (conic-gradient + blur) a la tarjeta de Lecciones en video en el dashboard de inicio, usando `--color-primary`. Respeta `prefers-reduced-motion`.
+2026-07-20 — Agrega animaciones de entrada tipo flotar (fade + translateY) vía IntersectionObserver en todas las vistas. Nuevo archivo: `src/scripts/animations.js`. Sistema `.animate-in` con efecto cascada y fallback sin JS.

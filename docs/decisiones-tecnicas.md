@@ -60,6 +60,12 @@ Se eligió un `conic-gradient` animado con difuminado (`filter: blur`) para la t
 - `z-index: 0` en la tarjeta crea un contexto de apilamiento que, combinado con `z-index: -1` en `::before`, sitúa el resplandor detrás del contenido de la tarjeta pero permite que los bordes extendidos (inset: -4px) sean visibles alrededor.
 - La animación se detiene con `prefers-reduced-motion: reduce` para respetar las preferencias de accesibilidad del usuario. Si solo se usara un `box-shadow` pulsante no haría falta animación, pero no comunicaría direccionalidad ni destacaría tanto visualmente.
 
+### IntersectionObserver para animaciones de entrada (vs. animar todo al cargar)
+Se eligió `IntersectionObserver` en lugar de animar todos los elementos al cargar la página porque:
+- Los elementos que están debajo del pliegue (below the fold) no deberían animarse hasta que el usuario haga scroll y realmente los vea. Animar todo al cargar desperdiciaría recursos y distraería al usuario con movimiento fuera de su viewport.
+- `IntersectionObserver` es nativo del navegador, no requiere librerías externas, y permite desobservar cada elemento después de su primera animación (`observer.unobserve()`), lo que evita recalculos innecesarios.
+- El fallback sin JS (`body:not(.js-animations-ready)`) asegura que si el script falla o tarda, el contenido se muestra completamente visible sin depender de la animación. Esto es progresivo: la animación es una mejora, no un requisito.
+
 ### localStorage para persistencia del tema
 Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema porque:
 - La preferencia de tema claro/oscuro es una elección del usuario que debe mantenerse entre páginas y sesiones.

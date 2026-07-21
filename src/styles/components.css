@@ -220,3 +220,29 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+
+/* ---------- Animaciones de entrada (flotar) ---------- */
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+body.js-animations-ready .animate-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body:not(.js-animations-ready) .animate-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    transition: none;
+    transform: none;
+  }
+}
