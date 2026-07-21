@@ -34,4 +34,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Agrega animaciones de entrada tipo flotar (fade + translateY) vía IntersectionObserver en todas las vistas. Nuevo archivo: `src/scripts/animations.js`. Sistema `.animate-in` con efecto cascada y fallback sin JS.
+2026-07-20 — Agrega animaciones de entrada tipo flotar en todas las vistas. Corrige apilamiento del resplandor de Lecciones en video para que no tape tarjetas vecinas (z-index: 2 en .card, z-index: 1 en .card--featured).

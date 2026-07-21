@@ -60,6 +60,13 @@ Se eligió un `conic-gradient` animado con difuminado (`filter: blur`) para la t
 - `z-index: 0` en la tarjeta crea un contexto de apilamiento que, combinado con `z-index: -1` en `::before`, sitúa el resplandor detrás del contenido de la tarjeta pero permite que los bordes extendidos (inset: -4px) sean visibles alrededor.
 - La animación se detiene con `prefers-reduced-motion: reduce` para respetar las preferencias de accesibilidad del usuario. Si solo se usara un `box-shadow` pulsante no haría falta animación, pero no comunicaría direccionalidad ni destacaría tanto visualmente.
 
+### Regla de apilamiento para tarjetas con efectos decorativos
+Se estableció como regla general del proyecto que toda tarjeta con un efecto decorativo que se desborde de su caja (glow, sombra extendida, borde animado) debe tener un `z-index` explícito menor que las tarjetas normales. Esto se implementó así:
+- `.card` (tarjetas normales): `z-index: 2`
+- `.card--featured` (tarjeta con glow): `z-index: 1`
+
+El `z-index: 1` en la tarjeta destacada crea un contexto de apilamiento donde su `::before` con `z-index: -1` queda detrás de su propio contenido, y al ser 1 < 2, todo el conjunto (tarjeta + glow) queda por debajo de cualquier tarjeta vecina. Esto evita que futuros efectos decorativos similares repitan el error de superponerse a elementos vecinos.
+
 ### IntersectionObserver para animaciones de entrada (vs. animar todo al cargar)
 Se eligió `IntersectionObserver` en lugar de animar todos los elementos al cargar la página porque:
 - Los elementos que están debajo del pliegue (below the fold) no deberían animarse hasta que el usuario haga scroll y realmente los vea. Animar todo al cargar desperdiciaría recursos y distraería al usuario con movimiento fuera de su viewport.

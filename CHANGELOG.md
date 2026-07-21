@@ -41,15 +41,11 @@
 
 ## [1.5.0] — 2026-07-20
 
+### Fixed
+- Corrige apilamiento del resplandor en `.card--featured`: agrega `z-index: 2` a `.card` y cambia `.card--featured` a `z-index: 1` para que el glow nunca se superponga a tarjetas vecinas.
+
 ### Added
 - Sistema de animaciones de entrada tipo "flotar" (`.animate-in`) con `IntersectionObserver` en todas las vistas. Los elementos aparecen con un desplazamiento vertical y fade-in al entrar en pantalla, con efecto cascada entre tarjetas. Nuevo archivo: `src/scripts/animations.js`.
-
-### Added
-- Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
-
-### Added
-- Crea 6 páginas placeholder funcionales para las secciones: `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`. Cada una con header de usuario autenticado, ícono de sección, mensaje de marcador de posición y botón de volver.
-- Conecta las 6 tarjetas del dashboard en `inicio.html` como hipervínculos reales a sus páginas correspondientes (reemplaza `href="#"`).
 
 ## [1.1.0] — 2026-07-19
 

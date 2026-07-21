@@ -32,3 +32,15 @@
 2. Se cambió `data-navegar="inicio.html"` a `data-navegar="login.html"` en `registro.html`.
 
 **Cómo evitarlo:** Al crear tarjetas en un grid, definir siempre un ancho máximo para evitar que se estiren. Verificar el flujo de navegación completo (registro → login → inicio) antes de configurar los `data-navegar`.
+
+### [2026-07-20] Resplandor de tarjeta destacada se solapaba con tarjetas vecinas
+**Qué pasó:** El resplandor animado (conic-gradient + blur) de la tarjeta "Lecciones en video" se veía por delante de las tarjetas Podcast (arriba) y Flashcards (al lado), tapando sus bordes. El efecto decorativo se desbordaba de su caja y, al no tener control de apilamiento entre tarjetas, se superponía visualmente a las vecinas.
+
+**Por qué pasó:** `.card--featured` tenía `z-index: 0` y las tarjetas normales (`.card`) no tenían z-index explícito, por lo que todas compartían el mismo nivel de apilamiento automático. El desenfoque del resplandor (`blur: 12px`) se extendía 4px fuera de la tarjeta (`inset: -4px`) y, al estar en el mismo nivel que las vecinas, ganaba visualmente la que aparecía después en el flujo HTML — pero el glow se escapaba y se superponía.
+
+**Cómo se corrigió:** 
+- Se agregó `position: relative; z-index: 2` a `.card` (todas las tarjetas normales tienen un nivel alto).
+- Se cambió `.card--featured` a `z-index: 1` (menor que las tarjetas vecinas), de modo que su `::before` con `z-index: -1` queda siempre detrás de cualquier tarjeta normal.
+- Se eliminó `padding: 4px` innecesario del `::before`.
+
+**Cómo evitarlo:** Toda tarjeta con efecto decorativo que se desborde de su caja (glow, sombra extendida, etc.) debe llevar z-index menor que las tarjetas normales, nunca al revés. Establecer siempre un z-index explícito en las tarjetas base para tener control de apilamiento.
