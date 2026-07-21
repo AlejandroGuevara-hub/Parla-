@@ -53,12 +53,12 @@ Se agregó `--feature-card-max-w: 280px` en `variables.css` para limitar el anch
 - Permite que 3 tarjetas quepan cómodamente en una fila (~280px × 3 + gaps ≈ 900px) dentro del contenedor de 1200px.
 - `auto-fit` con `minmax(240px, 280px)` da un rango estrecho que mantiene las tarjetas compactas incluso en viewports intermedios.
 
-### Resplandor giratorio en tarjeta destacada (conic-gradient + blur)
-Se eligió un `conic-gradient` animado con difuminado (`filter: blur`) para la tarjeta de Lecciones en video en lugar de un `box-shadow` pulsante porque:
-- El degradado cónico giratorio da la sensación de un resplandor que "recorre" el borde, lo que comunica movimiento direccional y atención sin ser agresivo.
-- `filter: blur` sobre el pseudo-elemento suaviza el gradiente para que se vea como un brillo ambiental, no como un borde sólido girando (que sería más brusco).
-- `z-index: 0` en la tarjeta crea un contexto de apilamiento que, combinado con `z-index: -1` en `::before`, sitúa el resplandor detrás del contenido de la tarjeta pero permite que los bordes extendidos (inset: -4px) sean visibles alrededor.
-- La animación se detiene con `prefers-reduced-motion: reduce` para respetar las preferencias de accesibilidad del usuario. Si solo se usara un `box-shadow` pulsante no haría falta animación, pero no comunicaría direccionalidad ni destacaría tanto visualmente.
+### Halo pulsante en tarjeta destacada (box-shadow animado)
+Se reemplazó el resplandor giratorio (conic-gradient + blur en pseudo-elemento) por un halo de blur pulsante (`box-shadow` animado) porque:
+- Es más simple: no necesita pseudo-elemento, no necesita máscara de desborde, y el `box-shadow` se mantiene naturalmente dentro del contexto de apilamiento sin fugas visuales.
+- El `box-shadow` crece y decrece suavemente entre 14px y 30px de desenfoque, lo que da un efecto de "respiración" que destaca la tarjeta sin ser agresivo ni distraer.
+- Al no tener pseudo-elemento con `inset: -4px`, no hay riesgo de que el efecto se salga de su caja y se superponga a tarjetas vecinas — el `box-shadow` respeta los límites del `z-index` de la tarjeta.
+- Se introdujo `--color-primary-rgb` en `variables.css` para poder usar el color primario con transparencia en `rgba()`, necesario para el `box-shadow`.
 
 ### Regla de apilamiento para tarjetas con efectos decorativos
 Se estableció como regla general del proyecto que toda tarjeta con un efecto decorativo que se desborde de su caja (glow, sombra extendida, borde animado) debe tener un `z-index` explícito menor que las tarjetas normales. Esto se implementó así:

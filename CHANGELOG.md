@@ -47,6 +47,9 @@
 ### Added
 - Sistema de animaciones de entrada tipo "flotar" (`.animate-in`) con `IntersectionObserver` en todas las vistas. Los elementos aparecen con un desplazamiento vertical y fade-in al entrar en pantalla, con efecto cascada entre tarjetas. Nuevo archivo: `src/scripts/animations.js`.
 
+### Changed
+- Reemplaza resplandor giratorio (conic-gradient + pseudo-elemento) por halo de blur pulsante (`box-shadow` animado) en tarjeta de Lecciones en video. Agrega `--color-primary-rgb` en `variables.css`.
+
 ## [1.1.0] — 2026-07-19
 
 ### Added

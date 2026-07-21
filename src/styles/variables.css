@@ -12,6 +12,7 @@
      (título en teal #0097b2, texto en gris oscuro #333333) */
 
   --color-primary: #0097B2;        /* Teal — títulos principales, según mockup */
+  --color-primary-rgb: 0, 151, 178; /* Mismo azul en formato r,g,b para usar con rgba() */
   --color-primary-dark: #007A91;   /* Hover/active de botones primarios */
 
   --color-secondary: #7E97AC;      /* Azul grisáceo del círculo del logo */

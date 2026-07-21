@@ -194,20 +194,18 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 ---
 
 ### `.card--featured`
-Modificador que agrega un resplandor animado giratorio alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
+Modificador que agrega un halo de blur pulsante alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
 
 ```html
 <article class="feature-card card card--featured">
 ```
 
 **Comportamiento:**
-- Un pseudo-elemento `::before` con `conic-gradient` de `--color-primary` se posiciona detrás de la tarjeta y rota infinitamente con la animación `rotar-resplandor` (4s por vuelta).
-- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el resplandor nunca se superponga a tarjetas vecinas.
-- `z-index: -1` en el pseudo-elemento lo sitúa detrás del contenido de su propia tarjeta.
-- `filter: blur(12px)` difumina el degradado para que se vea como un brillo suave, no un borde sólido.
-- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (resplandor fijo).
+- `box-shadow` con `rgba(var(--color-primary-rgb), ...)` pulsa suavemente entre 14px y 30px de desenfoque con la animación `respirar-halo` (3s ciclo), sin pseudo-elemento.
+- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el halo nunca se superponga a tarjetas vecinas.
+- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene y queda un halo fijo de 14px.
 
-**Variable de color:** `--color-primary` (teal del proyecto, sin introducir colores nuevos).
+**Variable de color:** `--color-primary` y `--color-primary-rgb` (teal del proyecto).
 
 **Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
 
