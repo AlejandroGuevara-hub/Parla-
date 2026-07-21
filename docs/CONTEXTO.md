@@ -33,4 +33,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Crea 6 páginas placeholder para las secciones (video, podcast, webtoon, cultura, flashcards, quizzes) con header de usuario, marcador de posición y botón de volver. Conecta las tarjetas de Inicio como hipervínculos reales a cada página.
+2026-07-20 — Agrega resplandor animado giratorio (conic-gradient + blur) a la tarjeta de Lecciones en video en el dashboard de inicio, usando `--color-primary`. Respeta `prefers-reduced-motion`.

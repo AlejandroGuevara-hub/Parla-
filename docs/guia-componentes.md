@@ -190,3 +190,22 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 **Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, se muestra un borde `box-shadow: 0 0 0 2px var(--color-primary)` y la tarjeta eleva su sombra (`.card:hover`).
 
 **Dónde se usa:** `inicio.html` — dashboard grid.
+
+---
+
+### `.card--featured`
+Modificador que agrega un resplandor animado giratorio alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
+
+```html
+<article class="feature-card card card--featured">
+```
+
+**Comportamiento:**
+- Un pseudo-elemento `::before` con `conic-gradient` de `--color-primary` se posiciona detrás de la tarjeta y rota infinitamente con la animación `rotar-resplandor` (4s por vuelta).
+- `isolation: isolate` evita que el resplandor se superponga a otras tarjetas.
+- `filter: blur(12px)` difumina el degradado para que se vea como un brillo suave, no un borde sólido.
+- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (resplandor fijo).
+
+**Variable de color:** `--color-primary` (teal del proyecto, sin introducir colores nuevos).
+
+**Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
