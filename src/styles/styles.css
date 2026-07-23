@@ -192,7 +192,7 @@ a {
 }
 
 
-/* ---------- Composite Section (imagen compuesta + íconos + párrafo) ---------- */
+/* ---------- Composite Section (imagen compuesta + título + párrafo) ---------- */
 
 .composite-section {
   padding: var(--space-lg) var(--space-md);
@@ -234,17 +234,6 @@ a {
   box-shadow: var(--shadow-card);
 }
 
-.composite-section__icons {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.composite-section__icons .feature-card {
-  flex: 1;
-  min-width: 160px;
-}
-
 .composite-section__paragraph {
   font-family: var(--font-body);
   font-size: var(--fs-body-composite);
@@ -254,7 +243,6 @@ a {
   letter-spacing: -0.2px;
 }
 
-/* responsive: apilar columnas en móvil */
 @media (max-width: 768px) {
   .composite-section__inner {
     grid-template-columns: 1fr;
@@ -267,14 +255,6 @@ a {
 
   .composite-section__heading {
     font-size: 1.75rem;
-  }
-
-  .composite-section__icons {
-    flex-direction: column;
-  }
-
-  .composite-section__icons .feature-card {
-    min-width: 100%;
   }
 }
 

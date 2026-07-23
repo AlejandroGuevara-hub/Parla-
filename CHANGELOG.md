@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.7.0] — 2026-07-20
+
+### Removed
+- Elimina tarjetas duplicadas de Podcast/Webtoon/Cultura en la sección compuesto de la Landing (ya existían en `inicio.html`).
+
 ## [1.6.0] — 2026-07-20
 
 ### Changed

@@ -212,7 +212,7 @@ Modificador que agrega un halo de blur pulsante alrededor de una tarjeta. Se usa
 ---
 
 ### `.composite-section`
-Sección de dos columnas debajo del hero en la Landing Page. Muestra un título en la columna izquierda y una imagen compuesta + íconos + párrafo en la columna derecha.
+Sección de dos columnas debajo del hero en la Landing Page. Muestra un título en la columna izquierda y una imagen compuesta + párrafo en la columna derecha (sin tarjetas funcionales — esas están solo en `inicio.html`).
 
 ```html
 <section class="composite-section animate-in" aria-label="Sección compuesto">
@@ -222,9 +222,6 @@ Sección de dos columnas debajo del hero en la Landing Page. Muestra un título 
     </div>
     <div class="composite-section__right">
       <img src="../assets/images/hero.png" alt="..." loading="lazy" class="composite-section__image">
-      <div class="composite-section__icons">
-        <!-- 3 feature-card con íconos Podcast, Webtoon, Cultura -->
-      </div>
       <p class="composite-section__paragraph">...</p>
     </div>
   </div>
@@ -233,9 +230,8 @@ Sección de dos columnas debajo del hero en la Landing Page. Muestra un título 
 
 **Comportamiento:**
 - Grid de 2 columnas en escritorio (`1fr 1fr`), se apila a 1 columna en móvil (≤768px).
-- El título usa `--color-heading-gold`, Fraunces 38px, letter-spacing -0.5px, line-height 1.1.
+- El título usa Fraunces 38px, color `--color-heading-gold`, letter-spacing -0.5px, line-height 1.1.
 - La columna izquierda tiene `position: sticky` para que el título permanezca visible al hacer scroll (solo escritorio).
-- Los íconos (Podcast, Webtoon, Cultura) se muestran en fila con `flex-wrap: wrap` y se apilan en móvil.
 
 **Tokens usados:** `--color-heading-gold`, `--fs-heading-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 

@@ -44,3 +44,9 @@
 - Se eliminó `padding: 4px` innecesario del `::before`.
 
 **Cómo evitarlo:** Toda tarjeta con efecto decorativo que se desborde de su caja (glow, sombra extendida, etc.) debe llevar z-index menor que las tarjetas normales, nunca al revés. Establecer siempre un z-index explícito en las tarjetas base para tener control de apilamiento.
+
+### [2026-07-20] Tarjetas duplicadas de Podcast/Webtoon/Cultura en la Landing tras reestructuración
+**Qué pasó:** En la sección compuesto de `src/views/index.html` se incluyeron 3 tarjetas (Podcast, Webtoon, Cultura) con ícono, título y descripción, duplicando el contenido que ya existía en `src/views/inicio.html` (Inicio del estudiante). La Landing Page debe ser solo una vitrina pública, no debe tener las tarjetas funcionales del dashboard autenticado.
+**Por qué pasó:** Al rediseñar la sección compuesto (`prompt-rediseno-composite-landing.md`) se interpretó que la fila de íconos pequeños debajo de la imagen compuesta (que sí son parte del gráfico y se quedan) eran estas tarjetas grandes. Se copiaron las 3 tarjetas desde `inicio.html` sin verificar que ya pertenecían al flujo post-login.
+**Cómo se corrigió:** Se eliminó el bloque `div.composite-section__icons` completo de `index.html`, incluyendo las 3 tarjetas y sus estilos asociados que ya no se usan en esa vista.
+**Cómo evitarlo:** Antes de agregar contenido a la Landing, verificar si ya existe en el dashboard de Inicio (post-login). La Landing solo debe mostrar hero, sección compuesto (imagen + título + párrafo) y footer — nada del dashboard de funciones.
