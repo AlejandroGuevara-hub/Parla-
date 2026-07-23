@@ -23,6 +23,9 @@
   --color-accent-gold: #C9974A;    /* Dorado cálido — fondo del icono "Flashcards", derivado de la gama crema/terracota */
   --color-secondary-dark: #5F7A8C; /* Azul grisáceo oscuro — fondo del icono "Quizzes", variante más profunda de --color-secondary */
 
+  --color-heading-gold: #c9a55c;   /* Dorado claro — título "Olvídate de memorizar reglas", sección compuesto landing */
+  --color-text-navy: #2c3e50;      /* Azul marino — párrafo bajo el compuesto, sección landing */
+
   --color-cream: #F3ECDD;          /* Beige/crema del borde y texto "Parla!" del logo */
   --color-bg: #FAF8F5;             /* Fondo general de página, variante clara del crema */
   --color-bg-card: #FFFFFF;        /* Fondo de tarjetas, contraste sobre --color-bg */
@@ -52,6 +55,12 @@
   --fs-h2: 1.375rem;    /* 22px — subtítulo "¿Qué quieres aprender hoy?" */
   --fs-body: 0.8125rem; /* 13px — texto de tarjetas, según anotación "poppins 13" */
   --fs-caption: 0.75rem;/* 12px — etiquetas pequeñas (nav superior) */
+
+  --fs-heading-composite: 2.375rem; /* 38px — título sección compuesto landing */
+  --fs-body-composite: 0.9375rem;   /* 15px — párrafo sección compuesto landing */
+  --ls-heading-composite: -0.5px;   /* Letter-spacing del título compuesto */
+  --lh-heading-composite: 1.1;      /* Line-height del título compuesto */
+  --lh-body-composite: 2.5;         /* Line-height del párrafo compuesto */
 
   --fw-regular: 400;
   --fw-bold: 700;
@@ -99,6 +108,8 @@
   --color-accent: #D47A55;
   --color-accent-gold: #D4A94E;
   --color-secondary-dark: #7A94A6;
+  --color-heading-gold: #d4a94e;
+  --color-text-navy: #B5B0A6;
   --color-cream: #3A3F44;
   --feature-card-max-w: 280px;
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);

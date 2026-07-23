@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.6.0] — 2026-07-20
+
+### Changed
+- Rediseña sección del compuesto en landing: layout de dos columnas, título "Olvídate de memorizar reglas." y párrafo nuevos. Agrega 7 tokens nuevos en variables.css (`--color-heading-gold`, `--color-text-navy`, `--fs-heading-composite`, `--fs-body-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--lh-body-composite`).
+
 ## [1.5.0] — 2026-07-20
 
 ### Fixed

@@ -192,19 +192,90 @@ a {
 }
 
 
-/* ---------- Showcase Section (imagen compuesta) ---------- */
+/* ---------- Composite Section (imagen compuesta + íconos + párrafo) ---------- */
 
-.showcase {
+.composite-section {
   padding: var(--space-lg) var(--space-md);
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.showcase img {
+.composite-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.composite-section__left {
+  position: sticky;
+  top: calc(70px + var(--space-lg));
+}
+
+.composite-section__heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-heading-composite);
+  font-weight: var(--fw-bold);
+  color: var(--color-heading-gold);
+  letter-spacing: var(--ls-heading-composite);
+  line-height: var(--lh-heading-composite);
+}
+
+.composite-section__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.composite-section__image {
   width: 100%;
   height: auto;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
+}
+
+.composite-section__icons {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.composite-section__icons .feature-card {
+  flex: 1;
+  min-width: 160px;
+}
+
+.composite-section__paragraph {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-composite);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-navy);
+  line-height: var(--lh-body-composite);
+  letter-spacing: -0.2px;
+}
+
+/* responsive: apilar columnas en móvil */
+@media (max-width: 768px) {
+  .composite-section__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .composite-section__left {
+    position: static;
+  }
+
+  .composite-section__heading {
+    font-size: 1.75rem;
+  }
+
+  .composite-section__icons {
+    flex-direction: column;
+  }
+
+  .composite-section__icons .feature-card {
+    min-width: 100%;
+  }
 }
 
 
@@ -381,10 +452,6 @@ a {
 
   .hero__title {
     font-size: 2rem;
-  }
-
-  .showcase {
-    padding: var(--space-md) var(--space-sm);
   }
 
   .nav-links {

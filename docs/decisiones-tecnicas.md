@@ -60,6 +60,17 @@ Se reemplazó el resplandor giratorio (conic-gradient + blur en pseudo-elemento)
 - Al no tener pseudo-elemento con `inset: -4px`, no hay riesgo de que el efecto se salga de su caja y se superponga a tarjetas vecinas — el `box-shadow` respeta los límites del `z-index` de la tarjeta.
 - Se introdujo `--color-primary-rgb` en `variables.css` para poder usar el color primario con transparencia en `rgba()`, necesario para el `box-shadow`.
 
+### Tokens nuevos para la sección compuesto de la Landing
+
+Se agregaron 7 tokens nuevos en `variables.css` para la sección compuesto (dos columnas debajo del hero):
+
+- **Colores:** `--color-heading-gold: #c9a55c` (título dorado), `--color-text-navy: #2c3e50` (párrafo azul marino). En modo oscuro, `--color-heading-gold` se aclara a `#d4a94e` y `--color-text-navy` a `#B5B0A6` para mantener contraste.
+- **Tipografía:** `--fs-heading-composite: 2.375rem` (38px), `--ls-heading-composite: -0.5px`, `--lh-heading-composite: 1.1`, `--fs-body-composite: 0.9375rem` (15px), `--lh-body-composite: 2.5`.
+
+### Nota sobre el letter-spacing del párrafo compuesto
+
+El cliente anotó un valor de `-20` para el `letter-spacing` del párrafo "Aprende italiano mediante experiencias reales...". A 15px, `-20px` de letter-spacing haría que los caracteres se solaparan casi por completo, resultando ilegible. Se interpretó este valor como un error de anotación (posiblemente -2.0px mal escrito o una convención diferente) y se ajustó a `-0.2px`, que es un valor perceptualmente razonable para negrita a 15px. Si el cliente confirma otro valor, se actualiza en `--ls-body-composite` (token no creado porque solo se usa una vez; se aplica inline en el CSS del párrafo).
+
 ### Regla de apilamiento para tarjetas con efectos decorativos
 Se estableció como regla general del proyecto que toda tarjeta con un efecto decorativo que se desborde de su caja (glow, sombra extendida, borde animado) debe tener un `z-index` explícito menor que las tarjetas normales. Esto se implementó así:
 - `.card` (tarjetas normales): `z-index: 2`

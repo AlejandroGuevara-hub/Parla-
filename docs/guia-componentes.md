@@ -211,6 +211,38 @@ Modificador que agrega un halo de blur pulsante alrededor de una tarjeta. Se usa
 
 ---
 
+### `.composite-section`
+Sección de dos columnas debajo del hero en la Landing Page. Muestra un título en la columna izquierda y una imagen compuesta + íconos + párrafo en la columna derecha.
+
+```html
+<section class="composite-section animate-in" aria-label="Sección compuesto">
+  <div class="composite-section__inner">
+    <div class="composite-section__left">
+      <h2 class="composite-section__heading">Olvídate de memorizar reglas.</h2>
+    </div>
+    <div class="composite-section__right">
+      <img src="../assets/images/hero.png" alt="..." loading="lazy" class="composite-section__image">
+      <div class="composite-section__icons">
+        <!-- 3 feature-card con íconos Podcast, Webtoon, Cultura -->
+      </div>
+      <p class="composite-section__paragraph">...</p>
+    </div>
+  </div>
+</section>
+```
+
+**Comportamiento:**
+- Grid de 2 columnas en escritorio (`1fr 1fr`), se apila a 1 columna en móvil (≤768px).
+- El título usa `--color-heading-gold`, Fraunces 38px, letter-spacing -0.5px, line-height 1.1.
+- La columna izquierda tiene `position: sticky` para que el título permanezca visible al hacer scroll (solo escritorio).
+- Los íconos (Podcast, Webtoon, Cultura) se muestran en fila con `flex-wrap: wrap` y se apilan en móvil.
+
+**Tokens usados:** `--color-heading-gold`, `--fs-heading-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
+
+**Dónde se usa:** Solo en `index.html` — sección compuesto debajo del hero.
+
+---
+
 ### `.animate-in`
 Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 24px hacia abajo y opaco, y al entrar en pantalla se desliza a su posición final mientras se hace visible.
 
