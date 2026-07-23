@@ -34,4 +34,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Elimina tarjetas duplicadas de Podcast/Webtoon/Cultura en la sección compuesto de la Landing.
+2026-07-20 — Elimina tarjetas duplicadas de la sección compuesto en landing. Imagen al 65% con aspect-ratio 7/4. Título cambia a DM Serif Display 56px.

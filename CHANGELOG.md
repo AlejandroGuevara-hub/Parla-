@@ -41,6 +41,10 @@
 
 ## [1.7.0] — 2026-07-20
 
+### Changed
+- Ajusta ancho de imagen compuesta al 65% del contenedor con `aspect-ratio: 7 / 4`.
+- Agranda título a 56px (3.5rem) con fuente DM Serif Display y token `--font-heading-composite`.
+
 ### Removed
 - Elimina tarjetas duplicadas de Podcast/Webtoon/Cultura en la sección compuesto de la Landing (ya existían en `inicio.html`).
 

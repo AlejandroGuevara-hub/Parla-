@@ -212,28 +212,23 @@ Modificador que agrega un halo de blur pulsante alrededor de una tarjeta. Se usa
 ---
 
 ### `.composite-section`
-Sección de dos columnas debajo del hero en la Landing Page. Muestra un título en la columna izquierda y una imagen compuesta + párrafo en la columna derecha (sin tarjetas funcionales — esas están solo en `inicio.html`).
+Sección debajo del hero en la Landing Page. Muestra el título "Olvídate de memorizar reglas." seguido de la imagen compuesta (audífonos + teléfono + columna) al 65% de ancho, y el párrafo descriptivo.
 
 ```html
 <section class="composite-section animate-in" aria-label="Sección compuesto">
-  <div class="composite-section__inner">
-    <div class="composite-section__left">
-      <h2 class="composite-section__heading">Olvídate de memorizar reglas.</h2>
-    </div>
-    <div class="composite-section__right">
-      <img src="../assets/images/hero.png" alt="..." loading="lazy" class="composite-section__image">
-      <p class="composite-section__paragraph">...</p>
-    </div>
-  </div>
+  <h2 class="composite-section__title">Olvídate de memorizar reglas.</h2>
+  <img src="../assets/images/hero.png" alt="..." loading="lazy" class="composite-section__image">
+  <p class="composite-section__paragraph">...</p>
 </section>
 ```
 
 **Comportamiento:**
-- Grid de 2 columnas en escritorio (`1fr 1fr`), se apila a 1 columna en móvil (≤768px).
-- El título usa Fraunces 38px, color `--color-heading-gold`, letter-spacing -0.5px, line-height 1.1.
-- La columna izquierda tiene `position: sticky` para que el título permanezca visible al hacer scroll (solo escritorio).
+- El título usa `--font-heading-composite` (DM Serif Display) en 56px, color dorado, con `z-index: 2` para quedar por encima de la imagen si se superponen visualmente.
+- La imagen ocupa el 65% del ancho del contenedor, alineada a la izquierda, con `aspect-ratio: 7 / 4` para mantener proporción. `z-index: 1`.
+- En móvil (≤768px) la imagen pasa a 100% de ancho.
+- No hay tarjetas funcionales en esta sección — solo imagen decorativa y texto. Las tarjetas de Podcast/Webtoon/Cultura están exclusivamente en `inicio.html`.
 
-**Tokens usados:** `--color-heading-gold`, `--fs-heading-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
+**Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--fs-heading-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
 **Dónde se usa:** Solo en `index.html` — sección compuesto debajo del hero.
 

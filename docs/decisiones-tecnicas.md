@@ -71,6 +71,13 @@ Se agregaron 7 tokens nuevos en `variables.css` para la sección compuesto (dos 
 
 El cliente anotó un valor de `-20` para el `letter-spacing` del párrafo "Aprende italiano mediante experiencias reales...". A 15px, `-20px` de letter-spacing haría que los caracteres se solaparan casi por completo, resultando ilegible. Se interpretó este valor como un error de anotación (posiblemente -2.0px mal escrito o una convención diferente) y se ajustó a `-0.2px`, que es un valor perceptualmente razonable para negrita a 15px. Si el cliente confirma otro valor, se actualiza en `--ls-body-composite` (token no creado porque solo se usa una vez; se aplica inline en el CSS del párrafo).
 
+### DM Serif Display para el título compuesto
+El título "Olvídate de memorizar reglas." usa `DM Serif Display` en lugar del placeholder Fraunces (que reemplaza a Hatton en el resto del sitio) porque:
+- El cliente indicó explícitamente esta fuente para este título específico, diferenciándolo del resto del sistema.
+- DM Serif Display es una fuente real, gratuita y disponible en Google Fonts, a diferencia de Hatton que sigue siendo de pago y pendiente de entrega.
+- Al ser una fuente serif con personalidad similar a Fraunces pero con un peso óptico más contrastado, funciona mejor en tamaños grandes (56px) para titulares destacados.
+- Se creó el token `--font-heading-composite: "DM Serif Display", serif` para aislar esta elección y poder cambiarla sin afectar el resto del sistema tipográfico.
+
 ### Regla de apilamiento para tarjetas con efectos decorativos
 Se estableció como regla general del proyecto que toda tarjeta con un efecto decorativo que se desborde de su caja (glow, sombra extendida, borde animado) debe tener un `z-index` explícito menor que las tarjetas normales. Esto se implementó así:
 - `.card` (tarjetas normales): `z-index: 2`
