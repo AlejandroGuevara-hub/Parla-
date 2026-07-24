@@ -34,6 +34,8 @@
   --color-text-muted: #6B6B6B;     /* Texto secundario, descripciones de tarjetas */
   --color-border: #E3DED2;         /* Bordes suaves de tarjetas y separadores */
 
+  --color-whatsapp: #25D366;       /* Verde oficial de WhatsApp, botón de contacto */
+
   /* Estados (pendiente / en proceso / completado) — requeridos en Doc. Fase 1 */
   --color-state-pending: #B8B2A3;
   --color-state-progress: var(--color-primary);
@@ -50,6 +52,7 @@
 
   --font-display: "Fraunces", "Georgia", serif;   /* Placeholder de Hatton */
   --font-heading-composite: "DM Serif Display", serif; /* Fuente específica del título compuesto, indicada por el cliente */
+  --font-display-decorative: "Cinzel Decorative", serif; /* Fuente decorativa para título de contacto, solicitada por el cliente */
   --font-body: "Poppins", sans-serif;               /* Confirmada en el mockup */
 
   --fs-h1: 3rem;        /* 48px — título "Bienvenido" en el mockup */

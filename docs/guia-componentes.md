@@ -248,3 +248,25 @@ Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 2
 **JS asociado:** `src/scripts/animations.js` — IntersectionObserver y asignación de delay.
 
 **Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`). Aplicado a secciones principales, tarjetas y bloques de contenido.
+
+---
+
+### `.btn-whatsapp`
+Botón tipo pastilla redondeada (50px border-radius) con color verde WhatsApp (`#25D366`) e ícono de marca. Se usa exclusivamente en la página de Contactos.
+
+```html
+<a class="btn btn-whatsapp" href="https://wa.me/573182534487" target="_blank" rel="noopener">
+  <i class="fa-brands fa-whatsapp"></i>
+  Escríbenos en WhatsApp
+</a>
+```
+
+**Comportamiento:**
+- Color de fondo: `--color-whatsapp` (`#25D366`), texto blanco.
+- Ícono de Font Awesome: `fa-brands fa-whatsapp`.
+- Hover/active: reduce opacidad al 85% (sin cambio de color).
+- Se abre en pestaña nueva con `target="_blank" rel="noopener"`.
+
+**Token usado:** `--color-whatsapp` (definido en `variables.css`).
+
+**Dónde se usa:** Solo en `contacto.html`.

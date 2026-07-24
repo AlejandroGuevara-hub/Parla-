@@ -23,7 +23,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── webtoon.html        # Placeholder: Webtoon
 │   │   ├── cultura.html        # Placeholder: Cultura
 │   │   ├── flashcards.html     # Placeholder: Flashcards
-│   │   └── quizzes.html        # Placeholder: Quizzes
+│   │   ├── quizzes.html        # Placeholder: Quizzes
+│   │   └── contacto.html       # Contacto: WhatsApp, fondo e ícono del cliente
 │   ├── styles/                 ← CSS
 │   │   ├── variables.css       # Design tokens
 │   │   ├── components.css      # Componentes reutilizables
@@ -36,7 +37,9 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │       └── images/
 │           ├── logo.png
 │           ├── hero.png
-│           └── hero-bg.jpg
+│           ├── hero-bg.jpg
+│           ├── contact-bg.png     # Fondo página de Contactos
+│           └── contact-icon.png   # Ícono decorativo teléfono+corazón
 ├── reference/                  ← Material CRUDO del cliente (no tocar)
 │   ├── Diego-pagina web/
 │   ├── Requerimientos de la Fase 1.pdf
@@ -61,8 +64,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 | Archivo | Propósito |
 |---|---|
 | `src/styles/variables.css` | Tokens de diseño: colores, tipografías, espaciados, sombras. Única fuente de verdad visual. |
-| `src/styles/components.css` | Componentes reutilizables: `.btn`, `.btn-primary`, `.btn-secondary`, `.input-field`, `.logo`, `.card`, `.form-toggle`, `.auth-form`. |
-| `src/styles/styles.css` | Estilos de página: reset, header, hero, showcase, dashboard, auth pages, footer, responsive. |
+| `src/styles/components.css` | Componentes reutilizables: `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-whatsapp`, `.input-field`, `.logo`, `.card`, `.form-toggle`, `.auth-form`. |
+| `src/styles/styles.css` | Estilos de página: reset, header, hero, showcase, contact page, dashboard, auth pages, footer, responsive. |
 
 ## Archivos JS
 

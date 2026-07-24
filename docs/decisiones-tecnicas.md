@@ -78,6 +78,15 @@ El título "Olvídate de memorizar reglas." usa `DM Serif Display` en lugar del 
 - Al ser una fuente serif con personalidad similar a Fraunces pero con un peso óptico más contrastado, funciona mejor en tamaños grandes (56px) para titulares destacados.
 - Se creó el token `--font-heading-composite: "DM Serif Display", serif` para aislar esta elección y poder cambiarla sin afectar el resto del sistema tipográfico.
 
+### Página de Contactos — ampliación de alcance fuera de Fase 1
+La página `contacto.html` se agregó por solicitud directa del cliente después de cerrada la lista original de pantallas de Fase 1 (que incluía solo Landing, Login, Registro, Inicio del estudiante y 6 subsecciones). Se documenta aquí como una ampliación de alcance.
+
+### Cinzel Decorative para el título de Contacto
+El título "ACOMPAÑAMIENTO CONTINUO" en la página de Contactos usa `Cinzel Decorative` porque:
+- El cliente indicó explícitamente esta fuente para este título específico.
+- Cinzel Decorative es una fuente real, gratuita y disponible en Google Fonts, con un estilo decorativo/epigráfico que se diferencia del resto de las fuentes del sistema (Hatton/Fraunces para títulos generales, DM Serif Display para el título compuesto, Poppins para cuerpo).
+- Se creó el token `--font-display-decorative: "Cinzel Decorative", serif` para aislar esta elección.
+
 ### Regla de apilamiento para tarjetas con efectos decorativos
 Se estableció como regla general del proyecto que toda tarjeta con un efecto decorativo que se desborde de su caja (glow, sombra extendida, borde animado) debe tener un `z-index` explícito menor que las tarjetas normales. Esto se implementó así:
 - `.card` (tarjetas normales): `z-index: 2`

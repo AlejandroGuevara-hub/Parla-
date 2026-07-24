@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.8.0] — 2026-07-20
+
+### Added
+- Crea página de Contactos (`contacto.html`) con fondo del cliente, título en Cinzel Decorative, ícono decorativo, número y botón de WhatsApp. Conecta el ícono de Contacto del header de usuario autenticado a la nueva página.
+
 ## [1.7.0] — 2026-07-20
 
 ### Changed

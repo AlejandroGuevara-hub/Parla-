@@ -14,6 +14,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Inicio del estudiante (6 tarjetas)
 - [x] Páginas placeholder (6) — con navegación completa
 - [x] Animaciones de entrada tipo flotar en todas las vistas
+- [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
 - [ ] Contenido real de cada sección (video, podcast, webtoon, cultura, flashcards, quizzes)
 - [ ] Barra de progreso
 - [ ] Favoritos
@@ -34,4 +35,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Elimina tarjetas duplicadas de la sección compuesto en landing. Imagen al 65% con aspect-ratio 7/4. Título cambia a DM Serif Display 56px.
+2026-07-20 — Crea página de Contactos con WhatsApp, fondo e ícono del cliente. Conecta ícono de Contacto en header autenticado.
