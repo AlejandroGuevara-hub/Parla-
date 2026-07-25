@@ -39,6 +39,12 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.9.0] — 2026-07-20
+
+### Changed
+- Amplía animaciones `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) en todas las vistas. Agrega fade de carga de página completa (`body` opacity 0 → 1 con `page-loaded`).
+- Reemplaza halo pulsante por resplandor giratorio fluido en tarjeta de Lecciones en video (rotación continua con `linear` en vez de `ease-in-out`).
+
 ## [1.8.0] — 2026-07-20
 
 ### Added

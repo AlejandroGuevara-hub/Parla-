@@ -194,18 +194,20 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 ---
 
 ### `.card--featured`
-Modificador que agrega un halo de blur pulsante alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
+Modificador que agrega un resplandor giratorio continuo alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
 
 ```html
 <article class="feature-card card card--featured">
 ```
 
 **Comportamiento:**
-- `box-shadow` con `rgba(var(--color-primary-rgb), ...)` pulsa suavemente entre 14px y 30px de desenfoque con la animación `respirar-halo` (3s ciclo), sin pseudo-elemento.
-- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el halo nunca se superponga a tarjetas vecinas.
-- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene y queda un halo fijo de 14px.
+- Un pseudo-elemento `::before` con `conic-gradient` de `--color-primary` se posiciona detrás de la tarjeta y rota infinitamente con la animación `rotar-resplandor` (4s por vuelta, `linear` para movimiento continuo sin pausas).
+- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el resplandor nunca se superponga a tarjetas vecinas.
+- `z-index: -1` en el pseudo-elemento lo sitúa detrás del contenido de su propia tarjeta.
+- `filter: blur(12px)` difumina el degradado para que se vea como un brillo suave, no un borde sólido.
+- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (resplandor fijo).
 
-**Variable de color:** `--color-primary` y `--color-primary-rgb` (teal del proyecto).
+**Variable de color:** `--color-primary` (teal del proyecto).
 
 **Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
 
@@ -235,19 +237,19 @@ Sección debajo del hero en la Landing Page. Muestra el título "Olvídate de me
 ---
 
 ### `.animate-in`
-Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 24px hacia abajo y opaco, y al entrar en pantalla se desliza a su posición final mientras se hace visible.
+Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 24px hacia abajo y opaco, y al entrar en pantalla se desliza a su posición final mientras se hace visible. Se complementa con un fade de carga de página completa (clase `page-loaded` en `<body>`).
 
 **Cómo funciona:**
 - El CSS define `opacity: 0` y `transform: translateY(24px)` por defecto.
-- Al cargar la página, `animations.js` agrega `js-animations-ready` al `<body>`.
+- Al cargar la página, `animations.js` agrega `js-animations-ready` al `<body>` y escucha `DOMContentLoaded` para agregar `page-loaded`, que dispara el fade de entrada del body (`opacity: 0` → `opacity: 1` en 0.4s).
 - `IntersectionObserver` detecta cuándo cada `.animate-in` entra en el viewport (threshold 0.15) y agrega `.is-visible`, activando la transición a opacidad 1 y posición original.
-- Sin JS (fallback), `body:not(.js-animations-ready) .animate-in` lo deja todo visible desde el inicio.
+- Sin JS (fallback), `body:not(.js-animations-ready) .animate-in` lo deja todo visible desde el inicio. El body también tiene `body:not(.js-animations-ready) { opacity: 1; }` para que sea visible sin JS.
 - Efecto cascada: cada elemento recibe un `transitionDelay` incremental (index % 6 × 80ms) para que aparezcan en secuencia.
-- Respeta `prefers-reduced-motion`: sin transición ni desplazamiento.
+- Respeta `prefers-reduced-motion`: sin transición ni desplazamiento, body visible de inmediato.
 
-**JS asociado:** `src/scripts/animations.js` — IntersectionObserver y asignación de delay.
+**Alcance:** Aplicado a secciones, tarjetas, imágenes, botones, encabezados y bloques de texto en todas las vistas — no solo a contenedores grandes. Cobertura completa del sitio.
 
-**Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`). Aplicado a secciones principales, tarjetas y bloques de contenido.
+**JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body.
 
 ---
 

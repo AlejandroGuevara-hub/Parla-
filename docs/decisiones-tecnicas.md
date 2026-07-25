@@ -60,6 +60,11 @@ Se reemplazó el resplandor giratorio (conic-gradient + blur en pseudo-elemento)
 - Al no tener pseudo-elemento con `inset: -4px`, no hay riesgo de que el efecto se salga de su caja y se superponga a tarjetas vecinas — el `box-shadow` respeta los límites del `z-index` de la tarjeta.
 - Se introdujo `--color-primary-rgb` en `variables.css` para poder usar el color primario con transparencia en `rgba()`, necesario para el `box-shadow`.
 
+**Nota posterior:** El halo pulsante se reemplazó por un resplandor giratorio fluido porque el pulso tipo "respiración" se sentía entrecortado debido a la pausa perceptible en cada extremo del ciclo (ease-in-out). La rotación continua con `linear` no tiene pausas y se percibe más fluida. Se mantuvo la regla de apilamiento (`.card` z-index: 2, `.card--featured` z-index: 1) desde el primer intento.
+
+### Fade de página completa y ampliación de animaciones
+Se agregó un fade de entrada a nivel de `<body>` (`opacity: 0` → `opacity: 1` con transición de 0.4s) para que la página no aparezca de golpe al cargar. El sistema convive con `.animate-in`: el body fade es independiente de las animaciones de elementos individuales. También se amplió `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) para que el fade se sienta en toda la página, no solo en contenedores grandes.
+
 ### Tokens nuevos para la sección compuesto de la Landing
 
 Se agregaron 7 tokens nuevos en `variables.css` para la sección compuesto (dos columnas debajo del hero):
