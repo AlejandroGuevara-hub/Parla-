@@ -266,6 +266,11 @@ body:not(.js-animations-ready) .animate-in {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1;
+    transition: none;
+  }
+
   .animate-in {
     transition: none;
     transform: none;

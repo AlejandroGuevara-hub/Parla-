@@ -1,5 +1,9 @@
 document.body.classList.add('js-animations-ready');
 
+window.addEventListener('DOMContentLoaded', function () {
+  document.body.classList.add('page-loaded');
+});
+
 var elementos = document.querySelectorAll('.animate-in');
 
 var observer = new IntersectionObserver(function (entradas) {
