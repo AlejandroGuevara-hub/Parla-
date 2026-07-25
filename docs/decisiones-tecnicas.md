@@ -62,6 +62,13 @@ Se reemplazó el resplandor giratorio (conic-gradient + blur en pseudo-elemento)
 
 **Nota posterior:** El halo pulsante se reemplazó por un resplandor giratorio fluido porque el pulso tipo "respiración" se sentía entrecortado debido a la pausa perceptible en cada extremo del ciclo (ease-in-out). La rotación continua con `linear` no tiene pausas y se percibe más fluida. Se mantuvo la regla de apilamiento (`.card` z-index: 2, `.card--featured` z-index: 1) desde el primer intento.
 
+### Anillo animado con máscara (en vez de resplandor borroso)
+El resplandor con `conic-gradient` + `blur(12px)` + `inset: -4px` se veía como una mancha grande y borrosa (blob) en vez de un brillo prolijo alrededor del borde. Se reemplazó por un anillo delgado animado usando `mask-composite: exclude` porque:
+- La máscara (`-webkit-mask` con `mask-composite: exclude`) permite que solo se vea el borde (anillo de 2px), no el relleno del pseudo-elemento. Esto da un resultado nítido, no una mancha.
+- El arco brillante se redujo a 12% del círculo (vs. 25% antes), por lo que se ve como una luz angosta recorriendo el borde, no como un bloque grande.
+- Se eliminó `filter: blur` — el anillo es nítido y no produce el efecto de mancha.
+- Se prefirió `mask-composite: exclude` + `transform: rotate()` sobre animar el ángulo del gradiente con `@property` porque la primera técnica funciona en todos los navegadores modernos sin necesitar la propiedad experimental `@property` de CSS, que aún tiene soporte limitado.
+
 ### Fade de página completa y ampliación de animaciones
 Se agregó un fade de entrada a nivel de `<body>` (`opacity: 0` → `opacity: 1` con transición de 0.4s) para que la página no aparezca de golpe al cargar. El sistema convive con `.animate-in`: el body fade es independiente de las animaciones de elementos individuales. También se amplió `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) para que el fade se sienta en toda la página, no solo en contenedores grandes.
 

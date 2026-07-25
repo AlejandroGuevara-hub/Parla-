@@ -50,3 +50,9 @@
 **Por qué pasó:** Al rediseñar la sección compuesto (`prompt-rediseno-composite-landing.md`) se interpretó que la fila de íconos pequeños debajo de la imagen compuesta (que sí son parte del gráfico y se quedan) eran estas tarjetas grandes. Se copiaron las 3 tarjetas desde `inicio.html` sin verificar que ya pertenecían al flujo post-login.
 **Cómo se corrigió:** Se eliminó el bloque `div.composite-section__icons` completo de `index.html`, incluyendo las 3 tarjetas y sus estilos asociados que ya no se usan en esa vista.
 **Cómo evitarlo:** Antes de agregar contenido a la Landing, verificar si ya existe en el dashboard de Inicio (post-login). La Landing solo debe mostrar hero, sección compuesto (imagen + título + párrafo) y footer — nada del dashboard de funciones.
+
+### [2026-07-20] Resplandor de tarjeta destacada se veía como mancha borrosa (blob)
+**Qué pasó:** El efecto de resplandor en la tarjeta de Lecciones en video (`.card--featured`) se veía como una mancha grande, borrosa y desparejada que colgaba fuera de la tarjeta, en vez de un brillo prolijo alrededor del borde. El cliente lo reportó como visualmente incorrecto.
+**Por qué pasó:** La técnica de `conic-gradient` + `filter: blur(12px)` + `inset: -4px` generaba una forma irregular porque el segmento de color brillante ocupaba un arco muy ancho (25% del círculo) y el blur de 12px extendía el color mucho más allá del borde de la tarjeta, creando una mancha amorfa.
+**Cómo se corrigió:** Se reemplazó por un anillo delgado animado con `mask-composite: exclude`: el pseudo-elemento tiene `padding: 2px` que define el grosor del anillo, y la máscara recorta todo excepto ese borde. El arco se redujo a 12% del círculo. Sin `filter: blur`. El resultado es un anillo nítido que recorre el borde.
+**Cómo evitarlo:** Para efectos de borde animado, preferir `mask-composite: exclude` sobre degradados borrosos. Si se necesita blur, usar máximo `filter: blur(1.5px)` — nunca 12px para este tipo de efecto.

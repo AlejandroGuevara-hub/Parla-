@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.10.0] — 2026-07-20
+
+### Fixed
+- Reemplaza resplandor borroso (conic-gradient + blur 12px) por anillo animado con máscara en tarjeta de Lecciones en video. El efecto se veía como una mancha (blob) en vez de un brillo prolijo en el borde.
+
 ## [1.9.0] — 2026-07-20
 
 ### Changed

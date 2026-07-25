@@ -194,18 +194,19 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 ---
 
 ### `.card--featured`
-Modificador que agrega un resplandor giratorio continuo alrededor de una tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
+Modificador que agrega un anillo animado delgado que recorre el borde de la tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
 
 ```html
 <article class="feature-card card card--featured">
 ```
 
 **Comportamiento:**
-- Un pseudo-elemento `::before` con `conic-gradient` de `--color-primary` se posiciona detrás de la tarjeta y rota infinitamente con la animación `rotar-resplandor` (4s por vuelta, `linear` para movimiento continuo sin pausas).
-- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el resplandor nunca se superponga a tarjetas vecinas.
+- Un pseudo-elemento `::before` con `conic-gradient` (arco de 12%) se renderiza como un anillo delgado de 2px sobre el borde de la tarjeta usando `mask-composite: exclude` (solo el borde, sin relleno).
+- El anillo rota infinitamente con la animación `girar-anillo` (3s por vuelta, `linear` para movimiento continuo sin pausas).
+- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el anillo nunca se superponga a tarjetas vecinas.
 - `z-index: -1` en el pseudo-elemento lo sitúa detrás del contenido de su propia tarjeta.
-- `filter: blur(12px)` difumina el degradado para que se vea como un brillo suave, no un borde sólido.
-- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (resplandor fijo).
+- Sin `filter: blur` — es un anillo nítido, no una mancha borrosa.
+- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (anillo fijo).
 
 **Variable de color:** `--color-primary` (teal del proyecto).
 
