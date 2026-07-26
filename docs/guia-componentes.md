@@ -56,6 +56,10 @@ Tarjeta con borde suave, fondo blanco y sombra.
 
 **Dónde se usa:** `.feature-card` en landing page, `.auth-card` en login/registro.
 
+**Comportamiento hover/focus:**
+- `:hover`: levanta la tarjeta 4px con `translateY(-4px)`, eleva la sombra (`--shadow-card-hover`) y cambia el borde a `--color-primary`. Transición suave de 0.2s.
+- `:focus-visible`: anillo de 2px sólido `--color-primary` con offset 2px, solo visible en navegación por teclado (no al hacer clic con mouse).
+
 ---
 
 ### `.form-toggle`

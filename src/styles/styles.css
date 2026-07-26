@@ -293,15 +293,6 @@ a {
   text-decoration: none;
   color: inherit;
   border-radius: var(--radius-card);
-  transition: box-shadow 0.2s ease;
-}
-
-.feature-card__link:hover {
-  box-shadow: 0 0 0 2px var(--color-primary);
-}
-
-[data-theme="dark"] .feature-card__link:hover {
-  box-shadow: 0 0 0 2px var(--color-primary);
 }
 
 .feature-card .icon {

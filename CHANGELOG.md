@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.13.0] — 2026-07-20
+
+### Fixed
+- Corrige hover de tarjetas: reemplaza borde sólido simulado por levantamiento sutil (translateY), sombra elevada y cambio de borde con transición suave. Usa `:focus-visible` para foco por teclado.
+
 ## [1.12.0] — 2026-07-20
 
 ### Changed

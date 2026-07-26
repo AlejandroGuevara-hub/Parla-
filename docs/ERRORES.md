@@ -56,3 +56,9 @@
 **Por qué pasó:** La técnica de `conic-gradient` + `filter: blur(12px)` + `inset: -4px` generaba una forma irregular porque el segmento de color brillante ocupaba un arco muy ancho (25% del círculo) y el blur de 12px extendía el color mucho más allá del borde de la tarjeta, creando una mancha amorfa.
 **Cómo se corrigió:** Se reemplazó por un anillo delgado animado con `mask-composite: exclude`: el pseudo-elemento tiene `padding: 2px` que define el grosor del anillo, y la máscara recorta todo excepto ese borde. El arco se redujo a 12% del círculo. Sin `filter: blur`. El resultado es un anillo nítido que recorre el borde.
 **Cómo evitarlo:** Para efectos de borde animado, preferir `mask-composite: exclude` sobre degradados borrosos. Si se necesita blur, usar máximo `filter: blur(1.5px)` — nunca 12px para este tipo de efecto.
+
+### [2026-07-20] Hover de tarjetas se veía como borde de selección forzada
+**Qué pasó:** `.feature-card__link:hover` usaba `box-shadow: 0 0 0 2px var(--color-primary)`, que se veía como una línea sólida gruesa de selección, no como un hover cuidado.
+**Por qué pasó:** Se usó un borde simulado con box-shadow sin difuminar (blur 0) como retroalimentación de hover, sin transición de transformación ni cambio de sombra. Al ser un borde sólido de 2px, se veía como si la tarjeta estuviera "seleccionada" en vez de "interactuable".
+**Cómo se corrigió:** Se eliminó `feature-card__link:hover` y se reemplazó por hover en `.card` con `transform: translateY(-4px)`, `box-shadow: var(--shadow-card-hover)` y `border-color: var(--color-primary)`, todo con transición suave de 0.2s. El foco por teclado se maneja con `:focus-visible` en vez de `:focus`, para que el anillo solo aparezca en navegación por teclado y no al hacer clic con el mouse.
+**Cómo evitarlo:** Para hover en tarjetas, preferir un levantamiento sutil (translateY + sombra elevada + cambio de borde) sobre bordes sólidos simulados con box-shadow sin blur.
