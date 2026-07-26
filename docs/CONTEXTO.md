@@ -35,4 +35,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 
 ## Última actualización
-2026-07-20 — Reemplaza técnica de glow por degradado giratorio de dos capas basado en referencia del cliente.
+2026-07-20 — Baja opacidad del glow en lecciones en video para mejorar legibilidad del texto.

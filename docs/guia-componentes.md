@@ -201,8 +201,8 @@ Modificador que agrega un resplandor ambiental giratorio de dos capas alrededor 
 ```
 
 **Comportamiento:**
-- `::before`: borde de color nítido con gradiente giratorio basado en 3 tonos derivados de `--color-primary` (`--glow-clr-1` oscuro, `--glow-clr-2` base, `--glow-clr-3` claro). El degradado cubre el 360° completo (sin tramos transparentes), por lo que se ve como un brillo ambiental que cambia de tono suavemente.
-- `::after`: mismo gradiente pero con `filter: blur(1.25rem)`, que da el resplandor ambiental difuso hacia afuera.
+- `::before`: borde de color nítido con gradiente giratorio basado en 3 tonos derivados de `--color-primary` (`--glow-clr-1` oscuro, `--glow-clr-2` base, `--glow-clr-3` claro). El degradado cubre el 360° completo (sin tramos transparentes), por lo que se ve como un brillo ambiental que cambia de tono suavemente. Opacidad 0.6.
+- `::after`: mismo gradiente pero con `opacity: 0.35` y `filter: blur(1.25rem)`, que da el resplandor ambiental difuso y discreto hacia afuera.
 - La animación `girar-gradiente` (20s por vuelta, `linear`) mueve el ángulo del gradiente usando `@property`, logrando interpolación suave sin pausas ni efecto de respiración.
 - `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el glow nunca se superponga a tarjetas vecinas.
 - `z-index: -1` en los pseudo-elementos los sitúa detrás del contenido de la tarjeta.

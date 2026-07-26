@@ -39,6 +39,11 @@
 ### Added
 - Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
 
+## [1.12.0] — 2026-07-20
+
+### Changed
+- Baja opacidad del glow en lecciones en video (::before a 0.6, ::after a 0.35) para mejorar legibilidad del texto de la tarjeta.
+
 ## [1.11.0] — 2026-07-20
 
 ### Changed

@@ -383,7 +383,12 @@ a {
   animation: girar-gradiente 20s linear infinite;
 }
 
+.card--featured::before {
+  opacity: 0.6;
+}
+
 .card--featured::after {
+  opacity: 0.35;
   filter: blur(1.25rem);
 }
 
