@@ -194,21 +194,21 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 ---
 
 ### `.card--featured`
-Modificador que agrega un anillo animado delgado que recorre el borde de la tarjeta. Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
+Modificador que agrega un resplandor ambiental giratorio de dos capas alrededor de la tarjeta (degradado cónico con interpolación de ángulo vía `@property`). Se usa exclusivamente en la tarjeta de **Lecciones en video** para marcarla como tarea principal/sugerida.
 
 ```html
 <article class="feature-card card card--featured">
 ```
 
 **Comportamiento:**
-- Un pseudo-elemento `::before` con `conic-gradient` (arco de 12%) se renderiza como un anillo delgado de 2px sobre el borde de la tarjeta usando `mask-composite: exclude` (solo el borde, sin relleno).
-- El anillo rota infinitamente con la animación `girar-anillo` (3s por vuelta, `linear` para movimiento continuo sin pausas).
-- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el anillo nunca se superponga a tarjetas vecinas.
-- `z-index: -1` en el pseudo-elemento lo sitúa detrás del contenido de su propia tarjeta.
-- Sin `filter: blur` — es un anillo nítido, no una mancha borrosa.
-- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (anillo fijo).
+- `::before`: borde de color nítido con gradiente giratorio basado en 3 tonos derivados de `--color-primary` (`--glow-clr-1` oscuro, `--glow-clr-2` base, `--glow-clr-3` claro). El degradado cubre el 360° completo (sin tramos transparentes), por lo que se ve como un brillo ambiental que cambia de tono suavemente.
+- `::after`: mismo gradiente pero con `filter: blur(1.25rem)`, que da el resplandor ambiental difuso hacia afuera.
+- La animación `girar-gradiente` (20s por vuelta, `linear`) mueve el ángulo del gradiente usando `@property`, logrando interpolación suave sin pausas ni efecto de respiración.
+- `z-index: 1` en la tarjeta (menor que `z-index: 2` de las tarjetas normales) asegura que el glow nunca se superponga a tarjetas vecinas.
+- `z-index: -1` en los pseudo-elementos los sitúa detrás del contenido de la tarjeta.
+- Respeta `prefers-reduced-motion`: si el usuario tiene reducción de movimiento activada, la animación se detiene (glow fijo).
 
-**Variable de color:** `--color-primary` (teal del proyecto).
+**Variables de color:** `--glow-clr-1`, `--glow-clr-2`, `--glow-clr-3` (definidas en `variables.css`, derivadas de `--color-primary`).
 
 **Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
 

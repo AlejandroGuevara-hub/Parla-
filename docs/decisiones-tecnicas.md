@@ -69,6 +69,17 @@ El resplandor con `conic-gradient` + `blur(12px)` + `inset: -4px` se veía como 
 - Se eliminó `filter: blur` — el anillo es nítido y no produce el efecto de mancha.
 - Se prefirió `mask-composite: exclude` + `transform: rotate()` sobre animar el ángulo del gradiente con `@property` porque la primera técnica funciona en todos los navegadores modernos sin necesitar la propiedad experimental `@property` de CSS, que aún tiene soporte limitado.
 
+**Nota posterior:** Esta técnica del anillo con máscara se reemplazó por el degradado giratorio de dos capas (ver sección siguiente), porque el cliente aportó una referencia directa que se acerca más a lo que visualmente quiere: un resplandor ambiental parejo y cambiante, no una luz puntual recorriendo el borde.
+
+### Degradado giratorio de dos capas (técnica actual, aportada por el cliente)
+Se adoptó esta técnica como reemplazo definitivo del glow de la tarjeta destacada porque:
+- El degradado cónico cubre el 360° completo sin tramos transparentes, por lo que al animar el ángulo se ve como un brillo ambiental que cambia de tono suavemente, no como una luz puntual girando.
+- Dos capas: `::before` da un borde de color nítido; `::after` con `blur(1.25rem)` da el resplandor difuso hacia afuera. Esto crea profundidad sin manchas grandes.
+- La animación usa `@property --gradient-angle` para interpolar suavemente el ángulo, evitando el efecto de "tick" que tendría animar `transform: rotate()` sobre un gradiente estático.
+- El código base fue aportado por el cliente como referencia directa; se adaptó al proyecto reduciendo `inset` de -0.5rem a -0.25rem y `blur` de 3.5rem a 1.25rem porque nuestras tarjetas son más pequeñas y están en un grid apretado de 6 tarjetas.
+- Se crearon 3 tokens de color derivados de `--color-primary`: `--glow-clr-1` (60% + black), `--glow-clr-2` (base), `--glow-clr-3` (60% + white), para no inventar colores nuevos sueltos.
+- Si el navegador no soporta `@property`, el degradado se ve igual pero sin interpolación suave del ángulo — la animación salta en vez de ser continua. No es bloqueante para Fase 1; se documentó en `docs/PENDIENTES.md`.
+
 ### Fade de página completa y ampliación de animaciones
 Se agregó un fade de entrada a nivel de `<body>` (`opacity: 0` → `opacity: 1` con transición de 0.4s) para que la página no aparezca de golpe al cargar. El sistema convive con `.animate-in`: el body fade es independiente de las animaciones de elementos individuales. También se amplió `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) para que el fade se sienta en toda la página, no solo en contenedores grandes.
 

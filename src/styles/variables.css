@@ -14,6 +14,9 @@
   --color-primary: #0097B2;        /* Teal — títulos principales, según mockup */
   --color-primary-rgb: 0, 151, 178; /* Mismo azul en formato r,g,b para usar con rgba() */
   --color-primary-dark: #007A91;   /* Hover/active de botones primarios */
+  --glow-clr-1: color-mix(in srgb, #0097B2 60%, black);   /* Tono oscuro del glow */
+  --glow-clr-2: #0097B2;                                   /* Tono base del glow (--color-primary) */
+  --glow-clr-3: color-mix(in srgb, #0097B2 60%, white);   /* Tono claro del glow */
 
   --color-secondary: #7E97AC;      /* Azul grisáceo del círculo del logo */
   --color-secondary-light: #A9BDCC;
