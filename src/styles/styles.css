@@ -66,6 +66,10 @@ a {
   justify-content: space-between;
 }
 
+.header-inner nav {
+  margin-left: auto;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
