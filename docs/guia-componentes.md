@@ -235,9 +235,9 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (35% /
 **Comportamiento:**
 - Grid: `grid-template-columns: 35% 65%; grid-template-rows: auto auto`.
 - `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (65% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción. Sin padding derecho en la sección para que la imagen toque el borde.
-- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. Sin `max-width`. `font-size: 5.25rem` (50% más grande que antes), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>`. Sin `text-shadow` en tema claro; solo aparece en modo oscuro (`[data-theme="dark"]`).
+- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. Sin `max-width`. `font-size: 4.6rem`, `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>`. Sin `text-shadow` en tema claro; solo aparece en modo oscuro (`[data-theme="dark"]`).
 - `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella).
-- En móvil (≤768px): colapsa a 1 columna, la imagen va primero, luego título, luego párrafo, apilados verticalmente.
+- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. La imagen se posiciona a la derecha (columna 2, fila 1), ocupa el 60% del ancho, alto automático (visible completa). El título (1.75rem) ocupa todo el ancho (`grid-column: 1 / 3`, fila 1) y puede superponerse a la imagen. El párrafo (0.8rem) va en columna 2, fila 2 — solo debajo de la imagen, sin superponerse.
 
 **Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--ls-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
