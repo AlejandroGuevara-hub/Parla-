@@ -13,7 +13,7 @@ Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-sec
 **Variantes:**
 - `.btn-primary` — Fondo teal (`--color-primary`), texto blanco.
 - `.btn-secondary` — Borde teal, texto teal, fondo transparente.
-- `.btn-lg` — Versión grande para hero/CTA.
+- `.btn-lg` — Versión grande para hero/CTA: `padding: 1.25rem 3.5rem; font-size: 1.25rem`.
 
 **Dónde se usa:** `index.html` (hero actions), `login.html`, `registro.html`, header nav.
 
@@ -116,9 +116,26 @@ Es una imagen independiente (no un enlace), a diferencia del `.logo` del header.
 
 ---
 
+### `.hero__content`
+Contenedor del título, subtítulo y CTA del hero. El borde izquierdo del contenedor se alinea con la mitad de la página (`margin-left: 50%; margin-right: auto`). `text-align: left`, `line-height: 1.4`. En móvil se reinician los márgenes.
+
+```html
+<div class="hero__content animate-in">
+  <h1 class="hero__title">
+    <span class="hero__title-line1">Aprende</span>
+    <span class="hero__title-line2">italiano</span>
+  </h1>
+  <p class="hero__subtitle">De forma real, ligera<br>y entretenida.</p>
+  <a href="registro.html" class="btn btn-primary btn-lg">Comienza el recorrido</a>
+</div>
+```
+
+**Dónde se usa:** `index.html` — sección hero.
+
+---
+
 ### `.hero__title` / `.hero__title-line1` / `.hero__title-line2`
-Título del hero en dos líneas con colores distintos: línea 1 blanca, línea 2 teal
-(`--color-primary`). Usa `text-shadow` para legibilidad sobre la foto.
+Título del hero en dos líneas con colores distintos: línea 1 blanca (`letter-spacing: 0.05em`), línea 2 teal (`--color-primary`, `letter-spacing: 0.08em`). `font-size: 4.5rem`, `line-height: 1.4`. Usa `text-shadow` para legibilidad sobre la foto.
 
 ```html
 <h1 class="hero__title">
@@ -155,10 +172,10 @@ Botón flotante en esquina inferior derecha que alterna entre tema claro y oscur
 ---
 
 ### `.hero__subtitle`
-Subtítulo del hero en Poppins negrita, blanco con `text-shadow`.
+Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en dos líneas vía `<br>`: "De forma real, ligera / y entretenida."
 
 ```html
-<p class="hero__subtitle">De forma real, ligera y entretenida.</p>
+<p class="hero__subtitle">De forma real, ligera<br>y entretenida.</p>
 ```
 
 **Dónde se usa:** `index.html` — sección hero.
