@@ -247,7 +247,7 @@ a {
   position: relative;
   z-index: 1;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: var(--fw-bold);
   color: var(--color-text-navy);
   line-height: var(--lh-body-composite);
