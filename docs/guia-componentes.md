@@ -238,7 +238,7 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 - `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (70% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción.
 - `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: 3rem`, `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
 - `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1rem`.
-- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.75rem) puede superponerse, párrafo (0.8rem) en col2 fila2 bajo la imagen.
+- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) puede superponerse, párrafo (0.6rem) en col2 fila2 bajo la imagen.
 
 **Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--ls-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
