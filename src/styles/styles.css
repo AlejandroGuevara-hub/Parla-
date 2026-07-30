@@ -206,45 +206,79 @@ a {
 
 .composite-section {
   position: relative;
-  padding: var(--space-lg) var(--space-md);
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: var(--space-lg) 0 var(--space-lg) var(--space-md);
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: auto auto;
+}
+
+.composite-section__bg {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 0;
+  border-radius: var(--radius-card);
 }
 
 .composite-section__title {
-  font-family: var(--font-heading-composite);
-  font-size: var(--fs-heading-composite);
-  font-weight: var(--fw-bold);
-  color: var(--color-heading-gold);
-  letter-spacing: var(--ls-heading-composite);
-  line-height: var(--lh-heading-composite);
-  position: relative;
-  z-index: 2;
-  max-width: none;
-}
-
-.composite-section__image {
-  width: 65%;
-  height: auto;
-  aspect-ratio: 7 / 4;
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  grid-column: 1 / -1;
+  grid-row: 1;
   position: relative;
   z-index: 1;
+  justify-self: start;
+  align-self: start;
+  font-family: var(--font-heading-composite);
+  font-size: 5.25rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-heading-gold);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-top: 0;
 }
 
 .composite-section__paragraph {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
   font-family: var(--font-body);
   font-size: var(--fs-body-composite);
   font-weight: var(--fw-bold);
   color: var(--color-text-navy);
   line-height: var(--lh-body-composite);
   letter-spacing: -0.2px;
+  margin-top: var(--space-sm);
 }
 
 @media (max-width: 768px) {
-  .composite-section__image {
+  .composite-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding: var(--space-md);
+  }
+
+  .composite-section__bg {
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+  }
+
+  .composite-section__title {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: var(--fs-heading-composite);
+    margin-top: var(--space-sm);
+    max-width: none;
+  }
+
+  .composite-section__paragraph {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: var(--space-sm);
   }
 }
 
@@ -576,6 +610,10 @@ a {
   .btn-lg {
     width: 100%;
   }
+}
+
+[data-theme="dark"] .composite-section__title {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 

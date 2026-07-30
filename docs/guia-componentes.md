@@ -219,23 +219,27 @@ Modificador que agrega un resplandor ambiental giratorio de dos capas alrededor 
 ---
 
 ### `.composite-section`
-Sección debajo del hero en la Landing Page. Muestra el título "Olvídate de memorizar reglas." seguido de la imagen compuesta (audífonos + teléfono + columna) al 65% de ancho, y el párrafo descriptivo.
+Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (35% / 65%) con dos filas. La imagen compuesta ocupa la columna derecha de la primera fila. El título va en la columna izquierda dividido en dos líneas ("Olvídate" / "de memorizar reglas.") y puede superponerse a la imagen si su contenido se extiende. El párrafo va en la segunda fila, alineado bajo la imagen.
 
 ```html
 <section class="composite-section animate-in" aria-label="Sección compuesto">
-  <h2 class="composite-section__title">Olvídate de memorizar reglas.</h2>
-  <img src="../assets/images/hero.png" alt="..." loading="lazy" class="composite-section__image">
+  <img class="composite-section__bg" src="../assets/images/hero.png" alt="">
+  <h2 class="composite-section__title">
+    Olvídate
+    <span>de memorizar reglas.</span>
+  </h2>
   <p class="composite-section__paragraph">...</p>
 </section>
 ```
 
 **Comportamiento:**
-- El título usa `--font-heading-composite` (DM Serif Display) en 56px, color dorado, con `z-index: 2` para quedar por encima de la imagen si se superponen visualmente.
-- La imagen ocupa el 65% del ancho del contenedor, alineada a la izquierda, con `aspect-ratio: 7 / 4` para mantener proporción. `z-index: 1`.
-- En móvil (≤768px) la imagen pasa a 100% de ancho.
-- No hay tarjetas funcionales en esta sección — solo imagen decorativa y texto. Las tarjetas de Podcast/Webtoon/Cultura están exclusivamente en `inicio.html`.
+- Grid: `grid-template-columns: 35% 65%; grid-template-rows: auto auto`.
+- `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (65% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción. Sin padding derecho en la sección para que la imagen toque el borde.
+- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. Sin `max-width`. `font-size: 5.25rem` (50% más grande que antes), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>`. Sin `text-shadow` en tema claro; solo aparece en modo oscuro (`[data-theme="dark"]`).
+- `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella).
+- En móvil (≤768px): colapsa a 1 columna, la imagen va primero, luego título, luego párrafo, apilados verticalmente.
 
-**Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--fs-heading-composite`, `--ls-heading-composite`, `--lh-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
+**Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--ls-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
 **Dónde se usa:** Solo en `index.html` — sección compuesto debajo del hero.
 

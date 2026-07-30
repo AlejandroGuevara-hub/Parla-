@@ -80,6 +80,15 @@ Se adoptó esta técnica como reemplazo definitivo del glow de la tarjeta destac
 - Se crearon 3 tokens de color derivados de `--color-primary`: `--glow-clr-1` (60% + black), `--glow-clr-2` (base), `--glow-clr-3` (60% + white), para no inventar colores nuevos sueltos.
 - Si el navegador no soporta `@property`, el degradado se ve igual pero sin interpolación suave del ángulo — la animación salta en vez de ser continua. No es bloqueante para Fase 1; se documentó en `docs/PENDIENTES.md`.
 
+### ~~Fondo de foto en composite-section (hero-bg.jpg reutilizado)~~ — REVERTIDO
+Se agregó `background-image: url(hero-bg.jpg)` al `.composite-section` para consistencia visual con el hero. Se revirtió porque el cliente no lo pidió — ver `docs/ERRORES.md` [2026-07-29].
+
+### Imagen compuesta como fondo absoluto izquierdo (sin tarjeta, sin hover) — ~~REEMPLAZADO~~
+La imagen `hero.png` dentro de `.composite-section` se posicionó absolutamente a la izquierda (55% del ancho, 100% del alto) como capa decorativa inferior, sin wrapper `.card` ni hover. Se reemplazó por el layout actual de grid 35/65 (ver sección siguiente).
+
+### Imagen compuesta en grid 35/65 con overlay del título
+Layout final del `.composite-section`: grid de 2 columnas (35% / 65%) y 2 filas. La imagen `hero.png` ocupa la celda derecha de la primera fila (65% de la sección, sin padding derecho para que toque el borde). El título (3.5rem, DM Serif Display) ocupa toda la primera fila pero limitado a `max-width: 35%` alineado a la izquierda, con `z-index: 1` y `text-shadow` para superponerse a la imagen si el texto se extiende. El párrafo va en la segunda fila (ancho completo, debajo de la imagen). Sin hover ni interacción en la imagen. En móvil colapsa a 1 columna.
+
 ### Fade de página completa y ampliación de animaciones
 Se agregó un fade de entrada a nivel de `<body>` (`opacity: 0` → `opacity: 1` con transición de 0.4s) para que la página no aparezca de golpe al cargar. El sistema convive con `.animate-in`: el body fade es independiente de las animaciones de elementos individuales. También se amplió `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) para que el fade se sienta en toda la página, no solo en contenedores grandes.
 
