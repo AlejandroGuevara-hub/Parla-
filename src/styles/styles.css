@@ -230,7 +230,7 @@ a {
   justify-self: start;
   align-self: start;
   font-family: var(--font-heading-composite);
-  font-size: 3rem;
+  font-size: 4.6rem;
   font-weight: var(--fw-bold);
   color: var(--color-heading-gold);
   letter-spacing: 0.05em;
@@ -247,7 +247,7 @@ a {
   position: relative;
   z-index: 1;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: var(--fw-bold);
   color: var(--color-text-navy);
   line-height: var(--lh-body-composite);
