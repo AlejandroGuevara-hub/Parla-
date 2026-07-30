@@ -162,7 +162,7 @@ a {
   position: absolute;
   top: var(--space-md);
   left: var(--space-md);
-  height: 36px;
+  height: 108px;
   width: auto;
   z-index: 2;
 }
@@ -494,7 +494,7 @@ font-size: 1.5rem;
 }
 
 .contact-hero__logo img {
-  height: 48px;
+  height: 144px;
   width: auto;
 }
 
@@ -565,7 +565,7 @@ font-size: 1.5rem;
   .hero__logo {
     top: var(--space-sm);
     left: var(--space-sm);
-    height: 28px;
+    height: 84px;
   }
 
   .hero__title {
@@ -620,7 +620,7 @@ font-size: 1.5rem;
   }
 
   .hero__logo {
-    height: 24px;
+    height: 72px;
     top: var(--space-xs);
     left: var(--space-xs);
   }

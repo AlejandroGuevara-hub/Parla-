@@ -34,7 +34,7 @@ Contenedor de campo de formulario con label.
 ---
 
 ### `.logo`
-Enlace con logo + texto, para header y formularios.
+Enlace con logo + texto. Logo 300% más grande que versión original (108px alto, texto 4.5rem). Se eliminó del header de todas las vistas; solo se conserva en formularios de autenticación (`login.html`, `registro.html`).
 
 ```html
 <a href="index.html" class="logo">
@@ -43,7 +43,7 @@ Enlace con logo + texto, para header y formularios.
 </a>
 ```
 
-**Dónde se usa:** Header de `src/views/index.html` y `src/views/inicio.html`, encabezado de `src/views/login.html` y `src/views/registro.html`.
+**Dónde se usa:** Solo en `src/views/login.html` y `src/views/registro.html` (dentro de `.auth-card`).
 
 ---
 
@@ -106,7 +106,7 @@ cubrir toda la sección sin distorsión. Es decorativa (`alt=""`).
 
 ### `.hero__logo`
 Logo de Parla! posicionado en la esquina superior izquierda del hero, sobre el fondo.
-Es una imagen independiente (no un enlace), a diferencia del `.logo` del header.
+Es una imagen independiente (no un enlace). Tamaño 300% mayor: `height: 108px`.
 
 ```html
 <img class="hero__logo" src="../assets/images/logo.png" alt="Parla!">
