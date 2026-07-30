@@ -237,6 +237,9 @@ a {
   line-height: 1.1;
   margin-top: 0;
 }
+.composite-section__title span {
+    display: block;
+}
 
 .composite-section__paragraph {
   grid-column: 2;
@@ -244,7 +247,7 @@ a {
   position: relative;
   z-index: 1;
   font-family: var(--font-body);
-  font-size: var(--fs-body-composite);
+  font-size: 1rem;
   font-weight: var(--fw-bold);
   color: var(--color-text-navy);
   line-height: var(--lh-body-composite);
