@@ -139,7 +139,7 @@ Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema por
 - No requiere backend ni cookies; es la solución más liviana para Fase 1.
 
 ### Sistema de motion design adoptado como estándar del proyecto
-Se adoptó `docs/GUIA-ANIMACIONES.md` como estándar permanente de motion design. Reemplaza/amplía los sistemas puntuales anteriores (fade+flotar, fade de página, hover de tarjetas) agregándoles blur en las entradas, parallax sutil en el hero, encogimiento del header sticky al hacer scroll, blur+fade en imágenes al cargar, hover/active en botones, shimmer en el CTA principal del hero y stagger en el footer. Regla fija: toda sección nueva debe seguir la guía automáticamente, sin que se lo pidan de nuevo. Los componentes que aún no existen (modal, drawer, favoritos, carruseles, chips) quedan documentados en la guía para aplicarse cuando se construyan.
+Se adoptó `docs/GUIA-ANIMACIONES.md` como estándar permanente de motion design. Reemplaza/amplía los sistemas puntuales anteriores (fade+flotar, fade de página, hover de tarjetas) agregándoles blur en las entradas, parallax sutil en el hero, blur+fade en imágenes al cargar, hover/active en botones, shimmer en el CTA principal del hero y stagger en el footer. Regla fija: toda sección nueva debe seguir la guía automáticamente, sin que se lo pidan de nuevo. Los componentes que aún no existen (modal, drawer, favoritos, carruseles, chips) quedan documentados en la guía para aplicarse cuando se construyan. Nota posterior: la barra de header fue eliminada del proyecto (los botones quedan flotando arriba a la derecha), por lo que el encogimiento sticky y `.site-header--scrolled` ya no aplican.
 
 ## Estructura de carpetas
 

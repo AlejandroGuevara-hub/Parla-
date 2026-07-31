@@ -277,7 +277,7 @@ Sistema de animación de entrada tipo "flotar + blur": el elemento empieza despl
 
 **Alcance:** Aplicado a secciones, tarjetas, botones, encabezados, bloques de texto y footers en todas las vistas. Cobertura completa del sitio.
 
-**JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body, header scroll, parallax hero, blur+fade de imágenes.
+**JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body, parallax hero, blur+fade de imágenes.
 
 ---
 
@@ -286,8 +286,14 @@ Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-lo
 
 ---
 
-### `.site-header--scrolled`
-Estado del header sticky al hacer scroll (agregado por `animations.js` cuando `scrollY > 24`): reduce el padding vertical, oscurece el fondo con `color-mix` al 92% + `backdrop-filter: blur(8px)` y agrega `--shadow-card-hover`. Todo con transición suave de 0.3s.
+### `.site-header`
+Contenedor invisible de navegación flotante. Ya no es una barra: sin fondo, sin borde, sin sticky. `position: absolute` arriba con `pointer-events: none` (no bloquea clics del contenido) y `z-index: 100`. Los botones (`nav` con `margin-left: auto` + `pointer-events: auto`) quedan flotando en la esquina superior derecha, exactamente donde estaría la barra. Se desplazan con la página al hacer scroll.
+
+**Variantes:**
+- Landing (`index.html`): `.nav-links` con "Iniciar sesión" + botón "Registrarme"; en móvil se pliega en hamburguesa (`.nav-toggle`) con dropdown que se despliega bajo el header.
+- Vistas autenticadas (`inicio`, `podcast`, `webtoon`, `cultura`, `video`, `flashcards`, `quizzes`): `.user-nav` con 3 íconos (Perfil, Contacto, Salir).
+
+**Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). `login.html`, `registro.html` y `contacto.html` no tienen header.
 
 ---
 

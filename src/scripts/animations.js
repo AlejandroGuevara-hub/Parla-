@@ -20,19 +20,6 @@ elementos.forEach(function (el, index) {
   observer.observe(el);
 });
 
-/* ---------- Header: estado al hacer scroll (shrink + sombra) ---------- */
-
-var header = document.querySelector('.site-header');
-
-function actualizarHeader() {
-  if (!header) return;
-  if (window.scrollY > 24) {
-    header.classList.add('site-header--scrolled');
-  } else {
-    header.classList.remove('site-header--scrolled');
-  }
-}
-
 /* ---------- Parallax extremadamente sutil del hero ---------- */
 
 var heroBg = document.querySelector('.hero__bg');
@@ -51,7 +38,6 @@ function parallaxHero() {
 }
 
 function onScroll() {
-  actualizarHeader();
   if (!enMovimiento) {
     enMovimiento = true;
     requestAnimationFrame(parallaxHero);
@@ -59,7 +45,6 @@ function onScroll() {
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
-actualizarHeader();
 
 /* ---------- Imágenes: blur + fade al terminar de cargar ---------- */
 

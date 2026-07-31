@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.15.0] — 2026-07-31
+
+### Changed
+- Elimina la barra del header en las 8 vistas (landing y vistas autenticadas). Los botones de navegación quedan flotando en la esquina superior derecha sin fondo ni borde, en la posición donde estaba la barra. Se desplazan con la página al hacer scroll.
+- `.site-header` pasa a contenedor invisible (`position: absolute` + `pointer-events: none`; el `nav` recupera `pointer-events: auto`). Elimina la clase `.site-header--scrolled` (CSS y JS) y ajusta `.hero` a `min-height: 100vh`.
+
 ## [1.14.0] — 2026-07-31
 
 ### Added

@@ -17,7 +17,7 @@ El proyecto ya tiene base de motion design construida y **no se debe crear un si
 - Hover de tarjetas con elevación + sombra + color de borde (`--shadow-card-hover`), sin rebotes ni rotación.
 - `prefers-reduced-motion` respetado en todos los componentes.
 - Parallax extremadamente sutil del hero al hacer scroll (JS).
-- Header sticky que se encoge al hacer scroll (`.site-header--scrolled`).
+- Botones de navegación flotando en la esquina superior derecha (la barra de header fue eliminada del proyecto; no aplicar efectos de barra sticky).
 - Imágenes con blur + fade al terminar de cargar (`.img-load` / `.img-loaded`).
 
 ---
@@ -58,7 +58,7 @@ Entrada progresiva. Si hay imagen grande, parallax extremadamente sutil al hacer
 
 ## Navbar
 
-El header es sticky. Al hacer scroll: reduce ligeramente su altura, fondo más sólido (con `backdrop-filter` sutil), sombra un poco mayor. Todo con transición suave. Implementado con la clase `.site-header--scrolled` agregada por JS.
+El proyecto ya no tiene barra de header: los botones de navegación (login/registro en la landing, íconos de usuario en vistas autenticadas) flotan en la esquina superior derecha, sin fondo ni borde, y se desplazan con la página. No aplicar efectos de barra sticky. Hover/focus de los botones siguen las reglas de Botones y Tarjetas de esta guía.
 
 ## Tarjetas
 
