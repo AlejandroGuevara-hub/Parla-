@@ -5,3 +5,4 @@ Thumbs.db
 
 # Dependencies (none yet, but por si acaso)
 node_modules/
+.~lock*
