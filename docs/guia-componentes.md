@@ -275,7 +275,7 @@ Sistema de animación de entrada tipo "flotar + blur": el elemento empieza despl
 - Efecto cascada: cada elemento recibe un `transitionDelay` incremental (index % 6 × 80ms) para que aparezcan en secuencia.
 - Respeta `prefers-reduced-motion`: sin transición, desplazamiento ni blur, body visible de inmediato.
 
-**Alcance:** Aplicado a secciones, tarjetas, botones, encabezados, bloques de texto y footers en todas las vistas. Cobertura completa del sitio.
+**Alcance:** Aplicado a secciones, tarjetas, botones, encabezados, bloques de texto y footers en todas las vistas, incluyendo hero con entrada progresiva (título → subtítulo → CTA), navs flotantes superiores y contenedores de contacto. Cobertura completa del sitio.
 
 **JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body, parallax hero, blur+fade de imágenes.
 
