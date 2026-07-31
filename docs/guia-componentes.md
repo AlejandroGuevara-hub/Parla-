@@ -291,7 +291,7 @@ Contenedor invisible de navegación flotante. Ya no es una barra: sin fondo, sin
 
 **Variantes:**
 - Landing (`index.html`): `.nav-links` con "Iniciar sesión" + botón "Registrarme"; en móvil se pliega en hamburguesa (`.nav-toggle`) con dropdown que se despliega bajo el header.
-- Vistas autenticadas (`inicio`, `podcast`, `webtoon`, `cultura`, `video`, `flashcards`, `quizzes`): `.user-nav` con 3 íconos (Perfil, Contacto, Salir).
+- Vistas autenticadas (`inicio`, `podcast`, `webtoon`, `cultura`, `video`, `flashcards`, `quizzes`): `.user-nav` con 3 botones verticales (ícono + etiqueta debajo): Perfil (`fa-user`), Contacto (`fa-brands fa-whatsapp`) y Salir (`fa-right-from-bracket`).
 
 **Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). `login.html`, `registro.html` y `contacto.html` no tienen header.
 
