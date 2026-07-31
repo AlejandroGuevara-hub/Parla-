@@ -56,6 +56,15 @@ a {
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: padding 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.site-header--scrolled {
+  padding: 0.25rem var(--space-md);
+  background-color: color-mix(in srgb, var(--color-bg-card) 92%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .header-inner {
@@ -160,6 +169,7 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  will-change: transform;
 }
 
 .hero__logo {
@@ -204,10 +214,44 @@ a {
 .hero__subtitle {
   font-family: var(--font-body);
   font-weight: var(--fw-bold);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #fff;
   margin-bottom: var(--space-lg);
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- CTA principal (hero): brillo permanente sutil ---------- */
+
+.hero .btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: brillo-cta 4.5s ease-in-out infinite;
+}
+
+@keyframes brillo-cta {
+  0%,
+  55% {
+    left: -80%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .btn-primary::after {
+    animation: none;
+  }
 }
 
 

@@ -27,12 +27,14 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Decisiones técnicas y por qué: `docs/decisiones-tecnicas.md`
 - Errores ya cometidos (no repetir): `docs/ERRORES.md`
 - Qué hace cada componente/archivo: `docs/GUIA-PROYECTO.md`
+- Motion design (obligatorio para todo bloque nuevo): `docs/GUIA-ANIMACIONES.md`
 - Tareas pendientes: `docs/PENDIENTES.md`
 
 ## Reglas fijas que no cambian
 - No inventar colores/tipografías fuera de `src/styles/variables.css`.
 - Hatton es un placeholder (Fraunces) hasta recibir el archivo real de fuente.
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
+- Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-07-20 — Corrige hover de tarjetas para que no se vea como selección forzada.
+2026-07-31 — Adopta `docs/GUIA-ANIMACIONES.md` como estándar permanente de motion design para todo bloque nuevo.

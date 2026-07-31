@@ -1,5 +1,16 @@
 # Changelog — Parla!
 
+## [1.14.0] — 2026-07-31
+
+### Added
+- Sistema de motion design permanente adoptado como estándar del proyecto: nueva guía `docs/GUIA-ANIMACIONES.md` que se aplica automáticamente a toda sección futura. Amplía el sistema existente: entradas `.animate-in` con blur, parallax sutil del hero al hacer scroll, header sticky que se encoge al hacer scroll (`.site-header--scrolled`), blur+fade de imágenes al cargar (`.img-load`/`.img-loaded`), hover/active/focus en botones, shimmer permanente en el CTA del hero, stagger de entrada en footers y transición suave de focus en inputs.
+- Aparición escalonada de footers en las 8 vistas (clase `animate-in`).
+
+### Changed
+- Sección compuesto de la Landing: grid `30% / 70%` en desktop y `40% / 60%` en móvil (imagen 70%, título con overlay `4.6rem` / `1.25rem`, párrafo `1.2rem` / `0.6rem` debajo de la imagen). La sección ocupa el ancho completo (sin max-width).
+- Hero de la Landing: contenido desplazado a la derecha (`margin-left: 50%`), título `4.5rem` en dos líneas con `letter-spacing` (blanco + teal), subtítulo `1.5rem` partido con `<br>` y botón grande (`.btn-lg`).
+- Logo ampliado 300% (108px en hero, 144px en contacto, 108px en formularios) y eliminado del header en 8 vistas; los botones de iniciar sesión/registrarse quedan alineados a la derecha (`margin-left: auto`).
+
 ## [1.2.0] — 2026-07-20
 
 ### Fixed

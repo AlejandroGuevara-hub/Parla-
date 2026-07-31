@@ -253,9 +253,10 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 - Grid: `grid-template-columns: 30% 70%; grid-template-rows: auto auto`.
 - Sin `max-width` ni `padding-right` — la sección cubre todo el viewport horizontal y la imagen queda pegada al borde derecho.
 - `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (70% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción.
-- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: 3rem`, `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
-- `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1rem`.
-- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) puede superponerse, párrafo (0.6rem) en col2 fila2 bajo la imagen.
+- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: 4.6rem`, `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
+- `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1.2rem`.
+- La sección ocupa el ancho completo del viewport (sin `max-width`); el grid desktop es `30% 70%` y el padding solo izquierdo/superior/inferior (`var(--space-lg) 0 var(--space-lg) var(--space-md)`).
+- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) superpuesto con `z-index: 1`, párrafo (0.6rem) en col2 fila2 bajo la imagen.
 
 **Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--ls-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
@@ -264,23 +265,45 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 ---
 
 ### `.animate-in`
-Sistema de animación de entrada tipo "flotar": el elemento empieza desplazado 24px hacia abajo y opaco, y al entrar en pantalla se desliza a su posición final mientras se hace visible. Se complementa con un fade de carga de página completa (clase `page-loaded` en `<body>`).
+Sistema de animación de entrada tipo "flotar + blur": el elemento empieza desplazado 24px hacia abajo, opaco y con `blur(6px)`, y al entrar en pantalla se desliza a su posición final mientras se hace visible y nítido. Se complementa con un fade de carga de página completa (clase `page-loaded` en `<body>`).
 
 **Cómo funciona:**
-- El CSS define `opacity: 0` y `transform: translateY(24px)` por defecto.
+- El CSS define `opacity: 0`, `transform: translateY(24px)` y `filter: blur(6px)` por defecto.
 - Al cargar la página, `animations.js` agrega `js-animations-ready` al `<body>` y escucha `DOMContentLoaded` para agregar `page-loaded`, que dispara el fade de entrada del body (`opacity: 0` → `opacity: 1` en 0.4s).
-- `IntersectionObserver` detecta cuándo cada `.animate-in` entra en el viewport (threshold 0.15) y agrega `.is-visible`, activando la transición a opacidad 1 y posición original.
-- Sin JS (fallback), `body:not(.js-animations-ready) .animate-in` lo deja todo visible desde el inicio. El body también tiene `body:not(.js-animations-ready) { opacity: 1; }` para que sea visible sin JS.
+- `IntersectionObserver` detecta cuándo cada `.animate-in` entra en el viewport (threshold 0.15) y agrega `.is-visible`, activando la transición a opacidad 1, posición original y blur 0.
+- Sin JS (fallback), `body:not(.js-animations-ready) .animate-in` lo deja todo visible desde el inicio (incluido `filter: none`). El body también tiene `body:not(.js-animations-ready) { opacity: 1; }`.
 - Efecto cascada: cada elemento recibe un `transitionDelay` incremental (index % 6 × 80ms) para que aparezcan en secuencia.
-- Respeta `prefers-reduced-motion`: sin transición ni desplazamiento, body visible de inmediato.
+- Respeta `prefers-reduced-motion`: sin transición, desplazamiento ni blur, body visible de inmediato.
 
-**Alcance:** Aplicado a secciones, tarjetas, imágenes, botones, encabezados y bloques de texto en todas las vistas — no solo a contenedores grandes. Cobertura completa del sitio.
+**Alcance:** Aplicado a secciones, tarjetas, botones, encabezados, bloques de texto y footers en todas las vistas. Cobertura completa del sitio.
 
-**JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body.
+**JS asociado:** `src/scripts/animations.js` — IntersectionObserver, asignación de delay, fade de body, header scroll, parallax hero, blur+fade de imágenes.
 
 ---
 
-### `.btn-whatsapp`
+### `.img-load` / `.img-loaded`
+Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-load` a todas las `<img>`; al dispararse `load` (o `error`) agrega `.img-loaded`, transicionando de `blur(6px)` + opacidad 0 a nítidas en 0.6s. Sin JS, las imágenes se ven normales (la clase la agrega el propio script).
+
+---
+
+### `.site-header--scrolled`
+Estado del header sticky al hacer scroll (agregado por `animations.js` cuando `scrollY > 24`): reduce el padding vertical, oscurece el fondo con `color-mix` al 92% + `backdrop-filter: blur(8px)` y agrega `--shadow-card-hover`. Todo con transición suave de 0.3s.
+
+---
+
+### `.btn`
+Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-secondary`.
+
+**Comportamiento motion:**
+- `:hover`: `translateY(-2px) scale(1.03)` + `--shadow-card-hover` + cambio de color de fondo/borde (paleta existente). 300ms.
+- `:active`: `scale(0.97)` (presión física).
+- `:focus-visible`: anillo de 2px `--color-primary` con offset 2px (solo teclado).
+- CTA del hero (`.hero .btn-primary`): brillo permanente sutil que recorre el botón cada 4.5s (`::after` con gradiente blanco translúcido, desactivado con `prefers-reduced-motion`).
+
+**Variantes:**
+- `.btn-primary` — Fondo teal (`--color-primary`), texto blanco.
+- `.btn-secondary` — Borde teal, texto teal, fondo transparente.
+- `.btn-lg` — Versión grande para hero/CTA: `padding: 1.25rem 3.5rem; font-size: 1.25rem`.
 Botón tipo pastilla redondeada (50px border-radius) con color verde WhatsApp (`#25D366`) e ícono de marca. Se usa exclusivamente en la página de Contactos.
 
 ```html
