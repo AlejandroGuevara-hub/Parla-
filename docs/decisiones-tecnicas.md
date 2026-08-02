@@ -143,6 +143,14 @@ Se usa `localStorage` (clave `parla-theme`) en lugar de no persistir el tema por
 ### Sistema de motion design adoptado como estándar del proyecto
 Se adoptó `docs/GUIA-ANIMACIONES.md` como estándar permanente de motion design. Reemplaza/amplía los sistemas puntuales anteriores (fade+flotar, fade de página, hover de tarjetas) agregándoles blur en las entradas, parallax sutil en el hero, blur+fade en imágenes al cargar, hover/active en botones, shimmer en el CTA principal del hero y stagger en el footer. Regla fija: toda sección nueva debe seguir la guía automáticamente, sin que se lo pidan de nuevo. Los componentes que aún no existen (modal, drawer, favoritos, carruseles, chips) quedan documentados en la guía para aplicarse cuando se construyan. Nota posterior: la barra de header fue eliminada del proyecto (los botones quedan flotando arriba a la derecha), por lo que el encogimiento sticky y `.site-header--scrolled` ya no aplican.
 
+### Elementos flotantes fijos en vez de header tradicional (vistas autenticadas)
+Se eliminó el header como bloque/barra en las vistas de usuario autenticado (`inicio.html`, `contacto.html` y los 6 placeholders) y se reemplazó por dos elementos `position: fixed` tipo píldora: `.floating-logo` (esquina superior izquierda, enlaza a `index.html`) y `.floating-user-nav` (esquina superior derecha, con Perfil/Contacto/Salir). Motivos:
+- El cliente pidió que no haya barra superior; logo y acciones de usuario deben permanecer visibles y en la misma posición al hacer scroll (`fixed`, no `absolute` — este último se desplaza con la página).
+- Fondo tipo píldora (`--color-bg-card`, `border-radius: 999px`, `--shadow-card`) para que no se pierdan contra fotos o fondos oscuros.
+- `z-index: 50`, por debajo del botón de tema (`z-index: 1000`, esquina inferior derecha — sin conflicto de posición).
+- En contacto se retiró el logo grande del hero (144px) en favor del logo flotante, evitando duplicar la marca.
+- Regla para el futuro: toda vista nueva de usuario autenticado usa este patrón, no un header tradicional (anotado en `docs/GUIA-PROYECTO.md`).
+
 ## Estructura de carpetas
 
 ```

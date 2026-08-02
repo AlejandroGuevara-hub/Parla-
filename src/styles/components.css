@@ -243,6 +243,39 @@
 }
 
 
+/* ---------- Elementos flotantes fijos (vistas de usuario autenticado) ---------- */
+
+.floating-logo,
+.floating-user-nav {
+  position: fixed;
+  top: var(--space-sm);
+  z-index: 50;
+  background: var(--color-bg-card);
+  border-radius: 999px;
+  box-shadow: var(--shadow-card);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.floating-logo {
+  left: var(--space-sm);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.floating-logo img {
+  display: block;
+  height: 36px;
+  width: auto;
+}
+
+.floating-user-nav {
+  right: var(--space-sm);
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
 /* ---------- Selector de tema claro/oscuro ---------- */
 
 .theme-toggle {

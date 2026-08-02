@@ -501,7 +501,7 @@ font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
+  padding: calc(var(--space-xl) + var(--space-sm)) var(--space-lg) var(--space-md);
   overflow: hidden;
 }
 
@@ -513,17 +513,6 @@ font-size: 1.5rem;
   object-fit: cover;
   object-position: center;
   z-index: 0;
-}
-
-.contact-hero__logo {
-  position: relative;
-  z-index: 1;
-  align-self: flex-start;
-}
-
-.contact-hero__logo img {
-  height: 144px;
-  width: auto;
 }
 
 .contact-hero__title {
@@ -655,6 +644,33 @@ font-size: 1.5rem;
 
   .btn-lg {
     width: 100%;
+  }
+
+  .floating-logo,
+  .floating-user-nav {
+    top: var(--space-xs);
+  }
+
+  .floating-logo {
+    left: var(--space-xs);
+  }
+
+  .floating-logo img {
+    height: 28px;
+  }
+
+  .floating-user-nav {
+    right: var(--space-xs);
+  }
+
+  .floating-user-nav .user-nav a span {
+    display: none;
+  }
+
+  .floating-user-nav .user-nav a {
+    width: 36px;
+    height: 36px;
+    padding: 0;
   }
 }
 

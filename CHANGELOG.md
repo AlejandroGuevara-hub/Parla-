@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.17.0] — 2026-08-02
+
+### Changed
+- Elimina header tradicional en vistas de usuario autenticado; logo e íconos quedan flotantes y fijos al hacer scroll. Nuevos componentes `.floating-logo` (arriba a la izquierda, enlaza a `index.html`) y `.floating-user-nav` (arriba a la derecha: Perfil / Contacto con ícono de WhatsApp / Salir) en `components.css`, con fondo tipo píldora y `position: fixed`. En móvil (≤480px) las etiquetas se ocultan y quedan solo íconos.
+- Aplica a `inicio.html`, `contacto.html` y los 6 placeholders. En `contacto.html` se retiró el logo grande del hero (144px) en favor del logo flotante. La Landing (`index.html`), `login.html` y `registro.html` no cambian.
+
 ## [1.16.0] — 2026-08-02
 
 ### Changed

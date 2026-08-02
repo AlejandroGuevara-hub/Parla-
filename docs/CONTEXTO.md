@@ -37,4 +37,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-02 — Reemplaza íconos por imágenes reales del cliente en las 6 tarjetas de inicio (diseño original del mockup).
+2026-08-02 — Elimina header en vistas autenticadas: logo e íconos de usuario quedan flotantes y fijos (`.floating-logo` / `.floating-user-nav`).

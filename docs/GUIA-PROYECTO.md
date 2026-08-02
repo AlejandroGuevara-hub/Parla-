@@ -86,3 +86,14 @@ O con servidor local:
 python -m http.server 8000
 # luego http://localhost:8000/src/views/index.html
 ```
+
+## Patrón obligatorio: navegación en vistas de usuario autenticado
+
+Toda vista nueva de usuario autenticado (dashboard, secciones, etc.) debe usar este patrón por defecto, **no un header tradicional**:
+
+- Logo flotante fijo arriba a la izquierda: `<a class="floating-logo">` (enlace a `index.html`).
+- Navegación de usuario flotante fija arriba a la derecha: `<nav class="floating-user-nav">` con `<ul class="user-nav">` (Perfil / Contacto / Salir).
+
+Ambos permanecen fijos al hacer scroll (`position: fixed`), con fondo tipo píldora (`--color-bg-card` + `border-radius: 999px`) para verse sobre cualquier fondo. CSS único en `src/styles/components.css`. En móvil (≤480px) las etiquetas de los botones se ocultan y quedan solo íconos.
+
+La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme") — no usar el patrón de autenticado allí.

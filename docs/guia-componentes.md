@@ -288,14 +288,39 @@ Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-lo
 
 ---
 
+### `.floating-logo` y `.floating-user-nav`
+Elementos flotantes fijos que reemplazan al header tradicional en las vistas de usuario autenticado (`inicio.html`, `contacto.html` y los 6 placeholders). Permanecen visibles en la misma posición al hacer scroll.
+
+- `.floating-logo`: fijo arriba a la izquierda (`left: var(--space-sm)`), píldora con `background: var(--color-bg-card)`, `border-radius: 999px`, `box-shadow: var(--shadow-card)`, `z-index: 50`. Contiene el logo con `height: 36px` y enlaza a `index.html`.
+- `.floating-user-nav`: fijo arriba a la derecha (`right: var(--space-sm)`), misma píldora. Contiene el `<ul class="user-nav">` con los 3 botones (Perfil / Contacto con ícono de WhatsApp / Salir).
+
+```html
+<a href="index.html" class="floating-logo animate-in" aria-label="Parla! inicio">
+  <img src="../assets/images/logo.png" alt="Parla! logo">
+</a>
+
+<nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
+  <ul class="user-nav">
+    <li><a href="#" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
+    <li><a href="contacto.html" aria-label="Contacto"><i class="fa-brands fa-whatsapp"></i><span>Contacto</span></a></li>
+    <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
+  </ul>
+</nav>
+```
+
+**Móvil (≤480px):** las etiquetas (`span`) se ocultan y los botones quedan como íconos de 36px; logo a 28px; píldoras más cerca de los bordes (`--space-xs`). Así no se superponen en pantallas angostas.
+
+**Dónde se usa:** `inicio.html`, `contacto.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`.
+
+---
+
 ### `.site-header`
-Contenedor invisible de navegación flotante. Ya no es una barra: sin fondo, sin borde, sin sticky. `position: absolute` arriba con `pointer-events: none` (no bloquea clics del contenido) y `z-index: 100`. Los botones (`nav` con `margin-left: auto` + `pointer-events: auto`) quedan flotando en la esquina superior derecha, exactamente donde estaría la barra. Se desplazan con la página al hacer scroll.
+Contenedor invisible de navegación flotante (solo Landing). Ya no es una barra: sin fondo, sin borde, sin sticky. `position: absolute` arriba con `pointer-events: none` (no bloquea clics del contenido) y `z-index: 100`. Los botones (`nav` con `margin-left: auto` + `pointer-events: auto`) quedan flotando en la esquina superior derecha, exactamente donde estaría la barra. Se desplazan con la página al hacer scroll.
 
 **Variantes:**
 - Landing (`index.html`): `.nav-links` con "Iniciar sesión" + botón "Registrarme"; en móvil se pliega en hamburguesa (`.nav-toggle`) con dropdown que se despliega bajo el header.
-- Vistas autenticadas (`inicio`, `podcast`, `webtoon`, `cultura`, `video`, `flashcards`, `quizzes`): `.user-nav` con 3 botones verticales (ícono + etiqueta debajo): Perfil (`fa-user`), Contacto (`fa-brands fa-whatsapp`) y Salir (`fa-right-from-bracket`).
 
-**Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). `login.html`, `registro.html` y `contacto.html` no tienen header.
+**Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). Las vistas de usuario autenticado NO usan `.site-header` — usan `.floating-logo` / `.floating-user-nav` (ver arriba).
 
 ---
 
