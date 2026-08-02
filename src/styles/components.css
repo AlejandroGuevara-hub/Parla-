@@ -243,34 +243,86 @@
 }
 
 
+/* ---------- Sidebar (navegación vertical fija) ---------- */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__logo {
+  display: block;
+  margin-bottom: var(--space-lg);
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar__logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+.sidebar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.625rem var(--space-sm);
+  border-radius: var(--radius-button);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar-link i {
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.sidebar-link.is-active {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
+}
+
 /* ---------- Elementos flotantes fijos (vistas de usuario autenticado) ---------- */
 
-.floating-logo,
 .floating-user-nav {
   position: fixed;
   top: var(--space-sm);
-  z-index: 50;
+  right: var(--space-sm);
+  z-index: 150;
   background: var(--color-bg-card);
   border-radius: 999px;
   box-shadow: var(--shadow-card);
   padding: var(--space-xs) var(--space-sm);
-}
-
-.floating-logo {
-  left: var(--space-sm);
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.floating-logo img {
-  display: block;
-  height: 36px;
-  width: auto;
-}
-
-.floating-user-nav {
-  right: var(--space-sm);
   display: flex;
   gap: var(--space-sm);
   align-items: center;

@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-02] Enfoque de header flotante reemplazado por sidebar vertical
+**Qué pasó:** Se implementó primero un enfoque de elementos flotantes fijos (logo arriba a la izquierda + cluster de 3 íconos Perfil/Contacto/Salir arriba a la derecha, tipo píldora) en las vistas autenticadas. El cliente luego pidió un panel de navegación vertical (sidebar) fijo a la izquierda para todas las vistas excepto la Landing.
+
+**Por qué pasó:** La primera aproximación (header flotante) fue solicitada como iteración previa sobre el header tradicional; al evolucionar el diseño hacia el sidebar, ese enfoque quedó obsoleto. El prompt original del header flotante está superseded por el sidebar (ver `docs/specs/` si existe la copia).
+
+**Cómo se corrigió:** Se eliminó el logo flotante (`.floating-logo`) y el cluster de 3 íconos. El logo ahora vive arriba dentro del sidebar; "Contacto" pasó a ser un enlace más de la lista del sidebar (`fa-comment`); el cluster flotante quedó solo con Perfil y Salir. El sidebar es fijo (`260px` a la izquierda) con drawer responsive en móvil.
+
+**Cómo evitarlo:** Antes de implementar un patrón de navegación nuevo, confirmar con el cliente si la navegación debe ser horizontal flotante o panel lateral — la evolución del diseño hizo obsoleta la primera versión.
+
 ### [2026-07-17] variables.css duplicado en raíz y css/
 **Qué pasó:** Existían dos archivos `variables.css` idénticos: uno en la raíz del proyecto y otro en `css/`. Esto causaba confusión sobre cuál era la fuente de verdad.
 

@@ -72,6 +72,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 | Archivo | Propósito |
 |---|---|
 | `src/scripts/nav.js` | Menú mobile toggle + captura de submit de formularios con `data-navegar`. |
+| `src/scripts/sidebar.js` | Drawer del sidebar: abrir/cerrar con toggle, overlay y tecla Escape. |
 | `src/scripts/theme.js` | Selector de tema claro/oscuro con persistencia en localStorage. |
 
 ## Cómo correr el proyecto
@@ -87,13 +88,15 @@ python -m http.server 8000
 # luego http://localhost:8000/src/views/index.html
 ```
 
-## Patrón obligatorio: navegación en vistas de usuario autenticado
+## Patrón obligatorio: navegación con sidebar
 
-Toda vista nueva de usuario autenticado (dashboard, secciones, etc.) debe usar este patrón por defecto, **no un header tradicional**:
+Toda vista nueva (excepto la Landing) debe incluir el sidebar por defecto, **no un header tradicional**:
 
-- Logo flotante fijo arriba a la izquierda: `<a class="floating-logo">` (enlace a `index.html`).
-- Navegación de usuario flotante fija arriba a la derecha: `<nav class="floating-user-nav">` con `<ul class="user-nav">` (Perfil / Contacto / Salir).
+- `<aside class="sidebar" id="sidebar">` fijo a la izquierda (`260px`, `height: 100vh`): logo arriba + lista `.sidebar-links` con los 8 enlaces (Inicio, Lecciones en video, Podcast, Webtoon, Cultura, Flashcards, Quizzes, Contactos). El enlace de la página actual lleva `.is-active`.
+- `<div class="sidebar-overlay">` + `<button class="sidebar-toggle">` (hamburguesa) para el drawer en móvil (≤768px): el sidebar se desliza con `translateX`, overlay con fade; se cierra con clic en overlay o Escape (`src/scripts/sidebar.js`).
+- Cluster flotante arriba a la derecha: `<nav class="floating-user-nav">` con `<ul class="user-nav">` (solo Perfil y Salir).
+- El contenido principal va en `<main class="page-content">` (margen izquierdo de 260px en desktop, 0 en móvil).
 
-Ambos permanecen fijos al hacer scroll (`position: fixed`), con fondo tipo píldora (`--color-bg-card` + `border-radius: 999px`) para verse sobre cualquier fondo. CSS único en `src/styles/components.css`. En móvil (≤480px) las etiquetas de los botones se ocultan y quedan solo íconos.
+CSS único en `src/styles/components.css` y `src/styles/styles.css`. Respeta `prefers-reduced-motion`.
 
-La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme") — no usar el patrón de autenticado allí.
+La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme") — no usar el patrón de sidebar allí.

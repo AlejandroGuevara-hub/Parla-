@@ -156,6 +156,51 @@ a {
 }
 
 
+/* ---------- Sidebar: layout de página, toggle y overlay ---------- */
+
+.page-content {
+  margin-left: 260px;
+}
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 210;
+  background: var(--color-bg-card);
+  border: none;
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  padding: 0.5rem 0.6rem;
+}
+
+.sidebar-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text);
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 /* ---------- Landing Page — Hero ---------- */
 
 .hero {
@@ -257,6 +302,11 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .hero .btn-primary::after {
     animation: none;
+  }
+
+  .sidebar,
+  .sidebar-overlay {
+    transition: none;
   }
 }
 
@@ -579,6 +629,23 @@ font-size: 1.5rem;
     padding: var(--space-xl) var(--space-sm);
   }
 
+  .page-content {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+
   .hero__logo {
     top: var(--space-sm);
     left: var(--space-sm);
@@ -646,20 +713,8 @@ font-size: 1.5rem;
     width: 100%;
   }
 
-  .floating-logo,
   .floating-user-nav {
     top: var(--space-xs);
-  }
-
-  .floating-logo {
-    left: var(--space-xs);
-  }
-
-  .floating-logo img {
-    height: 28px;
-  }
-
-  .floating-user-nav {
     right: var(--space-xs);
   }
 

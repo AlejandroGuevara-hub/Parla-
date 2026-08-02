@@ -151,6 +151,17 @@ Se eliminó el header como bloque/barra en las vistas de usuario autenticado (`i
 - En contacto se retiró el logo grande del hero (144px) en favor del logo flotante, evitando duplicar la marca.
 - Regla para el futuro: toda vista nueva de usuario autenticado usa este patrón, no un header tradicional (anotado en `docs/GUIA-PROYECTO.md`).
 
+**Nota posterior (superseded):** Este enfoque fue reemplazado por el sidebar vertical (ver siguiente decisión). El logo flotante ya no existe y el cluster quedó solo con Perfil/Salir.
+
+### Sidebar vertical fijo en vez de elementos flotantes (todas las vistas excepto Landing)
+Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izquierda, `100vh`) en todas las vistas excepto la Landing, tal como el cliente lo pidió explícitamente (incluye login y registro). Se decidió:
+- **Logo dentro del sidebar**: arriba del todo, como cabecera del panel — evita duplicar la marca en pantalla (antes logo flotante arriba a la izquierda).
+- **"Contacto" como enlace del sidebar** (ícono `fa-comment`) en vez de ícono flotante de WhatsApp: la página de contactos es una sección más del contenido, no una acción de usuario; el cluster flotante se redujo a Perfil y Salir.
+- **`--color-primary` para el enlace activo** (`color-mix` 12% de fondo + texto primario + bold), usando la paleta existente — no el morado de la referencia visual del cliente.
+- **`z-index` escalonado**: sidebar 200, overlay 190, toggle 210, cluster flotante 150, tema 1000 — sin conflictos entre sí.
+- **Drawer en móvil (≤768px)**: el sidebar fijo de 260px no cabe en celular; se transforma en panel deslizable (`translateX(-100%)` → `0` con `cubic-bezier(0.22, 1, 0.36, 1)` de 0.35s), overlay con fade y cierre por overlay/Escape (`.sidebar-overlay`, `src/scripts/sidebar.js`), siguiendo `docs/GUIA-ANIMACIONES.md`. En tablet (769px+) se mantiene fijo porque hay espacio.
+- El contenido de cada vista usa `.page-content { margin-left: 260px }` (0 en móvil) para no quedar tapado por el sidebar.
+
 ## Estructura de carpetas
 
 ```

@@ -15,19 +15,40 @@
 </head>
 <body class="contact-page">
 
-  <a href="index.html" class="floating-logo animate-in" aria-label="Parla! inicio">
-    <img src="../assets/images/logo.png" alt="Parla! logo">
-  </a>
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <a href="index.html" class="sidebar__logo" aria-label="Parla! inicio">
+      <img src="../assets/images/logo.png" alt="Parla! logo">
+    </a>
+    <nav aria-label="Secciones">
+      <ul class="sidebar-links">
+        <li><a class="sidebar-link" href="inicio.html"><i class="fas fa-house"></i><span>Inicio</span></a></li>
+        <li><a class="sidebar-link" href="video.html"><i class="fas fa-video"></i><span>Lecciones en video</span></a></li>
+        <li><a class="sidebar-link" href="podcast.html"><i class="fas fa-headphones"></i><span>Podcast</span></a></li>
+        <li><a class="sidebar-link" href="webtoon.html"><i class="fas fa-book-open"></i><span>Webtoon</span></a></li>
+        <li><a class="sidebar-link" href="cultura.html"><i class="fas fa-landmark"></i><span>Cultura</span></a></li>
+        <li><a class="sidebar-link" href="flashcards.html"><i class="fas fa-layer-group"></i><span>Flashcards</span></a></li>
+        <li><a class="sidebar-link" href="quizzes.html"><i class="fas fa-circle-question"></i><span>Quizzes</span></a></li>
+        <li><a class="sidebar-link is-active" href="contacto.html"><i class="fas fa-comment"></i><span>Contactos</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <button class="sidebar-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
   <nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
     <ul class="user-nav">
       <li><a href="#" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
-      <li><a href="contacto.html" aria-label="Contacto"><i class="fa-brands fa-whatsapp"></i><span>Contacto</span></a></li>
       <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
     </ul>
   </nav>
 
-  <section class="contact-hero animate-in">
+  <section class="contact-hero page-content animate-in">
     <img class="contact-hero__bg" src="../assets/images/contact-bg.png" alt="">
 
     <h1 class="contact-hero__title animate-in">ACOMPA&Ntilde;AMIENTO CONTINUO</h1>
@@ -46,6 +67,7 @@
   <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
     <i class="fas fa-moon"></i>
   </button>
+  <script src="../scripts/sidebar.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
 </body>

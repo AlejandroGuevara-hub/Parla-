@@ -1,5 +1,12 @@
 # Changelog — Parla!
 
+## [1.18.0] — 2026-08-02
+
+### Changed
+- Reemplaza header/íconos flotantes por panel de navegación vertical fijo en todas las vistas excepto landing. Nuevo `.sidebar` (260px fijo a la izquierda, logo arriba + 8 enlaces con ícono, enlace activo con `--color-primary`), `.sidebar-link`/`.sidebar-link.is-active`, `.sidebar-toggle` (hamburguesa) y `.sidebar-overlay` (drawer responsive ≤768px con `translateX` + fade, cierre por overlay/Escape) — nuevo `src/scripts/sidebar.js`. Contenido con `.page-content { margin-left: 260px }`.
+- "Contacto" pasa de ícono flotante de WhatsApp a enlace del sidebar (`fa-comment`); el cluster flotante queda solo con Perfil y Salir; el logo flotante (`.floating-logo`) se elimina (el logo vive en el sidebar).
+- Aplica a `inicio.html`, `login.html`, `registro.html`, `contacto.html` y los 6 placeholders. La Landing (`index.html`) no cambia.
+
 ## [1.17.0] — 2026-08-02
 
 ### Changed

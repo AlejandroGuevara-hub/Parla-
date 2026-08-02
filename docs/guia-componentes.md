@@ -288,29 +288,37 @@ Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-lo
 
 ---
 
-### `.floating-logo` y `.floating-user-nav`
-Elementos flotantes fijos que reemplazan al header tradicional en las vistas de usuario autenticado (`inicio.html`, `contacto.html` y los 6 placeholders). Permanecen visibles en la misma posición al hacer scroll.
+### `.sidebar`
+Panel de navegación vertical fijo a la izquierda. Se usa en TODAS las vistas excepto la Landing: `inicio.html`, `login.html`, `registro.html`, `contacto.html` y los 6 placeholders. `position: fixed`, ancho `260px`, `height: 100vh`, `overflow-y: auto` (scroll propio si la lista no entra), fondo `--color-bg-card`, `box-shadow: var(--shadow-card)`, `z-index: 200`.
 
-- `.floating-logo`: fijo arriba a la izquierda (`left: var(--space-sm)`), píldora con `background: var(--color-bg-card)`, `border-radius: 999px`, `box-shadow: var(--shadow-card)`, `z-index: 50`. Contiene el logo con `height: 36px` y enlaza a `index.html`.
-- `.floating-user-nav`: fijo arriba a la derecha (`right: var(--space-sm)`), misma píldora. Contiene el `<ul class="user-nav">` con los 3 botones (Perfil / Contacto con ícono de WhatsApp / Salir).
+**Contenido (de arriba a abajo):** logo de Parla! (`.sidebar__logo`, 48px, enlaza a `index.html`) y lista `.sidebar-links` con 8 enlaces (ícono Font Awesome + texto): Inicio (`fa-house`), Lecciones en video (`fa-video`), Podcast (`fa-headphones`), Webtoon (`fa-book-open`), Cultura (`fa-landmark`), Flashcards (`fa-layer-group`), Quizzes (`fa-circle-question`), Contactos (`fa-comment`).
+
+### `.sidebar-link` y `.sidebar-link.is-active`
+Enlace individual del sidebar: ícono + texto con `gap: var(--space-sm)`, `border-radius: var(--radius-button)`, transición suave de color/fondo. Hover y `:focus-visible`: `--color-primary` sobre fondo `color-mix` al 8%. La página actual usa `.is-active`: fondo `color-mix(in srgb, var(--color-primary) 12%, transparent)`, texto `--color-primary` y `font-weight: var(--fw-bold)`.
+
+**Responsive (drawer):** en ≤768px el sidebar no se queda fijo: `transform: translateX(-100%)` con transición `cubic-bezier(0.22, 1, 0.36, 1)` de 0.35s; `.is-open` lo desliza a la vista. Se abre con `.sidebar-toggle` (hamburguesa fija arriba a la izquierda, `z-index: 210`) y `.sidebar-overlay` (`z-index: 190`, fade de 0.3s) oscurece el fondo; clic en overlay o tecla Escape lo cierra (`src/scripts/sidebar.js`). El contenido (`main.page-content`) pierde su `margin-left` en móvil. Respeta `prefers-reduced-motion` (transición anulada).
+
+**Dónde se usa:** todas las vistas excepto `index.html`.
+
+---
+
+### `.floating-user-nav`
+Cluster flotante fijo arriba a la derecha con los 2 botones de usuario que no viven en el sidebar: Perfil (`fa-user`) y Salir (`fa-right-from-bracket`). Píldora con `background: var(--color-bg-card)`, `border-radius: 999px`, `box-shadow: var(--shadow-card)`, `z-index: 150`. Los botones son `<ul class="user-nav">` con ícono + etiqueta debajo.
 
 ```html
-<a href="index.html" class="floating-logo animate-in" aria-label="Parla! inicio">
-  <img src="../assets/images/logo.png" alt="Parla! logo">
-</a>
-
 <nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
   <ul class="user-nav">
     <li><a href="#" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
-    <li><a href="contacto.html" aria-label="Contacto"><i class="fa-brands fa-whatsapp"></i><span>Contacto</span></a></li>
     <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
   </ul>
 </nav>
 ```
 
-**Móvil (≤480px):** las etiquetas (`span`) se ocultan y los botones quedan como íconos de 36px; logo a 28px; píldoras más cerca de los bordes (`--space-xs`). Así no se superponen en pantallas angostas.
+**Móvil (≤480px):** las etiquetas (`span`) se ocultan y los botones quedan como íconos de 36px; la píldora se acerca al borde (`--space-xs`). Así no se superpone con la hamburguesa del sidebar.
 
-**Dónde se usa:** `inicio.html`, `contacto.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`.
+**Dónde se usa:** `inicio.html`, `contacto.html`, `login.html`, `registro.html` y los 6 placeholders.
+
+**Nota:** "Contacto" solía estar en este cluster (ícono de WhatsApp); desde la introducción del sidebar es un enlace más de la lista (ícono `fa-comment`). El logo flotante (`.floating-logo`) fue eliminado: el logo vive dentro del sidebar.
 
 ---
 
@@ -320,7 +328,7 @@ Contenedor invisible de navegación flotante (solo Landing). Ya no es una barra:
 **Variantes:**
 - Landing (`index.html`): `.nav-links` con "Iniciar sesión" + botón "Registrarme"; en móvil se pliega en hamburguesa (`.nav-toggle`) con dropdown que se despliega bajo el header.
 
-**Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). Las vistas de usuario autenticado NO usan `.site-header` — usan `.floating-logo` / `.floating-user-nav` (ver arriba).
+**Nota:** la clase `.site-header--scrolled` fue eliminada (no aplica sin barra). Las vistas que no son la Landing usan `.sidebar` (ver arriba).
 
 ---
 
