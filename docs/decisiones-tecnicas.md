@@ -53,6 +53,8 @@ Se agregó `--feature-card-max-w: 280px` en `variables.css` para limitar el anch
 - Permite que 3 tarjetas quepan cómodamente en una fila (~280px × 3 + gaps ≈ 900px) dentro del contenedor de 1200px.
 - `auto-fit` con `minmax(240px, 280px)` da un rango estrecho que mantiene las tarjetas compactas incluso en viewports intermedios.
 
+**Nota posterior:** `--feature-card-max-w` fue eliminado y consolidado en `--card-frame-w: 316.7px`. Al volver las tarjetas al diseño original del mockup (foto arriba, ancho completo del frame), el ancho del contenido interno dejó de ser relevante: la imagen es responsiva al ancho de la tarjeta (los tokens `--card-image-w`/`--card-image-h` ya estaban reservados para esto). Se unificó en el ancho del frame del mockup para evitar dos tokens representando la misma dimensión. El espaciado lateral pedido por el cliente (4px exactos entre imagen y borde de tarjeta) se implementó con padding lateral 0 en la tarjeta e imagen `calc(100% - 8px)` centrada; usar el padding de 4px sugerido sumado a la fórmula habría dado 8px por lado.
+
 ### Halo pulsante en tarjeta destacada (box-shadow animado)
 Se reemplazó el resplandor giratorio (conic-gradient + blur en pseudo-elemento) por un halo de blur pulsante (`box-shadow` animado) porque:
 - Es más simple: no necesita pseudo-elemento, no necesita máscara de desborde, y el `box-shadow` se mantiene naturalmente dentro del contexto de apilamiento sin fugas visuales.

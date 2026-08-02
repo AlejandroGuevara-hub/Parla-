@@ -1,5 +1,12 @@
 # Changelog — Parla!
 
+## [1.16.0] — 2026-08-02
+
+### Changed
+- Reemplaza íconos por imágenes reales en las 6 tarjetas de inicio, según diseño original del cliente. Copia `3-8.png` de `reference/Diego-pagina web/Parte/2.inicio del estudiante/Fotos/` a `src/assets/images/` con nombres descriptivos (`podcast.png`, `webtoon.png`, `cultura.png`, `video.png`, `flashcards.png`, `quizzes.png`).
+- Elimina los círculos `.icon` de Font Awesome y los estilos `.feature-card .icon*`. La tarjeta ahora es: imagen (4px de espacio lateral exactos, `--card-image-h`, `object-fit: cover`, `border-radius: inherit`) → título → descripción.
+- Consolida `--feature-card-max-w` en `--card-frame-w: 316.7px` (ancho de frame del mockup); el grid usa `minmax(240px, var(--card-frame-w))`.
+
 ## [1.15.0] — 2026-07-31
 
 ### Changed

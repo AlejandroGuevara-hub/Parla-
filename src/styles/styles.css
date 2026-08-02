@@ -378,56 +378,30 @@ font-size: 1.5rem;
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, var(--feature-card-max-w)));
+  grid-template-columns: repeat(auto-fit, minmax(240px, var(--card-frame-w)));
   justify-content: center;
   gap: var(--space-md);
 }
 
 .feature-card {
+  padding: var(--space-md) 0 var(--space-sm) 0;
   text-align: center;
 }
 
 .feature-card__link {
   display: block;
-  padding: var(--space-md);
   text-decoration: none;
   color: inherit;
   border-radius: var(--radius-card);
 }
 
-.feature-card .icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.feature-card__image {
+  width: calc(100% - 8px);
+  height: var(--card-image-h);
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
   margin: 0 auto var(--space-sm);
-  font-size: 1.5rem;
-}
-
-.feature-card .icon.podcast {
-  background-color: var(--color-accent-olive);
-}
-
-.feature-card .icon.webtoon {
-  background-color: var(--color-accent);
-}
-
-.feature-card .icon.culture {
-  background-color: var(--color-secondary);
-}
-
-.feature-card .icon.video {
-  background-color: var(--color-primary);
-}
-
-.feature-card .icon.flashcards {
-  background-color: var(--color-accent-gold);
-}
-
-.feature-card .icon.quizzes {
-  background-color: var(--color-secondary-dark);
 }
 
 .feature-card h3 {

@@ -98,7 +98,6 @@
   --card-image-w: 300px;
   --card-image-h: 240px;
   --card-frame-w: 316.7px;
-  --feature-card-max-w: 280px;    /* Ancho máximo de tarjetas de sección en dashboard de inicio */
   --card-frame-h: 422px;
 }
 
@@ -118,7 +117,6 @@
   --color-heading-gold: #d4a94e;
   --color-text-navy: #B5B0A6;
   --color-cream: #3A3F44;
-  --feature-card-max-w: 280px;
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.4);
 }

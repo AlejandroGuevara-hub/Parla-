@@ -183,32 +183,34 @@ Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en do
 ---
 
 ### `.feature-card` y `.feature-card__link`
-Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.card` que contiene un enlace que envuelve todo el contenido.
+Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.card` que contiene un enlace que envuelve todo el contenido: imagen arriba, después el título, después la descripción (sin ícono circular — reemplazado por las fotos reales del cliente).
 
 ```html
 <article class="feature-card card">
-  <a href="#" class="feature-card__link">
-    <div class="icon podcast"><i class="fas fa-headphones"></i></div>
+  <a href="podcast.html" class="feature-card__link">
+    <img class="feature-card__image" src="../assets/images/podcast.png" alt="">
     <h3>Podcast</h3>
     <p>Episodios con transcripción para mejorar tu comprensión auditiva.</p>
   </a>
 </article>
 ```
 
-**Tokens de color para cada círculo `.icon`:**
+**Imágenes reales** (copiadas de `reference/Diego-pagina web/Parte/2.inicio del estudiante/Fotos/`):
 
-| Tarjeta | Clase CSS | Token de color |
+| Tarjeta | Archivo en `src/assets/images/` | Archivo original |
 |---|---|---|
-| Lecciones en video | `.video` | `--color-primary` |
-| Podcast | `.podcast` | `--color-accent-olive` |
-| Webtoon | `.webtoon` | `--color-accent` |
-| Cultura | `.culture` | `--color-secondary` |
-| Flashcards | `.flashcards` | `--color-accent-gold` |
-| Quizzes | `.quizzes` | `--color-secondary-dark` |
+| Lecciones en video | `video.png` | `4.png` |
+| Podcast | `podcast.png` | `7.png` |
+| Cultura | `cultura.png` | `8.png` |
+| Webtoon | `webtoon.png` | `6.png` |
+| Flashcards | `flashcards.png` | `3.png` |
+| Quizzes | `quizzes.png` | `5.png` |
 
-**Ancho máximo:** `--feature-card-max-w: 280px` (definido en `variables.css`). El grid usa `auto-fit, minmax(240px, var(--feature-card-max-w))` para que las tarjetas sean angostas, centradas, y se adapten a 3 columnas en escritorio, 2 en tablet y 1 en móvil sin media queries.
+**Medidas:** imagen `width: calc(100% - 8px)` → exactamente 4px de espacio a cada lado del borde de la tarjeta; alto `--card-image-h: 240px` con `object-fit: cover`; `border-radius: inherit` (mismo radio que la tarjeta). Espaciado: `--space-md` entre borde superior de la tarjeta y la imagen, `--space-sm` entre imagen y título (margin de la imagen), `--space-xs` entre título y descripción (`h3` margin-bottom), `--space-sm` hasta el borde inferior. Todo centrado.
 
-**Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, se muestra un borde `box-shadow: 0 0 0 2px var(--color-primary)` y la tarjeta eleva su sombra (`.card:hover`).
+**Ancho máximo:** `--card-frame-w: 316.7px` (unifica el ancho de tarjeta del mockup; `--feature-card-max-w` fue eliminado). El grid usa `auto-fit, minmax(240px, var(--card-frame-w))` para tarjetas centradas, 3 columnas en escritorio, 2 en tablet y 1 en móvil sin media queries.
+
+**Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, la tarjeta se eleva `translateY(-4px)`, eleva su sombra y cambia su borde (`.card:hover`).
 
 **Dónde se usa:** `inicio.html` — dashboard grid.
 

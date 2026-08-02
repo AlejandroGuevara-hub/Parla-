@@ -11,7 +11,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Login (maqueta visual)
 - [x] Registro (maqueta visual)
 - [x] Selector de tema claro/oscuro flotante con persistencia
-- [x] Inicio del estudiante (6 tarjetas)
+- [x] Inicio del estudiante (6 tarjetas con imágenes reales del cliente)
 - [x] Páginas placeholder (6) — con navegación completa
 - [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
@@ -37,4 +37,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-07-31 — Adopta `docs/GUIA-ANIMACIONES.md` como estándar permanente de motion design para todo bloque nuevo.
+2026-08-02 — Reemplaza íconos por imágenes reales del cliente en las 6 tarjetas de inicio (diseño original del mockup).
