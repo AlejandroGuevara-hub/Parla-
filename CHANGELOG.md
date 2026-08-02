@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.18.1] — 2026-08-02
+
+### Fixed
+- Quita el sidebar de login y registro, no debía estar ahí. El alcance final del sidebar es solo las vistas autenticadas (`inicio.html`, `contacto.html` y los 6 placeholders); `index.html`, `login.html` y `registro.html` quedan sin sidebar. Login/registro vuelven a su layout original centrado (sin `margin-left` de `.page-content`), sin overlay ni hamburguesa, y sin el cluster flotante Perfil/Salir (no tiene sentido pre-login).
+
 ## [1.18.0] — 2026-08-02
 
 ### Changed

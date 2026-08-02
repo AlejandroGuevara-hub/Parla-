@@ -289,7 +289,7 @@ Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-lo
 ---
 
 ### `.sidebar`
-Panel de navegación vertical fijo a la izquierda. Se usa en TODAS las vistas excepto la Landing: `inicio.html`, `login.html`, `registro.html`, `contacto.html` y los 6 placeholders. `position: fixed`, ancho `260px`, `height: 100vh`, `overflow-y: auto` (scroll propio si la lista no entra), fondo `--color-bg-card`, `box-shadow: var(--shadow-card)`, `z-index: 200`.
+Panel de navegación vertical fijo a la izquierda. Se usa en: `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html`. `position: fixed`, ancho `260px`, `height: 100vh`, `overflow-y: auto` (scroll propio si la lista no entra), fondo `--color-bg-card`, `box-shadow: var(--shadow-card)`, `z-index: 200`.
 
 **Contenido (de arriba a abajo):** logo de Parla! (`.sidebar__logo`, 48px, enlaza a `index.html`) y lista `.sidebar-links` con 8 enlaces (ícono Font Awesome + texto): Inicio (`fa-house`), Lecciones en video (`fa-video`), Podcast (`fa-headphones`), Webtoon (`fa-book-open`), Cultura (`fa-landmark`), Flashcards (`fa-layer-group`), Quizzes (`fa-circle-question`), Contactos (`fa-comment`).
 
@@ -298,7 +298,7 @@ Enlace individual del sidebar: ícono + texto con `gap: var(--space-sm)`, `borde
 
 **Responsive (drawer):** en ≤768px el sidebar no se queda fijo: `transform: translateX(-100%)` con transición `cubic-bezier(0.22, 1, 0.36, 1)` de 0.35s; `.is-open` lo desliza a la vista. Se abre con `.sidebar-toggle` (hamburguesa fija arriba a la izquierda, `z-index: 210`) y `.sidebar-overlay` (`z-index: 190`, fade de 0.3s) oscurece el fondo; clic en overlay o tecla Escape lo cierra (`src/scripts/sidebar.js`). El contenido (`main.page-content`) pierde su `margin-left` en móvil. Respeta `prefers-reduced-motion` (transición anulada).
 
-**Dónde se usa:** todas las vistas excepto `index.html`.
+**Dónde se usa:** `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html` (páginas pre-login sin navegación).
 
 ---
 
@@ -316,7 +316,7 @@ Cluster flotante fijo arriba a la derecha con los 2 botones de usuario que no vi
 
 **Móvil (≤480px):** las etiquetas (`span`) se ocultan y los botones quedan como íconos de 36px; la píldora se acerca al borde (`--space-xs`). Así no se superpone con la hamburguesa del sidebar.
 
-**Dónde se usa:** `inicio.html`, `contacto.html`, `login.html`, `registro.html` y los 6 placeholders.
+**Dónde se usa:** `inicio.html`, `contacto.html` y los 6 placeholders (vistas con sidebar). NO está en `login.html` ni `registro.html`.
 
 **Nota:** "Contacto" solía estar en este cluster (ícono de WhatsApp); desde la introducción del sidebar es un enlace más de la lista (ícono `fa-comment`). El logo flotante (`.floating-logo`) fue eliminado: el logo vive dentro del sidebar.
 

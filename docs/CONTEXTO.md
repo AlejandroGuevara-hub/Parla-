@@ -15,7 +15,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Páginas placeholder (6) — con navegación completa
 - [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
-- [x] Sidebar de navegación vertical (fijo, drawer en móvil) en todas las vistas excepto Landing
+- [x] Sidebar de navegación vertical (fijo, drawer en móvil) en vistas autenticadas (excepto Landing, Login y Registro)
 - [ ] Contenido real de cada sección (video, podcast, webtoon, cultura, flashcards, quizzes)
 - [ ] Barra de progreso
 - [ ] Favoritos
@@ -38,4 +38,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-02 — Panel de navegación vertical (sidebar) fijo en todas las vistas excepto Landing, con drawer responsive en móvil. Reemplaza el enfoque de header flotante.
+2026-08-02 — Quita el sidebar de login y registro (corrección de alcance); queda solo en vistas autenticadas.

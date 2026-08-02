@@ -90,7 +90,7 @@ python -m http.server 8000
 
 ## Patrón obligatorio: navegación con sidebar
 
-Toda vista nueva (excepto la Landing) debe incluir el sidebar por defecto, **no un header tradicional**:
+Toda vista nueva debe incluir el sidebar por defecto, **no un header tradicional**, con estas excepciones: `index.html` (Landing), `login.html` y `registro.html` (páginas pre-login sin navegación).
 
 - `<aside class="sidebar" id="sidebar">` fijo a la izquierda (`260px`, `height: 100vh`): logo arriba + lista `.sidebar-links` con los 8 enlaces (Inicio, Lecciones en video, Podcast, Webtoon, Cultura, Flashcards, Quizzes, Contactos). El enlace de la página actual lleva `.is-active`.
 - `<div class="sidebar-overlay">` + `<button class="sidebar-toggle">` (hamburguesa) para el drawer en móvil (≤768px): el sidebar se desliza con `translateX`, overlay con fade; se cierra con clic en overlay o Escape (`src/scripts/sidebar.js`).
@@ -99,4 +99,4 @@ Toda vista nueva (excepto la Landing) debe incluir el sidebar por defecto, **no 
 
 CSS único en `src/styles/components.css` y `src/styles/styles.css`. Respeta `prefers-reduced-motion`.
 
-La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme") — no usar el patrón de sidebar allí.
+La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme"); `login.html` y `registro.html` tampoco llevan sidebar — son las tres excepciones.

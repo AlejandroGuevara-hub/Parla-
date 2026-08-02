@@ -154,7 +154,8 @@ Se eliminó el header como bloque/barra en las vistas de usuario autenticado (`i
 **Nota posterior (superseded):** Este enfoque fue reemplazado por el sidebar vertical (ver siguiente decisión). El logo flotante ya no existe y el cluster quedó solo con Perfil/Salir.
 
 ### Sidebar vertical fijo en vez de elementos flotantes (todas las vistas excepto Landing)
-Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izquierda, `100vh`) en todas las vistas excepto la Landing, tal como el cliente lo pidió explícitamente (incluye login y registro). Se decidió:
+Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izquierda, `100vh`) en todas las vistas excepto la Landing, tal como el cliente lo pidió explícitamente. Se decidió:
+- **Nota posterior:** el cliente corrigió el alcance — el sidebar NO aplica en `login.html` ni `registro.html` (páginas pre-login); el sidebar queda solo en las vistas autenticadas (`inicio.html`, `contacto.html` y los 6 placeholders).
 - **Logo dentro del sidebar**: arriba del todo, como cabecera del panel — evita duplicar la marca en pantalla (antes logo flotante arriba a la izquierda).
 - **"Contacto" como enlace del sidebar** (ícono `fa-comment`) en vez de ícono flotante de WhatsApp: la página de contactos es una sección más del contenido, no una acción de usuario; el cluster flotante se redujo a Perfil y Salir.
 - **`--color-primary` para el enlace activo** (`color-mix` 12% de fondo + texto primario + bold), usando la paleta existente — no el morado de la referencia visual del cliente.
