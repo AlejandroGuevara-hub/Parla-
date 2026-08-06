@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.1] — 2026-08-05
+
+### Changed
+- Hero de la Landing: el contenido (título, subtítulo y botón) se traslada al lado derecho de la página. `.hero__content` pasa de `margin-left: 50%` a `margin-left: auto; margin-right: 0` (bloque pegado al borde derecho, respetando el padding del `.hero`). En tablet (≤1024px) se mantiene a la derecha (ahora con el mismo alineado, antes `35%`); en móvil (≤768px) sigue a ancho completo.
+
 ## [1.19.0] — 2026-08-05
 
 ### Changed
