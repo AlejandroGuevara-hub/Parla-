@@ -13,7 +13,7 @@ Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-sec
 **Variantes:**
 - `.btn-primary` — Fondo teal (`--color-primary`), texto blanco.
 - `.btn-secondary` — Borde teal, texto teal, fondo transparente.
-- `.btn-lg` — Versión grande para hero/CTA: `padding: 1.25rem 3.5rem; font-size: 1.25rem`.
+- `.btn-lg` — Versión grande para hero/CTA: `padding: 1rem 2.5rem; font-size: 1.125rem`.
 
 **Dónde se usa:** `index.html` (hero actions), `login.html`, `registro.html`, header nav.
 
@@ -117,7 +117,7 @@ Es una imagen independiente (no un enlace). Tamaño 300% mayor: `height: 108px`.
 ---
 
 ### `.hero__content`
-Contenedor del título, subtítulo y CTA del hero. El borde izquierdo del contenedor se alinea con la mitad de la página (`margin-left: 50%; margin-right: auto`). `text-align: left`, `line-height: 1.4`. En móvil se reinician los márgenes.
+Contenedor del título, subtítulo y CTA del hero. El borde izquierdo del contenedor se alinea con la mitad de la página (`margin-left: 50%; margin-right: auto`). `text-align: left`, `line-height: 1.4`. En tablet (≤1024px) el contenido se desplaza a `margin-left: 35%` con `max-width: 520px`; en móvil se reinician los márgenes.
 
 ```html
 <div class="hero__content animate-in">
@@ -135,7 +135,7 @@ Contenedor del título, subtítulo y CTA del hero. El borde izquierdo del conten
 ---
 
 ### `.hero__title` / `.hero__title-line1` / `.hero__title-line2`
-Título del hero en dos líneas con colores distintos: línea 1 blanca (`letter-spacing: 0.05em`), línea 2 teal (`--color-primary`, `letter-spacing: 0.08em`). `font-size: 4.5rem`, `line-height: 1.4`. Usa `text-shadow` para legibilidad sobre la foto.
+Título del hero en dos líneas con colores distintos: línea 1 blanca (`letter-spacing: 0.05em`), línea 2 teal (`--color-primary`, `letter-spacing: 0.08em`). `font-size: 4.5rem` (desktop), `3.5rem` (≤1024px), `2rem` (≤768px) y `1.5rem` (≤480px); `line-height: 1.4`. Usa `text-shadow` para legibilidad sobre la foto.
 
 ```html
 <h1 class="hero__title">
@@ -172,7 +172,7 @@ Botón flotante en esquina inferior derecha que alterna entre tema claro y oscur
 ---
 
 ### `.hero__subtitle`
-Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en dos líneas vía `<br>`: "De forma real, ligera / y entretenida."
+Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en dos líneas vía `<br>`: "De forma real, ligera / y entretenida." `font-size: 1.5rem` (desktop) y `1.25rem` (≤1024px).
 
 ```html
 <p class="hero__subtitle">De forma real, ligera<br>y entretenida.</p>
@@ -255,7 +255,7 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 - Grid: `grid-template-columns: 30% 70%; grid-template-rows: auto auto`.
 - Sin `max-width` ni `padding-right` — la sección cubre todo el viewport horizontal y la imagen queda pegada al borde derecho.
 - `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (70% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción.
-- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: 4.6rem`, `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
+- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: var(--fs-heading-composite)` (`3.5rem`), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
 - `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1.2rem`.
 - La sección ocupa el ancho completo del viewport (sin `max-width`); el grid desktop es `30% 70%` y el padding solo izquierdo/superior/inferior (`var(--space-lg) 0 var(--space-lg) var(--space-md)`).
 - En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) superpuesto con `z-index: 1`, párrafo (0.6rem) en col2 fila2 bajo la imagen.
@@ -344,7 +344,7 @@ Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-sec
 **Variantes:**
 - `.btn-primary` — Fondo teal (`--color-primary`), texto blanco.
 - `.btn-secondary` — Borde teal, texto teal, fondo transparente.
-- `.btn-lg` — Versión grande para hero/CTA: `padding: 1.25rem 3.5rem; font-size: 1.25rem`.
+- `.btn-lg` — Versión grande para hero/CTA: `padding: 1rem 2.5rem; font-size: 1.125rem`.
 Botón tipo pastilla redondeada (50px border-radius) con color verde WhatsApp (`#25D366`) e ícono de marca. Se usa exclusivamente en la página de Contactos.
 
 ```html

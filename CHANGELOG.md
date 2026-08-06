@@ -1,5 +1,13 @@
 # Changelog — Parla!
 
+## [1.19.0] — 2026-08-05
+
+### Changed
+- Sistema responsive de la Landing: el contenido del hero (texto principal a la derecha) deja de saltar de `margin-left: 50%` a `0` — nuevo breakpoint intermedio ≤1024px con `margin-left: 35%`, `max-width: 520px`, título `3.5rem` y subtítulo `1.25rem`.
+- Botones más pequeños en general: `.btn` base pasa a `0.625rem 1.25rem` con fuente `--fs-caption` (antes `0.75rem 1.5rem` + `--fs-body`); `.btn-sm` a `0.4rem 0.875rem` con fuente `0.6875rem`; `.btn-lg` a `1rem 2.5rem` con fuente `1.125rem` (antes `1.25rem 3.5rem` + `1.25rem`); `.btn-whatsapp` a `0.75rem 1.75rem` con fuente `1rem`.
+- Título de la sección compuesto (h2 "Olvídate de memorizar reglas"): ahora usa el token `--fs-heading-composite` (`3.5rem`) en vez del valor hardcodeado `4.6rem`.
+- Móvil (≤480px): título del hero reducido a `1.5rem` (antes `1.75rem`) y `.btn-lg` más compacto (`0.875rem 2rem` + fuente `1rem`) manteniendo `width: 100%`.
+
 ## [1.18.1] — 2026-08-02
 
 ### Fixed
