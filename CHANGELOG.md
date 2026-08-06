@@ -3,12 +3,12 @@
 ## [1.19.1] — 2026-08-05
 
 ### Changed
-- Hero de la Landing: el contenido (título, subtítulo y botón) se traslada al lado derecho de la página. `.hero__content` pasa de `margin-left: 50%` a `margin-left: auto; margin-right: 0` (bloque pegado al borde derecho, respetando el padding del `.hero`). En tablet (≤1024px) se mantiene a la derecha (ahora con el mismo alineado, antes `35%`); en móvil (≤768px) sigue a ancho completo.
+- Traslada el texto del hero de la Landing más a la derecha: `margin-left` pasa de `50%` a `58%` en desktop y de `35%` a `42%` en el breakpoint ≤1024px.
 
 ## [1.19.0] — 2026-08-05
 
 ### Changed
-- Sistema responsive de la Landing: el contenido del hero (texto principal a la derecha) deja de saltar de `margin-left: 50%` a `0` — nuevo breakpoint intermedio ≤1024px con `margin-left: 35%`, `max-width: 520px`, título `3.5rem` y subtítulo `1.25rem`.
+- Sistema responsive de la Landing: el contenido del hero (texto principal a la derecha) deja de saltar de `margin-left: 50%` a `0` — nuevo breakpoint intermedio ≤1024px con `margin-left: 35%`, `max-width: 520px`, título `3.5rem` y subtítulo `1.25rem` (posteriormente ajustado a `58%`/`42%` en `1.19.1`).
 - Botones más pequeños en general: `.btn` base pasa a `0.625rem 1.25rem` con fuente `--fs-caption` (antes `0.75rem 1.5rem` + `--fs-body`); `.btn-sm` a `0.4rem 0.875rem` con fuente `0.6875rem`; `.btn-lg` a `1rem 2.5rem` con fuente `1.125rem` (antes `1.25rem 3.5rem` + `1.25rem`); `.btn-whatsapp` a `0.75rem 1.75rem` con fuente `1rem`.
 - Título de la sección compuesto (h2 "Olvídate de memorizar reglas"): ahora usa el token `--fs-heading-composite` (`3.5rem`) en vez del valor hardcodeado `4.6rem`.
 - Móvil (≤480px): título del hero reducido a `1.5rem` (antes `1.75rem`) y `.btn-lg` más compacto (`0.875rem 2rem` + fuente `1rem`) manteniendo `width: 100%`.
