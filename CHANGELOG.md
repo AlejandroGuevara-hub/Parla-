@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.19.3] — 2026-08-06
+
+### Docs
+- Crea `prompts/prompt-releer-documentacion.md` (protocolo de entrada: releer CONTEXTO/GUIA-PROYECTO/guia-componentes/ERRORES/decisiones/GUIA-ANIMACIONES/CHANGELOG/PENDIENTES y el spec de la tarea antes de ejecutar).
+- Crea `docs/specs/prompt-fix-sidebar-sin-login-registro.md` (alcance final del sidebar: sin él en index/login/registro, incluidas las 3 formas — fijo, botón de menú y drawer/overlay — en todos los breakpoints).
+
 ## [1.19.2] — 2026-08-06
 
 ### Fixed
