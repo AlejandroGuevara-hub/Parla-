@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-06] Sidebar en login/registro: además del fijo, faltaba confirmar su botón de menú móvil
+**Qué pasó:** Al corregir el alcance del sidebar (quitarlo de `login.html` y `registro.html`), quedó por confirmar que su versión móvil tampoco apareciera en esas páginas: el botón de menú/hamburguesa `.sidebar-toggle`, el drawer y el overlay.
+
+**Por qué pasó:** El sidebar y su toggle se incluyen por markup explícito por vista (no hay inyección global). En `login.html` y `registro.html` ese markup nunca existió, y `sidebar.js` ni siquiera se carga en esas páginas (solo `nav.js`, `theme.js` y `animations.js`). Además `sidebar.js` tiene guard `if (!sidebar || !toggle || !overlay) return;`, así que no actuaría sin esos elementos.
+
+**Cómo se corrigió:** Se verificó en los 3 breakpoints (móvil ≤768px, tablet, escritorio) que `login.html` y `registro.html` no muestran ninguna de las 3 formas del sidebar: panel fijo, botón de menú ni drawer/overlay. La exclusión ya cubre las 3 formas; no hay condición global que corregir.
+
+**Cómo evitarlo:** Mantener el sidebar (markup + `sidebar.js`) exclusivo de las vistas autenticadas. Las páginas pre-login (`index.html`, `login.html`, `registro.html`) no cargan `sidebar.js`.
+
 ### [2026-08-02] Enfoque de header flotante reemplazado por sidebar vertical
 **Qué pasó:** Se implementó primero un enfoque de elementos flotantes fijos (logo arriba a la izquierda + cluster de 3 íconos Perfil/Contacto/Salir arriba a la derecha, tipo píldora) en las vistas autenticadas. El cliente luego pidió un panel de navegación vertical (sidebar) fijo a la izquierda para todas las vistas excepto la Landing.
 

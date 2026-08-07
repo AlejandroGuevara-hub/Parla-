@@ -300,6 +300,8 @@ Enlace individual del sidebar: ícono + texto con `gap: var(--space-sm)`, `borde
 
 **Dónde se usa:** `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html` (páginas pre-login sin navegación).
 
+**Exclusión completa:** las 3 formas del sidebar (panel fijo, botón de menú `.sidebar-toggle` y drawer `.sidebar-overlay`) no existen en ninguna de esas vistas en ningún breakpoint (móvil, tablet o escritorio); tampoco cargan `sidebar.js`.
+
 ---
 
 ### `.floating-user-nav`

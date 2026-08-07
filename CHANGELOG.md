@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.2] — 2026-08-06
+
+### Fixed
+- Confirma que el sidebar no aparezca en login/registro en ningún formato: además del panel fijo ya excluido, no hay botón de menú (`.sidebar-toggle`), drawer ni overlay en `login.html` y `registro.html` en ningún breakpoint (móvil, tablet, escritorio). Esas vistas no incluyen el markup del sidebar ni cargan `src/scripts/sidebar.js` (solo `nav.js`, `theme.js`, `animations.js`). La exclusión cubre las 3 formas del sidebar.
+
 ## [1.19.1] — 2026-08-05
 
 ### Changed
