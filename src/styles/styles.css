@@ -625,8 +625,10 @@ font-size: 1.5rem;
 
 @media (max-width: 1024px) {
   .hero__content {
-    margin-left: 42%;
-    max-width: 520px;
+    margin-left: auto;
+    margin-right: 0;
+    max-width: 70%;
+    width: fit-content;
   }
 
   .hero__title {
@@ -672,9 +674,10 @@ font-size: 1.5rem;
   }
 
   .hero__content {
-    margin-left: 0;
+    margin-left: auto;
     margin-right: 0;
-    max-width: none;
+    max-width: 70%;
+    width: fit-content;
   }
 
   .nav-links {
@@ -714,6 +717,10 @@ font-size: 1.5rem;
 }
 
 @media (max-width: 480px) {
+  .hero__content {
+    max-width: 85%;
+  }
+
   .hero__title {
     font-size: 1.5rem;
   }

@@ -117,7 +117,7 @@ Es una imagen independiente (no un enlace). Tamaño 300% mayor: `height: 108px`.
 ---
 
 ### `.hero__content`
-Contenedor del título, subtítulo y CTA del hero. Desplazado a la derecha (`margin-left: 58%; margin-right: auto`), `text-align: left`, `line-height: 1.4`. En tablet (≤1024px) el contenido baja a `margin-left: 42%` con `max-width: 520px`; en móvil se reinician los márgenes.
+Contenedor del título, subtítulo y CTA del hero. Desplazado a la derecha (`margin-left: 58%; margin-right: auto`), `text-align: left`, `line-height: 1.4`. En tablet y móvil (≤1024px, ≤768px) se alinea al borde derecho con `margin-left: auto` + `width: fit-content` y `max-width: 70%` (85% en ≤480px), de modo que el bloque queda más angosto que el hero completo y pegado a la derecha en vez de ocupar todo el ancho.
 
 ```html
 <div class="hero__content animate-in">

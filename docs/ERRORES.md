@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-06] hero__content no se trasladaba a la derecha en responsive
+**Qué pasó:** El cambio anterior movió el bloque de texto del hero usando `margin-left: 58%` (desktop) y `42%` (≤1024px), pero en móvil/tablet el bloque seguía a ancho completo, pegado a la izquierda.
+
+**Por qué pasó:** El `@media (max-width: 768px)` existente reescribía `.hero__content { margin-left: 0; margin-right: 0; max-width: none; }`, anulando el desplazamiento y devolviendo el bloque a ancho completo. Además, `.hero` es `display: flex` con `flex-direction: row` (por defecto), así que la forma correcta de pegarlo a la derecha es alinearlo en el eje principal: `margin-left: auto` + `width: fit-content` (no `align-items`, que en una fila afecta al eje cruzado/vertical).
+
+**Cómo se corrigió:** En ≤1024px y ≤768px, `.hero__content` pasó a `margin-left: auto; margin-right: 0; width: fit-content; max-width: 70%` — quedando angosto y pegado al borde derecho. En ≤480px el `max-width` sube a 85%. Desktop (>1024px) no cambia (`margin-left: 58%`). El texto mantiene su `text-shadow`.
+
+**Cómo evitarlo:** Cuando un contenedor es `display: flex` (fila), para alinear un hijo al extremo derecho en el eje principal usar `margin-left: auto` (o `justify-content` en el padre), no `align-items`. Antes de "arreglar" con otra capa de reglas, buscar los reset responsivos (`max-width: none`, `margin-left: 0`) que puedan estar anulando el estilo base.
+
 ### [2026-08-06] Sidebar en login/registro: además del fijo, faltaba confirmar su botón de menú móvil
 **Qué pasó:** Al corregir el alcance del sidebar (quitarlo de `login.html` y `registro.html`), quedó por confirmar que su versión móvil tampoco apareciera en esas páginas: el botón de menú/hamburguesa `.sidebar-toggle`, el drawer y el overlay.
 

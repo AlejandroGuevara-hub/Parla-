@@ -38,4 +38,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-06 — Confirma que login y registro no muestran el sidebar en ninguna de sus 3 formas (fijo, botón de menú, drawer) en ningún breakpoint; docs actualizadas (ERRORES, guia-componentes, CHANGELOG 1.19.2).
+2026-08-06 — Corrige `.hero__content` de la Landing para que quede angosto y pegado a la derecha también en tablet/móvil (antes el breakpoint ≤768px lo reseteaba a ancho completo); docs actualizadas (ERRORES, CHANGELOG 1.19.4).

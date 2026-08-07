@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.4] — 2026-08-06
+
+### Fixed
+- Corrige el posicionamiento de `.hero__content` a la derecha en responsive: el `@media (max-width: 768px)` lo reseteaba a `margin-left: 0; max-width: none` (bloque a ancho completo pegado a la izquierda). Ahora `margin-left: auto; width: fit-content; max-width: 70%` lo pega al borde derecho angosto en tablet y móvil (85% en ≤480px). `.hero` es `flex` (fila), así que la alineación correcta es en el eje principal. Desktop no cambia.
+
 ## [1.19.3] — 2026-08-06
 
 ### Docs
