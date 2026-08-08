@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.6] — 2026-08-06
+
+### Fixed
+- Reduce el tamaño de h2 y p de la sección compuesto de la Landing de forma independiente, con selectores de etiqueta combinados con la clase de la sección (`.composite-section h2` / `.composite-section p`, especificidad 0,1,1) en vez de las clases internas: título `2.25rem` (≤1024px) y `1.75rem` (≤480px); párrafo `0.8rem` (≤1024px) y `0.75rem` (≤480px). Se elimina el `font-size` muerto del bloque ≤768px del composite (lo controlan los bloques ≤1024/≤480).
+
 ## [1.19.5] — 2026-08-06
 
 ### Changed

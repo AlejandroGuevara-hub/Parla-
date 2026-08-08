@@ -38,4 +38,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-06 — Reduce tamaños responsive de la Landing (hero, composite y footer más pequeños en tablet/móvil) y del logo de login/registro; docs actualizadas (CHANGELOG 1.19.5).
+2026-08-06 — Reduce h2 y p de composite-section en la Landing con selectores de etiqueta independientes (`.composite-section h2`/`p`, 2.25/1.75 y 0.8/0.75rem); docs actualizadas (CHANGELOG 1.19.6).

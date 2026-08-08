@@ -383,7 +383,6 @@ a {
   .composite-section__title {
     grid-column: 1 / 3;
     grid-row: 1;
-font-size: 1.5rem;
     margin-top: 0;
     max-width: none;
     align-self: start;
@@ -393,7 +392,6 @@ font-size: 1.5rem;
   .composite-section__paragraph {
     grid-column: 2;
     grid-row: 2;
-    font-size: 0.6rem;
     margin-top: var(--space-xs);
   }
 }
@@ -644,12 +642,12 @@ font-size: 1.5rem;
     padding: var(--space-xs) var(--space-sm);
   }
 
-  .composite-section__title {
-    font-size: 2.5rem;
+  .composite-section h2 {
+    font-size: 2.25rem;
   }
 
-  .composite-section__paragraph {
-    font-size: 0.85rem;
+  .composite-section p {
+    font-size: 0.8rem;
   }
 
   .logo img {
@@ -755,12 +753,12 @@ font-size: 1.5rem;
     padding: var(--space-xs) var(--space-xs);
   }
 
-  .composite-section__title {
-    font-size: 2rem;
+  .composite-section h2 {
+    font-size: 1.75rem;
   }
 
-  .composite-section__paragraph {
-    font-size: 0.8rem;
+  .composite-section p {
+    font-size: 0.75rem;
   }
 
   .logo img {
