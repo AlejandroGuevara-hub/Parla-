@@ -356,7 +356,7 @@ a {
   position: relative;
   z-index: 1;
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: 0.8125rem;
   font-weight: var(--fw-bold);
   color: var(--color-text-navy);
   line-height: var(--lh-body-composite);
@@ -643,11 +643,11 @@ a {
   }
 
   .composite-section h2 {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
   }
 
   .composite-section p {
-    font-size: 0.8rem;
+    font-size: 0.6875rem;
   }
 
   .logo img {
@@ -754,11 +754,11 @@ a {
   }
 
   .composite-section h2 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
 
   .composite-section p {
-    font-size: 0.75rem;
+    font-size: 0.625rem;
   }
 
   .logo img {

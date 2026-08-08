@@ -63,8 +63,8 @@
   --fs-body: 0.8125rem; /* 13px — texto de tarjetas, según anotación "poppins 13" */
   --fs-caption: 0.75rem;/* 12px — etiquetas pequeñas (nav superior) */
 
-  --fs-heading-composite: 3.5rem;   /* 56px — título sección compuesto landing */
-  --fs-body-composite: 0.9375rem;   /* 15px — párrafo sección compuesto landing */
+  --fs-heading-composite: 2.25rem;   /* 36px — título sección compuesto landing */
+  --fs-body-composite: 0.9375rem;    /* 15px — párrafo sección compuesto landing */
   --ls-heading-composite: -0.5px;   /* Letter-spacing del título compuesto */
   --lh-heading-composite: 1.1;      /* Line-height del título compuesto */
   --lh-body-composite: 2.5;         /* Line-height del párrafo compuesto */

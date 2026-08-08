@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.7] — 2026-08-06
+
+### Changed
+- Reduce drásticamente el tamaño del h2 y p de la sección compuesto de la Landing: título base a `--fs-heading-composite` `2.25rem` (token ajustado de `3.5rem`; solo lo usa ese componente), párrafo base a `0.8125rem`; responsive `.composite-section h2` `1.5rem` (≤1024px) / `1.25rem` (≤480px) y `.composite-section p` `0.6875rem` (≤1024px) / `0.625rem` (≤480px).
+
 ## [1.19.6] — 2026-08-06
 
 ### Fixed
