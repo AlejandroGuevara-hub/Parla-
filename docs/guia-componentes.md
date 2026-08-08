@@ -80,6 +80,8 @@ Contenedores para páginas de autenticación (layout centrado vertical y horizon
 
 **Dónde se usa:** `login.html` y `registro.html`.
 
+**Botón primario del formulario:** `.auth-card form .btn-primary` lleva `margin-top: var(--space-lg)` para separarlo del último campo del formulario.
+
 ---
 
 ### `.nav-toggle` + `.nav-links`

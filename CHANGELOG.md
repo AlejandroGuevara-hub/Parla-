@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.8] — 2026-08-06
+
+### Changed
+- Aumenta la separación superior de los botones en login y registro: `.auth-card form .btn-primary` gana `margin-top: var(--space-lg)` (antes sin margen propio). Los formularios no usan las clases `.login-form`/`.registro-form`, el selector real es el de arriba; el espaciado entre campos (`--space-sm`) no cambia.
+
 ## [1.19.7] — 2026-08-06
 
 ### Changed
