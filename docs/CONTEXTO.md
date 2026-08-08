@@ -38,4 +38,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-06 — Corrige `.hero__content` de la Landing para que quede angosto y pegado a la derecha también en tablet/móvil (antes el breakpoint ≤768px lo reseteaba a ancho completo); docs actualizadas (ERRORES, CHANGELOG 1.19.4).
+2026-08-06 — Reduce tamaños responsive de la Landing (hero, composite y footer más pequeños en tablet/móvil) y del logo de login/registro; docs actualizadas (CHANGELOG 1.19.5).

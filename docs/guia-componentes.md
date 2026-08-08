@@ -34,7 +34,7 @@ Contenedor de campo de formulario con label.
 ---
 
 ### `.logo`
-Enlace con logo + texto. Logo 300% más grande que versión original (108px alto, texto 4.5rem). Se eliminó del header de todas las vistas; solo se conserva en formularios de autenticación (`login.html`, `registro.html`).
+Enlace con logo + texto. Logo 300% más grande que versión original (108px alto, texto 4.5rem). Se eliminó del header de todas las vistas; solo se conserva en formularios de autenticación (`login.html`, `registro.html`). Responsive: `32px` de alto con texto `1.1rem` (≤1024px) y `26px` / `0.95rem` (≤480px) — solo en login/registro, el resto de páginas no se afecta.
 
 ```html
 <a href="index.html" class="logo">
@@ -118,6 +118,11 @@ Es una imagen independiente (no un enlace). Tamaño 300% mayor: `height: 108px`.
 
 ### `.hero__content`
 Contenedor del título, subtítulo y CTA del hero. Desplazado a la derecha (`margin-left: 58%; margin-right: auto`), `text-align: left`, `line-height: 1.4`. En tablet y móvil (≤1024px, ≤768px) se alinea al borde derecho con `margin-left: auto` + `width: fit-content` y `max-width: 70%` (85% en ≤480px), de modo que el bloque queda más angosto que el hero completo y pegado a la derecha en vez de ocupar todo el ancho.
+
+**Tamaños responsive del hero:**
+- `.hero__title`: `4.5rem` desktop → `2.25rem` (≤1024px) → `2rem` (≤768px) → `1.5rem` (≤480px).
+- `.hero__subtitle`: `1.5rem` desktop → `0.85rem` (≤1024px) → `0.8rem` (≤480px).
+- CTA `.hero .btn-primary`: `0.8rem`/`--space-xs --space-sm` (≤1024px) → `0.75rem`/`--space-xs --space-xs` (≤480px).
 
 ```html
 <div class="hero__content animate-in">
@@ -255,8 +260,8 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 - Grid: `grid-template-columns: 30% 70%; grid-template-rows: auto auto`.
 - Sin `max-width` ni `padding-right` — la sección cubre todo el viewport horizontal y la imagen queda pegada al borde derecho.
 - `.composite-section__bg`: columna 2, fila 1. Ancho 100% de su celda (70% de la sección), alto automático (aspect ratio natural). Sin hover ni interacción.
-- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: var(--fs-heading-composite)` (`3.5rem`), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`).
-- `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1.2rem`.
+- `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: var(--fs-heading-composite)` (`3.5rem`), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`). Responsive: `2.5rem` (≤1024px), `2rem` (≤480px).
+- `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 1.2rem`. Responsive: `0.85rem` (≤1024px), `0.8rem` (≤480px).
 - La sección ocupa el ancho completo del viewport (sin `max-width`); el grid desktop es `30% 70%` y el padding solo izquierdo/superior/inferior (`var(--space-lg) 0 var(--space-lg) var(--space-md)`).
 - En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) superpuesto con `z-index: 1`, párrafo (0.6rem) en col2 fila2 bajo la imagen.
 

@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.19.5] — 2026-08-06
+
+### Changed
+- Reduce tamaños en responsive de la Landing: hero más compacto (título `2.25rem` y subtítulo `0.85rem` en ≤1024px; `1.5rem`/`0.8rem` en ≤480px; botón `.hero .btn-primary` a `0.8rem`/`0.75rem` con padding reducido), composite-section (`2.5rem`/`0.85rem` en ≤1024px; `2rem`/`0.8rem` en ≤480px) y footer (`0.6875rem` en ≤480px). Solo selectores de la Landing; los tokens globales de `variables.css` no se tocan.
+- Logo de Login y Registro más chico en responsive: imagen a `32px` (≤1024px) y `26px` (≤480px), texto "Parla!" a `1.1rem`/`0.95rem`. No afecta el logo de otras vistas (`.hero__logo`, `.sidebar__logo`).
+
 ## [1.19.4] — 2026-08-06
 
 ### Fixed

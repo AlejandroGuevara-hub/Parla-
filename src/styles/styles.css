@@ -632,11 +632,32 @@ font-size: 1.5rem;
   }
 
   .hero__title {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
   }
 
   .hero__subtitle {
-    font-size: 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .hero .btn-primary {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .composite-section__title {
+    font-size: 2.5rem;
+  }
+
+  .composite-section__paragraph {
+    font-size: 0.85rem;
+  }
+
+  .logo img {
+    height: 32px;
+  }
+
+  .logo span {
+    font-size: 1.1rem;
   }
 }
 
@@ -723,6 +744,35 @@ font-size: 1.5rem;
 
   .hero__title {
     font-size: 1.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.8rem;
+  }
+
+  .hero .btn-primary {
+    font-size: 0.75rem;
+    padding: var(--space-xs) var(--space-xs);
+  }
+
+  .composite-section__title {
+    font-size: 2rem;
+  }
+
+  .composite-section__paragraph {
+    font-size: 0.8rem;
+  }
+
+  .logo img {
+    height: 26px;
+  }
+
+  .logo span {
+    font-size: 0.95rem;
+  }
+
+  .site-footer {
+    font-size: 0.6875rem;
   }
 
   .hero__logo {
