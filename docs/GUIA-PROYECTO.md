@@ -30,7 +30,10 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── components.css      # Componentes reutilizables
 │   │   └── styles.css          # Estilos de página y layout
 │   ├── scripts/                ← JavaScript
-│   │   └── nav.js              # Navegación e interacciones
+│   │   ├── nav.js              # Header móvil (landing) + captura de form[data-navegar]
+│   │   ├── sidebar.js          # Drawer del sidebar (vistas autenticadas)
+│   │   ├── theme.js            # Tema claro/oscuro con persistencia
+│   │   └── animations.js       # animate-in (IntersectionObserver), parallax hero, blur de imágenes
 │   ├── components/             ← Fragmentos HTML reutilizables (futuro)
 │   ├── data/                   ← Datos de ejemplo estáticos (futuro)
 │   └── assets/                 ← Imágenes e iconos
@@ -38,22 +41,34 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │           ├── logo.png
 │           ├── hero.png
 │           ├── hero-bg.jpg
+│           ├── podcast.png     # Foto tarjeta Podcast (origen: 7.png)
+│           ├── webtoon.png     # Foto tarjeta Webtoon (origen: 6.png)
+│           ├── cultura.png     # Foto tarjeta Cultura (origen: 8.png)
+│           ├── video.png       # Foto tarjeta Lecciones en video (origen: 4.png)
+│           ├── flashcards.png  # Foto tarjeta Flashcards (origen: 3.png)
+│           ├── quizzes.png     # Foto tarjeta Quizzes (origen: 5.png)
 │           ├── contact-bg.png     # Fondo página de Contactos
 │           └── contact-icon.png   # Ícono decorativo teléfono+corazón
 ├── reference/                  ← Material CRUDO del cliente (no tocar)
-│   ├── Diego-pagina web/
+│   ├── Diego-pagina web/       # Fotos, mockups, fuentes y requerimientos por parte
 │   ├── Requerimientos de la Fase 1.pdf
 │   └── Documento senza titolo(1).pdf
 ├── docs/                       ← Documentación
 │   ├── CONTEXTO.md             # Resumen rápido del proyecto
 │   ├── ERRORES.md              # Errores cometidos y solución
 │   ├── GUIA-PROYECTO.md        # Esta guía
+│   ├── GUIA-ANIMACIONES.md     # Sistema de motion design obligatorio
 │   ├── PENDIENTES.md           # Tareas pendientes
 │   ├── decisiones-tecnicas.md  # Decisiones de diseño/arquitectura
 │   ├── guia-componentes.md     # Catálogo de componentes CSS
-│   └── specs/                  # Especificaciones de cada bloque
-│       └── instrucciones-opencode-bloque1.md
-├── prompts/                    ← Historial de prompts de cada sesión
+│   └── specs/                  # Especificaciones de cada bloque/fix (historial de tareas)
+│       ├── instrucciones-opencode-bloque1.md
+│       └── prompt-*.md         # Un spec por bloque o fix (15+ archivos)
+├── prompts/                    ← Instrucciones de proceso (protocolos, no specs)
+│   ├── prompt-releer-documentacion.md
+│   ├── prompt-documentacion-completa.md
+│   ├── prompt-commits-github.md
+│   └── prompt-memoria-contexto.md
 ├── .gitignore
 ├── README.md                   ← Puerta de entrada
 └── CHANGELOG.md                ← Historial de cambios
@@ -71,9 +86,10 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 
 | Archivo | Propósito |
 |---|---|
-| `src/scripts/nav.js` | Menú mobile toggle + captura de submit de formularios con `data-navegar`. |
-| `src/scripts/sidebar.js` | Drawer del sidebar: abrir/cerrar con toggle, overlay y tecla Escape. |
-| `src/scripts/theme.js` | Selector de tema claro/oscuro con persistencia en localStorage. |
+| `src/scripts/nav.js` | Menú mobile toggle del header de la Landing + captura de submit de formularios con `data-navegar` (login/registro). Se carga solo en `index.html`, `login.html` y `registro.html`. |
+| `src/scripts/sidebar.js` | Drawer del sidebar: abrir/cerrar con toggle, overlay y tecla Escape. Guard `if (!sidebar || !toggle || !overlay) return;`. Se carga solo en las vistas autenticadas (8 vistas). |
+| `src/scripts/theme.js` | Selector de tema claro/oscuro con persistencia en localStorage (clave `parla-theme`). Se carga en las 11 vistas. |
+| `src/scripts/animations.js` | Marca `js-animations-ready` y `page-loaded` en `<body>`, agrega `is-visible` a `.animate-in` vía IntersectionObserver (con delay escalonado), parallax sutil del hero y blur+fade (`img-load`/`img-loaded`) a todas las `<img>`. Respeta `prefers-reduced-motion`. Se carga en las 11 vistas. |
 
 ## Cómo correr el proyecto
 

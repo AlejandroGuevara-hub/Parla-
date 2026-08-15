@@ -15,7 +15,7 @@ Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-sec
 - `.btn-secondary` — Borde teal, texto teal, fondo transparente.
 - `.btn-lg` — Versión grande para hero/CTA: `padding: 1rem 2.5rem; font-size: 1.125rem`.
 
-**Dónde se usa:** `index.html` (hero actions), `login.html`, `registro.html`, header nav.
+**Dónde se usa:** `index.html` (hero actions), `login.html`, `registro.html`, `inicio.html` y los 6 placeholders (botón "Volver al inicio"), `contacto.html` (`.btn-whatsapp`).
 
 ---
 
@@ -54,7 +54,7 @@ Tarjeta con borde suave, fondo blanco y sombra.
 <div class="card">...</div>
 ```
 
-**Dónde se usa:** `.feature-card` en landing page, `.auth-card` en login/registro.
+**Dónde se usa:** `.feature-card` en `inicio.html` (dashboard del estudiante), `.auth-card` en login/registro.
 
 **Comportamiento hover/focus:**
 - `:hover`: levanta la tarjeta 4px con `translateY(-4px)`, eleva la sombra (`--shadow-card-hover`) y cambia el borde a `--color-primary`. Transición suave de 0.2s.
@@ -88,7 +88,7 @@ Contenedores para páginas de autenticación (layout centrado vertical y horizon
 Menú de navegación responsive con toggle para móvil. Los `.nav-links` se ocultan
 en móvil y se muestran al hacer clic en `.nav-toggle`.
 
-**Dónde se usa:** Header de `index.html` e `inicio.html`.
+**Dónde se usa:** Header de `index.html` (Landing). En `inicio.html` y el resto de vistas autenticadas el header fue reemplazado por el `.sidebar`.
 
 ---
 
@@ -174,12 +174,12 @@ Botón flotante en esquina inferior derecha que alterna entre tema claro y oscur
 
 **JS asociado:** `src/scripts/theme.js` — lógica de alternancia y persistencia.
 
-**Dónde se usa:** Todas las vistas (`index.html`, `login.html`, `registro.html`, `inicio.html`).
+**Dónde se usa:** Todas las 11 vistas (Landing, login, registro, inicio, contacto y los 6 placeholders).
 
 ---
 
 ### `.hero__subtitle`
-Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en dos líneas vía `<br>`: "De forma real, ligera / y entretenida." `font-size: 1.5rem` (desktop) y `1.25rem` (≤1024px).
+Subtítulo del hero en Poppins negrita, blanco con `text-shadow`. Dividido en dos líneas vía `<br>`: "De forma real, ligera / y entretenida." `font-size: 1.5rem` (desktop), `0.85rem` (≤1024px) y `0.8rem` (≤480px).
 
 ```html
 <p class="hero__subtitle">De forma real, ligera<br>y entretenida.</p>
@@ -242,6 +242,8 @@ Modificador que agrega un resplandor ambiental giratorio de dos capas alrededor 
 
 **Dónde se usa:** Solo en `inicio.html` — tarjeta de Lecciones en video.
 
+**Nota de auditoría:** existe el spec `docs/specs/prompt-eliminar-card-featured.md` que ordena eliminar este efecto por completo (rompía el renderizado de la tarjeta), pero **no se aplicó**: el código sigue teniendo `.card--featured`, el CSS y los tokens `--glow-clr-*`. El glow es el estado real actual del proyecto. Ver `docs/PENDIENTES.md`.
+
 ---
 
 ### `.composite-section`
@@ -265,7 +267,7 @@ Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% /
 - `.composite-section__title`: ocupa toda la primera fila (`grid-column: 1 / -1`), alineado a la izquierda con `justify-self: start`. `font-size: var(--fs-heading-composite)` (`2.25rem`), `letter-spacing: 0.05em`. Dividido en dos líneas vía `<span>` con `display: block`. Sin `text-shadow` en tema claro; solo en modo oscuro (`[data-theme="dark"]`). Responsive (selector `.composite-section h2`, independiente del párrafo): `1.5rem` (≤1024px), `1.25rem` (≤480px).
 - `.composite-section__paragraph`: columna 2, fila 2 (debajo de la imagen, alineada con ella). `font-size: 0.8125rem`. Responsive (selector `.composite-section p`, independiente del título): `0.6875rem` (≤1024px), `0.625rem` (≤480px).
 - La sección ocupa el ancho completo del viewport (sin `max-width`); el grid desktop es `30% 70%` y el padding solo izquierdo/superior/inferior (`var(--space-lg) 0 var(--space-lg) var(--space-md)`).
-- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título (1.25rem) superpuesto con `z-index: 1`, párrafo (0.6rem) en col2 fila2 bajo la imagen.
+- En móvil (≤768px): grid cambia a `40% 60%` / 2 filas. Imagen a la derecha (col2, fila1), título superpuesto con `z-index: 1`, párrafo en col2 fila2 bajo la imagen. El bloque ≤768 ya **no** define tamaños de fuente (los eliminó el fix `1.19.6`): el título y el párrafo heredan los del bloque ≤1024px (`1.5rem` / `0.6875rem`) y luego el de ≤480px (`1.25rem` / `0.625rem`).
 
 **Tokens usados:** `--color-heading-gold`, `--font-heading-composite`, `--ls-heading-composite`, `--color-text-navy`, `--fs-body-composite`, `--lh-body-composite`.
 
@@ -354,6 +356,8 @@ Botón base. No usar directamente; usar las variantes `.btn-primary` o `.btn-sec
 - `.btn-primary` — Fondo teal (`--color-primary`), texto blanco.
 - `.btn-secondary` — Borde teal, texto teal, fondo transparente.
 - `.btn-lg` — Versión grande para hero/CTA: `padding: 1rem 2.5rem; font-size: 1.125rem`.
+
+### `.btn-whatsapp`
 Botón tipo pastilla redondeada (50px border-radius) con color verde WhatsApp (`#25D366`) e ícono de marca. Se usa exclusivamente en la página de Contactos.
 
 ```html

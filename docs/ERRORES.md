@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-08] Spec de eliminación del glow escrito pero nunca aplicado al código
+**Qué pasó:** Existe `docs/specs/prompt-eliminar-card-featured.md` que ordena eliminar por completo el efecto `.card--featured` (glow) de la tarjeta de Lecciones en video, porque el degradado rellenaba toda la tarjeta. Al auditar la documentación contra el código real, el efecto sigue vivo: `inicio.html:79` conserva la clase `card--featured`, `styles.css` conserva `.card--featured::before/::after`, `@keyframes girar-gradiente`, `@property --gradient-angle` y los tokens `--glow-clr-1/2/3` en `variables.css`. No existe ningún commit que lo haya aplicado.
+
+**Por qué pasó:** El spec se redactó como documentación del alcance de una tarea pero la tarea nunca se ejecutó ni se marcó como pendiente. La documentación quedó con la intención del fix sin el fix, y nada lo señalaba hasta la auditoría.
+
+**Cómo se corrigió:** Se documentó el estado real (glow activo) en `guia-componentes.md` y se registró el pendiente en `docs/PENDIENTES.md`. Se dejó la decisión de aplicar o no el spec al cliente (por ahora se conserva el glow).
+
+**Cómo evitarlo:** Todo spec de fix en `docs/specs/` debe tener estado: aplicado (con commit en `CHANGELOG.md`) o pendiente (anotado en `docs/PENDIENTES.md`). Nunca asumir que el código coincide con lo que un spec dice: verificar el archivo real antes de documentar.
+
 ### [2026-08-06] hero__content no se trasladaba a la derecha en responsive
 **Qué pasó:** El cambio anterior movió el bloque de texto del hero usando `margin-left: 58%` (desktop) y `42%` (≤1024px), pero en móvil/tablet el bloque seguía a ancho completo, pegado a la izquierda.
 

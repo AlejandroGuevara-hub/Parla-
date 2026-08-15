@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.9] — 2026-08-08
+
+### Changed
+- Auditoría completa de documentación: se revisa y actualiza README y todos los archivos de docs/ para reflejar el estado real del proyecto. README reescrito (qué es, cómo correr, estructura completa, las 11 vistas, funcionalidades, pendientes, índice de docs); GUIA-PROYECTO (árbol y scripts al día, incluye `animations.js`, imágenes de tarjetas y specs); guia-componentes (fichas corregidas: `card`/`nav-toggle`/`hero__subtitle`/composite móvil/tema en 11 vistas, header `.btn-whatsapp`, nota de auditoría en `card--featured`); ERRORES (entrada del spec de glow nunca aplicado); decisiones-tecnicas (grid composite real 30/70, título 2.25rem, estructura de carpetas completa); PENDIENTES (Contactos marcado construido, glow spec no aplicado).
+
 ## [1.19.8] — 2026-08-06
 
 ### Changed
@@ -92,45 +97,6 @@
 - Hero de la Landing: contenido desplazado a la derecha (`margin-left: 50%`), título `4.5rem` en dos líneas con `letter-spacing` (blanco + teal), subtítulo `1.5rem` partido con `<br>` y botón grande (`.btn-lg`).
 - Logo ampliado 300% (108px en hero, 144px en contacto, 108px en formularios) y eliminado del header en 8 vistas; los botones de iniciar sesión/registrarse quedan alineados a la derecha (`margin-left: auto`).
 
-## [1.2.0] — 2026-07-20
-
-### Fixed
-- Migra sección de funcionalidades "¿Qué quieres aprender hoy?" de `index.html` (Landing) a `inicio.html` (Inicio del estudiante). Las tarjetas de Podcast, Webtoon y Cultura estaban en la vista pre-login en vez de la vista post-login.
-- Reemplaza emojis por íconos de Font Awesome en las tarjetas.
-
-### Added
-- Header de usuario autenticado en `inicio.html` con iconos de Perfil (`fa-user`), Contacto (`fa-envelope`) y Salir (`fa-right-from-bracket`).
-- Estilos `.user-nav` para navegación de usuario y `.feature-card__link` para tarjetas cliqueables.
-- Sección `.dashboard` con título "Bienvenido" y subtítulo "¿Qué quieres aprender hoy?".
-- Tarjetas de Lecciones en video, Flashcards y Quizzes en el dashboard (6 tarjetas total).
-- 2 tokens de color nuevos: `--color-accent-gold` (Flashcards) y `--color-secondary-dark` (Quizzes) en `variables.css`.
-- Estilos de círculo `.icon.video`, `.icon.flashcards`, `.icon.quizzes` en `styles.css`.
-
-### Changed
-- `index.html` ahora solo contiene hero y showcase (sin sección de características).
-
-## [1.2.1] — 2026-07-20
-
-### Fixed
-- Corrige ancho de tarjetas en dashboard de inicio: agrega `--feature-card-max-w: 280px` y cambia grid a `auto-fit` con `justify-content: center` para que las tarjetas sean angostas, centradas y no se estiren al ancho disponible.
-- Elimina subrayado heredado del enlace en tarjetas; cambia retroalimentación hover a borde `box-shadow: 0 0 0 2px var(--color-primary)`.
-
-## [1.2.2] — 2026-07-20
-
-### Fixed
-- Corrige flujo de registro: el botón "Crear cuenta" ahora navega a `login.html` en vez de `inicio.html`.
-
-## [1.3.0] — 2026-07-20
-
-### Added
-- Crea 6 páginas placeholder funcionales para las secciones: `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`. Cada una con header de usuario autenticado, ícono de sección, mensaje de marcador de posición y botón de volver.
-- Conecta las 6 tarjetas del dashboard en `inicio.html` como hipervínculos reales a sus páginas correspondientes (reemplaza `href="#"`).
-
-## [1.4.0] — 2026-07-20
-
-### Added
-- Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
-
 ## [1.13.0] — 2026-07-20
 
 ### Fixed
@@ -186,6 +152,45 @@
 
 ### Changed
 - Reemplaza resplandor giratorio (conic-gradient + pseudo-elemento) por halo de blur pulsante (`box-shadow` animado) en tarjeta de Lecciones en video. Agrega `--color-primary-rgb` en `variables.css`.
+
+## [1.4.0] — 2026-07-20
+
+### Added
+- Agrega resplandor animado giratorio a la tarjeta de Lecciones en video para marcarla como tarea principal: clase `.card--featured` con `conic-gradient` de `--color-primary`, `filter: blur(12px)` y animación `rotar-resplandor` de 4s. Respeta `prefers-reduced-motion`.
+
+## [1.3.0] — 2026-07-20
+
+### Added
+- Crea 6 páginas placeholder funcionales para las secciones: `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`. Cada una con header de usuario autenticado, ícono de sección, mensaje de marcador de posición y botón de volver.
+- Conecta las 6 tarjetas del dashboard en `inicio.html` como hipervínculos reales a sus páginas correspondientes (reemplaza `href="#"`).
+
+## [1.2.2] — 2026-07-20
+
+### Fixed
+- Corrige flujo de registro: el botón "Crear cuenta" ahora navega a `login.html` en vez de `inicio.html`.
+
+## [1.2.1] — 2026-07-20
+
+### Fixed
+- Corrige ancho de tarjetas en dashboard de inicio: agrega `--feature-card-max-w: 280px` y cambia grid a `auto-fit` con `justify-content: center` para que las tarjetas sean angostas, centradas y no se estiren al ancho disponible.
+- Elimina subrayado heredado del enlace en tarjetas; cambia retroalimentación hover a borde `box-shadow: 0 0 0 2px var(--color-primary)`.
+
+## [1.2.0] — 2026-07-20
+
+### Fixed
+- Migra sección de funcionalidades "¿Qué quieres aprender hoy?" de `index.html` (Landing) a `inicio.html` (Inicio del estudiante). Las tarjetas de Podcast, Webtoon y Cultura estaban en la vista pre-login en vez de la vista post-login.
+- Reemplaza emojis por íconos de Font Awesome en las tarjetas.
+
+### Added
+- Header de usuario autenticado en `inicio.html` con iconos de Perfil (`fa-user`), Contacto (`fa-envelope`) y Salir (`fa-right-from-bracket`).
+- Estilos `.user-nav` para navegación de usuario y `.feature-card__link` para tarjetas cliqueables.
+- Sección `.dashboard` con título "Bienvenido" y subtítulo "¿Qué quieres aprender hoy?".
+- Tarjetas de Lecciones en video, Flashcards y Quizzes en el dashboard (6 tarjetas total).
+- 2 tokens de color nuevos: `--color-accent-gold` (Flashcards) y `--color-secondary-dark` (Quizzes) en `variables.css`.
+- Estilos de círculo `.icon.video`, `.icon.flashcards`, `.icon.quizzes` en `styles.css`.
+
+### Changed
+- `index.html` ahora solo contiene hero y showcase (sin sección de características).
 
 ## [1.1.0] — 2026-07-19
 

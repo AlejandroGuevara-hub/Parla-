@@ -22,14 +22,18 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 
 ## Dónde está cada cosa
 - Tokens de diseño: `src/styles/variables.css`
+- Componentes reutilizables: `src/styles/components.css`; estilos de página: `src/styles/styles.css`
+- Scripts: `src/scripts/nav.js` (header móvil + `data-navegar`), `src/scripts/sidebar.js` (drawer), `src/scripts/theme.js` (tema), `src/scripts/animations.js` (entradas/parallax/imágenes)
+- Imágenes del sitio: `src/assets/images/` (logo, hero, fondos, fotos de las 6 tarjetas, contacto)
 - Recursos visuales del cliente: `reference/Diego-pagina web/`
-- Especificaciones de cada bloque: `docs/specs/`
+- Especificaciones/alcances de cada bloque y fix: `docs/specs/`
 - Fixes aplicados: ver `CHANGELOG.md`
 - Decisiones técnicas y por qué: `docs/decisiones-tecnicas.md`
 - Errores ya cometidos (no repetir): `docs/ERRORES.md`
 - Qué hace cada componente/archivo: `docs/GUIA-PROYECTO.md`
 - Motion design (obligatorio para todo bloque nuevo): `docs/GUIA-ANIMACIONES.md`
 - Tareas pendientes: `docs/PENDIENTES.md`
+- Instrucciones de proceso (no son specs): `prompts/`
 
 ## Reglas fijas que no cambian
 - No inventar colores/tipografías fuera de `src/styles/variables.css`.
@@ -38,4 +42,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-06 — Aumenta la separación superior de los botones "Iniciar sesión" y "Crear cuenta" (`.auth-card form .btn-primary` con `margin-top: var(--space-lg)`). CHANGELOG 1.19.8.
+2026-08-08 — Auditoría completa de documentación: README reescrito, guías revisadas contra el código real (sidebar, animaciones, glow de `card--featured` aún activo en el código pese al spec de eliminación). CHANGELOG 1.19.9.

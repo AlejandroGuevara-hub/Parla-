@@ -89,7 +89,9 @@ Se agregó `background-image: url(hero-bg.jpg)` al `.composite-section` para con
 La imagen `hero.png` dentro de `.composite-section` se posicionó absolutamente a la izquierda (55% del ancho, 100% del alto) como capa decorativa inferior, sin wrapper `.card` ni hover. Se reemplazó por el layout actual de grid 35/65 (ver sección siguiente).
 
 ### Imagen compuesta en grid 35/65 con overlay del título
-Layout final del `.composite-section`: grid de 2 columnas (35% / 65%) y 2 filas. La imagen `hero.png` ocupa la celda derecha de la primera fila (65% de la sección, sin padding derecho para que toque el borde). El título (3.5rem, DM Serif Display) ocupa toda la primera fila pero limitado a `max-width: 35%` alineado a la izquierda, con `z-index: 1` y `text-shadow` para superponerse a la imagen si el texto se extiende. El párrafo va en la segunda fila (ancho completo, debajo de la imagen). Sin hover ni interacción en la imagen. En móvil colapsa a 1 columna.
+Layout final del `.composite-section`: grid de 2 columnas y 2 filas. La imagen `hero.png` ocupa la celda derecha de la primera fila (70% de la sección en el estado actual; originalmente 65% y luego ajustada a 70%), sin padding derecho para que toque el borde. El título (en el estado actual `var(--fs-heading-composite)` = `2.25rem`; originalmente 3.5rem en DM Serif Display) ocupa toda la primera fila pero limitado a `max-width: 35%` alineado a la izquierda, con `z-index: 1` y `text-shadow` para superponerse a la imagen si el texto se extiende. El párrafo va en la segunda fila (ancho completo, debajo de la imagen). Sin hover ni interacción en la imagen. En móvil colapsa a 2 columnas (40%/60% en ≤768px).
+
+**Nota de auditoría (2026-08-08):** el estado real en `styles.css` es grid desktop `30% 70%`, título `2.25rem` (token `--fs-heading-composite`, ajustado de 3.5rem en `1.19.7`), párrafo `0.8125rem`; el bloque ≤768px solo cambia las columnas a `40% 60%` y ya no define tamaños de fuente (eliminados en `1.19.6`).
 
 ### Fade de página completa y ampliación de animaciones
 Se agregó un fade de entrada a nivel de `<body>` (`opacity: 0` → `opacity: 1` con transición de 0.4s) para que la página no aparezca de golpe al cargar. El sistema convive con `.animate-in`: el body fade es independiente de las animaciones de elementos individuales. También se amplió `.animate-in` a más elementos (imágenes, botones, encabezados, bloques de texto) para que el fade se sienta en toda la página, no solo en contenedores grandes.
@@ -100,6 +102,8 @@ Se agregaron 7 tokens nuevos en `variables.css` para la sección compuesto (dos 
 
 - **Colores:** `--color-heading-gold: #c9a55c` (título dorado), `--color-text-navy: #2c3e50` (párrafo azul marino). En modo oscuro, `--color-heading-gold` se aclara a `#d4a94e` y `--color-text-navy` a `#B5B0A6` para mantener contraste.
 - **Tipografía:** `--fs-heading-composite: 2.375rem` (38px), `--ls-heading-composite: -0.5px`, `--lh-heading-composite: 1.1`, `--fs-body-composite: 0.9375rem` (15px), `--lh-body-composite: 2.5`.
+
+**Nota de auditoría (2026-08-08):** `--fs-heading-composite` fue ajustado a `2.25rem` (36px) en `1.19.7`; el párrafo compuesto usa `font-size: 0.8125rem` hardcodeado en `styles.css` (no el token `--fs-body-composite`), y responsive `1.5rem`/`0.6875rem` (≤1024px) y `1.25rem`/`0.625rem` (≤480px).
 
 ### Nota sobre el letter-spacing del párrafo compuesto
 
@@ -169,23 +173,41 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 /
 ├── src/                           ← Código fuente del sitio
 │   ├── views/                     ← Páginas HTML (Vistas)
-│   │   ├── index.html             # Landing Page
-│   │   ├── login.html             # Inicio de sesión
-│   │   ├── registro.html          # Registro
-│   │   └── inicio.html            # Placeholder post-login
+│   │   ├── index.html             # Landing Page (pre-login, sin sidebar)
+│   │   ├── login.html             # Inicio de sesión (sin sidebar)
+│   │   ├── registro.html          # Registro (sin sidebar)
+│   │   ├── inicio.html            # Inicio del estudiante (dashboard, con sidebar)
+│   │   ├── video.html             # Placeholder Lecciones en video (con sidebar)
+│   │   ├── podcast.html           # Placeholder Podcast (con sidebar)
+│   │   ├── webtoon.html           # Placeholder Webtoon (con sidebar)
+│   │   ├── cultura.html           # Placeholder Cultura (con sidebar)
+│   │   ├── flashcards.html        # Placeholder Flashcards (con sidebar)
+│   │   ├── quizzes.html           # Placeholder Quizzes (con sidebar)
+│   │   └── contacto.html          # Contactos (WhatsApp, con sidebar)
 │   ├── styles/                    ← CSS (antes "css/")
 │   │   ├── variables.css          # Design tokens (colores, tipografías, espaciados)
-│   │   ├── components.css         # Componentes reutilizables (btn, input, card)
+│   │   ├── components.css         # Componentes reutilizables (btn, input, card, sidebar)
 │   │   └── styles.css             # Estilos de página y layout
 │   ├── scripts/                   ← JavaScript / Controladores (antes "js/")
-│   │   └── nav.js                 # Navegación e interacciones de UI
-│   ├── components/                ← Fragmentos HTML reutilizables
-│   ├── data/                      ← Datos de ejemplo estáticos (JSON)
+│   │   ├── nav.js                 # Header móvil (landing) + form[data-navegar]
+│   │   ├── sidebar.js             # Drawer del sidebar (vistas autenticadas)
+│   │   ├── theme.js               # Tema claro/oscuro con persistencia
+│   │   └── animations.js          # animate-in, parallax hero, blur de imágenes
+│   ├── components/                ← Fragmentos HTML reutilizables (futuro)
+│   ├── data/                      ← Datos de ejemplo estáticos (JSON, futuro)
 │   └── assets/                    ← Imágenes e iconos del sitio
 │       └── images/
 │           ├── logo.png           # Logo oficial del cliente
 │           ├── hero.png           # Imagen compuesta (podcast/webtoon/cultura)
-│           └── hero-bg.jpg        # Fondo del hero
+│           ├── hero-bg.jpg        # Fondo del hero
+│           ├── podcast.png        # Foto tarjeta Podcast
+│           ├── webtoon.png        # Foto tarjeta Webtoon
+│           ├── cultura.png        # Foto tarjeta Cultura
+│           ├── video.png          # Foto tarjeta Lecciones en video
+│           ├── flashcards.png     # Foto tarjeta Flashcards
+│           ├── quizzes.png        # Foto tarjeta Quizzes
+│           ├── contact-bg.png     # Fondo página de Contactos
+│           └── contact-icon.png   # Ícono decorativo teléfono+corazón
 ├── reference/                     ← Material original del cliente (sin modificar)
 │   ├── Diego-pagina web/
 │   ├── Requerimientos de la Fase 1.pdf
@@ -194,12 +216,14 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 │   ├── CONTEXTO.md
 │   ├── ERRORES.md
 │   ├── GUIA-PROYECTO.md
+│   ├── GUIA-ANIMACIONES.md
 │   ├── PENDIENTES.md
 │   ├── decisiones-tecnicas.md
 │   ├── guia-componentes.md
-│   └── specs/                     ← Especificaciones de cada bloque
-│       └── instrucciones-opencode-bloque1.md
-├── prompts/                       ← Historial de prompts de cada sesión
+│   └── specs/                     ← Especificaciones/alcances de cada bloque y fix
+│       ├── instrucciones-opencode-bloque1.md
+│       └── prompt-*.md            # Un spec por tarea (15+ archivos)
+├── prompts/                       ← Instrucciones de proceso (protocolos, no specs)
 ├── .gitignore
 ├── README.md
 └── CHANGELOG.md

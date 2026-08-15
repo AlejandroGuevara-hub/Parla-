@@ -10,24 +10,19 @@
 
 ---
 
-## Estado del proyecto
+## Qué es Parla!
 
-**Fase 1 — Prototipo clicable (solo frontend)**
+Plataforma web para aprender italiano dirigida a un público de 20-25 años. Debe sentirse
+moderna, ligera y fácil de usar. El proyecto está en **Fase 1: prototipo clicable** — solo
+interfaz y navegación, sin backend, sin base de datos y sin autenticación real. Los
+formularios de login y registro son maquetas visuales que navegan entre sí (registro →
+login → inicio) sin validar datos.
 
-Construcción de interfaz y navegación. Sin backend, sin base de datos, sin autenticación real.
+## Cómo correr el proyecto localmente
 
-### Páginas disponibles
-
-| Página | Descripción |
-|---|---|
-| [`src/views/index.html`](src/views/index.html) | Landing Page con hero, showcase y sección de características |
-| [`src/views/login.html`](src/views/login.html) | Inicio de sesión (maqueta visual) |
-| [`src/views/registro.html`](src/views/registro.html) | Registro de nuevo usuario (maqueta visual) |
-| [`src/views/inicio.html`](src/views/inicio.html) | Placeholder post-login |
-
-## Cómo visualizar
-
-Abre cualquier archivo `.html` desde `src/views/` en el navegador o usa un servidor local desde la raíz:
+El proyecto es 100% estático (HTML + CSS + JS vanilla). Se abre directo en el navegador
+abriendo `src/views/index.html`, o mejor con un servidor local desde la raíz para que las
+rutas relativas de CSS/JS/imágenes resuelvan igual:
 
 ```bash
 # Con Python
@@ -41,41 +36,92 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 
 ## Stack técnico
 
-- **HTML5** semántico y accesible (labels, focus visible, landmarks)
-- **CSS3** con [variables de diseño](src/styles/variables.css) propias (colores, tipografías, espaciados)
-- **JavaScript** vanilla solo para navegación e interacciones de UI
-- **Google Fonts**: [Fraunces](https://fonts.google.com/specimen/Fraunces) (títulos, reemplazo temporal de Hatton) y [Poppins](https://fonts.google.com/specimen/Poppins) (cuerpo)
-- **Responsive design**: mobile-first con breakpoints en 480px, 768px y 1024px
+- **HTML5** semántico y accesible (labels, `:focus-visible`, landmarks).
+- **CSS3** con [design tokens propios](src/styles/variables.css) (colores, tipografías, espaciados, sombras). Única fuente de verdad visual: no se inventan colores/fuentes fuera de ahí.
+- **JavaScript** vanilla, sin frameworks ni bundlers, solo para navegación e interacciones de UI.
+- **Google Fonts**: [Fraunces](https://fonts.google.com/specimen/Fraunces) (títulos, reemplazo temporal de Hatton), [Poppins](https://fonts.google.com/specimen/Poppins) (cuerpo), [DM Serif Display](https://fonts.google.com/specimen/DM+Serif+Display) (título compuesto de la landing) y [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative) (título de Contactos). Cada fuente se carga solo en la vista que la usa.
+- **Font Awesome 6.5.2** vía CDN para los íconos (sidebar, tema, WhatsApp).
+- **Responsive design**: breakpoints en 480px, 768px y 1024px.
 
-## Estructura del proyecto
+## Estructura de carpetas
 
 ```
 ├── src/
-│   ├── views/        ← Páginas HTML (Vistas)
-│   ├── components/   ← Fragmentos HTML reutilizables
-│   ├── styles/       ← CSS (variables, componentes, estilos de página)
-│   ├── scripts/      ← JavaScript (controladores)
-│   ├── data/         ← Datos de ejemplo estáticos (JSON)
-│   └── assets/       ← Imágenes e iconos del sitio
-├── reference/        ← Material original del cliente (sin modificar)
-├── docs/             ← Documentación técnica y especificaciones
-├── prompts/          ← Historial de prompts de cada sesión
+│   ├── views/        ← Las 11 páginas HTML del sitio
+│   ├── styles/       ← CSS: variables.css (tokens), components.css (reutilizables), styles.css (página)
+│   ├── scripts/      ← JS: nav.js, sidebar.js, theme.js, animations.js
+│   ├── assets/images/← Imágenes del sitio (logo, hero, fondo, fotos de tarjetas, contacto)
+│   ├── components/   ← (reservado) fragmentos HTML reutilizables — aún no existe
+│   └── data/         ← (reservado) datos de ejemplo JSON para Fase 2 — aún no existe
+├── reference/        ← Material original del cliente (sin modificar): PDFs, zip y carpeta con fotos/mockups
+├── docs/             ← Documentación técnica, especificaciones y guías
+├── prompts/          ← Instrucciones de proceso (protocolos para cada tipo de tarea)
 ├── .gitignore
 ├── README.md
-└── CHANGELOG.md
+└── CHANGELOG.md      ← Historial de cambios por versión
 ```
 
-## Documentación
+## Vistas existentes
+
+| Página | Descripción |
+|---|---|
+| [`src/views/index.html`](src/views/index.html) | **Landing Page** (pre-login): hero con fondo real, logo, CTA y sección compuesto (imagen + título + párrafo). No tiene sidebar. |
+| [`src/views/login.html`](src/views/login.html) | **Inicio de sesión** (maqueta visual, sin backend). Navega a `inicio.html`. No tiene sidebar. |
+| [`src/views/registro.html`](src/views/registro.html) | **Registro** (maqueta visual). Navega a `login.html` (flujo real registro → login). No tiene sidebar. |
+| [`src/views/inicio.html`](src/views/inicio.html) | **Inicio del estudiante** (post-login): dashboard con 6 tarjetas funcionales que enlazan a sus páginas. Con sidebar. |
+| [`src/views/video.html`](src/views/video.html) | Placeholder de **Lecciones en video**. Con sidebar. |
+| [`src/views/podcast.html`](src/views/podcast.html) | Placeholder de **Podcast** (con transcripción). Con sidebar. |
+| [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon**. Con sidebar. |
+| [`src/views/cultura.html`](src/views/cultura.html) | Placeholder de **Cultura italiana**. Con sidebar. |
+| [`src/views/flashcards.html`](src/views/flashcards.html) | Placeholder de **Flashcards**. Con sidebar. |
+| [`src/views/quizzes.html`](src/views/quizzes.html) | Placeholder de **Quizzes**. Con sidebar. |
+| [`src/views/contacto.html`](src/views/contacto.html) | **Contactos**: fondo e ícono del cliente, número de teléfono y botón de WhatsApp. Con sidebar. |
+
+## Funcionalidades ya implementadas
+
+- **Sidebar de navegación vertical**: panel fijo de 260px a la izquierda con logo arriba y 8
+  enlaces (Inicio, Lecciones en video, Podcast, Webtoon, Cultura, Flashcards, Quizzes,
+  Contactos). En móvil (≤768px) se convierte en drawer con hamburguesa y overlay, controlado
+  por `src/scripts/sidebar.js`. **Aplica solo a las vistas autenticadas** (`inicio.html`,
+  `contacto.html` y los 6 placeholders). **No aplica** en la Landing (`index.html`) ni en
+  `login.html`/`registro.html` (páginas pre-login) — en ninguna de sus 3 formas (panel fijo,
+  botón de menú ni drawer/overlay).
+- **Cluster flotante de usuario** (`.floating-user-nav`): Perfil y Salir, arriba a la derecha,
+  solo en vistas con sidebar.
+- **Tema claro/oscuro**: botón flotante en la esquina inferior derecha en las 11 vistas, con
+  persistencia en `localStorage` (clave `parla-theme`) y script inline en `<head>` que pre-aplica
+  el tema antes del primer render para evitar parpadeo (`src/scripts/theme.js`).
+- **Sistema de animaciones**: entradas `.animate-in` con fade + flotar + blur vía
+  `IntersectionObserver`, fade de carga de página, parallax sutil del hero, blur+fade de
+  imágenes, y hover/active/focus en botones y tarjetas. Todo documentado y obligatorio en
+  [`docs/GUIA-ANIMACIONES.md`](docs/GUIA-ANIMACIONES.md). Respeta `prefers-reduced-motion`.
+- **Diseño responsive**: breakpoints en 480px, 768px y 1024px. Hero con contenido a la derecha
+  en desktop y angosto pegado al borde derecho en tablet/móvil; tarjetas del dashboard en grid
+  `auto-fit`; sidebar con drawer en móvil.
+
+## Qué NO está implementado todavía
+
+- Contenido real de las 6 secciones (video, podcast, webtoon, cultura, flashcards, quizzes) — hoy son placeholders.
+- Barra de progreso del estudiante.
+- Sistema de favoritos.
+- Autenticación real (login/registro son maquetas visuales).
+- La fuente Hatton (se usa Fraunces como reemplazo temporal).
+- Detalles y dependencias del cliente: ver [`docs/PENDIENTES.md`](docs/PENDIENTES.md).
+
+## Índice de documentación
 
 | Archivo | Contenido |
 |---|---|
-| [`docs/CONTEXTO.md`](docs/CONTEXTO.md) | Resumen rápido del proyecto |
-| [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) | Decisiones de arquitectura y diseño |
-| [`docs/guia-componentes.md`](docs/guia-componentes.md) | Catálogo de componentes reutilizables |
-| [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md) | Guía completa de estructura y archivos |
-| [`docs/ERRORES.md`](docs/ERRORES.md) | Errores cometidos y cómo se corrigieron |
-| [`docs/PENDIENTES.md`](docs/PENDIENTES.md) | Tareas pendientes y blockers |
+| [`docs/CONTEXTO.md`](docs/CONTEXTO.md) | Resumen rápido: fase, estado de avance, dónde está cada cosa, reglas fijas |
+| [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md) | Guía completa: estructura de carpetas, archivos, patrón obligatorio de navegación |
+| [`docs/guia-componentes.md`](docs/guia-componentes.md) | Catálogo de componentes reutilizables y dónde se usan |
+| [`docs/GUIA-ANIMACIONES.md`](docs/GUIA-ANIMACIONES.md) | Sistema de motion design obligatorio para todo bloque nuevo |
+| [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) | Decisiones de arquitectura y diseño (y por qué) |
+| [`docs/ERRORES.md`](docs/ERRORES.md) | Errores ya cometidos, causa y solución — no repetir |
+| [`docs/PENDIENTES.md`](docs/PENDIENTES.md) | Tareas a medias, dependencias del cliente y blockers |
 | [`CHANGELOG.md`](CHANGELOG.md) | Historial de cambios por versión |
+| [`docs/specs/`](docs/specs/) | Especificaciones/alcances de cada bloque y fix (historial de prompts de tareas) |
+| [`prompts/`](prompts/) | Instrucciones de proceso (releer documentación, documentación completa, commits, memoria) |
 
 ## Licencia
 
