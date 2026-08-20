@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.11] — 2026-08-08
+
+### Changed
+- Refuerza efecto hover de las tarjetas de inicio para que se sientan flotando/levitando: `.feature-card` con transición propia `0.35s cubic-bezier(0.22, 1, 0.36, 1)` (curva de `GUIA-ANIMACIONES`, reemplaza la de `.card`); dentro de `@media (hover: hover)` el hover eleva `translateY(-10px) scale(1.02)` con sombra `0 20px 30px rgba(0,0,0,0.18)` y la imagen hace `scale(1.04)`. `.feature-card__link` gana `overflow: hidden` para contener el zoom de la imagen en el marco redondeado; imagen con transición. No aplica en touch (sin hover real), respeta `prefers-reduced-motion`.
+
 ## [1.19.10] — 2026-08-08
 
 ### Changed

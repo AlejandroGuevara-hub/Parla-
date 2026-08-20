@@ -221,6 +221,8 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 
 **Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, la tarjeta se eleva `translateY(-4px)`, eleva su sombra y cambia su borde (`.card:hover`).
 
+**Hover "levitar" reforzado (solo widgets de Inicio):** `.feature-card` define su propia transición (`0.35s cubic-bezier(0.22, 1, 0.36, 1)`, curva de `GUIA-ANIMACIONES`) que reemplaza la de `.card`, y dentro de `@media (hover: hover)` (solo mouse real) el hover eleva la tarjeta `translateY(-10px) scale(1.02)` con sombra profunda `0 20px 30px rgba(0,0,0,0.18)`, mientras la imagen hace `scale(1.04)`. El contenedor `.feature-card__link` tiene `overflow: hidden` para que el zoom de la imagen no se salga del marco redondeado. En celular (sin `hover: hover`) no aplica, evitando que el toque deje la tarjeta "pegada" elevada. Respeta `prefers-reduced-motion` (transición anulada).
+
 **Dónde se usa:** `inicio.html` — dashboard grid.
 
 ---

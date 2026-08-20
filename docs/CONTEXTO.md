@@ -42,4 +42,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Tarjetas de inicio en 2 columnas en móvil (≤480px) con tamaño reducido (imagen 120px, título 0.9rem, descripción 0.7rem). CHANGELOG 1.19.10.
+2026-08-08 — Efecto hover "levitar" en los 6 widgets de Inicio (elevación -10px + sombra profunda + zoom de imagen, solo con mouse vía `@media (hover: hover)`, curva de GUIA-ANIMACIONES). CHANGELOG 1.19.11.

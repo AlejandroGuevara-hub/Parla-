@@ -441,6 +441,7 @@ a {
   text-decoration: none;
   color: inherit;
   border-radius: var(--radius-card);
+  overflow: hidden;
 }
 
 .feature-card__image {
@@ -450,6 +451,7 @@ a {
   border-radius: inherit;
   display: block;
   margin: 0 auto var(--space-sm);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .feature-card h3 {
@@ -462,6 +464,33 @@ a {
 .feature-card p {
   color: var(--color-text-muted);
   font-size: var(--fs-body);
+}
+
+/* Hover "levitar" de los widgets de Inicio: solo con mouse real (@media (hover: hover)),
+   para que el toque en celular no deje la tarjeta en estado elevado. Reemplaza la
+   transformación de `.card:hover` (misma especificidad, este archivo va después). */
+
+.feature-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .feature-card:hover .feature-card__image {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-card__image {
+    transition: none;
+  }
 }
 
 
