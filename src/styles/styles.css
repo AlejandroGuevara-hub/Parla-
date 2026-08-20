@@ -803,6 +803,27 @@ a {
     height: 36px;
     padding: 0;
   }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .feature-card {
+    padding: var(--space-sm) 4px var(--space-xs) 4px;
+  }
+
+  .feature-card__image {
+    height: 120px;
+  }
+
+  .feature-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .feature-card p {
+    font-size: 0.7rem;
+  }
 }
 
 [data-theme="dark"] .composite-section__title {

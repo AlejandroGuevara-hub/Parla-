@@ -217,6 +217,8 @@ Tarjeta de sección en el dashboard de inicio. Es un `<article>` con clase `.car
 
 **Ancho máximo:** `--card-frame-w: 316.7px` (unifica el ancho de tarjeta del mockup; `--feature-card-max-w` fue eliminado). El grid usa `auto-fit, minmax(240px, var(--card-frame-w))` para tarjetas centradas, 3 columnas en escritorio, 2 en tablet y 1 en móvil sin media queries.
 
+**Móvil (≤480px):** el grid pasa a `repeat(2, 1fr)` con `gap: var(--space-sm)` — 2 tarjetas por fila (3 filas de 2) en vez de 1. Las tarjetas se compactan: padding `var(--space-sm) 4px var(--space-xs) 4px`, imagen a `120px` de alto, título a `0.9rem` y descripción a `0.7rem`.
+
 **Retroalimentación hover:** Las tarjetas no tienen subrayado. Al pasar el mouse, la tarjeta se eleva `translateY(-4px)`, eleva su sombra y cambia su borde (`.card:hover`).
 
 **Dónde se usa:** `inicio.html` — dashboard grid.

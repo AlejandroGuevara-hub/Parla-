@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.10] — 2026-08-08
+
+### Changed
+- Tarjetas de inicio muestran 2 por fila en móvil (≤480px), con tamaño reducido: grid `repeat(2, 1fr)` con `gap: var(--space-sm)` (3 filas de 2 en vez de 6 filas de 1), tarjeta con padding `var(--space-sm) 4px var(--space-xs) 4px`, imagen a `120px` de alto, título `0.9rem` y descripción `0.7rem`. Tablet y escritorio no cambian.
+
 ## [1.19.9] — 2026-08-08
 
 ### Changed

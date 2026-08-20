@@ -42,4 +42,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Auditoría completa de documentación: README reescrito, guías revisadas contra el código real (sidebar, animaciones, glow de `card--featured` aún activo en el código pese al spec de eliminación). CHANGELOG 1.19.9.
+2026-08-08 — Tarjetas de inicio en 2 columnas en móvil (≤480px) con tamaño reducido (imagen 120px, título 0.9rem, descripción 0.7rem). CHANGELOG 1.19.10.
