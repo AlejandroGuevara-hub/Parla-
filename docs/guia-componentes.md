@@ -539,3 +539,89 @@ Botón tipo pastilla redondeada (50px border-radius) con color verde WhatsApp (`
 **Token usado:** `--color-whatsapp` (definido en `variables.css`).
 
 **Dónde se usa:** Solo en `contacto.html`.
+
+---
+
+### `.profile-avatar` / `.profile-header`
+Encabezado de la página de Perfil con avatar circular de iniciales (si no hay foto real) y metadatos.
+
+```html
+<div class="profile-header">
+  <div class="profile-avatar" aria-hidden="true">SR</div>
+  <div class="profile-header__info">
+    <h2 class="profile-header__name">Sofía Ramírez</h2>
+    <p class="profile-header__email">sofia.ramirez@ejemplo.com</p>
+    <div class="profile-header__meta">
+      <span class="profile-header__member">Miembro desde Marzo 2026</span>
+      <span class="profile-header__badge">A2 · Elemental</span>
+    </div>
+  </div>
+</div>
+```
+
+**Partes:**
+- `.profile-avatar` — círculo 80px (72px en móvil) con gradiente primario/secondary, iniciales en blanco, `font-family: var(--font-display)`.
+- `.profile-header__name` — nombre completo, `var(--font-display)` 1.75rem.
+- `.profile-header__email` — correo, Poppins.
+- `.profile-header__meta` — "Miembro desde" + badge de nivel (`.profile-header__badge`, mismo estilo que badges de módulos: fondo 10% primario, texto primario, pill radius).
+
+**Dónde se usa:** `perfil.html`.
+
+---
+
+### `.stat-card`
+Tarjeta de estadística simple (icono + valor grande + etiqueta), usada en grid de 3 en Perfil.
+
+```html
+<article class="stat-card">
+  <span class="stat-card__icon"><i class="fas fa-book-open"></i></span>
+  <div class="stat-card__value">18</div>
+  <div class="stat-card__label">Lecciones completadas</div>
+</article>
+```
+
+**Estilo:** tarjeta con hover (elevación + sombra + borde primario). Grid responsivo: `repeat(auto-fit, minmax(160px, 1fr))` → 3 en desktop, 1 en móvil.
+
+**Iconos sugeridos:** `fa-book-open` (lecciones), `fa-fire` (racha), `fa-clock` (horas).
+
+**Dónde se usa:** `perfil.html` (sección de estadísticas).
+
+---
+
+### `.profile-info`
+Lista de campos de solo lectura (label + valor) para la sección "Información personal".
+
+```html
+<div class="profile-info">
+  <div class="profile-info__item">
+    <span class="profile-info__label">Nombre</span>
+    <span class="profile-info__value">Sofía Ramírez</span>
+  </div>
+</div>
+```
+
+**Estilo:** items con fondo tarjeta, label uppercase caption muted, valor body text. Solo lectura, sin inputs.
+
+**Dónde se usa:** `perfil.html`.
+
+---
+
+### `.preference-toggle`
+Toggle visual (role="switch") para preferencias, sin persistencia real.
+
+```html
+<button class="preference-toggle" role="switch" aria-checked="true" aria-label="Activar notificaciones">
+  <span class="preference-toggle__thumb"></span>
+</button>
+```
+
+**Estilo:** píldora 48x28px, thumb 24px con sombra. `aria-checked="true"` → fondo primario, thumb desplazado 20px. Click alterna `aria-checked` (solo visual, no persiste). Respeta `role="switch"` para accesibilidad.
+
+**Dónde se usa:** `perfil.html` (sección Preferencias).
+
+---
+
+### `.profile-edit-btn`
+Botón primario ancho completo en la sección "Información personal". Al click muestra alerta "Esta función estará disponible próximamente" (sin formulario real).
+
+**Dónde se usa:** `perfil.html`.

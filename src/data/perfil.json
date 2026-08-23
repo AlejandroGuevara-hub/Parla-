@@ -1,0 +1,12 @@
+{
+  "nombre": "Sofía Ramírez",
+  "correo": "sofia.ramirez@ejemplo.com",
+  "miembroDesde": "Marzo 2026",
+  "nivel": "A2 · Elemental",
+  "avatarIniciales": "SR",
+  "estadisticas": {
+    "leccionesCompletadas": 18,
+    "rachaDias": 6,
+    "horasDeEstudio": 12
+  }
+}

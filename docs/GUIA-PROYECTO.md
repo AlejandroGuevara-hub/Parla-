@@ -18,12 +18,13 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── login.html          # Inicio de sesión (maqueta)
 │   │   ├── registro.html       # Registro (maqueta)
 │   │   ├── inicio.html         # Inicio del estudiante (post-login: dashboard con 6 tarjetas)
-│   │   ├── video.html          # Placeholder: Lecciones en video
-│   │   ├── podcast.html        # Placeholder: Podcast
+│   │   ├── video.html          # Lecciones en video (banner + acordeón de módulos/lecciones)
+│   │   ├── podcast.html        # Podcast (banner + lista de episodios con transcripción)
 │   │   ├── webtoon.html        # Placeholder: Webtoon
-│   │   ├── cultura.html        # Placeholder: Cultura
-│   │   ├── flashcards.html     # Placeholder: Flashcards
-│   │   ├── quizzes.html        # Placeholder: Quizzes
+│   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
+│   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)
+│   │   ├── quizzes.html        # Quizzes (banner + lista de quizzes con puntaje)
+│   │   ├── perfil.html         # Perfil de ejemplo (avatar, stats, info, preferencias)
 │   │   └── contacto.html       # Contacto: WhatsApp, fondo e ícono del cliente
 │   ├── styles/                 ← CSS
 │   │   ├── variables.css       # Design tokens
@@ -40,7 +41,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── podcast.json        # Episodios con duración, estado y transcripción
 │   │   ├── cultura.json        # Temas culturales con estados
 │   │   ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
-│   │   └── quizzes.json        # Quizzes con preguntas, estado y puntaje
+│   │   ├── quizzes.json        # Quizzes con preguntas, estado y puntaje
+│   │   └── perfil.json         # Datos de perfil de ejemplo (nombre, correo, nivel, estadísticas)
 │   └── assets/                 ← Imágenes e iconos
 │       └── images/
 │           ├── logo.png

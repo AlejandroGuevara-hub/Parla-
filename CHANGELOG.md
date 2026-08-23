@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.13] — 2026-08-08
+
+### Added
+- Crea página de Perfil de ejemplo (`perfil.html`) sin funcionalidad real: avatar con iniciales, nombre/correo/nivel, 3 tarjetas de estadísticas (lecciones, racha, horas), información personal de solo lectura con botón "Editar" (solo alerta), preferencias con toggles visuales (notificaciones, recordatorios, tema auto) sin persistencia. Datos en `src/data/perfil.json`. Conecta el ícono "Perfil" del cluster flotante y el sidebar a `perfil.html` en todas las vistas autenticadas. CSS: `.profile-avatar`, `.profile-header`, `.stat-card`, `.profile-info`, `.preference-toggle`, `.profile-edit-btn`.
+
 ## [1.19.12] — 2026-08-08
 
 ### Added

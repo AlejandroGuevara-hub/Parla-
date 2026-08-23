@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil — Parla!</title>
+  <script>!function(){var t=localStorage.getItem("parla-theme");"dark"===t&&document.documentElement.setAttribute("data-theme","dark")}();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <a href="index.html" class="sidebar__logo" aria-label="Parla! inicio">
+      <img src="../assets/images/logo.png" alt="Parla! logo">
+    </a>
+    <nav aria-label="Secciones">
+      <ul class="sidebar-links">
+        <li><a class="sidebar-link" href="inicio.html"><i class="fas fa-house"></i><span>Inicio</span></a></li>
+        <li><a class="sidebar-link" href="video.html"><i class="fas fa-video"></i><span>Lecciones en video</span></a></li>
+        <li><a class="sidebar-link" href="podcast.html"><i class="fas fa-headphones"></i><span>Podcast</span></a></li>
+        <li><a class="sidebar-link" href="webtoon.html"><i class="fas fa-book-open"></i><span>Webtoon</span></a></li>
+        <li><a class="sidebar-link" href="cultura.html"><i class="fas fa-landmark"></i><span>Cultura</span></a></li>
+        <li><a class="sidebar-link" href="flashcards.html"><i class="fas fa-layer-group"></i><span>Flashcards</span></a></li>
+        <li><a class="sidebar-link" href="quizzes.html"><i class="fas fa-circle-question"></i><span>Quizzes</span></a></li>
+        <li><a class="sidebar-link" href="contacto.html"><i class="fas fa-comment"></i><span>Contactos</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <button class="sidebar-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
+    <ul class="user-nav">
+      <li><a href="perfil.html" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
+      <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
+    </ul>
+  </nav>
+
+  <main class="page-content">
+    <section class="dashboard animate-in">
+      <div class="dashboard__header animate-in">
+        <div class="icon profile" aria-hidden="true"><i class="fas fa-user"></i></div>
+        <h1 class="dashboard__title">Perfil</h1>
+        <p class="dashboard__subtitle">Tu información y preferencias (vista de ejemplo)</p>
+      </div>
+
+      <!-- Encabezado de perfil -->
+      <div class="profile-header animate-in" id="profile-header"></div>
+
+      <!-- Tarjetas de estadísticas -->
+      <div class="stats-grid animate-in" id="stats-grid"></div>
+
+      <!-- Información personal -->
+      <section class="profile-section animate-in">
+        <h2 class="profile-section__title">Información personal</h2>
+        <div class="profile-info" id="profile-info"></div>
+        <button class="btn btn-primary profile-edit-btn" aria-label="Editar perfil">Editar perfil</button>
+      </section>
+
+      <!-- Preferencias -->
+      <section class="profile-section animate-in">
+        <h2 class="profile-section__title">Preferencias</h2>
+        <div class="preferences-list" id="preferences-list"></div>
+      </section>
+
+      <div style="text-align:center;margin-top:var(--space-lg)">
+        <a href="inicio.html" class="btn btn-primary animate-in">&larr; Volver al inicio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer animate-in">
+    <p>&copy; 2026 Parla! — Todos los derechos reservados.</p>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/theme.js"></script>
+  <script src="../scripts/animations.js"></script>
+  <script>
+    // Perfil - fetch y render
+    (function() {
+      const headerEl = document.getElementById('profile-header');
+      const statsEl = document.getElementById('stats-grid');
+      const infoEl = document.getElementById('profile-info');
+      const prefsEl = document.getElementById('preferences-list');
+
+      function renderHeader(data) {
+        headerEl.innerHTML = `
+          <div class="profile-avatar" aria-hidden="true">${data.avatarIniciales}</div>
+          <div class="profile-header__info">
+            <h2 class="profile-header__name">${data.nombre}</h2>
+            <p class="profile-header__email">${data.correo}</p>
+            <div class="profile-header__meta">
+              <span class="profile-header__member">Miembro desde ${data.miembroDesde}</span>
+              <span class="profile-header__badge">${data.nivel}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderStats(data) {
+        const stats = data.estadisticas;
+        statsEl.innerHTML = `
+          <article class="stat-card animate-in">
+            <span class="stat-card__icon"><i class="fas fa-book-open"></i></span>
+            <div class="stat-card__value">${stats.leccionesCompletadas}</div>
+            <div class="stat-card__label">Lecciones completadas</div>
+          </article>
+          <article class="stat-card animate-in">
+            <span class="stat-card__icon"><i class="fas fa-fire"></i></span>
+            <div class="stat-card__value">${stats.rachaDias}</div>
+            <div class="stat-card__label">Días de racha</div>
+          </article>
+          <article class="stat-card animate-in">
+            <span class="stat-card__icon"><i class="fas fa-clock"></i></span>
+            <div class="stat-card__value">${stats.horasDeEstudio}</div>
+            <div class="stat-card__label">Horas de estudio</div>
+          </article>
+        `;
+      }
+
+      function renderInfo(data) {
+        infoEl.innerHTML = `
+          <div class="profile-info__item">
+            <span class="profile-info__label">Nombre</span>
+            <span class="profile-info__value">${data.nombre}</span>
+          </div>
+          <div class="profile-info__item">
+            <span class="profile-info__label">Correo electrónico</span>
+            <span class="profile-info__value">${data.correo}</span>
+          </div>
+        `;
+      }
+
+      function renderPreferences() {
+        prefsEl.innerHTML = `
+          <label class="preference-item">
+            <span class="preference-item__label">Notificaciones por correo</span>
+            <button class="preference-toggle" role="switch" aria-checked="true" aria-label="Activar notificaciones por correo">
+              <span class="preference-toggle__thumb"></span>
+            </button>
+          </label>
+          <label class="preference-item">
+            <span class="preference-item__label">Recordatorios diarios</span>
+            <button class="preference-toggle" role="switch" aria-checked="false" aria-label="Activar recordatorios diarios">
+              <span class="preference-toggle__thumb"></span>
+            </button>
+          </label>
+          <label class="preference-item">
+            <span class="preference-item__label">Tema oscuro automático</span>
+            <button class="preference-toggle" role="switch" aria-checked="false" aria-label="Activar tema oscuro automático">
+              <span class="preference-toggle__thumb"></span>
+            </button>
+          </label>
+        `;
+
+        // Toggle visual simple (no persiste)
+        prefsEl.querySelectorAll('.preference-toggle').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const checked = btn.getAttribute('aria-checked') === 'true';
+            btn.setAttribute('aria-checked', !checked);
+          });
+        });
+      }
+
+      fetch('../data/perfil.json')
+        .then(r => r.json())
+        .then(data => {
+          renderHeader(data);
+          renderStats(data);
+          renderInfo(data);
+          renderPreferences();
+        })
+        .catch(err => console.error('Error cargando perfil:', err));
+
+      // Botón editar - solo mensaje
+      document.addEventListener('click', e => {
+        if (e.target.closest('.profile-edit-btn')) {
+          alert('Esta función estará disponible próximamente');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -14,6 +14,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Inicio del estudiante (6 tarjetas con imágenes reales del cliente)
 - [x] Páginas de contenido (5) — Lecciones, Podcast, Cultura, Flashcards, Quizzes con banner, listas/grids, estados y datos JSON
 - [x] Webtoon (placeholder — pendiente definición de contenido)
+- [x] Página de Perfil de ejemplo (avatar, stats, info, preferencias — sin funcionalidad real)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
 - [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
 - [x] Sidebar de navegación vertical (fijo, drawer en móvil) en vistas autenticadas (excepto Landing, Login y Registro)
@@ -43,4 +44,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Contenido completo de 5 secciones (Lecciones, Podcast, Cultura, Flashcards, Quizzes) con banner Continuar, listas/grids, estados, datos JSON + fetch. Webtoon sigue como placeholder. CHANGELOG 1.19.12.
+2026-08-08 — Página de Perfil de ejemplo (avatar iniciales, stats, info, preferencias visuales, sin funcionalidad real). Conectado ícono Perfil en cluster flotante. CHANGELOG 1.19.13.
