@@ -4,23 +4,47 @@ window.addEventListener('DOMContentLoaded', function () {
   document.body.classList.add('page-loaded');
 });
 
-var elementos = document.querySelectorAll('.animate-in');
+/* ============================================================
+   INTERSECTION OBSERVER para .animate-in (con soporte dinámico)
+   ============================================================ */
 
-var observer = new IntersectionObserver(function (entradas) {
+var animateIndex = 0;
+
+function observeAnimateIn(el) {
+  el.style.transitionDelay = (animateIndex % 6) * 80 + 'ms';
+  animateIndex++;
+  animateObserver.observe(el);
+}
+
+var animateObserver = new IntersectionObserver(function (entradas) {
   entradas.forEach(function (entrada) {
     if (entrada.isIntersecting) {
       entrada.target.classList.add('is-visible');
-      observer.unobserve(entrada.target);
+      animateObserver.unobserve(entrada.target);
     }
   });
 }, { threshold: 0.15 });
 
-elementos.forEach(function (el, index) {
-  el.style.transitionDelay = (index % 6) * 80 + 'ms';
-  observer.observe(el);
-});
+// 1. Observar elementos .animate-in existentes al cargar
+document.querySelectorAll('.animate-in').forEach(observeAnimateIn);
 
-/* ---------- Parallax extremadamente sutil del hero ---------- */
+// 2. MutationObserver para detectar NUEVOS .animate-in añadidos dinámicamente (fetch)
+new MutationObserver(function (mutations) {
+  mutations.forEach(function (m) {
+    m.addedNodes.forEach(function (node) {
+      if (node.nodeType !== 1) return; // solo Element nodes
+      if (node.matches('.animate-in')) {
+        observeAnimateIn(node);
+      }
+      var nuevos = node.querySelectorAll('.animate-in');
+      nuevos.forEach(observeAnimateIn);
+    });
+  });
+}).observe(document.body, { childList: true, subtree: true });
+
+/* ============================================================
+   PARALLAX HERO (extremadamente sutil)
+   ============================================================ */
 
 var heroBg = document.querySelector('.hero__bg');
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -46,11 +70,11 @@ function onScroll() {
 
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* ---------- Imágenes: blur + fade al terminar de cargar ---------- */
+/* ============================================================
+   IMÁGENES: blur + fade al terminar de cargar (con soporte dinámico)
+   ============================================================ */
 
-var imagenes = document.querySelectorAll('img');
-
-imagenes.forEach(function (img) {
+function setupImage(img) {
   img.classList.add('img-load');
   function mostrar() {
     img.classList.add('img-loaded');
@@ -61,4 +85,20 @@ imagenes.forEach(function (img) {
     img.addEventListener('load', mostrar);
     img.addEventListener('error', mostrar);
   }
-});
+}
+
+// 1. Imágenes existentes al cargar
+document.querySelectorAll('img').forEach(setupImage);
+
+// 2. MutationObserver para NUEVAS imágenes añadidas dinámicamente
+new MutationObserver(function (mutations) {
+  mutations.forEach(function (m) {
+    m.addedNodes.forEach(function (node) {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === 'IMG') {
+        setupImage(node);
+      }
+      node.querySelectorAll?.('img').forEach(setupImage);
+    });
+  });
+}).observe(document.body, { childList: true, subtree: true });
