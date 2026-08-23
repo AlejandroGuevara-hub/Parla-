@@ -1,0 +1,8 @@
+{
+  "continuar": { "mazoTitulo": "Mazo 2 · Verbos comunes" },
+  "mazos": [
+    { "id": "mz1", "titulo": "Mazo 1 · Saludos y presentaciones", "totalTarjetas": 20, "dominadas": 20, "estado": "completado" },
+    { "id": "mz2", "titulo": "Mazo 2 · Verbos comunes", "totalTarjetas": 30, "dominadas": 12, "estado": "en-progreso" },
+    { "id": "mz3", "titulo": "Mazo 3 · Vocabulario de viaje", "totalTarjetas": 25, "dominadas": 0, "estado": "pendiente" }
+  ]
+}

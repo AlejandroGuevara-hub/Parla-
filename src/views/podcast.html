@@ -50,11 +50,18 @@
 
   <main class="page-content">
     <section class="dashboard animate-in">
-      <div class="dashboard__header">
-        <div class="icon podcast animate-in" aria-hidden="true" style="margin:0 auto var(--space-sm)"><i class="fas fa-headphones"></i></div>
-        <h1 class="dashboard__title animate-in">Podcast</h1>
-        <p class="dashboard__subtitle animate-in">Esta sección está en desarrollo. Vuelve pronto.</p>
+      <div class="dashboard__header animate-in">
+        <div class="icon podcast" aria-hidden="true"><i class="fas fa-headphones"></i></div>
+        <h1 class="dashboard__title">Podcast</h1>
+        <p class="dashboard__subtitle">Episodios con transcripción para mejorar tu comprensión auditiva</p>
       </div>
+
+      <!-- Banner Continuar -->
+      <div class="continue-banner" id="continue-banner" aria-label="Continuar donde te quedaste"></div>
+
+      <!-- Lista de episodios -->
+      <ul class="episodes-list" id="episodes-list" aria-label="Episodios del podcast"></ul>
+
       <div style="text-align:center;margin-top:var(--space-lg)">
         <a href="inicio.html" class="btn btn-primary animate-in">&larr; Volver al inicio</a>
       </div>
@@ -71,5 +78,63 @@
   <script src="../scripts/sidebar.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
+  <script>
+    // Podcast - fetch y render
+    (function() {
+      const bannerEl = document.getElementById('continue-banner');
+      const listEl = document.getElementById('episodes-list');
+
+      function estadoIcon(estado) {
+        if (estado === 'escuchado') return '<i class="fas fa-check-circle estado-icon estado-completado" aria-label="Escuchado"></i>';
+        if (estado === 'en-progreso') return '<i class="fas fa-circle-notch estado-icon estado-progreso" aria-label="En progreso"></i>';
+        return '<i class="far fa-circle estado-icon estado-pendiente" aria-label="Pendiente"></i>';
+      }
+
+      function estadoLabel(estado) {
+        return estado === 'escuchado' ? 'Escuchado' : estado === 'en-progreso' ? 'En progreso' : 'Pendiente';
+      }
+
+      function renderBanner(data) {
+        const c = data.continuar;
+        if (!c) return;
+        bannerEl.innerHTML = `
+          <div class="continue-banner__icon"><i class="fas fa-headphones"></i></div>
+          <div class="continue-banner__content">
+            <span class="continue-banner__label">Sigue escuchando</span>
+            <h2 class="continue-banner__title">${c.episodioTitulo}</h2>
+            <p class="continue-banner__detail">Duración: ${c.duracion}</p>
+          </div>
+          <button class="btn btn-primary continue-banner__btn">Reproducir</button>
+        `;
+        bannerEl.classList.add('animate-in');
+      }
+
+      function renderEpisodes(data) {
+        const episodios = data.episodios || [];
+        listEl.innerHTML = episodios.map((ep, idx) => `
+          <li class="episode-item animate-in" style="transition-delay: ${idx * 80}ms">
+            <button class="episode-item__play" aria-label="Reproducir ${ep.titulo}">
+              <i class="fas fa-play"></i>
+            </button>
+            <div class="episode-item__info">
+              <span class="episode-item__icon">${estadoIcon(ep.estado)}</span>
+              <span class="episode-item__title">${ep.titulo}</span>
+              ${ep.transcripcion ? '<span class="episode-item__transcripcion"><i class="fas fa-file-alt"></i> Transcripción</span>' : ''}
+            </div>
+            <span class="episode-item__duracion">${ep.duracion}</span>
+            <span class="episode-item__estado">${estadoLabel(ep.estado)}</span>
+          </li>
+        `).join('');
+      }
+
+      fetch('../data/podcast.json')
+        .then(r => r.json())
+        .then(data => {
+          renderBanner(data);
+          renderEpisodes(data);
+        })
+        .catch(err => console.error('Error cargando podcast:', err));
+    })();
+  </script>
 </body>
 </html>

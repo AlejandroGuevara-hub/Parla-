@@ -50,11 +50,18 @@
 
   <main class="page-content">
     <section class="dashboard animate-in">
-      <div class="dashboard__header">
-        <div class="icon quizzes animate-in" aria-hidden="true" style="margin:0 auto var(--space-sm)"><i class="fas fa-circle-question"></i></div>
-        <h1 class="dashboard__title animate-in">Quizzes</h1>
-        <p class="dashboard__subtitle animate-in">Esta sección está en desarrollo. Vuelve pronto.</p>
+      <div class="dashboard__header animate-in">
+        <div class="icon quizzes" aria-hidden="true"><i class="fas fa-circle-question"></i></div>
+        <h1 class="dashboard__title">Quizzes</h1>
+        <p class="dashboard__subtitle">Pon a prueba lo aprendido y mide tu progreso real</p>
       </div>
+
+      <!-- Banner Continuar -->
+      <div class="continue-banner" id="continue-banner" aria-label="Continuar donde te quedaste"></div>
+
+      <!-- Lista de quizzes -->
+      <ul class="quizzes-list" id="quizzes-list" aria-label="Quizzes disponibles"></ul>
+
       <div style="text-align:center;margin-top:var(--space-lg)">
         <a href="inicio.html" class="btn btn-primary animate-in">&larr; Volver al inicio</a>
       </div>
@@ -71,5 +78,60 @@
   <script src="../scripts/sidebar.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
+  <script>
+    // Quizzes - fetch y render
+    (function() {
+      const bannerEl = document.getElementById('continue-banner');
+      const listEl = document.getElementById('quizzes-list');
+
+      function estadoIcon(estado) {
+        if (estado === 'completado') return '<i class="fas fa-check-circle estado-icon estado-completado" aria-label="Completado"></i>';
+        if (estado === 'en-progreso') return '<i class="fas fa-circle-notch estado-icon estado-progreso" aria-label="En progreso"></i>';
+        return '<i class="far fa-circle estado-icon estado-pendiente" aria-label="Pendiente"></i>';
+      }
+
+      function estadoLabel(estado) {
+        return estado === 'completado' ? 'Completado' : estado === 'en-progreso' ? 'En progreso' : 'Pendiente';
+      }
+
+      function renderBanner(data) {
+        const c = data.continuar;
+        if (!c) return;
+        bannerEl.innerHTML = `
+          <div class="continue-banner__icon"><i class="fas fa-circle-question"></i></div>
+          <div class="continue-banner__content">
+            <span class="continue-banner__label">Tu próximo quiz</span>
+            <h2 class="continue-banner__title">${c.quizTitulo}</h2>
+          </div>
+          <button class="btn btn-primary continue-banner__btn">Empezar</button>
+        `;
+        bannerEl.classList.add('animate-in');
+      }
+
+      function renderQuizzes(data) {
+        const quizzes = data.quizzes || [];
+        listEl.innerHTML = quizzes.map((q, idx) => `
+          <li class="quiz-item animate-in" style="transition-delay: ${idx * 80}ms">
+            <span class="quiz-item__icon">${estadoIcon(q.estado)}</span>
+            <div class="quiz-item__info">
+              <span class="quiz-item__title">${q.titulo}</span>
+              <span class="quiz-item__meta">${q.preguntas} preguntas</span>
+            </div>
+            <span class="quiz-item__estado">${estadoLabel(q.estado)}</span>
+            ${q.puntaje ? `<span class="quiz-item__puntaje">${q.puntaje}</span>` : ''}
+            <button class="btn btn-primary quiz-item__btn">${q.estado === 'completado' ? 'Reintentar' : 'Empezar'}</button>
+          </li>
+        `).join('');
+      }
+
+      fetch('../data/quizzes.json')
+        .then(r => r.json())
+        .then(data => {
+          renderBanner(data);
+          renderQuizzes(data);
+        })
+        .catch(err => console.error('Error cargando quizzes:', err));
+    })();
+  </script>
 </body>
 </html>

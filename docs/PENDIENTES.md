@@ -2,13 +2,14 @@
 
 - [x] **Inicio del estudiante** — Construir la pantalla principal del estudiante con las 6 tarjetas (Lecciones, Podcast, Webtoon, Cultura, Flashcards, Quizzes). Completado: header de usuario autenticado, grid de tarjetas, cada tarjeta enlaza a su página (aún sin construir).
 - [x] **Páginas placeholder (6)** — Páginas individuales creadas con marcador de posición y navegación continua. Pendiente desarrollar el contenido real de cada una:
-  - `src/views/video.html` — desarrollar contenido de lecciones en video
-  - `src/views/podcast.html` — desarrollar contenido de podcast con transcripción
-  - `src/views/webtoon.html` — desarrollar contenido de webtoons ilustrados
-  - `src/views/cultura.html` — desarrollar contenido de cultura italiana
-  - `src/views/flashcards.html` — desarrollar sistema de flashcards
-  - `src/views/quizzes.html` — desarrollar sistema de quizzes
-- [x] **Página de Contactos** — Construida (`src/views/contacto.html`) con número de teléfono y botón de WhatsApp. Fue una ampliación de alcance solicitada por el cliente.
+  - `src/views/video.html` — **COMPLETADO**: banner + acordeón de módulos/lecciones con estados.
+  - `src/views/podcast.html` — **COMPLETADO**: banner + lista de episodios con estados y transcripción.
+  - `src/views/webtoon.html` — **PLACEHOLDER**: definir contenido (formato webtoon ilustrado pendiente).
+  - `src/views/cultura.html` — **COMPLETADO**: banner + lista de temas con estados.
+  - `src/views/flashcards.html` — **COMPLETADO**: banner + grid de mazos con barra de progreso.
+  - `src/views/quizzes.html` — **COMPLETADO**: banner + lista de quizzes con estados y puntaje.
+- [ ] **Conectar audio real en Podcast** — Los botones de play son visuales; falta integrar archivos de audio reales cuando el cliente los entregue.
+- [ ] **Definir contenido de Webtoon** — Sección pendiente de diseño y datos (formato webtoon ilustrado). Mantener como placeholder hasta que se defina.
 - [ ] **Retomar el glow de "Lecciones en video"** — El spec `docs/specs/prompt-eliminar-card-featured.md` ordena eliminar por completo el efecto `.card--featured` (glow) por romper el renderizado de la tarjeta, pero **el spec nunca se aplicó**: el glow sigue activo en el código (`inicio.html:79` + `styles.css` + tokens `--glow-clr-*`). Decisión: si se retoma, prototipar en una página aislada antes de aplicarlo directo al grid de producción.
 - [ ] **Barra de progreso** — Agregar barra de progreso general en el dashboard de inicio.
 - [ ] **Favoritos** — Implementar sistema de favoritos en las tarjetas.

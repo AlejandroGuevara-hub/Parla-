@@ -1,0 +1,8 @@
+{
+  "continuar": { "quizTitulo": "Quiz · Módulo 2" },
+  "quizzes": [
+    { "id": "q1", "titulo": "Quiz · Módulo 1", "preguntas": 10, "estado": "completado", "puntaje": "9/10" },
+    { "id": "q2", "titulo": "Quiz · Módulo 2", "preguntas": 10, "estado": "pendiente" },
+    { "id": "q3", "titulo": "Quiz · Cultura general", "preguntas": 8, "estado": "pendiente" }
+  ]
+}

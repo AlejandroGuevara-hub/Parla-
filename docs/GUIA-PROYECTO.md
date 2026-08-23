@@ -35,7 +35,12 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── theme.js            # Tema claro/oscuro con persistencia
 │   │   └── animations.js       # animate-in (IntersectionObserver), parallax hero, blur de imágenes
 │   ├── components/             ← Fragmentos HTML reutilizables (futuro)
-│   ├── data/                   ← Datos de ejemplo estáticos (futuro)
+│   ├── data/                   ← Datos de ejemplo estáticos (JSON) para secciones de contenido
+│   │   ├── lecciones.json      # Módulos y lecciones con estados (completado/en-progreso/pendiente)
+│   │   ├── podcast.json        # Episodios con duración, estado y transcripción
+│   │   ├── cultura.json        # Temas culturales con estados
+│   │   ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
+│   │   └── quizzes.json        # Quizzes con preguntas, estado y puntaje
 │   └── assets/                 ← Imágenes e iconos
 │       └── images/
 │           ├── logo.png
@@ -116,3 +121,11 @@ Toda vista nueva debe incluir el sidebar por defecto, **no un header tradicional
 CSS único en `src/styles/components.css` y `src/styles/styles.css`. Respeta `prefers-reduced-motion`.
 
 La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme"); `login.html` y `registro.html` tampoco llevan sidebar — son las tres excepciones.
+
+## Carga de contenido dinámico (JSON + fetch)
+
+Las 5 secciones de contenido (`video.html`, `podcast.html`, `cultura.html`, `flashcards.html`, `quizzes.html`) cargan sus datos desde archivos JSON en `src/data/` mediante `fetch()`. Esto permite:
+
+- Separar contenido de presentación (fácil actualizar textos sin tocar HTML).
+- Escalar a futuro backend sin reescribir la UI.
+- Usar `fetch()` requiere servir el proyecto por HTTP (no `file://`); ver "Cómo correr el proyecto".

@@ -177,12 +177,12 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 │   │   ├── login.html             # Inicio de sesión (sin sidebar)
 │   │   ├── registro.html          # Registro (sin sidebar)
 │   │   ├── inicio.html            # Inicio del estudiante (dashboard, con sidebar)
-│   │   ├── video.html             # Placeholder Lecciones en video (con sidebar)
-│   │   ├── podcast.html           # Placeholder Podcast (con sidebar)
+│   │   ├── video.html             # Lecciones en video (con sidebar, carga JSON)
+│   │   ├── podcast.html           # Podcast (con sidebar, carga JSON)
 │   │   ├── webtoon.html           # Placeholder Webtoon (con sidebar)
-│   │   ├── cultura.html           # Placeholder Cultura (con sidebar)
-│   │   ├── flashcards.html        # Placeholder Flashcards (con sidebar)
-│   │   ├── quizzes.html           # Placeholder Quizzes (con sidebar)
+│   │   ├── cultura.html           # Cultura (con sidebar, carga JSON)
+│   │   ├── flashcards.html        # Flashcards (con sidebar, carga JSON)
+│   │   ├── quizzes.html           # Quizzes (con sidebar, carga JSON)
 │   │   └── contacto.html          # Contactos (WhatsApp, con sidebar)
 │   ├── styles/                    ← CSS (antes "css/")
 │   │   ├── variables.css          # Design tokens (colores, tipografías, espaciados)
@@ -194,7 +194,12 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 │   │   ├── theme.js               # Tema claro/oscuro con persistencia
 │   │   └── animations.js          # animate-in, parallax hero, blur de imágenes
 │   ├── components/                ← Fragmentos HTML reutilizables (futuro)
-│   ├── data/                      ← Datos de ejemplo estáticos (JSON, futuro)
+│   ├── data/                      ← Datos de ejemplo estáticos (JSON)
+│   │   ├── lecciones.json         # Módulos y lecciones con estados
+│   │   ├── podcast.json           # Episodios con duración, estado, transcripción
+│   │   ├── cultura.json           # Temas culturales con estados
+│   │   ├── flashcards.json        # Mazos con total/dominadas y progreso
+│   │   └── quizzes.json           # Quizzes con preguntas, estado, puntaje
 │   └── assets/                    ← Imágenes e iconos del sitio
 │       └── images/
 │           ├── logo.png           # Logo oficial del cliente
@@ -228,3 +233,15 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 ├── README.md
 └── CHANGELOG.md
 ```
+
+## Contenido en JSON + fetch (vs. HTML hardcodeado)
+
+Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) cargan sus datos desde archivos JSON en `src/data/` mediante `fetch()` en lugar de tener el contenido hardcodeado en el HTML.
+
+**Por qué:**
+- **Separación de responsabilidades**: el contenido (textos, estados, progreso) vive en datos, la presentación en HTML/CSS/JS. Facilita actualizar textos sin tocar estructura.
+- **Escalabilidad a Fase 2**: cuando haya backend real, solo se cambia el endpoint del `fetch()`; la lógica de renderizado y la UI permanecen iguales.
+- **Consistencia**: mismo patrón de banner, listas, grids y estados en las 5 secciones, con datos distintos.
+- **Mantenibilidad**: un solo archivo JSON por sección, fácil de revisar y versionar.
+
+**Trade-off:** `fetch()` requiere servir el proyecto por HTTP (no abre con `file://` por CORS). Documentado en `README.md` cómo levantar servidor local (`npx serve`, `python -m http.server`).

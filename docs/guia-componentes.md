@@ -250,6 +250,165 @@ Modificador que agrega un resplandor ambiental giratorio de dos capas alrededor 
 
 ---
 
+## Bloque 2 — Componentes de secciones de contenido
+
+### `.continue-banner`
+Banner destacado tipo "continúa donde te quedaste", usado en las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes). Mismo estilo visual, texto e ícono adaptados por sección.
+
+```html
+<div class="continue-banner animate-in">
+  <div class="continue-banner__icon"><i class="fas fa-video"></i></div>
+  <div class="continue-banner__content">
+    <span class="continue-banner__label">Continúa tu aprendizaje</span>
+    <h2 class="continue-banner__title">Módulo 2 · Lección 3</h2>
+    <p class="continue-banner__detail">La hora y las expresiones de tiempo</p>
+    <div class="continue-banner__progress" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+      <div class="continue-banner__progress-bar" style="width: 65%"></div>
+    </div>
+    <span class="continue-banner__progress-text">65% completado</span>
+  </div>
+  <button class="btn btn-primary continue-banner__btn">Continuar</button>
+</div>
+```
+
+**Partes:**
+- `.continue-banner__icon` — círculo 48px con ícono de la sección (color primario).
+- `.continue-banner__content` — etiqueta (`.continue-banner__label`), título (`.continue-banner__title`), detalle opcional (`.continue-banner__detail`), barra de progreso (`.continue-banner__progress` + `.continue-banner__progress-bar`) y texto de progreso.
+- `.continue-banner__btn` — botón primario (CTA).
+- Responsive ≤480px: apila vertical, centra, botón 100% ancho.
+
+**Dónde se usa:** `video.html`, `podcast.html`, `cultura.html`, `flashcards.html`, `quizzes.html`.
+
+---
+
+### `.module-card` / `.lessons-list` (Lecciones — acordeón)
+Tarjeta de módulo con header clicable que expande/colapsa la lista de lecciones.
+
+```html
+<article class="module-card">
+  <header class="module-card__header">
+    <div class="module-card__icon"><i class="fas fa-check-circle estado-completado"></i></div>
+    <div class="module-card__titles">
+      <h2 class="module-card__title">Módulo 1</h2>
+      <p class="module-card__subtitle">¡Empecemos!</p>
+    </div>
+    <span class="module-card__badge">Completado</span>
+    <button class="module-card__toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i></button>
+  </header>
+  <ul class="lessons-list" hidden>
+    <li class="lesson-item"><span class="estado-icon estado-completado"></span><span>Lección 1 · Saludos</span></li>
+  </ul>
+</article>
+```
+
+**Comportamiento:** click en `.module-card__header` alterna `hidden` en `.lessons-list` y rota el chevron. JS simple en cada página (no hay componente reutilizable global).
+
+**Estados de lección (`.lesson-item`):** icono + título + % opcional (en-progreso). Iconos: completado (check verde), en-progreso (círculo naranja), pendiente (círculo gris).
+
+**Dónde se usa:** `video.html`.
+
+---
+
+### `.episode-item` (Podcast — lista)
+Fila de episodio: botón play + info (icono estado + título + transcripción) + duración + estado.
+
+```html
+<li class="episode-item">
+  <button class="episode-item__play"><i class="fas fa-play"></i></button>
+  <div class="episode-item__info">
+    <span class="estado-icon estado-escuchado"></span>
+    <span class="episode-item__title">Episodio 1 · Saludos</span>
+    <span class="episode-item__transcripcion"><i class="fas fa-file-alt"></i> Transcripción</span>
+  </div>
+  <span class="episode-item__duracion">8:15</span>
+  <span class="episode-item__estado">Escuchado</span>
+</li>
+```
+
+**Estados:** escuchado (check verde), en-progreso (círculo naranja), pendiente (círculo gris). Botón play visual (no reproduce audio real en Fase 1).
+
+**Dónde se usa:** `podcast.html`.
+
+---
+
+### `.topic-item` (Cultura — lista)
+Fila simple: icono estado + título + estado.
+
+```html
+<li class="topic-item">
+  <span class="estado-icon estado-completado"></span>
+  <span class="topic-item__title">Tema 1 · Arte y pintura</span>
+  <span class="topic-item__estado">Completado</span>
+</li>
+```
+
+**Dónde se usa:** `cultura.html`.
+
+---
+
+### `.deck-card` (Flashcards — grid de mazos)
+Grid responsivo de tarjetas de mazo: header (icono + título), barra de progreso (dominadas/total), estado, botón "Repasar".
+
+```html
+<article class="deck-card">
+  <div class="deck-card__header">
+    <span class="estado-icon estado-en-progreso"></span>
+    <h2 class="deck-card__title">Mazo 2 · Verbos comunes</h2>
+  </div>
+  <div class="deck-card__progress">
+    <div class="deck-card__progress-bar-wrap"><div class="deck-card__progress-bar" style="width: 40%"></div></div>
+    <span class="deck-card__progress-text">12 / 30 tarjetas</span>
+  </div>
+  <span class="deck-card__estado">En progreso</span>
+  <button class="btn btn-primary deck-card__btn">Repasar</button>
+</article>
+```
+
+**Grid:** `repeat(auto-fit, minmax(260px, 1fr))` → 3 columnas desktop, 2 tablet, 1 móvil. Hover: elevación + sombra + borde primario.
+
+**Dónde se usa:** `flashcards.html`.
+
+---
+
+### `.quiz-item` (Quizzes — lista)
+Fila: icono estado + info (título + preguntas) + estado + puntaje (si completado) + botón.
+
+```html
+<li class="quiz-item">
+  <span class="estado-icon estado-completado"></span>
+  <div class="quiz-item__info">
+    <span class="quiz-item__title">Quiz · Módulo 1</span>
+    <span class="quiz-item__meta">10 preguntas</span>
+  </div>
+  <span class="quiz-item__estado">Completado</span>
+  <span class="quiz-item__puntaje">9/10</span>
+  <button class="btn btn-primary quiz-item__btn">Reintentar</button>
+</li>
+```
+
+**Dónde se usa:** `quizzes.html`.
+
+---
+
+### Iconos de estado (`.estado-icon`)
+Componente compartido para todos los estados visuales:
+
+```html
+<i class="fas fa-check-circle estado-icon estado-completado" aria-label="Completado"></i>
+<i class="fas fa-circle-notch estado-icon estado-progreso" aria-label="En progreso"></i>
+<i class="far fa-circle estado-icon estado-pendiente" aria-label="Pendiente"></i>
+```
+
+**Variantes:**
+- `.estado-completado` — verde (`--color-state-done`).
+- `.estado-progreso` — teal primario (`--color-primary`).
+- `.estado-pendiente` — gris muted (`--color-text-muted`).
+- Podcast usa `.estado-escuchado` (alias de completado) y `.estado-progreso` / `.estado-pendiente`.
+
+**Dónde se usa:** Todas las secciones de contenido.
+
+---
+
 ### `.composite-section`
 Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% / 70%) con dos filas, sin padding derecho para que la imagen toque el borde de la página.
 

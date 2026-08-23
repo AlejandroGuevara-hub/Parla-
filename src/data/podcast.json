@@ -1,0 +1,9 @@
+{
+  "continuar": { "episodioTitulo": "Episodio 4 · En el mercado", "duracion": "12:30" },
+  "episodios": [
+    { "id": "e1", "titulo": "Episodio 1 · Saludos", "duracion": "8:15", "estado": "escuchado", "transcripcion": true },
+    { "id": "e2", "titulo": "Episodio 2 · En el café", "duracion": "10:02", "estado": "escuchado", "transcripcion": true },
+    { "id": "e3", "titulo": "Episodio 3 · Pidiendo direcciones", "duracion": "9:40", "estado": "en-progreso", "transcripcion": true },
+    { "id": "e4", "titulo": "Episodio 4 · En el mercado", "duracion": "12:30", "estado": "pendiente", "transcripcion": true }
+  ]
+}

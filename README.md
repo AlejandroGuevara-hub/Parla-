@@ -20,9 +20,9 @@ login → inicio) sin validar datos.
 
 ## Cómo correr el proyecto localmente
 
-El proyecto es 100% estático (HTML + CSS + JS vanilla). Se abre directo en el navegador
-abriendo `src/views/index.html`, o mejor con un servidor local desde la raíz para que las
-rutas relativas de CSS/JS/imágenes resuelvan igual:
+El proyecto es 100% estático (HTML + CSS + JS vanilla). **Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) cargan sus datos mediante `fetch()` desde `src/data/*.json`, por lo que requieren servir el proyecto por HTTP** (abrir el HTML directo con `file://` falla por CORS).
+
+Desde la raíz del proyecto:
 
 ```bash
 # Con Python
@@ -30,6 +30,7 @@ python -m http.server 8000
 
 # Con Node.js
 npx http-server .
+# o npx serve
 ```
 
 Luego visita `http://localhost:8000/src/views/index.html`.
@@ -52,7 +53,12 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 │   ├── scripts/      ← JS: nav.js, sidebar.js, theme.js, animations.js
 │   ├── assets/images/← Imágenes del sitio (logo, hero, fondo, fotos de tarjetas, contacto)
 │   ├── components/   ← (reservado) fragmentos HTML reutilizables — aún no existe
-│   └── data/         ← (reservado) datos de ejemplo JSON para Fase 2 — aún no existe
+│   └── data/         ← Datos de ejemplo estáticos (JSON) para secciones de contenido
+│       ├── lecciones.json      # Módulos y lecciones con estados
+│       ├── podcast.json        # Episodios con duración, estado y transcripción
+│       ├── cultura.json        # Temas culturales con estados
+│       ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
+│       └── quizzes.json        # Quizzes con preguntas, estado y puntaje
 ├── reference/        ← Material original del cliente (sin modificar): PDFs, zip y carpeta con fotos/mockups
 ├── docs/             ← Documentación técnica, especificaciones y guías
 ├── prompts/          ← Instrucciones de proceso (protocolos para cada tipo de tarea)
@@ -69,12 +75,12 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 | [`src/views/login.html`](src/views/login.html) | **Inicio de sesión** (maqueta visual, sin backend). Navega a `inicio.html`. No tiene sidebar. |
 | [`src/views/registro.html`](src/views/registro.html) | **Registro** (maqueta visual). Navega a `login.html` (flujo real registro → login). No tiene sidebar. |
 | [`src/views/inicio.html`](src/views/inicio.html) | **Inicio del estudiante** (post-login): dashboard con 6 tarjetas funcionales que enlazan a sus páginas. Con sidebar. |
-| [`src/views/video.html`](src/views/video.html) | Placeholder de **Lecciones en video**. Con sidebar. |
-| [`src/views/podcast.html`](src/views/podcast.html) | Placeholder de **Podcast** (con transcripción). Con sidebar. |
-| [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon**. Con sidebar. |
-| [`src/views/cultura.html`](src/views/cultura.html) | Placeholder de **Cultura italiana**. Con sidebar. |
-| [`src/views/flashcards.html`](src/views/flashcards.html) | Placeholder de **Flashcards**. Con sidebar. |
-| [`src/views/quizzes.html`](src/views/quizzes.html) | Placeholder de **Quizzes**. Con sidebar. |
+| [`src/views/video.html`](src/views/video.html) | **Lecciones en video**: banner "Continuar" + acordeón de módulos/lecciones con estados y progreso. Con sidebar. Carga `src/data/lecciones.json`. |
+| [`src/views/podcast.html`](src/views/podcast.html) | **Podcast**: banner "Continuar" + lista de episodios con play visual, duración, estado y transcripción. Con sidebar. Carga `src/data/podcast.json`. |
+| [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon** (pendiente definición de contenido). Con sidebar. |
+| [`src/views/cultura.html`](src/views/cultura.html) | **Cultura**: banner "Continuar" + lista de temas con estados. Con sidebar. Carga `src/data/cultura.json`. |
+| [`src/views/flashcards.html`](src/views/flashcards.html) | **Flashcards**: banner "Continuar" + grid de mazos con barra de progreso (dominadas/total). Con sidebar. Carga `src/data/flashcards.json`. |
+| [`src/views/quizzes.html`](src/views/quizzes.html) | **Quizzes**: banner "Continuar" + lista de quizzes con preguntas, estado y puntaje. Con sidebar. Carga `src/data/quizzes.json`. |
 | [`src/views/contacto.html`](src/views/contacto.html) | **Contactos**: fondo e ícono del cliente, número de teléfono y botón de WhatsApp. Con sidebar. |
 
 ## Funcionalidades ya implementadas
@@ -101,11 +107,12 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 
 ## Qué NO está implementado todavía
 
-- Contenido real de las 6 secciones (video, podcast, webtoon, cultura, flashcards, quizzes) — hoy son placeholders.
+- Contenido real de **Webtoon** — hoy es placeholder (pendiente definición por el cliente).
 - Barra de progreso del estudiante.
 - Sistema de favoritos.
 - Autenticación real (login/registro son maquetas visuales).
 - La fuente Hatton (se usa Fraunces como reemplazo temporal).
+- Conectar audio real en Podcast (botones de play son visuales).
 - Detalles y dependencias del cliente: ver [`docs/PENDIENTES.md`](docs/PENDIENTES.md).
 
 ## Índice de documentación

@@ -12,11 +12,12 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Registro (maqueta visual)
 - [x] Selector de tema claro/oscuro flotante con persistencia
 - [x] Inicio del estudiante (6 tarjetas con imágenes reales del cliente)
-- [x] Páginas placeholder (6) — con navegación completa
-- [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
+- [x] Páginas de contenido (5) — Lecciones, Podcast, Cultura, Flashcards, Quizzes con banner, listas/grids, estados y datos JSON
+- [x] Webtoon (placeholder — pendiente definición de contenido)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
+- [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
 - [x] Sidebar de navegación vertical (fijo, drawer en móvil) en vistas autenticadas (excepto Landing, Login y Registro)
-- [ ] Contenido real de cada sección (video, podcast, webtoon, cultura, flashcards, quizzes)
+- [ ] Contenido real de Webtoon
 - [ ] Barra de progreso
 - [ ] Favoritos
 
@@ -42,4 +43,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Efecto hover "levitar" en los 6 widgets de Inicio (elevación -10px + sombra profunda + zoom de imagen, solo con mouse vía `@media (hover: hover)`, curva de GUIA-ANIMACIONES). CHANGELOG 1.19.11.
+2026-08-08 — Contenido completo de 5 secciones (Lecciones, Podcast, Cultura, Flashcards, Quizzes) con banner Continuar, listas/grids, estados, datos JSON + fetch. Webtoon sigue como placeholder. CHANGELOG 1.19.12.

@@ -1,5 +1,18 @@
 # Changelog — Parla!
 
+## [1.19.12] — 2026-08-08
+
+### Added
+- Construye el contenido de Lecciones, Podcast, Cultura, Flashcards y Quizzes con datos de ejemplo en JSON (`src/data/*.json`). Cada página hace `fetch()` de su JSON y renderiza dinámicamente:
+  - `video.html`: banner "Continuar" + acordeón de módulos/lecciones con estados (completado/en-progreso/pendiente) y % en lección actual.
+  - `podcast.html`: banner "Continuar" + lista de episodios (play visual, duración, estado escuchado/en-progreso/pendiente, transcripción).
+  - `cultura.html`: banner "Continuar" + lista de temas con estados.
+  - `flashcards.html`: banner "Continuar" + grid de mazos con barra de progreso (dominadas/total) y estado.
+  - `quizzes.html`: banner "Continuar" + lista de quizzes (preguntas, estado, puntaje si completado).
+- Componentes CSS nuevos: `.continue-banner`, `.module-card`/acordeón, `.episode-item`, `.topic-item`, `.deck-card` (grid), `.quiz-item`, iconos de estado (`.estado-icon`).
+- Datos JSON en `src/data/`: `lecciones.json`, `podcast.json`, `cultura.json`, `flashcards.json`, `quizzes.json`.
+- `README.md`: actualizado con instrucciones de servidor local para `fetch()`.
+
 ## [1.19.11] — 2026-08-08
 
 ### Changed

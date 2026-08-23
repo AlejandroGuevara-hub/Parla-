@@ -1,0 +1,28 @@
+{
+  "continuar": { "moduloTitulo": "Módulo 2 · Lección 3", "detalle": "La hora y las expresiones de tiempo", "progreso": 65 },
+  "modulos": [
+    {
+      "id": "m1",
+      "titulo": "Módulo 1",
+      "subtitulo": "¡Empecemos!",
+      "estado": "completado",
+      "lecciones": [
+        { "id": "l1", "titulo": "Lección 1 · Saludos", "estado": "completado" },
+        { "id": "l2", "titulo": "Lección 2 · Presentarse", "estado": "completado" },
+        { "id": "l3", "titulo": "Lección 3 · Los artículos", "estado": "completado" }
+      ]
+    },
+    {
+      "id": "m2",
+      "titulo": "Módulo 2",
+      "subtitulo": "La vida cotidiana",
+      "estado": "en-progreso",
+      "lecciones": [
+        { "id": "l4", "titulo": "Lección 1 · La familia", "estado": "completado" },
+        { "id": "l5", "titulo": "Lección 2 · Los números", "estado": "completado" },
+        { "id": "l6", "titulo": "Lección 3 · La hora", "estado": "en-progreso", "progreso": 65 },
+        { "id": "l7", "titulo": "Lección 4 · El tiempo libre", "estado": "pendiente" }
+      ]
+    }
+  ]
+}

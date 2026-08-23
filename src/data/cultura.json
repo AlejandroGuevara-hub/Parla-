@@ -1,0 +1,8 @@
+{
+  "continuar": { "temaTitulo": "Tema 2 · Historia del Renacimiento" },
+  "temas": [
+    { "id": "t1", "titulo": "Tema 1 · Arte y pintura", "estado": "completado" },
+    { "id": "t2", "titulo": "Tema 2 · Historia del Renacimiento", "estado": "en-progreso" },
+    { "id": "t3", "titulo": "Tema 3 · Gastronomía italiana", "estado": "pendiente" }
+  ]
+}
