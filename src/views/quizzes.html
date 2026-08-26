@@ -15,38 +15,8 @@
 </head>
 <body>
 
-  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
-    <a href="index.html" class="sidebar__logo" aria-label="Parla! inicio">
-      <img src="../assets/images/logo.png" alt="Parla! logo">
-    </a>
-    <nav aria-label="Secciones">
-      <ul class="sidebar-links">
-        <li><a class="sidebar-link" href="inicio.html"><i class="fas fa-house"></i><span>Inicio</span></a></li>
-        <li><a class="sidebar-link" href="video.html"><i class="fas fa-video"></i><span>Lecciones en video</span></a></li>
-        <li><a class="sidebar-link" href="podcast.html"><i class="fas fa-headphones"></i><span>Podcast</span></a></li>
-        <li><a class="sidebar-link" href="webtoon.html"><i class="fas fa-book-open"></i><span>Webtoon</span></a></li>
-        <li><a class="sidebar-link" href="cultura.html"><i class="fas fa-landmark"></i><span>Cultura</span></a></li>
-        <li><a class="sidebar-link" href="flashcards.html"><i class="fas fa-layer-group"></i><span>Flashcards</span></a></li>
-        <li><a class="sidebar-link is-active" href="quizzes.html"><i class="fas fa-circle-question"></i><span>Quizzes</span></a></li>
-        <li><a class="sidebar-link" href="contacto.html"><i class="fas fa-comment"></i><span>Contactos</span></a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <div class="sidebar-overlay" aria-hidden="true"></div>
-
-  <button class="sidebar-toggle" aria-label="Abrir menú" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
-    <ul class="user-nav">
-      <li><a href="perfil.html" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
-      <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
-    </ul>
-  </nav>
+  <parla-sidebar current="quizzes"></parla-sidebar>
+  <parla-user-nav></parla-user-nav>
 
   <main class="page-content">
     <section class="dashboard animate-in">
@@ -75,7 +45,8 @@
   <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
     <i class="fas fa-moon"></i>
   </button>
-  <script src="../scripts/sidebar.js"></script>
+  <script type="module" src="../scripts/components/sidebar.js"></script>
+  <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
   <script>

@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.14] — 2026-08-08
+
+### Changed
+- Convierte sidebar y cluster de usuario en Web Components reutilizables (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`. Elimina HTML duplicado en 9 páginas (`inicio`, `video`, `podcast`, `webtoon`, `cultura`, `flashcards`, `quizzes`, `contacto`, `perfil`). Usa light DOM (sin Shadow DOM) para reutilizar CSS global existente. Atributo `current` en `<parla-sidebar>` marca el enlace activo. Scripts cargados como módulos ES (`type="module"`).
+
 ## [1.19.13] — 2026-08-08
 
 ### Added

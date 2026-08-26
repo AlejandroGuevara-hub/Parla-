@@ -167,6 +167,34 @@ Se adoptó un panel de navegación vertical (`position: fixed`, 260px a la izqui
 - **Drawer en móvil (≤768px)**: el sidebar fijo de 260px no cabe en celular; se transforma en panel deslizable (`translateX(-100%)` → `0` con `cubic-bezier(0.22, 1, 0.36, 1)` de 0.35s), overlay con fade y cierre por overlay/Escape (`.sidebar-overlay`, `src/scripts/sidebar.js`), siguiendo `docs/GUIA-ANIMACIONES.md`. En tablet (769px+) se mantiene fijo porque hay espacio.
 - El contenido de cada vista usa `.page-content { margin-left: 260px }` (0 en móvil) para no quedar tapado por el sidebar.
 
+## Contenido en JSON + fetch (vs. HTML hardcodeado)
+
+Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) cargan sus datos desde archivos JSON en `src/data/` mediante `fetch()` en lugar de tener el contenido hardcodeado en el HTML.
+
+**Por qué:**
+- **Separación de responsabilidades**: el contenido (textos, estados, progreso) vive en datos, la presentación en HTML/CSS/JS. Facilita actualizar textos sin tocar estructura.
+- **Escalabilidad a Fase 2**: cuando haya backend real, solo se cambia el endpoint del `fetch()`; la lógica de renderizado y la UI permanecen iguales.
+- **Consistencia**: mismo patrón de banner, listas, grids y estados en las 5 secciones, con datos distintos.
+- **Mantenibilidad**: un solo archivo JSON por sección, fácil de revisar y versionar.
+
+**Trade-off:** `fetch()` requiere servir el proyecto por HTTP (no abre con `file://` por CORS). Documentado en `README.md` cómo levantar servidor local (`npx serve`, `python -m http.server`).
+
+## Web Components nativos (Sidebar y Cluster de Usuario)
+
+El sidebar y el cluster flotante "Perfil/Salir" estaban duplicados en 9 archivos HTML. Se refactorizaron a Web Components nativos (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`.
+
+**Por qué Web Components nativos sin Shadow DOM:**
+- **Sin dependencias externas**: cero frameworks, cero build step, cero tooling extra. Funcionan en todos los navegadores modernos (ES2015+).
+- **CSS global reutilizado**: al usar light DOM (sin Shadow DOM), el CSS existente en `components.css` y `styles.css` (clases `.sidebar`, `.sidebar-link`, `.floating-user-nav`, etc.) sigue aplicando sin cambios. No hubo que duplicar estilos dentro del componente.
+- **Eliminación de duplicación**: un cambio en el sidebar (ej. agregar un enlace) se hace en un solo archivo (`sidebar.js`) y se refleja en las 9 páginas.
+- **API declarativa simple**: `<parla-sidebar current="video"></parla-sidebar>` — el atributo `current` marca el enlace activo, sin lógica frágil de detección de URL.
+- **Migración incremental**: se puede adoptar página a página sin reescribir toda la app.
+
+**Alternativas consideradas y descartadas:**
+- **React/Vue/Svelte**: overkill para Fase 1 (prototipo estático), añaden build step, bundle, dependencias.
+- **Templates HTML + JS manual**: no encapsula lógica, sigue habiendo duplicación de inicialización.
+- **Shadow DOM**: habría obligado a duplicar todo el CSS del sidebar dentro del componente, rompiendo la regla de "CSS único en components.css/styles.css".
+
 ## Estructura de carpetas
 
 ```

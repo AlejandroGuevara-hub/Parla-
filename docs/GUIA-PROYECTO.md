@@ -93,10 +93,11 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 
 | Archivo | Propósito |
 |---|---|
-| `src/scripts/nav.js` | Menú mobile toggle del header de la Landing + captura de submit de formularios con `data-navegar` (login/registro). Se carga solo en `index.html`, `login.html` y `registro.html`. |
-| `src/scripts/sidebar.js` | Drawer del sidebar: abrir/cerrar con toggle, overlay y tecla Escape. Guard `if (!sidebar || !toggle || !overlay) return;`. Se carga solo en las vistas autenticadas (8 vistas). |
+| `src/scripts/nav.js` | Menú mobile toggle del header de la Landing + captura de form[data-navegar] (login/registro). Se carga solo en `index.html`, `login.html` y `registro.html`. |
+| `src/scripts/components/sidebar.js` | Web Component `<parla-sidebar>`: renderiza el sidebar (logo + 8 enlaces), recibe `current` para marcar activo, incluye toggle/overlay drawer móvil. Se carga en vistas autenticadas (9 vistas). |
+| `src/scripts/components/user-nav.js` | Web Component `<parla-user-nav>`: renderiza el cluster flotante "Perfil / Salir". Se carga en vistas autenticadas (9 vistas). |
 | `src/scripts/theme.js` | Selector de tema claro/oscuro con persistencia en localStorage (clave `parla-theme`). Se carga en las 11 vistas. |
-| `src/scripts/animations.js` | Marca `js-animations-ready` y `page-loaded` en `<body>`, agrega `is-visible` a `.animate-in` vía IntersectionObserver (con delay escalonado), parallax sutil del hero y blur+fade (`img-load`/`img-loaded`) a todas las `<img>`. Respeta `prefers-reduced-motion`. Se carga en las 11 vistas. |
+| `src/scripts/animations.js` | Marca `js-animations-ready` y `page-loaded` en `<body>`, agrega `is-visible` a `.animate-in` vía IntersectionObserver (con delay escalonado), parallax sutil del hero y blur+fade (`img-load`/`img-loaded`) a todas las `<img>`. MutationObserver detecta `.animate-in` e `<img>` añadidos dinámicamente (fetch). Respeta `prefers-reduced-motion`. Se carga en las 11 vistas. |
 
 ## Cómo correr el proyecto
 
@@ -105,24 +106,60 @@ Abrir en navegador directo:
 src/views/index.html
 ```
 
-O con servidor local:
+O con servidor local (requerido para páginas que usan `fetch()` a JSON en `src/data/`):
 ```bash
 python -m http.server 8000
 # luego http://localhost:8000/src/views/index.html
 ```
 
-## Patrón obligatorio: navegación con sidebar
+## Patrón obligatorio: navegación con Web Components
 
-Toda vista nueva debe incluir el sidebar por defecto, **no un header tradicional**, con estas excepciones: `index.html` (Landing), `login.html` y `registro.html` (páginas pre-login sin navegación).
+Toda vista autenticada debe usar los Web Components para el sidebar y el cluster de usuario, **no HTML duplicado**.
 
-- `<aside class="sidebar" id="sidebar">` fijo a la izquierda (`260px`, `height: 100vh`): logo arriba + lista `.sidebar-links` con los 8 enlaces (Inicio, Lecciones en video, Podcast, Webtoon, Cultura, Flashcards, Quizzes, Contactos). El enlace de la página actual lleva `.is-active`.
-- `<div class="sidebar-overlay">` + `<button class="sidebar-toggle">` (hamburguesa) para el drawer en móvil (≤768px): el sidebar se desliza con `translateX`, overlay con fade; se cierra con clic en overlay o Escape (`src/scripts/sidebar.js`).
-- Cluster flotante arriba a la derecha: `<nav class="floating-user-nav">` con `<ul class="user-nav">` (solo Perfil y Salir).
-- El contenido principal va en `<main class="page-content">` (margen izquierdo de 260px en desktop, 0 en móvil).
+### `<parla-sidebar>`
+Web Component nativo (light DOM, sin Shadow DOM) definido en `src/scripts/components/sidebar.js`.
 
-CSS único en `src/styles/components.css` y `src/styles/styles.css`. Respeta `prefers-reduced-motion`.
+**Uso:**
+```html
+<script type="module" src="../scripts/components/sidebar.js"></script>
+<parla-sidebar current="inicio"></parla-sidebar>
+```
 
-La Landing (`index.html`) mantiene su propio nav de pre-login ("Iniciar sesión"/"Registrarme"); `login.html` y `registro.html` tampoco llevan sidebar — son las tres excepciones.
+**Atributos:**
+- `current` (requerido): página activa (`"inicio"`, `"video"`, `"podcast"`, `"webtoon"`, `"cultura"`, `"flashcards"`, `"quizzes"`, `"contacto"`, `"perfil"`). Marca el enlace correspondiente con `.is-active`.
+
+**Renderizado interno (light DOM, usa clases CSS existentes):**
+- `<button class="sidebar-menu-toggle">` (hamburguesa, visible ≤768px)
+- `<div class="sidebar-overlay">`
+- `<aside class="sidebar">` con logo (`<a class="sidebar__logo">` → `index.html`) y `<nav>` con 8 enlaces `.sidebar-link` (iconos `fa-solid`). El enlace activo lleva `.is-active`.
+
+**Comportamiento drawer (≤768px):** click en `.sidebar-menu-toggle` alterna `.is-open` en `.sidebar` y `.is-visible` en `.sidebar-overlay`. Click en overlay cierra. Escape cierra (si se agrega listener global en el componente).
+
+### `<parla-user-nav>`
+Web Component nativo (light DOM) definido en `src/scripts/components/user-nav.js`.
+
+**Uso:**
+```html
+<script type="module" src="../scripts/components/user-nav.js"></script>
+<parla-user-nav></parla-user-nav>
+```
+
+**Renderizado interno (light DOM):**
+- `<nav class="floating-user-nav">` con dos enlaces: Perfil (`perfil.html`, icono `fa-user`) y Salir (`index.html`, icono `fa-right-from-bracket`).
+
+### Cómo se usa en cada página autenticada
+En `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`, `contacto.html`, `perfil.html`:
+
+```html
+<script type="module" src="../scripts/components/sidebar.js"></script>
+<script type="module" src="../scripts/components/user-nav.js"></script>
+<parla-sidebar current="inicio"></parla-sidebar>
+<parla-user-nav></parla-user-nav>
+```
+
+Cambia el valor de `current` según la página (`"video"`, `"podcast"`, etc.).
+
+Las excepciones sin sidebar son: `index.html` (Landing), `login.html` y `registro.html` (páginas pre-login).
 
 ## Carga de contenido dinámico (JSON + fetch)
 

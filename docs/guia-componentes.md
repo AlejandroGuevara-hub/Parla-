@@ -468,31 +468,52 @@ Panel de navegación vertical fijo a la izquierda. Se usa en: `inicio.html`, `co
 ### `.sidebar-link` y `.sidebar-link.is-active`
 Enlace individual del sidebar: ícono + texto con `gap: var(--space-sm)`, `border-radius: var(--radius-button)`, transición suave de color/fondo. Hover y `:focus-visible`: `--color-primary` sobre fondo `color-mix` al 8%. La página actual usa `.is-active`: fondo `color-mix(in srgb, var(--color-primary) 12%, transparent)`, texto `--color-primary` y `font-weight: var(--fw-bold)`.
 
-**Responsive (drawer):** en ≤768px el sidebar no se queda fijo: `transform: translateX(-100%)` con transición `cubic-bezier(0.22, 1, 0.36, 1)` de 0.35s; `.is-open` lo desliza a la vista. Se abre con `.sidebar-toggle` (hamburguesa fija arriba a la izquierda, `z-index: 210`) y `.sidebar-overlay` (`z-index: 190`, fade de 0.3s) oscurece el fondo; clic en overlay o tecla Escape lo cierra (`src/scripts/sidebar.js`). El contenido (`main.page-content`) pierde su `margin-left` en móvil. Respeta `prefers-reduced-motion` (transición anulada).
-
 **Dónde se usa:** `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html` (páginas pre-login sin navegación).
 
 **Exclusión completa:** las 3 formas del sidebar (panel fijo, botón de menú `.sidebar-toggle` y drawer `.sidebar-overlay`) no existen en ninguna de esas vistas en ningún breakpoint (móvil, tablet o escritorio); tampoco cargan `sidebar.js`.
 
 ---
 
-### `.floating-user-nav`
-Cluster flotante fijo arriba a la derecha con los 2 botones de usuario que no viven en el sidebar: Perfil (`fa-user`) y Salir (`fa-right-from-bracket`). Píldora con `background: var(--color-bg-card)`, `border-radius: 999px`, `box-shadow: var(--shadow-card)`, `z-index: 150`. Los botones son `<ul class="user-nav">` con ícono + etiqueta debajo.
+### `<parla-sidebar>` (Web Component)
 
+Web Component nativo (light DOM, sin Shadow DOM) definido en `src/scripts/components/sidebar.js`. Reemplaza el HTML duplicado del sidebar en cada página.
+
+**Uso:**
 ```html
-<nav class="floating-user-nav animate-in" aria-label="Navegación de usuario">
-  <ul class="user-nav">
-    <li><a href="#" aria-label="Perfil"><i class="fas fa-user"></i><span>Perfil</span></a></li>
-    <li><a href="index.html" aria-label="Cerrar sesión"><i class="fas fa-right-from-bracket"></i><span>Salir</span></a></li>
-  </ul>
-</nav>
+<script type="module" src="../scripts/components/sidebar.js"></script>
+<parla-sidebar current="inicio"></parla-sidebar>
 ```
+
+**Atributos:**
+- `current` (requerido): página activa (`"inicio"`, `"video"`, `"podcast"`, `"webtoon"`, `"cultura"`, `"flashcards"`, `"quizzes"`, `"contacto"`, `"perfil"`). Marca el enlace correspondiente con `.is-active`.
+
+**Renderizado interno (light DOM, usa clases CSS existentes):**
+- `<button class="sidebar-menu-toggle">` (hamburguesa, visible ≤768px)
+- `<div class="sidebar-overlay">`
+- `<aside class="sidebar">` con logo (`<a class="sidebar__logo">` → `index.html`) y `<nav>` con 8 enlaces `.sidebar-link` (iconos `fa-solid`). El enlace activo lleva `.is-active`.
+
+**Comportamiento drawer (≤768px):** click en `.sidebar-menu-toggle` alterna `.is-open` en `.sidebar` y `.is-visible` en `.sidebar-overlay`. Click en overlay cierra. Escape cierra.
+
+**Dónde se usa:** `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`, `contacto.html`, `perfil.html`. NO en `index.html`, `login.html`, `registro.html`.
+
+---
+
+### `<parla-user-nav>` (Web Component)
+
+Web Component nativo (light DOM, sin Shadow DOM) definido en `src/scripts/components/user-nav.js`. Reemplaza el cluster flotante duplicado.
+
+**Uso:**
+```html
+<script type="module" src="../scripts/components/user-nav.js"></script>
+<parla-user-nav></parla-user-nav>
+```
+
+**Renderizado interno (light DOM):**
+- `<nav class="floating-user-nav">` con dos enlaces: Perfil (`perfil.html`, icono `fa-user`) y Salir (`index.html`, icono `fa-right-from-bracket`).
 
 **Móvil (≤480px):** las etiquetas (`span`) se ocultan y los botones quedan como íconos de 36px; la píldora se acerca al borde (`--space-xs`). Así no se superpone con la hamburguesa del sidebar.
 
-**Dónde se usa:** `inicio.html`, `contacto.html` y los 6 placeholders (vistas con sidebar). NO está en `login.html` ni `registro.html`.
-
-**Nota:** "Contacto" solía estar en este cluster (ícono de WhatsApp); desde la introducción del sidebar es un enlace más de la lista (ícono `fa-comment`). El logo flotante (`.floating-logo`) fue eliminado: el logo vive dentro del sidebar.
+**Dónde se usa:** mismas 9 vistas que `<parla-sidebar>`.
 
 ---
 

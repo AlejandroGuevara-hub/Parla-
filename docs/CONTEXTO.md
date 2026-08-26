@@ -44,4 +44,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Página de Perfil de ejemplo (avatar iniciales, stats, info, preferencias visuales, sin funcionalidad real). Conectado ícono Perfil en cluster flotante. CHANGELOG 1.19.13.
+2026-08-08 — Refactor: sidebar y cluster de usuario convertidos a Web Components nativos (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`. Eliminada duplicación HTML en 9 páginas. CHANGELOG 1.19.14.
