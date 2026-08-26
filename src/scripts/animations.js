@@ -42,6 +42,19 @@ new MutationObserver(function (mutations) {
   });
 }).observe(document.body, { childList: true, subtree: true });
 
+// 3. MutationObserver para detectar .animate-in AÑADIDO COMO CLASE a elementos YA EXISTENTES
+new MutationObserver(function (mutations) {
+  mutations.forEach(function (m) {
+    if (m.type === 'attributes' && m.attributeName === 'class') {
+      var target = m.target;
+      if (target.classList.contains('animate-in') && !target.dataset.animObserved) {
+        target.dataset.animObserved = 'true'; // evita duplicados
+        observeAnimateIn(target);
+      }
+    }
+  });
+}).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+
 /* ============================================================
    PARALLAX HERO (extremadamente sutil)
    ============================================================ */
