@@ -1,5 +1,14 @@
 # Changelog — Parla!
 
+## [1.19.15] — 2026-08-08
+
+### Fixed
+- Corrige superposición del botón de menú con el logo del sidebar en móvil (≤768px):
+  - Añadido `padding-top: 4.5rem` a `.sidebar` para reservar espacio del botón fijo.
+  - El botón de menú (`.sidebar-menu-toggle`) cambia a ícono "X" (`fa-xmark`) al abrir el drawer y vuelve a hamburguesa (`fa-bars`) al cerrar, con `aria-label` dinámico ("Abrir menú" / "Cerrar menú").
+  - Añadido cierre por tecla Escape.
+  - `z-index` del botón ajustado a 60 (por encima del sidebar).
+
 ## [1.19.14] — 2026-08-08
 
 ### Changed

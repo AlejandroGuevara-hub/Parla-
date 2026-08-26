@@ -461,7 +461,7 @@ Imágenes con blur + fade al terminar de cargar: `animations.js` agrega `.img-lo
 ---
 
 ### `.sidebar`
-Panel de navegación vertical fijo a la izquierda. Se usa en: `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html`. `position: fixed`, ancho `260px`, `height: 100vh`, `overflow-y: auto` (scroll propio si la lista no entra), fondo `--color-bg-card`, `box-shadow: var(--shadow-card)`, `z-index: 200`.
+Panel de navegación vertical fijo a la izquierda. Se usa en: `inicio.html`, `contacto.html` y los 6 placeholders. NO aplica en `index.html` (Landing), `login.html` ni `registro.html`. `position: fixed`, ancho `260px`, `height: 100vh`, `overflow-y: auto` (scroll propio si la lista no entra), fondo `--color-bg-card`, `box-shadow: var(--shadow-card)`, `z-index: 200`, `padding: 4.5rem var(--space-md) var(--space-md)` (el `padding-top: 4.5rem` reserva espacio para el botón de menú fijo en móvil).
 
 **Contenido (de arriba a abajo):** logo de Parla! (`.sidebar__logo`, 48px, enlaza a `index.html`) y lista `.sidebar-links` con 8 enlaces (ícono Font Awesome + texto): Inicio (`fa-house`), Lecciones en video (`fa-video`), Podcast (`fa-headphones`), Webtoon (`fa-book-open`), Cultura (`fa-landmark`), Flashcards (`fa-layer-group`), Quizzes (`fa-circle-question`), Contactos (`fa-comment`).
 
@@ -493,6 +493,8 @@ Web Component nativo (light DOM, sin Shadow DOM) definido en `src/scripts/compon
 - `<aside class="sidebar">` con logo (`<a class="sidebar__logo">` → `index.html`) y `<nav>` con 8 enlaces `.sidebar-link` (iconos `fa-solid`). El enlace activo lleva `.is-active`.
 
 **Comportamiento drawer (≤768px):** click en `.sidebar-menu-toggle` alterna `.is-open` en `.sidebar` y `.is-visible` en `.sidebar-overlay`. Click en overlay cierra. Escape cierra.
+
+**Botón de menú (`.sidebar-menu-toggle`):** fijo en la esquina superior izquierda (`top: var(--space-sm); left: var(--space-sm);`). En móvil (≤768px) se muestra como `flex`; en desktop está oculto. Al abrir el drawer, el ícono cambia de hamburguesa (`fa-bars`) a "X" (`fa-xmark`) y el `aria-label` cambia a "Cerrar menú". Al cerrar, vuelve a hamburguesa y "Abrir menú". `z-index: 60` (por encima del sidebar `z-index: 200` pero el botón está fuera del sidebar, fijo en viewport).
 
 **Dónde se usa:** `inicio.html`, `video.html`, `podcast.html`, `webtoon.html`, `cultura.html`, `flashcards.html`, `quizzes.html`, `contacto.html`, `perfil.html`. NO en `index.html`, `login.html`, `registro.html`.
 

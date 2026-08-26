@@ -1269,6 +1269,11 @@ a {
     display: block;
   }
 
+  .sidebar-menu-toggle {
+    display: flex;
+  }
+}
+
   .hero__logo {
     top: var(--space-sm);
     left: var(--space-sm);

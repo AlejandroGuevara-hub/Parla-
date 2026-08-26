@@ -243,6 +243,38 @@
 }
 
 
+/* ---------- Sidebar: toggle de menú (hamburguesa/X) ---------- */
+
+.sidebar-menu-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  width: 44px;
+  height: 44px;
+  z-index: 60;
+  background: var(--color-bg-card);
+  border: none;
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-menu-toggle:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-primary);
+}
+
+.sidebar-menu-toggle i {
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
 /* ---------- Sidebar (navegación vertical fija) ---------- */
 
 .sidebar {
@@ -254,7 +286,7 @@
   overflow-y: auto;
   background: var(--color-bg-card);
   box-shadow: var(--shadow-card);
-  padding: var(--space-md);
+  padding: 4.5rem var(--space-md) var(--space-md);
   z-index: 200;
   display: flex;
   flex-direction: column;

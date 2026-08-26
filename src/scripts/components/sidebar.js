@@ -36,15 +36,39 @@ class ParlaSidebar extends HTMLElement {
     const toggle = this.querySelector('.sidebar-menu-toggle');
     const sidebar = this.querySelector('.sidebar');
     const overlay = this.querySelector('.sidebar-overlay');
+    const icon = toggle?.querySelector('i');
 
     toggle?.addEventListener('click', () => {
-      sidebar.classList.toggle('is-open');
+      const isOpen = sidebar.classList.toggle('is-open');
       overlay.classList.toggle('is-visible');
+      if (icon) {
+        icon.classList.toggle('fa-bars', !isOpen);
+        icon.classList.toggle('fa-xmark', isOpen);
+      }
+      toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     });
 
     overlay?.addEventListener('click', () => {
       sidebar.classList.remove('is-open');
       overlay.classList.remove('is-visible');
+      if (icon) {
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
+      }
+      toggle.setAttribute('aria-label', 'Abrir menú');
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
+        sidebar.classList.remove('is-open');
+        overlay.classList.remove('is-visible');
+        if (icon) {
+          icon.classList.add('fa-bars');
+          icon.classList.remove('fa-xmark');
+        }
+        toggle.setAttribute('aria-label', 'Abrir menú');
+      }
     });
   }
 }

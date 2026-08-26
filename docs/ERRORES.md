@@ -1,5 +1,17 @@
 # Errores cometidos — Parla!
 
+### [2026-08-08] Botón de menú se superpone al logo del sidebar en móvil
+**Qué pasó:** En la versión móvil (≤768px) con el drawer del sidebar abierto, el botón de menú (hamburguesa, `.sidebar-menu-toggle`) quedaba superpuesto al logo del sidebar (`.sidebar__logo`), ambos en la esquina superior izquierda sin espacio reservado.
+
+**Por qué pasó:** El botón de menú es `position: fixed` en la esquina superior izquierda, y el sidebar no tenía `padding-top` suficiente para dejar libre ese espacio. Al abrir el drawer, el logo aparecía justo debajo del botón fijo, solapándose visualmente.
+
+**Cómo se corrigió:**
+1. Se añadió `padding-top: 4.5rem` a `.sidebar` en `components.css` para reservar el espacio del botón fijo + margen.
+2. El botón de menú (`.sidebar-menu-toggle`) pasa a mostrar una "X" (`fa-xmark`) al abrir el drawer y vuelve a hamburguesa (`fa-bars`) al cerrar, con `aria-label` dinámico ("Abrir menú" / "Cerrar menú").
+3. Se añadió cierre por tecla Escape.
+
+**Cómo evitarlo:** Al usar elementos fijos superpuestos (botón + panel), reservar espacio en el panel con `padding` o `margin`. Preferir que el botón de menú cambie a ícono de cerrar cuando el panel está abierto, para mejorar la UX y evitar confusión.
+
 ### [2026-08-08] Spec de eliminación del glow escrito pero nunca aplicado al código
 **Qué pasó:** Existe `docs/specs/prompt-eliminar-card-featured.md` que ordena eliminar por completo el efecto `.card--featured` (glow) de la tarjeta de Lecciones en video, porque el degradado rellenaba toda la tarjeta. Al auditar la documentación contra el código real, el efecto sigue vivo: `inicio.html:79` conserva la clase `card--featured`, `styles.css` conserva `.card--featured::before/::after`, `@keyframes girar-gradiente`, `@property --gradient-angle` y los tokens `--glow-clr-1/2/3` en `variables.css`. No existe ningún commit que lo haya aplicado.
 
