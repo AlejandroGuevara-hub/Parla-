@@ -66,10 +66,13 @@ var enMovimiento = false;
 function parallaxHero() {
   enMovimiento = false;
   if (!heroBg || reduceMotion) return;
-  var inicio = heroBg.getBoundingClientRect().top + window.scrollY;
-  var avance = window.scrollY - inicio;
+  var hero = heroBg.parentElement;
+  var rect = hero.getBoundingClientRect();
+  // La imagen se mueve más lento que el contenido (factor < 1). Solo se desplaza
+  // cuando el hero sube (rect.top < 0); nunca hacia arriba, para no recortarse.
+  var avance = -rect.top * 0.2;
   if (avance < 0) avance = 0;
-  var max = 30;
+  var max = 24;
   if (avance > max) avance = max;
   heroBg.style.transform = 'translateY(' + avance + 'px) scale(1.08)';
 }

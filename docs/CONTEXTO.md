@@ -46,4 +46,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Página de detalle de episodio (`episodio-detalle.html?id=`) como plantilla dinámica: portada placeholder, reproductor y transcripción simulados (skeleton). Episodios de `podcast.html` enlazan a su detalle. CHANGELOG 1.19.17.
+2026-08-08 — Fix parallax del hero: la imagen de fondo ya no se achica/recorta al scrollear (avance derivado del viewport, no de `scrollY - inicio`). CHANGELOG 1.19.18.

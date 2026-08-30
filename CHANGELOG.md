@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.18] — 2026-08-08
+
+### Fixed
+- Parallax del hero de la Landing: se corrige el cálculo del avance. Antes usaba `avance = scrollY - inicio` (posición fija), que crecía al scrollear y desplazaba la imagen hacia abajo hasta recortarla/achicarla dentro del hero (`overflow: hidden`). Ahora el avance deriva de la posición del hero en el viewport (`getBoundingClientRect().top`), la imagen se mueve más lenta que el contenido (factor 0.2, acotado a 0–24px) y solo cuando el hero sube — ya no se recorta ni se achica.
+
 ## [1.19.17] — 2026-08-08
 
 ### Added

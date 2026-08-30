@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-08] Imagen de fondo del hero se "achica"/recorta al hacer scroll
+**Qué pasó:** Al hacer scroll en la Landing, la imagen de fondo del hero (`.hero__bg`) parecía hacerse más pequeña o recortarse, sin transición.
+
+**Por qué pasó:** El parallax calculaba `avance = scrollY - inicio`, donde `inicio` es la posición del hero respecto al documento (constante). Como `scrollY` crece al scrollear y `inicio` no cambia, `avance` quedaba positivo en cuanto se scrolleaba (incluso dentro del hero). Eso desplazaba la imagen hacia abajo (`translateY`) más de lo debido, y como estaba anclada con `inset: 0` dentro de un hero con `overflow: hidden`, se salía del marco → parecía encogerse. No había `transition` porque `transform` se setea directo en cada `requestAnimationFrame` (correcto para parallax).
+
+**Cómo se corrigió:** Se reescribió el cálculo del parallax para que el avance derive de la posición del hero en el viewport (`hero.getBoundingClientRect().top`), con la imagen moviéndose más lenta que el contenido (factor `0.2`, acotado a `0–24px`) y solo cuando el hero sube (`rect.top < 0`). La imagen ya no se recorta ni se achica al scrollear.
+
+**Cómo evitarlo:** En parallax, derivar el avance de la posición actual del contenedor en el viewport (`getBoundingClientRect()`), no de la resta `scrollY - inicio` contra una posición fija. Acotar el desplazamiento y asegurar que la imagen nunca quede fuera del marco del contenedor (usar `scale` de respaldo si es necesario).
+
 ### [2026-08-08] Botón de menú se superpone al logo del sidebar en móvil
 **Qué pasó:** En la versión móvil (≤768px) con el drawer del sidebar abierto, el botón de menú (hamburguesa, `.sidebar-menu-toggle`) quedaba superpuesto al logo del sidebar (`.sidebar__logo`), ambos en la esquina superior izquierda sin espacio reservado.
 
