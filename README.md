@@ -79,6 +79,7 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 | [`src/views/video.html`](src/views/video.html) | **Lecciones en video**: banner "Continuar" + acordeón de módulos/lecciones con estados y progreso; cada lección enlaza a su detalle. Con sidebar. Carga `src/data/lecciones.json`. |
 | [`src/views/leccion-detalle.html`](src/views/leccion-detalle.html) | **Detalle de lección** (plantilla dinámica): renderiza una lección según `?id=` de la URL. Con sidebar. Carga `src/data/lecciones.json`. |
 | [`src/views/podcast.html`](src/views/podcast.html) | **Podcast**: banner "Continuar" + lista de episodios con play visual, duración, estado y transcripción. Con sidebar. Carga `src/data/podcast.json`. |
+| [`src/views/episodio-detalle.html`](src/views/episodio-detalle.html) | **Detalle de episodio** (plantilla dinámica): renderiza un episodio según `?id=`, con portada, reproductor y transcripción simulados. Con sidebar. Carga `src/data/podcast.json`. |
 | [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon** (pendiente definición de contenido). Con sidebar. |
 | [`src/views/cultura.html`](src/views/cultura.html) | **Cultura**: banner "Continuar" + lista de temas con estados. Con sidebar. Carga `src/data/cultura.json`. |
 | [`src/views/flashcards.html`](src/views/flashcards.html) | **Flashcards**: banner "Continuar" + grid de mazos con barra de progreso (dominadas/total). Con sidebar. Carga `src/data/flashcards.json`. |

@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.19.17] — 2026-08-08
+
+### Added
+- Página de detalle de episodio (`episodio-detalle.html`) como plantilla dinámica: lee `?id=` de la URL, hace `fetch()` de `src/data/podcast.json`, busca el episodio por id y renderiza su contenido. Incluye portada placeholder con degradado (`.episodio-imagen-placeholder`), reproductor simulado (`.reproductor-simulado`): botón play/pausa que solo alterna el ícono y barra de progreso en 0% (sin audio real), transcripción simulada con skeleton (`.skeleton-line`, shimmer respetando `prefers-reduced-motion`), y navegación anterior/siguiente desde el orden del JSON. Si el id no existe, muestra "Episodio no encontrado".
+- `podcast.html`: cada fila de episodio es ahora un link a `episodio-detalle.html?id=<id>`, generado dinámicamente del mismo JSON.
+
 ## [1.19.16] — 2026-08-08
 
 ### Added

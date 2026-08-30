@@ -21,6 +21,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── video.html          # Lecciones en video (banner + acordeón de módulos/lecciones)
 │   │   ├── leccion-detalle.html# Plantilla dinámica: renderiza 1 lección según ?id= (no hay un .html por lección)
 │   │   ├── podcast.html        # Podcast (banner + lista de episodios con transcripción)
+│   │   ├── episodio-detalle.html# Plantilla dinámica: renderiza 1 episodio según ?id= (reproductor y transcripción simulados)
 │   │   ├── webtoon.html        # Placeholder: Webtoon
 │   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
 │   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)

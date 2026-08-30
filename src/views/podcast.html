@@ -89,7 +89,7 @@
             </button>
             <div class="episode-item__info">
               <span class="episode-item__icon">${estadoIcon(ep.estado)}</span>
-              <span class="episode-item__title">${ep.titulo}</span>
+              <a class="episode-item__title" href="episodio-detalle.html?id=${ep.id}">${ep.titulo}</a>
               ${ep.transcripcion ? '<span class="episode-item__transcripcion"><i class="fas fa-file-alt"></i> Transcripción</span>' : ''}
             </div>
             <span class="episode-item__duracion">${ep.duracion}</span>

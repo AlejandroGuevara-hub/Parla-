@@ -14,6 +14,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Inicio del estudiante (6 tarjetas con imágenes reales del cliente)
 - [x] Páginas de contenido (5) — Lecciones, Podcast, Cultura, Flashcards, Quizzes con banner, listas/grids, estados y datos JSON
 - [x] Página de detalle de lección (plantilla dinámica `leccion-detalle.html?id=...`)
+- [x] Página de detalle de episodio (plantilla dinámica `episodio-detalle.html?id=...`, reproductor y transcripción simulados)
 - [x] Webtoon (placeholder — pendiente definición de contenido)
 - [x] Página de Perfil de ejemplo (avatar, stats, info, preferencias — sin funcionalidad real)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
@@ -45,4 +46,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Página de detalle de lección (`leccion-detalle.html?id=`) como plantilla dinámica: lee la lección de `lecciones.json` según `?id=`, sin archivo por lección. Lecciones de `video.html` ahora enlazan a su detalle. CHANGELOG 1.19.16.
+2026-08-08 — Página de detalle de episodio (`episodio-detalle.html?id=`) como plantilla dinámica: portada placeholder, reproductor y transcripción simulados (skeleton). Episodios de `podcast.html` enlazan a su detalle. CHANGELOG 1.19.17.

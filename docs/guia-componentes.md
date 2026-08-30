@@ -409,6 +409,74 @@ Componente compartido para todos los estados visuales:
 
 ---
 
+### `.lesson-nav` (navegación anterior/siguiente)
+Barra de navegación entre lecciones (leccion-detalle.html) o episodios (episodio-detalle.html). Botones prev/next con ícono, etiqueta pequeña y título; el de primera/última posición se deshabilita (`.lesson-nav__btn--disabled`).
+
+```html
+<nav class="lesson-nav" aria-label="Navegación">
+  <a class="btn btn-secondary lesson-nav__btn" href="leccion-detalle.html?id=${prev.id}">
+    <i class="fas fa-arrow-left"></i>
+    <span class="lesson-nav__wrap"><small>Lección anterior</small><span>Título</span></span>
+  </a>
+  <a class="btn btn-secondary lesson-nav__btn lesson-nav__btn--next" href="leccion-detalle.html?id=${next.id}">
+    <span class="lesson-nav__wrap"><small>Lección siguiente</small><span>Título</span></span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</nav>
+```
+
+**Dónde se usa:** `leccion-detalle.html`, `episodio-detalle.html`.
+
+---
+
+### `.episodio-imagen-placeholder`
+Bloque gráfico placeholder de la portada del episodio (no hay foto real). Degradado con colores existentes (`--color-primary` → `--color-secondary`) + ícono Font Awesome grande al centro.
+
+```html
+<div class="episodio-imagen-placeholder">
+  <i class="fa-solid fa-headphones"></i>
+</div>
+```
+
+**Estilo:** `height: 240px`, `border-radius: var(--radius-card)`, centrado; ícono `4rem`, blanco `opacity: 0.9`.
+
+**Dónde se usa:** `episodio-detalle.html`.
+
+---
+
+### `.reproductor-simulado`
+Reproductor de audio simulado (no reproduce nada). Botón play/pausa que alterna ícono visualmente, barra de progreso en 0% y duración del JSON.
+
+```html
+<div class="reproductor-simulado">
+  <button class="reproductor-simulado__play" aria-label="Reproducir"><i class="fa-solid fa-play"></i></button>
+  <div class="reproductor-simulado__barra"><div class="reproductor-simulado__progreso"></div></div>
+  <span class="reproductor-simulado__duracion">0:00 / <span data-duracion>8:15</span></span>
+</div>
+```
+
+**Comportamiento:** click en `.reproductor-simulado__play` alterna `fa-play` ↔ `fa-pause` y el `aria-label` ("Reproducir"/"Pausar"). La barra no avanza (no hay audio real).
+
+**Dónde se usa:** `episodio-detalle.html`.
+
+---
+
+### `.skeleton-line` (transcripción simulada)
+Línea de texto falsa con efecto shimmer, usada para simular la transcripción del episodio. Respeta `prefers-reduced-motion` (se queda estática).
+
+```html
+<div class="transcripcion-placeholder">
+  <div class="skeleton-line" style="width: 90%"></div>
+  <div class="skeleton-line" style="width: 95%"></div>
+</div>
+```
+
+**Estilo:** `height: 12px`, `border-radius: 6px`, fondo shimmer animado `1.4s ease-in-out infinite` con paleta existente (`--color-border`).
+
+**Dónde se usa:** `episodio-detalle.html`.
+
+---
+
 ### `.composite-section`
 Sección debajo del hero en la Landing Page. Layout en grid de 2 columnas (30% / 70%) con dos filas, sin padding derecho para que la imagen toque el borde de la página.
 

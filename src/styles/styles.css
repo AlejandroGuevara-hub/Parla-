@@ -1890,3 +1890,184 @@ a {
 }
 
 
+/* ============================================================
+   Página de detalle de episodio (plantilla dinámica)
+   ============================================================ */
+
+.episodio-detalle {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.episodio-detalle__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+}
+
+.episodio-detalle__badge {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+}
+
+.episodio-detalle__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  line-height: 1.3;
+}
+
+/* Imagen placeholder (bloque gráfico con degradado + ícono) */
+.episodio-imagen-placeholder {
+  width: 100%;
+  height: 240px;
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+
+.episodio-imagen-placeholder i {
+  font-size: 4rem;
+  color: white;
+  opacity: 0.9;
+}
+
+/* Reproductor simulado */
+.reproductor-simulado {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-lg);
+}
+
+.reproductor-simulado__play {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.reproductor-simulado__play:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.reproductor-simulado__barra {
+  flex: 1;
+  height: 6px;
+  background: var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.reproductor-simulado__progreso {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.reproductor-simulado__duracion {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Transcripción simulada (skeleton / shimmer) */
+.transcripcion-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-lg);
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 25%,
+    color-mix(in srgb, var(--color-border) 50%, transparent) 50%,
+    var(--color-border) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-line {
+    animation: none;
+    background: var(--color-border);
+  }
+}
+
+/* Título de episodio como link (en la lista podcast.html) */
+.episode-item__title {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.episode-item__title:hover,
+.episode-item__title:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .episodio-detalle {
+    padding: var(--space-md);
+  }
+  .reproductor-simulado {
+    flex-wrap: wrap;
+  }
+  .reproductor-simulado__barra {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+

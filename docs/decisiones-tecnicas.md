@@ -190,6 +190,18 @@ Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) 
 
 **Trade-off:** la URL es menos "legible" (`leccion-detalle.html?id=l3` en vez de `leccion-3.html`), aceptable para Fase 1 donde no hay SEO ni URLs limpias como requisito.
 
+## Simular reproductor y transcripción (en vez de dejarlos vacíos)
+
+En `episodio-detalle.html` el reproductor de audio y la transcripción son simulados: bloque de imagen con degradado (placeholder), botón play/pausa que solo alterna el ícono, barra de progreso en 0% y transcripción con líneas skeleton. No hay audio ni texto real (el cliente aún no los entregó).
+
+**Por qué simular en vez de dejar el espacio vacío:**
+- **Completa la experiencia del prototipo**: el usuario ve la página "terminada" (portada, reproductor, transcripción) aunque el contenido real esté pendiente, en vez de una página a medio construir con huecos vacíos.
+- **Deja clara la estructura final**: muestra dónde irá cada cosa cuando el cliente entregue el material, sin inventar contenido.
+- **Reutiliza efectos existentes**: el skeleton usa el shimmer de la paleta (`docs/GUIA-ANIMACIONES.md`), el reproductor usa tokens existentes — nada nuevo fuera del sistema.
+- **Coherente con Fase 1**: igual criterio que el botón "Marcar como completada" de lecciones y los estados de progreso: visual, sin lógica real de guardado/reproducción.
+
+**Trade-off:** no hay funcionalidad real de audio; es solo UI. Documentado en `docs/PENDIENTES.md` (conectar audio/transcripción reales cuando el cliente los entregue).
+
 ## Web Components nativos (Sidebar y Cluster de Usuario)
 
 El sidebar y el cluster flotante "Perfil/Salir" estaban duplicados en 9 archivos HTML. Se refactorizaron a Web Components nativos (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`.
