@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección — Parla!</title>
+  <script>!function(){var t=localStorage.getItem("parla-theme");"dark"===t&&document.documentElement.setAttribute("data-theme","dark")}();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+  <parla-sidebar current="video"></parla-sidebar>
+  <parla-user-nav></parla-user-nav>
+
+  <main class="page-content">
+    <section class="dashboard animate-in">
+      <div class="dashboard__header animate-in">
+        <div class="icon video" aria-hidden="true"><i class="fas fa-video"></i></div>
+        <h1 class="dashboard__title">Lección</h1>
+        <p class="dashboard__subtitle">Detalle de la lección</p>
+      </div>
+
+      <!-- Contenido de la lección -->
+      <div id="lesson-content"></div>
+
+      <div style="text-align:center;margin-top:var(--space-lg)">
+        <a href="video.html" class="btn btn-primary animate-in">&larr; Volver a las lecciones</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer animate-in">
+    <p>&copy; 2026 Parla! — Todos los derechos reservados.</p>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <script type="module" src="../scripts/components/sidebar.js"></script>
+  <script type="module" src="../scripts/components/user-nav.js"></script>
+  <script src="../scripts/theme.js"></script>
+  <script src="../scripts/animations.js"></script>
+  <script>
+    // Lección - plantilla dinámica
+    (function() {
+      const contentEl = document.getElementById('lesson-content');
+
+      const params = new URLSearchParams(window.location.search);
+      const idLeccion = params.get('id');
+
+      function estadoLabel(estado) {
+        return estado === 'completado' ? 'Completada' : estado === 'en-progreso' ? 'En progreso' : 'Pendiente';
+      }
+
+      // Aplana todas las lecciones (módulo + lección) para calcular anterior/siguiente
+      function aplanarLecciones(modulos) {
+        const planas = [];
+        modulos.forEach(mod => {
+          mod.lecciones.forEach(lecc => {
+            planas.push({ ...lecc, modulo: mod });
+          });
+        });
+        return planas;
+      }
+
+      function renderizarNoEncontrada() {
+        contentEl.innerHTML = `
+          <div class="lesson-notfound animate-in">
+            <i class="fas fa-circle-exclamation lesson-notfound__icon"></i>
+            <h2 class="lesson-notfound__title">Lección no encontrada</h2>
+            <p class="lesson-notfound__text">El enlace no corresponde a una lección válida.</p>
+            <a href="video.html" class="btn btn-primary">Volver a las lecciones</a>
+          </div>
+        `;
+      }
+
+      function renderizarLeccion(leccion, index, planas) {
+        const prev = planas[index - 1];
+        const next = planas[index + 1];
+        const modulo = leccion.modulo;
+
+        contentEl.innerHTML = `
+          <article class="lesson-detail animate-in">
+            <div class="lesson-detail__header">
+              <span class="lesson-detail__modulo">${modulo.titulo} · ${modulo.subtitulo}</span>
+              <span class="lesson-detail__badge">${estadoLabel(leccion.estado)}</span>
+            </div>
+            <h2 class="lesson-detail__title">${leccion.titulo}</h2>
+
+            <div class="lesson-video animate-in" role="img" aria-label="Reproductor de video de la lección">
+              <button class="lesson-video__play" aria-label="Reproducir video">
+                <i class="fas fa-play"></i>
+              </button>
+              <span class="lesson-video__label">Reproductor de video (próximamente)</span>
+            </div>
+
+            <div class="lesson-detail__actions">
+              <button class="btn btn-primary lesson-complete-btn">Marcar como completada</button>
+            </div>
+
+            <nav class="lesson-nav" aria-label="Navegación entre lecciones">
+              ${prev
+                ? `<a class="btn btn-secondary lesson-nav__btn" href="leccion-detalle.html?id=${prev.id}">
+                     <i class="fas fa-arrow-left"></i>
+                     <span class="lesson-nav__wrap">
+                       <small>Lección anterior</small>
+                       <span>${prev.titulo}</span>
+                     </span>
+                   </a>`
+                : `<span class="btn btn-secondary lesson-nav__btn lesson-nav__btn--disabled">
+                     <i class="fas fa-arrow-left"></i>
+                     <span class="lesson-nav__wrap"><small>Lección anterior</small></span>
+                   </span>`}
+              ${next
+                ? `<a class="btn btn-secondary lesson-nav__btn lesson-nav__btn--next" href="leccion-detalle.html?id=${next.id}">
+                     <span class="lesson-nav__wrap">
+                       <small>Lección siguiente</small>
+                       <span>${next.titulo}</span>
+                     </span>
+                     <i class="fas fa-arrow-right"></i>
+                   </a>`
+                : `<span class="btn btn-secondary lesson-nav__btn lesson-nav__btn--next lesson-nav__btn--disabled">
+                     <span class="lesson-nav__wrap"><small>Lección siguiente</small></span>
+                     <i class="fas fa-arrow-right"></i>
+                   </span>`}
+            </nav>
+          </article>
+        `;
+
+        contentEl.querySelector('.lesson-complete-btn').addEventListener('click', () => {
+          alert('Esta función estará disponible próximamente');
+        });
+      }
+
+      fetch('../data/lecciones.json')
+        .then(res => res.json())
+        .then(data => {
+          const planas = aplanarLecciones(data.modulos);
+          const index = planas.findIndex(l => l.id === idLeccion);
+          if (index === -1) {
+            renderizarNoEncontrada();
+          } else {
+            renderizarLeccion(planas[index], index, planas);
+          }
+        })
+        .catch(err => {
+          console.error('Error cargando lección:', err);
+          renderizarNoEncontrada();
+        });
+    })();
+  </script>
+</body>
+</html>

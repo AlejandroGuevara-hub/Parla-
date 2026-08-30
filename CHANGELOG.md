@@ -1,5 +1,11 @@
 # Changelog — Parla!
 
+## [1.19.16] — 2026-08-08
+
+### Added
+- Página de detalle de lección (`leccion-detalle.html`) como plantilla dinámica: lee `?id=` de la URL con `URLSearchParams`, hace `fetch()` de `src/data/lecciones.json`, busca la lección recorriendo los módulos y renderiza su contenido (módulo, título, placeholder de reproductor de video, badge de estado, botón "Marcar como completada" visual y navegación anterior/siguiente calculada desde el orden de las lecciones). Si el `id` no existe, muestra "Lección no encontrada". No hay un `.html` por lección: agregar una lección a `lecciones.json` la hace aparecer en `video.html` y en su detalle sin crear archivos.
+- `video.html`: cada lección de la lista es ahora un link a `leccion-detalle.html?id=<id>`, generado dinámicamente del mismo JSON.
+
 ## [1.19.15] — 2026-08-08
 
 ### Fixed

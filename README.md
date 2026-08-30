@@ -76,7 +76,8 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 | [`src/views/login.html`](src/views/login.html) | **Inicio de sesión** (maqueta visual, sin backend). Navega a `inicio.html`. No tiene sidebar. |
 | [`src/views/registro.html`](src/views/registro.html) | **Registro** (maqueta visual). Navega a `login.html` (flujo real registro → login). No tiene sidebar. |
 | [`src/views/inicio.html`](src/views/inicio.html) | **Inicio del estudiante** (post-login): dashboard con 6 tarjetas funcionales que enlazan a sus páginas. Con sidebar. |
-| [`src/views/video.html`](src/views/video.html) | **Lecciones en video**: banner "Continuar" + acordeón de módulos/lecciones con estados y progreso. Con sidebar. Carga `src/data/lecciones.json`. |
+| [`src/views/video.html`](src/views/video.html) | **Lecciones en video**: banner "Continuar" + acordeón de módulos/lecciones con estados y progreso; cada lección enlaza a su detalle. Con sidebar. Carga `src/data/lecciones.json`. |
+| [`src/views/leccion-detalle.html`](src/views/leccion-detalle.html) | **Detalle de lección** (plantilla dinámica): renderiza una lección según `?id=` de la URL. Con sidebar. Carga `src/data/lecciones.json`. |
 | [`src/views/podcast.html`](src/views/podcast.html) | **Podcast**: banner "Continuar" + lista de episodios con play visual, duración, estado y transcripción. Con sidebar. Carga `src/data/podcast.json`. |
 | [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon** (pendiente definición de contenido). Con sidebar. |
 | [`src/views/cultura.html`](src/views/cultura.html) | **Cultura**: banner "Continuar" + lista de temas con estados. Con sidebar. Carga `src/data/cultura.json`. |

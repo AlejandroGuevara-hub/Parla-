@@ -19,6 +19,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── registro.html       # Registro (maqueta)
 │   │   ├── inicio.html         # Inicio del estudiante (post-login: dashboard con 6 tarjetas)
 │   │   ├── video.html          # Lecciones en video (banner + acordeón de módulos/lecciones)
+│   │   ├── leccion-detalle.html# Plantilla dinámica: renderiza 1 lección según ?id= (no hay un .html por lección)
 │   │   ├── podcast.html        # Podcast (banner + lista de episodios con transcripción)
 │   │   ├── webtoon.html        # Placeholder: Webtoon
 │   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
@@ -168,3 +169,23 @@ Las 5 secciones de contenido (`video.html`, `podcast.html`, `cultura.html`, `fla
 - Separar contenido de presentación (fácil actualizar textos sin tocar HTML).
 - Escalar a futuro backend sin reescribir la UI.
 - Usar `fetch()` requiere servir el proyecto por HTTP (no `file://`); ver "Cómo correr el proyecto".
+
+## Patrón de plantilla dinámica (leccion-detalle.html)
+
+`leccion-detalle.html` es **una sola página** que renderiza el contenido de cualquier lección según un
+parámetro de URL: `leccion-detalle.html?id=l3`. No existe un `.html` por lección.
+
+**Cómo funciona:**
+1. Lee el `id` con `URLSearchParams`.
+2. Hace `fetch()` de `src/data/lecciones.json`.
+3. Busca la lección recorriendo `modulos[].lecciones` (aplana la lista en un array plano con su módulo).
+4. Si existe → renderiza; si no → mensaje "Lección no encontrada" + botón a `video.html`.
+
+**Navegación prev/next:** se calcula desde el array plano de lecciones (índice ± 1), cruzando
+módulos. En la primera/última lección el botón correspondiente se deshabilita (`--disabled`).
+
+**Por qué así:** agregar una lección nueva a `lecciones.json` la hace aparecer automáticamente en
+`video.html` (los links se generan del mismo JSON) **y** ya resulta accesible en su detalle, sin
+crear archivos nuevos. Ver `docs/decisiones-tecnicas.md`.
+
+El mismo patrón es replicable a futuro para Podcast/Cultura/Flashcards/Quizzes.

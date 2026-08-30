@@ -105,7 +105,7 @@
               ${mod.lecciones.map(lecc => `
                 <li class="lesson-item">
                   <span class="lesson-item__icon">${estadoIcon(lecc.estado, lecc.progreso)}</span>
-                  <span class="lesson-item__title">${lecc.titulo}</span>
+                  <a class="lesson-item__title" href="leccion-detalle.html?id=${lecc.id}">${lecc.titulo}</a>
                   ${lecc.estado === 'en-progreso' && lecc.progreso ? `<span class="lesson-item__progress">${lecc.progreso}%</span>` : ''}
                 </li>
               `).join('')}

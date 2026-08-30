@@ -179,6 +179,17 @@ Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) 
 
 **Trade-off:** `fetch()` requiere servir el proyecto por HTTP (no abre con `file://` por CORS). Documentado en `README.md` cómo levantar servidor local (`npx serve`, `python -m http.server`).
 
+## Plantilla de detalle con parámetro de URL (vs. un HTML por lección)
+
+`leccion-detalle.html` es una única página que renderiza cualquier lección leyendo `?id=` de la URL. Se eligió en vez de crear un archivo HTML por lección porque:
+
+- **Escala sin generar archivos nuevos**: agregar una lección a `lecciones.json` la hace aparecer en `video.html` (los links se generan del mismo JSON) y ya funciona en `leccion-detalle.html?id=<su-id>`, sin tocar ni crear ningún `.html`.
+- **Coherente con contenido en JSON**: el contenido ya vive en `src/data/lecciones.json`; la página es solo la capa de presentación que lo lee por id.
+- **Una fuente de verdad**: no hay N archivos que dupliquen estructura ni riesgo de olvidar una lección al crear su página.
+- **Mismo patrón replicable**: aplica igual a Podcast/Cultura/Flashcards/Quizzes (`*-detalle.html?id=...`) si se quiere ese comportamiento.
+
+**Trade-off:** la URL es menos "legible" (`leccion-detalle.html?id=l3` en vez de `leccion-3.html`), aceptable para Fase 1 donde no hay SEO ni URLs limpias como requisito.
+
 ## Web Components nativos (Sidebar y Cluster de Usuario)
 
 El sidebar y el cluster flotante "Perfil/Salir" estaban duplicados en 9 archivos HTML. Se refactorizaron a Web Components nativos (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`.
