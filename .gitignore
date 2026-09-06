@@ -1,9 +1,28 @@
-# System
-Thumbs.db
+# Material de referencia del cliente — assets crudos, no código de producción
+/reference/
+
+# Archivos comprimidos sueltos
+*.zip
+
+# Archivos de bloqueo de LibreOffice/Office
+.~lock.*#
+.~lock*
+
+# Sistema operativo
 .DS_Store
+Thumbs.db
 *.swp
 
-# Dependencies (none yet, but por si acaso)
+# Editores
+.vscode/
+.idea/
+
+# Dependencias (por si se instala algo con npm más adelante)
 node_modules/
-.~lock*
-*.zip
+
+# Logs
+*.log
+
+# Variables de entorno (por si se agregan más adelante)
+.env
+.env.local
