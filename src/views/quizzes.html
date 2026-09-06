@@ -85,12 +85,12 @@
           <li class="quiz-item animate-in" style="transition-delay: ${idx * 80}ms">
             <span class="quiz-item__icon">${estadoIcon(q.estado)}</span>
             <div class="quiz-item__info">
-              <span class="quiz-item__title">${q.titulo}</span>
+              <a class="quiz-item__title" href="quiz-detalle.html?id=${q.id}">${q.titulo}</a>
               <span class="quiz-item__meta">${q.preguntas} preguntas</span>
             </div>
             <span class="quiz-item__estado">${estadoLabel(q.estado)}</span>
             ${q.puntaje ? `<span class="quiz-item__puntaje">${q.puntaje}</span>` : ''}
-            <button class="btn btn-primary quiz-item__btn">${q.estado === 'completado' ? 'Reintentar' : 'Empezar'}</button>
+            <a class="btn btn-primary quiz-item__btn" href="quiz-detalle.html?id=${q.id}">${q.estado === 'completado' ? 'Reintentar' : 'Empezar'}</a>
           </li>
         `).join('');
       }

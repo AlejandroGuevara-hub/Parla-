@@ -2277,4 +2277,22 @@ a {
   }
 }
 
+/* Título de quiz como link (en la lista quizzes.html) */
+.quiz-item__title {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.quiz-item__title:hover,
+.quiz-item__title:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.quiz-item__btn {
+  text-decoration: none;
+}
+
 
