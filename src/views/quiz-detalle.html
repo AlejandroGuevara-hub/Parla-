@@ -67,22 +67,8 @@
       `;
     }
 
-    fetch('../data/quizzes.json')
-      .then(res => res.json())
-      .then(data => {
-        const quiz = (data.quizzes || []).find(q => q.id === idQuiz);
-        if (!quiz || !Array.isArray(quiz.preguntas) || quiz.preguntas.length === 0) {
-          renderizarNoEncontrada();
-          return;
-        }
-        quizEngine = crearQuizEngine(quiz.preguntas);
-        tituloQuiz = quiz.titulo;
-        renderizarPregunta();
-      })
-      .catch(err => {
-        console.error('Error cargando quiz:', err);
-        renderizarNoEncontrada();
-      });
+    // Arranque: carga el quiz y renderiza la primera pregunta
+    iniciarQuiz();
 
     function renderizarPregunta() {
       const indice = quizEngine.obtenerIndice();
@@ -161,6 +147,57 @@
         if (i === respuestaCorrecta) op.classList.add('is-correct');
         else if (i === seleccionada && !esCorrecta) op.classList.add('is-wrong');
       });
+
+      const verifyBtn = contentEl.querySelector('.quiz-verify-btn');
+      if (quizEngine.hayPreguntaSiguiente()) {
+        verifyBtn.textContent = 'Siguiente pregunta';
+        verifyBtn.removeEventListener('click', verificarRespuesta);
+        verifyBtn.addEventListener('click', avanzarPregunta);
+      } else {
+        verifyBtn.textContent = 'Ver resultados';
+        verifyBtn.removeEventListener('click', verificarRespuesta);
+        verifyBtn.addEventListener('click', renderizarResultado);
+      }
+    }
+
+    function avanzarPregunta() {
+      quizEngine.avanzar();
+      renderizarPregunta();
+    }
+
+    function renderizarResultado() {
+      const { correctas, total } = quizEngine.obtenerResultadoFinal();
+      contentEl.innerHTML = `
+        <article class="quiz-detail quiz-result animate-in">
+          <p class="quiz-result__score">${correctas} / ${total}</p>
+          <p class="quiz-result__label">Respuestas correctas</p>
+          <div class="quiz-result__actions">
+            <button class="btn btn-primary quiz-retry-btn">Reintentar</button>
+            <a href="quizzes.html" class="btn btn-secondary">Volver a Quizzes</a>
+          </div>
+        </article>
+      `;
+
+      contentEl.querySelector('.quiz-retry-btn').addEventListener('click', iniciarQuiz);
+    }
+
+    function iniciarQuiz() {
+      fetch('../data/quizzes.json')
+        .then(res => res.json())
+        .then(data => {
+          const quiz = (data.quizzes || []).find(q => q.id === idQuiz);
+          if (!quiz || !Array.isArray(quiz.preguntas) || quiz.preguntas.length === 0) {
+            renderizarNoEncontrada();
+            return;
+          }
+          quizEngine = crearQuizEngine(quiz.preguntas);
+          tituloQuiz = quiz.titulo;
+          renderizarPregunta();
+        })
+        .catch(err => {
+          console.error('Error cargando quiz:', err);
+          renderizarNoEncontrada();
+        });
     }
   </script>
 </body>
