@@ -129,6 +129,7 @@
       pregunta.opciones.forEach((opcion, i) => {
         const li = document.createElement('li');
         li.className = 'quiz-option';
+        li.addEventListener('click', () => seleccionarRespuesta(i));
         const radio = document.createElement('span');
         radio.className = 'quiz-option__radio';
         const texto = document.createElement('span');
@@ -137,6 +138,28 @@
         li.appendChild(radio);
         li.appendChild(texto);
         optionsEl.appendChild(li);
+      });
+
+      const verifyBtn = contentEl.querySelector('.quiz-verify-btn');
+      verifyBtn.addEventListener('click', verificarRespuesta);
+    }
+
+    function seleccionarRespuesta(i) {
+      const opciones = contentEl.querySelectorAll('.quiz-option');
+      opciones.forEach(op => op.classList.remove('is-selected'));
+      opciones[i].classList.add('is-selected');
+      quizEngine.seleccionarRespuesta(i);
+    }
+
+    function verificarRespuesta() {
+      const { esCorrecta, respuestaCorrecta } = quizEngine.verificarRespuestaActual();
+      const opciones = contentEl.querySelectorAll('.quiz-option');
+      const seleccionada = [...opciones].findIndex(op => op.classList.contains('is-selected'));
+
+      opciones.forEach((op, i) => {
+        op.classList.add('is-disabled');
+        if (i === respuestaCorrecta) op.classList.add('is-correct');
+        else if (i === seleccionada && !esCorrecta) op.classList.add('is-wrong');
       });
     }
   </script>
