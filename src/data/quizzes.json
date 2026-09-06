@@ -2,7 +2,18 @@
   "continuar": { "quizTitulo": "Quiz · Módulo 2" },
   "quizzes": [
     { "id": "q1", "titulo": "Quiz · Módulo 1", "preguntas": 10, "estado": "completado", "puntaje": "9/10" },
-    { "id": "q2", "titulo": "Quiz · Módulo 2", "preguntas": 10, "estado": "pendiente" },
+    {
+      "id": "q2",
+      "titulo": "Quiz · Módulo 2",
+      "estado": "pendiente",
+      "preguntas": [
+        { "pregunta": "¿Qué significa 'Buongiorno'?", "opciones": ["Adiós", "Buenos días", "Gracias", "Por favor"], "respuestaCorrecta": 1 },
+        { "pregunta": "¿Cuál es la forma correcta de saludar de mañana?", "opciones": ["Ciao", "Buongiorno", "Arrivederci", "Grazie"], "respuestaCorrecta": 1 },
+        { "pregunta": "¿Cómo se dice 'gracias' en italiano?", "opciones": ["Prego", "Scusa", "Grazie", "Buonasera"], "respuestaCorrecta": 2 },
+        { "pregunta": "¿Qué significa 'Arrivederci'?", "opciones": ["Hola", "Hasta luego", "Por favor", "De nada"], "respuestaCorrecta": 1 },
+        { "pregunta": "¿Cuál es la respuesta correcta a 'Grazie'?", "opciones": ["Scusa", "Ciao", "Prego", "Buongiorno"], "respuestaCorrecta": 2 }
+      ]
+    },
     { "id": "q3", "titulo": "Quiz · Cultura general", "preguntas": 8, "estado": "pendiente" }
   ]
 }
