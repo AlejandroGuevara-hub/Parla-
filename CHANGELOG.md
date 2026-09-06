@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.21] — 2026-08-08
+
+### Removed
+- Header hamburguesa (`.nav-toggle` y sus enlaces "Iniciar sesión"/"Registrarme") eliminado de la Landing (`index.html`). Las 3 líneas grises que aparecían en móvil encima del hero eran el icono hamburguesa; la Landing no necesita header, su CTA "Comienza el recorrido" lleva a registro. El guard de `nav.js` maneja la ausencia del toggle sin errores.
+
 ## [1.19.20] — 2026-08-08
 
 ### Changed

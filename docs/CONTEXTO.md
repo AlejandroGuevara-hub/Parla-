@@ -46,4 +46,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Fondo del hero convertido a `background-image` de la sección (ya no usa `<img>` con transform): nunca se desborda y el parallax mueve `background-position`, siempre contenido. CHANGELOG 1.19.20.
+2026-08-08 — Header hamburguesa eliminado de la Landing (index.html): las 3 líneas grises en móvil eran el icono nav-toggle. CHANGELOG 1.19.21.
