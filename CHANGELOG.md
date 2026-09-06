@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.19] — 2026-08-08
+
+### Fixed
+- Imagen de fondo del hero ya no se desborda ni deja franja gris arriba al scrollear. Se quitó el `scale(1.08)` del parallax (sobredimensionaba la imagen, que desbordaba el hero y dejaba ver el fondo del `body`), y en su lugar `hero__bg` tiene sangrado propio (`top/bottom: -30px`) para cubrir siempre el hero aunque el parallax la desplace hasta 24px.
+
 ## [1.19.18] — 2026-08-08
 
 ### Fixed

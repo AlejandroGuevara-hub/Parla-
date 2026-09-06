@@ -46,4 +46,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Fix parallax del hero: la imagen de fondo ya no se achica/recorta al scrollear (avance derivado del viewport, no de `scrollY - inicio`). CHANGELOG 1.19.18.
+2026-08-08 — Fix imagen de fondo del hero: deja de desbordar/dejar franja gris al scrollear (se quitó el scale del parallax y se dio sangrado a `hero__bg`). CHANGELOG 1.19.19.

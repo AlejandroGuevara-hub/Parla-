@@ -68,13 +68,13 @@ function parallaxHero() {
   if (!heroBg || reduceMotion) return;
   var hero = heroBg.parentElement;
   var rect = hero.getBoundingClientRect();
-  // La imagen se mueve más lento que el contenido (factor < 1). Solo se desplaza
-  // cuando el hero sube (rect.top < 0); nunca hacia arriba, para no recortarse.
+  // La imagen se mueve más lento que el contenido (factor < 1) y tiene sangrado
+  // propio (top/bottom: -30px), así siempre cubre el hero sin dejar ver el fondo.
   var avance = -rect.top * 0.2;
   if (avance < 0) avance = 0;
   var max = 24;
   if (avance > max) avance = max;
-  heroBg.style.transform = 'translateY(' + avance + 'px) scale(1.08)';
+  heroBg.style.transform = 'translateY(' + avance + 'px)';
 }
 
 function onScroll() {
