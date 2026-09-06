@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.20] — 2026-08-08
+
+### Changed
+- El fondo del hero de la Landing pasó de `<img>` con `transform` a un **fondo CSS de la sección** (`.hero__bg` como `background-image`). Un background siempre se recorta dentro de su elemento, así que la imagen ya no se desborda ni deja ver el fondo del `body` (ni en estado inicial ni tras el parallax). El parallax ahora mueve `background-position` (contenido dentro de la sección) en vez de `transform`.
+
 ## [1.19.19] — 2026-08-08
 
 ### Fixed

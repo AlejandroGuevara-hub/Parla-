@@ -46,4 +46,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Fix imagen de fondo del hero: deja de desbordar/dejar franja gris al scrollear (se quitó el scale del parallax y se dio sangrado a `hero__bg`). CHANGELOG 1.19.19.
+2026-08-08 — Fondo del hero convertido a `background-image` de la sección (ya no usa `<img>` con transform): nunca se desborda y el parallax mueve `background-position`, siempre contenido. CHANGELOG 1.19.20.

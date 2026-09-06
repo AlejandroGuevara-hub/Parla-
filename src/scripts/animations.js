@@ -68,13 +68,14 @@ function parallaxHero() {
   if (!heroBg || reduceMotion) return;
   var hero = heroBg.parentElement;
   var rect = hero.getBoundingClientRect();
-  // La imagen se mueve más lento que el contenido (factor < 1) y tiene sangrado
-  // propio (top/bottom: -30px), así siempre cubre el hero sin dejar ver el fondo.
+  // La imagen es un background de la sección: se recorta siempre dentro de ella
+  // (por definición), así el parallax nunca saca la imagen del marco ni deja
+  // ver el fondo del body. Solo se desplaza cuando el hero sube.
   var avance = -rect.top * 0.2;
   if (avance < 0) avance = 0;
   var max = 24;
   if (avance > max) avance = max;
-  heroBg.style.transform = 'translateY(' + avance + 'px)';
+  heroBg.style.backgroundPosition = 'center ' + avance + 'px';
 }
 
 function onScroll() {

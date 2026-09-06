@@ -215,15 +215,13 @@ a {
 
 .hero__bg {
   position: absolute;
-  top: -30px;
-  bottom: -30px;
-  left: 0;
-  width: 100%;
-  height: auto;
-  min-height: calc(100% + 60px);
-  object-fit: cover;
-  object-position: center;
-  will-change: transform;
+  inset: 0;
+  background-image: url('../assets/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  will-change: background-position;
 }
 
 .hero__logo {
