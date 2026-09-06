@@ -16,4 +16,6 @@
 - [ ] **Favoritos** — Implementar sistema de favoritos en las tarjetas.
 - [ ] **Fuente Hatton** — Esperando que el cliente entregue el archivo real de la fuente Hatton para reemplazar el placeholder Fraunces.
 - [ ] **Perfil: conectar edición real y guardado de preferencias cuando exista backend**.
+- [ ] **Temporizador real en quiz-detalle.html** — El temporizador del quiz es visual y fijo (`⏱ 04:15`, no cuenta). Falta la cuenta regresiva real cuando haya backend/lógica.
+- [ ] **Guardar resultados de quiz** — El puntaje del quiz vive solo en memoria durante la sesión; no se guarda al salir o recargar. Falta persistir cuando exista backend.
 - [ ] **@property CSS** — La técnica de glow actual usa `@property --gradient-angle` para interpolar suavemente el ángulo del degradado. Si algún navegador de prueba no lo soporta, el degradado se ve igual pero la animación salta en vez de ser continua (sin interpolación suave). Evaluar si es necesario un polyfill o fallback cuando se amplíe el soporte de navegadores.

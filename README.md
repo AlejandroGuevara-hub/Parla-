@@ -83,7 +83,8 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 | [`src/views/webtoon.html`](src/views/webtoon.html) | Placeholder de **Webtoon** (pendiente definición de contenido). Con sidebar. |
 | [`src/views/cultura.html`](src/views/cultura.html) | **Cultura**: banner "Continuar" + lista de temas con estados. Con sidebar. Carga `src/data/cultura.json`. |
 | [`src/views/flashcards.html`](src/views/flashcards.html) | **Flashcards**: banner "Continuar" + grid de mazos con barra de progreso (dominadas/total). Con sidebar. Carga `src/data/flashcards.json`. |
-| [`src/views/quizzes.html`](src/views/quizzes.html) | **Quizzes**: banner "Continuar" + lista de quizzes con preguntas, estado y puntaje. Con sidebar. Carga `src/data/quizzes.json`. |
+| [`src/views/quizzes.html`](src/views/quizzes.html) | **Quizzes**: banner "Continuar" + lista de quizzes con preguntas, estado y puntaje; cada quiz enlaza a su detalle. Con sidebar. Carga `src/data/quizzes.json`. |
+| [`src/views/quiz-detalle.html`](src/views/quiz-detalle.html) | **Detalle de quiz** (plantilla dinámica): quiz jugable según `?id=`, con motor `src/scripts/quiz-engine.js`. Con sidebar. Carga `src/data/quizzes.json`. |
 | [`src/views/perfil.html`](src/views/perfil.html) | **Perfil** (ejemplo): avatar con iniciales, nombre/correo/nivel, 3 stats, info personal y preferencias visuales (sin funcionalidad real). Con sidebar. Carga `src/data/perfil.json`. |
 | [`src/views/contacto.html`](src/views/contacto.html) | **Contactos**: fondo e ícono del cliente, número de teléfono y botón de WhatsApp. Con sidebar. |
 

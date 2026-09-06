@@ -26,6 +26,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
 │   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)
 │   │   ├── quizzes.html        # Quizzes (banner + lista de quizzes con puntaje)
+│   │   ├── quiz-detalle.html   # Plantilla dinámica: quiz jugable según ?id= (usa quiz-engine.js)
 │   │   ├── perfil.html         # Perfil de ejemplo (avatar, stats, info, preferencias)
 │   │   └── contacto.html       # Contacto: WhatsApp, fondo e ícono del cliente
 │   ├── styles/                 ← CSS
@@ -36,7 +37,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── nav.js              # Header móvil (landing) + captura de form[data-navegar]
 │   │   ├── sidebar.js          # Drawer del sidebar (vistas autenticadas)
 │   │   ├── theme.js            # Tema claro/oscuro con persistencia
-│   │   └── animations.js       # animate-in (IntersectionObserver), parallax hero, blur de imágenes
+│   │   ├── animations.js       # animate-in (IntersectionObserver), parallax hero, blur de imágenes
+│   │   └── quiz-engine.js      # Motor de quiz: preguntas, respuestas, puntaje (módulo ES)
 │   ├── components/             ← Fragmentos HTML reutilizables (futuro)
 │   ├── data/                   ← Datos de ejemplo estáticos (JSON) para secciones de contenido
 │   │   ├── lecciones.json      # Módulos y lecciones con estados (completado/en-progreso/pendiente)
@@ -44,7 +46,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── cultura.json        # Temas culturales con estados
 │   │   ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
 │   │   ├── quizzes.json        # Quizzes con preguntas, estado y puntaje
-│   │   └── perfil.json         # Datos de perfil de ejemplo (nombre, correo, nivel, estadísticas)
+│   │   ├── perfil.json         # Datos de perfil de ejemplo (nombre, correo, nivel, estadísticas)
 │   └── assets/                 ← Imágenes e iconos
 │       └── images/
 │           ├── logo.png
@@ -190,3 +192,22 @@ módulos. En la primera/última lección el botón correspondiente se deshabilit
 crear archivos nuevos. Ver `docs/decisiones-tecnicas.md`.
 
 El mismo patrón es replicable a futuro para Podcast/Cultura/Flashcards/Quizzes.
+
+## Quiz jugable (quiz-detalle.html + quiz-engine.js)
+
+`quiz-detalle.html?id=<id>` renderiza un quiz jugable de `src/data/quizzes.json`. La lógica del quiz
+(estado, pregunta actual, respuestas, puntaje) vive separada en `src/scripts/quiz-engine.js`, un
+módulo ES que se importa con `import { crearQuizEngine } from '../scripts/quiz-engine.js'`.
+
+**Motor (`crearQuizEngine(preguntas)`):** devuelve `obtenerPreguntaActual`, `obtenerIndice`,
+`obtenerTotal`, `seleccionarRespuesta(i)`, `verificarRespuestaActual`,
+`hayPreguntaSiguiente`, `avanzar` y `obtenerResultadoFinal`. Todo el estado vive en memoria;
+no se guarda al salir o recargar.
+
+**Página:** carga el quiz por `?id=`, crea el motor y renderiza encabezado (título + temporizador
+visual fijo `⏱ 04:15`), barra de progreso (pregunta X de Y + %), pregunta, opciones (radio
+personalizado) y botón "Verificar respuesta" → "Siguiente pregunta"/"Ver resultados". Al terminar
+muestra resumen "X / Y" con "Reintentar" (reinicia el motor) y "Volver a Quizzes".
+
+**Texto seguro:** la pregunta y las opciones se insertan con `textContent` (no `innerHTML`
+concatenado), para evitar inyección si el contenido viniera de otra fuente.

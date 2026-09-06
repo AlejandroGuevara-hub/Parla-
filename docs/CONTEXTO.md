@@ -15,6 +15,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Páginas de contenido (5) — Lecciones, Podcast, Cultura, Flashcards, Quizzes con banner, listas/grids, estados y datos JSON
 - [x] Página de detalle de lección (plantilla dinámica `leccion-detalle.html?id=...`)
 - [x] Página de detalle de episodio (plantilla dinámica `episodio-detalle.html?id=...`, reproductor y transcripción simulados)
+- [x] Quiz funcional con motor separado (`quiz-detalle.html?id=...` + `quiz-engine.js`)
 - [x] Webtoon (placeholder — pendiente definición de contenido)
 - [x] Página de Perfil de ejemplo (avatar, stats, info, preferencias — sin funcionalidad real)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
@@ -27,7 +28,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 ## Dónde está cada cosa
 - Tokens de diseño: `src/styles/variables.css`
 - Componentes reutilizables: `src/styles/components.css`; estilos de página: `src/styles/styles.css`
-- Scripts: `src/scripts/nav.js` (header móvil + `data-navegar`), `src/scripts/sidebar.js` (drawer), `src/scripts/theme.js` (tema), `src/scripts/animations.js` (entradas/parallax/imágenes)
+- Scripts: `src/scripts/nav.js` (header móvil + `data-navegar`), `src/scripts/sidebar.js` (drawer), `src/scripts/theme.js` (tema), `src/scripts/animations.js` (entradas/parallax/imágenes), `src/scripts/quiz-engine.js` (motor de quiz)
 - Imágenes del sitio: `src/assets/images/` (logo, hero, fondos, fotos de las 6 tarjetas, contacto)
 - Recursos visuales del cliente: `reference/Diego-pagina web/`
 - Especificaciones/alcances de cada bloque y fix: `docs/specs/`
@@ -46,4 +47,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
 
 ## Última actualización
-2026-08-08 — Header hamburguesa eliminado de la Landing (index.html): las 3 líneas grises en móvil eran el icono nav-toggle. CHANGELOG 1.19.21.
+2026-08-08 — Quiz funcional con motor separado (`quiz-engine.js`) y página `quiz-detalle.html?id=...`: preguntas, verificación, navegación y resultado en memoria. CHANGELOG 1.19.22.

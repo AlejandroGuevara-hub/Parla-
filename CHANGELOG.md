@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.22] — 2026-08-08
+
+### Added
+- Quiz funcional con motor separado: `src/scripts/quiz-engine.js` (módulo ES con `crearQuizEngine` para preguntas, respuestas y puntaje en memoria), página `quiz-detalle.html?id=<id>` (encabezado + temporizador visual fijo, barra de progreso, pregunta única, opciones con radio personalizado, verificación correcto/incorrecto, navegación "Siguiente/Ver resultados" y pantalla de resultado "X / Y" con Reintentar). `quizzes.json` gana array `preguntas` de ejemplo en `q2`; los quizzes de `quizzes.html` enlazan a su detalle. Texto de pregunta/opciones insertado con `textContent` (seguridad).
+
 ## [1.19.21] — 2026-08-08
 
 ### Removed

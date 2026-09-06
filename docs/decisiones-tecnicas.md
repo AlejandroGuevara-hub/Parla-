@@ -202,6 +202,17 @@ En `episodio-detalle.html` el reproductor de audio y la transcripción son simul
 
 **Trade-off:** no hay funcionalidad real de audio; es solo UI. Documentado en `docs/PENDIENTES.md` (conectar audio/transcripción reales cuando el cliente los entregue).
 
+## Motor de quiz separado del HTML (quiz-engine.js)
+
+La lógica del quiz vive en `src/scripts/quiz-engine.js`, separada del renderizado en `quiz-detalle.html`. Se eligió así por:
+
+- **Mantenibilidad**: la página solo dibuja; la lógica (estado, pregunta actual, verificación, puntaje) está en un módulo reutilizable, fácil de probar y auditar sin tocar el DOM.
+- **Reutilización futura**: si se quiere el quiz en otro lugar o con otro layout, se importa `crearQuizEngine` sin duplicar lógica.
+- **Auditoría de seguridad**: al aislar la lógica, es más fácil mantener la disciplina de insertar contenido con `textContent` (no `innerHTML` concatenado), evitando inyección de HTML/JS si el contenido viniera de otra fuente.
+- **Separación de responsabilidades**: datos (JSON) → motor de lógica (JS) → presentación (HTML/CSS/JS de la página).
+
+**Trade-off:** hay que importar el módulo (`type="module"`), lo que añade un paso de carga; aceptable dado que el proyecto ya usa módulos ES para los Web Components.
+
 ## Web Components nativos (Sidebar y Cluster de Usuario)
 
 El sidebar y el cluster flotante "Perfil/Salir" estaban duplicados en 9 archivos HTML. Se refactorizaron a Web Components nativos (`<parla-sidebar>`, `<parla-user-nav>`) en `src/scripts/components/`.

@@ -716,3 +716,41 @@ Toggle visual (role="switch") para preferencias, sin persistencia real.
 Botón primario ancho completo en la sección "Información personal". Al click muestra alerta "Esta función estará disponible próximamente" (sin formulario real).
 
 **Dónde se usa:** `perfil.html`.
+
+---
+
+### Motor de quiz (`quiz-engine.js`)
+
+Módulo ES (`src/scripts/quiz-engine.js`) con la lógica del quiz separada del renderizado. Expone
+`crearQuizEngine(preguntas)`, que devuelve un objeto con:
+
+| Método | Qué hace |
+|---|---|
+| `obtenerPreguntaActual()` | Devuelve la pregunta actual `{ pregunta, opciones, respuestaCorrecta }` |
+| `obtenerIndice()` | Índice de la pregunta actual (0-based) |
+| `obtenerTotal()` | Cantidad total de preguntas |
+| `seleccionarRespuesta(i)` | Guarda la opción elegida (índice) en memoria |
+| `verificarRespuestaActual()` | Devuelve `{ esCorrecta, respuestaCorrecta }` y suma al puntaje |
+| `hayPreguntaSiguiente()` | `true` si hay una pregunta más |
+| `avanzar()` | Pasa a la siguiente pregunta |
+| `obtenerResultadoFinal()` | Devuelve `{ correctas, total }` |
+
+**Uso en página:** `import { crearQuizEngine } from '../scripts/quiz-engine.js';`. Todo el estado vive
+en memoria; no se persiste. **Regla de seguridad:** insertar pregunta y opciones con `textContent`
+(no `innerHTML` concatenado).
+
+**Dónde se usa:** `quiz-detalle.html`.
+
+---
+
+### Componentes de la página de quiz
+
+- `.quiz-detail` — tarjeta contenedora (max-width 720px).
+- `.quiz-detail__header` / `__title` / `__timer` — encabezado con título + temporizador visual fijo (`⏱ 04:15`, no cuenta).
+- `.quiz-progress__top` / `__bar` / `__bar-fill` / `__pct` — barra de progreso "Pregunta X de Y" + %.
+- `.quiz-question__text` — texto de la pregunta.
+- `.quiz-option` — opción con radio personalizado; estados `.is-selected` (elegida), `.is-correct` (verde), `.is-wrong` (rojo), `.is-disabled` (tras verificar).
+- `.quiz-verify-btn` — botón "Verificar respuesta" → "Siguiente pregunta"/"Ver resultados".
+- `.quiz-result` / `__score` / `__label` / `__actions` — pantalla de resultado final ("X / Y" + Reintentar / Volver a Quizzes).
+
+**Dónde se usa:** `quiz-detalle.html`.
