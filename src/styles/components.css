@@ -413,7 +413,7 @@ body:not(.js-animations-ready) .animate-in {
   filter: none;
 }
 
-/* ---------- Imágenes: blur + fade al cargar ---------- */
+/*---------- Imágenes: blur + fade al cargar ---------- */
 
 body.js-animations-ready img.img-load {
   opacity: 0;
