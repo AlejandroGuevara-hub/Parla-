@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz — Parla!</title>
+  <script>!function(){var t=localStorage.getItem("parla-theme");"dark"===t&&document.documentElement.setAttribute("data-theme","dark")}();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+  <parla-sidebar current="quizzes"></parla-sidebar>
+  <parla-user-nav></parla-user-nav>
+
+  <main class="page-content">
+    <section class="dashboard animate-in">
+      <div class="dashboard__header animate-in">
+        <div class="icon quizzes" aria-hidden="true"><i class="fas fa-circle-question"></i></div>
+        <h1 class="dashboard__title">Quiz</h1>
+        <p class="dashboard__subtitle">Pon a prueba lo aprendido</p>
+      </div>
+
+      <!-- Contenido del quiz -->
+      <div id="quiz-content"></div>
+
+      <div style="text-align:center;margin-top:var(--space-lg)">
+        <a href="quizzes.html" class="btn btn-primary animate-in">&larr; Volver a Quizzes</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer animate-in">
+    <p>&copy; 2026 Parla! — Todos los derechos reservados.</p>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <script type="module" src="../scripts/components/sidebar.js"></script>
+  <script type="module" src="../scripts/components/user-nav.js"></script>
+  <script src="../scripts/theme.js"></script>
+  <script src="../scripts/animations.js"></script>
+  <script type="module">
+    import { crearQuizEngine } from '../scripts/quiz-engine.js';
+
+    const contentEl = document.getElementById('quiz-content');
+    const params = new URLSearchParams(window.location.search);
+    const idQuiz = params.get('id');
+
+    let quizEngine = null;
+    let tituloQuiz = '';
+
+    function renderizarNoEncontrada() {
+      contentEl.innerHTML = `
+        <div class="quiz-notfound">
+          <i class="fas fa-circle-exclamation lesson-notfound__icon"></i>
+          <h2 class="lesson-notfound__title">Quiz no encontrado</h2>
+          <p class="lesson-notfound__text">El enlace no corresponde a un quiz válido.</p>
+          <a href="quizzes.html" class="btn btn-primary">Volver a Quizzes</a>
+        </div>
+      `;
+    }
+
+    fetch('../data/quizzes.json')
+      .then(res => res.json())
+      .then(data => {
+        const quiz = (data.quizzes || []).find(q => q.id === idQuiz);
+        if (!quiz || !Array.isArray(quiz.preguntas) || quiz.preguntas.length === 0) {
+          renderizarNoEncontrada();
+          return;
+        }
+        quizEngine = crearQuizEngine(quiz.preguntas);
+        tituloQuiz = quiz.titulo;
+        renderizarPregunta();
+      })
+      .catch(err => {
+        console.error('Error cargando quiz:', err);
+        renderizarNoEncontrada();
+      });
+
+    function renderizarPregunta() {
+      const indice = quizEngine.obtenerIndice();
+      const total = quizEngine.obtenerTotal();
+      const pregunta = quizEngine.obtenerPreguntaActual();
+      const pct = Math.round((indice / total) * 100);
+
+      contentEl.innerHTML = `
+        <article class="quiz-detail animate-in">
+          <header class="quiz-detail__header">
+            <h2 class="quiz-detail__title"></h2>
+            <span class="quiz-detail__timer"><i class="fas fa-stopwatch"></i> 04:15</span>
+          </header>
+
+          <div class="quiz-detail__progress">
+            <div class="quiz-progress__top">
+              <span class="quiz-progress__count"></span>
+              <span class="quiz-progress__pct"></span>
+            </div>
+            <div class="quiz-progress__bar">
+              <div class="quiz-progress__bar-fill"></div>
+            </div>
+          </div>
+
+          <p class="quiz-question__text"></p>
+
+          <ul class="quiz-options"></ul>
+
+          <div class="quiz-detail__actions">
+            <button class="btn btn-primary quiz-verify-btn">Verificar respuesta</button>
+          </div>
+        </article>
+      `;
+
+      // Texto seguro con textContent (evita inyección)
+      contentEl.querySelector('.quiz-detail__title').textContent = 'Quiz · ' + tituloQuiz;
+      contentEl.querySelector('.quiz-progress__count').textContent = 'Pregunta ' + (indice + 1) + ' de ' + total;
+      contentEl.querySelector('.quiz-progress__pct').textContent = pct + '%';
+      contentEl.querySelector('.quiz-progress__bar-fill').style.width = pct + '%';
+      contentEl.querySelector('.quiz-question__text').textContent = pregunta.pregunta;
+
+      const optionsEl = contentEl.querySelector('.quiz-options');
+      optionsEl.innerHTML = '';
+      pregunta.opciones.forEach((opcion, i) => {
+        const li = document.createElement('li');
+        li.className = 'quiz-option';
+        const radio = document.createElement('span');
+        radio.className = 'quiz-option__radio';
+        const texto = document.createElement('span');
+        texto.className = 'quiz-option__text';
+        texto.textContent = opcion;
+        li.appendChild(radio);
+        li.appendChild(texto);
+        optionsEl.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
