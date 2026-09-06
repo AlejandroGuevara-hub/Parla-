@@ -30,7 +30,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Componentes reutilizables: `src/styles/components.css`; estilos de página: `src/styles/styles.css`
 - Scripts: `src/scripts/nav.js` (header móvil + `data-navegar`), `src/scripts/sidebar.js` (drawer), `src/scripts/theme.js` (tema), `src/scripts/animations.js` (entradas/parallax/imágenes), `src/scripts/quiz-engine.js` (motor de quiz)
 - Imágenes del sitio: `src/assets/images/` (logo, hero, fondos, fotos de las 6 tarjetas, contacto)
-- Recursos visuales del cliente: `reference/Diego-pagina web/`
+- Recursos visuales del cliente (no se sube al repo): `reference/Diego-pagina web/` — solo consulta local
 - Especificaciones/alcances de cada bloque y fix: `docs/specs/`
 - Fixes aplicados: ver `CHANGELOG.md`
 - Decisiones técnicas y por qué: `docs/decisiones-tecnicas.md`
@@ -45,6 +45,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Hatton es un placeholder (Fraunces) hasta recibir el archivo real de fuente.
 - Todo cambio se documenta y se sube a GitHub (ver `prompts/prompt-commits-github.md`).
 - Todo bloque nuevo (sección, componente o página) debe seguir `docs/GUIA-ANIMACIONES.md` (sistema de motion design del proyecto) automáticamente, sin que se lo pidan de nuevo.
+- Nunca hacer `git add` sobre `reference/`, archivos `.zip`, o archivos de bloqueo. Toda imagen usada en el sitio real vive en `src/assets/`, nunca se referencia directo desde `reference/`. Antes de cualquier `git add .`, confirmar que `.gitignore` está cubriendo estas rutas.
 
 ## Última actualización
-2026-08-08 — Quiz funcional con motor separado (`quiz-engine.js`) y página `quiz-detalle.html?id=...`: preguntas, verificación, navegación y resultado en memoria. CHANGELOG 1.19.22.
+2026-08-08 — Limpieza de repositorio: `reference/` y archivos temporales fuera del tracking; `.gitignore` ampliado; regla fija agregada. CHANGELOG 1.19.23.

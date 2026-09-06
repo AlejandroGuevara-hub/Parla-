@@ -1,5 +1,10 @@
 # Changelog — Parla!
 
+## [1.19.23] — 2026-08-08
+
+### Changed
+- Migra imágenes usadas en producción a `src/assets` y configura `.gitignore` para excluir material de referencia. `reference/` deja de versionarse (estaba en tracking); `.gitignore` ahora cubre `/reference/`, `*.zip`, archivos de bloqueo (`.~lock*`/`.~lock.*#`), `.vscode/`, `.idea/`, `*.log`, `.env`, `.env.local` (además de los ya existentes). Las imágenes de Contactos e Inicio ya apuntan a `src/assets/` (verificadas sin referencias a `reference/` en `src/`).
+
 ## [1.19.22] — 2026-08-08
 
 ### Added

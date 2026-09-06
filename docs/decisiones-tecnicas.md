@@ -229,6 +229,16 @@ El sidebar y el cluster flotante "Perfil/Salir" estaban duplicados en 9 archivos
 - **Templates HTML + JS manual**: no encapsula lógica, sigue habiendo duplicación de inicialización.
 - **Shadow DOM**: habría obligado a duplicar todo el CSS del sidebar dentro del componente, rompiendo la regla de "CSS único en components.css/styles.css".
 
+## `reference/` no se versiona; toda imagen de producción vive en `src/assets/`
+
+La carpeta `reference/` contiene los assets crudos del cliente (fotos, mockups, fuentes, PDFs de requerimientos). No son código de producción, así que:
+
+- **Mantiene el repositorio liviano**: son archivos grandes (imágenes de alta resolución, zip, PDFs) que inflan el repo y ralentizan clones. Al excluirlos con `.gitignore`, el repo queda solo con código.
+- **Separación de responsabilidades**: `src/assets/` es la única fuente de imágenes usadas por el sitio; `reference/` es solo material de consulta local del cliente.
+- **Un clon nuevo del repo no la incluye**: todo lo necesario para correr el sitio vive en `src/`, así que un desarrollador nuevo con solo el repo puede levantar el sitio sin `reference/`.
+
+**Antecedente:** algunos archivos quedaron referenciando imágenes directo desde `reference/` (Contactos e Inicio). Se migraron a `src/assets/` **antes** de ignorar `reference/`, para que el sitio no se rompiera al dejar de versionar esa carpeta. Ver `docs/ERRORES.md`.
+
 ## Estructura de carpetas
 
 ```

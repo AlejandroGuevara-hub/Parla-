@@ -60,7 +60,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │           ├── quizzes.png     # Foto tarjeta Quizzes (origen: 5.png)
 │           ├── contact-bg.png     # Fondo página de Contactos
 │           └── contact-icon.png   # Ícono decorativo teléfono+corazón
-├── reference/                  ← Material CRUDO del cliente (no tocar)
+├── reference/                  ← Material CRUDO del cliente (NO se sube al repo)
 │   ├── Diego-pagina web/       # Fotos, mockups, fuentes y requerimientos por parte
 │   ├── Requerimientos de la Fase 1.pdf
 │   └── Documento senza titolo(1).pdf
@@ -115,6 +115,8 @@ O con servidor local (requerido para páginas que usan `fetch()` a JSON en `src/
 python -m http.server 8000
 # luego http://localhost:8000/src/views/index.html
 ```
+
+> **Nota:** `reference/` es material del cliente que **no se sube al repositorio** (está en `.gitignore`). Un clon nuevo del repo **no la tendrá**; todo lo necesario para correr el sitio (imágenes, JSON, CSS, JS) vive en `src/`. La carpeta `reference/` queda solo como consulta local.
 
 ## Patrón obligatorio: navegación con Web Components
 

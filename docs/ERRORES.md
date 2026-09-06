@@ -1,5 +1,14 @@
 # Errores cometidos — Parla!
 
+### [2026-08-08] Páginas referenciaban imágenes directo desde `reference/`
+**Qué pasó:** `contacto.html` (fondo e ícono decorativo) y las 6 tarjetas de `inicio.html` (imágenes `3.png`–`8.png`) referenciaban archivos dentro de `reference/` (material crudo del cliente). Si se ignorara esa carpeta sin mover las imágenes, el sitio se rompería (imágenes rotas).
+
+**Por qué pasó:** Las imágenes se fueron agregando apuntando a los archivos originales del cliente en `reference/` en vez de copiarse a `src/assets/`. Al decidir excluir `reference/` del versionado, hubo que migrarlas primero.
+
+**Cómo se corrigió:** Se copiaron los archivos reales a `src/assets/` con nombres claros (`contact-bg.png`, `contact-icon.png`, `podcast.png`, `webtoon.png`, `cultura.png`, `video.png`, `flashcards.png`, `quizzes.png`) y se actualizaron los `src`/`url()` en el HTML/CSS para que apunten a `src/assets/`. Solo después se agregó `/reference/` al `.gitignore` y se sacó del tracking. Verificado que Contactos e Inicio se ven igual.
+
+**Cómo evitarlo:** Toda imagen usada en producción vive en `src/assets/`, nunca se referencia directo desde `reference/`. Al migrar un asset, actualizar la referencia en HTML/CSS en el mismo cambio. Verificar con grep que no queden rutas a `reference/` en `src/`.
+
 ### [2026-08-08] Imagen de fondo del hero se "achica"/recorta al hacer scroll
 **Qué pasó:** Al hacer scroll en la Landing, la imagen de fondo del hero (`.hero__bg`) parecía hacerse más pequeña o recortarse, sin transición.
 

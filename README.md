@@ -35,6 +35,8 @@ npx http-server .
 
 Luego visita `http://localhost:8000/src/views/index.html`.
 
+> **Nota:** `reference/` es material del cliente que **no viene incluido al clonar** el repositorio (está excluido en `.gitignore`). Todo lo necesario para correr el sitio (imágenes, JSON, CSS, JS) vive en `src/`.
+
 ## Stack técnico
 
 - **HTML5** semántico y accesible (labels, `:focus-visible`, landmarks).
@@ -60,7 +62,7 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 │       ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
 │       ├── quizzes.json        # Quizzes con preguntas, estado y puntaje
 │       └── perfil.json         # Datos de perfil de ejemplo (nombre, correo, nivel, estadísticas)
-├── reference/        ← Material original del cliente (sin modificar): PDFs, zip y carpeta con fotos/mockups
+├── reference/        ← Material del cliente (NO se sube al repo): PDFs, zip y carpeta con fotos/mockups
 ├── docs/             ← Documentación técnica, especificaciones y guías
 ├── prompts/          ← Instrucciones de proceso (protocolos para cada tipo de tarea)
 ├── .gitignore
