@@ -20,11 +20,18 @@
 
   <main class="page-content">
     <section class="dashboard animate-in">
-      <div class="dashboard__header">
-        <div class="icon webtoon animate-in" aria-hidden="true" style="margin:0 auto var(--space-sm)"><i class="fas fa-book-open"></i></div>
-        <h1 class="dashboard__title animate-in">Webtoon</h1>
-        <p class="dashboard__subtitle animate-in">Esta sección está en desarrollo. Vuelve pronto.</p>
+      <div class="dashboard__header animate-in">
+        <div class="icon webtoon" aria-hidden="true"><i class="fas fa-book-open"></i></div>
+        <h1 class="dashboard__title">Webtoon</h1>
+        <p class="dashboard__subtitle">Aprende italiano con historias ilustradas</p>
       </div>
+
+      <!-- Banner Continuar -->
+      <div class="continue-banner" id="continue-banner" aria-label="Continuar donde te quedaste"></div>
+
+      <!-- Lista de episodios -->
+      <ul class="episodes-list" id="episodes-list" aria-label="Episodios del webtoon"></ul>
+
       <div style="text-align:center;margin-top:var(--space-lg)">
         <a href="inicio.html" class="btn btn-primary animate-in">&larr; Volver al inicio</a>
       </div>
@@ -42,5 +49,58 @@
   <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
+  <script>
+    // Webtoon - fetch y render de lista de episodios
+    (function() {
+      var bannerEl = document.getElementById('continue-banner');
+      var listEl = document.getElementById('episodes-list');
+
+      function estadoIcon(estado) {
+        if (estado === 'leido') return '<i class="fas fa-check-circle estado-icon estado-completado" aria-label="Leído"></i>';
+        if (estado === 'en-progreso') return '<i class="fas fa-circle-notch estado-icon estado-progreso" aria-label="En progreso"></i>';
+        return '<i class="far fa-circle estado-icon estado-pendiente" aria-label="Pendiente"></i>';
+      }
+
+      function estadoLabel(estado) {
+        return estado === 'leido' ? 'Leído' : estado === 'en-progreso' ? 'En progreso' : 'Pendiente';
+      }
+
+      function renderBanner(data) {
+        var c = data.continuar;
+        if (!c) return;
+        bannerEl.innerHTML =
+          '<div class="continue-banner__icon"><i class="fas fa-book-open"></i></div>' +
+          '<div class="continue-banner__content">' +
+            '<span class="continue-banner__label">Sigue leyendo</span>' +
+            '<h2 class="continue-banner__title">' + c.episodioTitulo + '</h2>' +
+          '</div>' +
+          '<a href="webtoon-lector.html?id=w1" class="btn btn-primary continue-banner__btn">Continuar</a>';
+        bannerEl.classList.add('animate-in');
+      }
+
+      function renderEpisodes(data) {
+        var episodios = data.episodios || [];
+        listEl.innerHTML = episodios.map(function(ep, idx) {
+          var panelesCount = ep.paneles ? ep.paneles.length : 0;
+          return '<li class="episode-item animate-in" style="transition-delay: ' + (idx * 80) + 'ms">' +
+            '<div class="episode-item__info">' +
+              '<span class="episode-item__icon">' + estadoIcon(ep.estado) + '</span>' +
+              '<a class="episode-item__title" href="webtoon-lector.html?id=' + ep.id + '">' + ep.titulo + '</a>' +
+              '<span class="episode-item__transcripcion"><i class="fas fa-images"></i> ' + panelesCount + ' paneles</span>' +
+            '</div>' +
+            '<span class="episode-item__estado">' + estadoLabel(ep.estado) + '</span>' +
+          '</li>';
+        }).join('');
+      }
+
+      fetch('../data/webtoon.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          renderBanner(data);
+          renderEpisodes(data);
+        })
+        .catch(function(err) { console.error('Error cargando webtoon:', err); });
+    })();
+  </script>
 </body>
 </html>
