@@ -1,0 +1,16 @@
+{
+  "continuar": { "episodioTitulo": "Episodio 1 · Pidiendo direcciones" },
+  "episodios": [
+    {
+      "id": "w1",
+      "titulo": "Episodio 1 · Pidiendo direcciones",
+      "estado": "pendiente",
+      "paneles": [
+        { "id": "p1", "imagen": "webtoon/w1-panel-01.jpg", "alt": "Un chico pregunta en italiano: ¿Dónde está la estación?" },
+        { "id": "p2", "imagen": "webtoon/w1-panel-02.jpg", "alt": "Una chica responde: Derecho y luego a la izquierda." },
+        { "id": "p3", "imagen": "webtoon/w1-panel-03.jpg", "alt": "El chico dice: Muchas gracias." },
+        { "id": "p4", "imagen": "webtoon/w1-panel-04.jpg", "alt": "La chica responde: De nada, hasta pronto." }
+      ]
+    }
+  ]
+}
