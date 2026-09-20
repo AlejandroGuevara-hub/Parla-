@@ -1209,10 +1209,7 @@ a {
 
 @media (max-width: 1024px) {
   .hero__content {
-    margin-left: auto;
-    margin-right: 0;
     max-width: 70%;
-    width: fit-content;
   }
 
   .hero__title {
@@ -1284,10 +1281,7 @@ a {
   }
 
   .hero__content {
-    margin-left: auto;
-    margin-right: 0;
     max-width: 70%;
-    width: fit-content;
   }
 
   .nav-links {
@@ -2293,6 +2287,68 @@ a {
 
 .quiz-item__btn {
   text-decoration: none;
+}
+
+
+/* ============================================================
+   Webtoon Reader (webtoon-lector.html)
+   Paneles apilados verticalmente estilo cómic webtoon
+   ============================================================ */
+
+.webtoon-paneles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 500px;
+  margin: 0 auto var(--space-lg);
+}
+
+.webtoon-panel {
+  width: 100%;
+  margin: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.webtoon-panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.webtoon-panel-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border: 1px solid var(--color-border);
+}
+
+.webtoon-panel-placeholder i {
+  font-size: 3rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.webtoon-panel-placeholder span {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: white;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .webtoon-paneles {
+    gap: var(--space-sm);
+  }
 }
 
 
