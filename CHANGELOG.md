@@ -1,5 +1,23 @@
 # Changelog — Parla!
 
+## [1.20.0] — 2026-09-20
+
+### Added
+- Webtoon: lista de episodios (`webtoon.html`) con banner "Continuar" y lista de episodios con estados (leído/en progreso/pendiente), cada uno enlazando a su lector.
+- Lector de Webtoon (`webtoon-lector.html?id=<id>`): plantilla dinámica que renderiza los paneles de un episodio en scroll vertical estilo cómic webtoon real. Paneles con `max-width: 500px` centrados, `loading="lazy"` en cada imagen, animación de entrada individual (`.animate-in`) y placeholder visual para paneles sin imagen real (degradado + ícono).
+- Barra de progreso de lectura visual fija en la parte superior del lector, se llena según el scroll y se reinicia al recargar (visual, no persiste).
+- Navegación entre episodios (← anterior / siguiente →) al final del lector, con botón "Volver al webtoon".
+- Datos de ejemplo en `src/data/webtoon.json` con 1 episodio de 4 paneles.
+- CSS nuevos: `.webtoon-paneles`, `.webtoon-panel`, `.webtoon-panel-placeholder`, `.webtoon-progreso`/`.webtoon-progreso__barra`.
+
+### Changed
+- `webtoon.html`: reconstruido con banner "Continuar" + lista de episodios dinámica desde JSON (reemplaza placeholder estático).
+- `docs/CONTEXTO.md`: Webtoon marcado como construido.
+- `docs/PENDIENTES.md`: "Definir contenido de Webtoon" completado; nuevo pendiente "Reemplazar placeholders por arte real".
+- `docs/GUIA-PROYECTO.md`: agrega `webtoon-lector.html` y `webtoon.json` al árbol; sección "Lector de Webtoon".
+- `docs/guia-componentes.md`: fichas de `.webtoon-paneles`, `.webtoon-panel`, `.webtoon-panel-placeholder`, `.webtoon-progreso`.
+- `docs/decisiones-tecnicas.md`: decisiones sobre diálogo quemado en imagen y scroll vertical vs. carrusel.
+
 ## [1.19.23] — 2026-08-08
 
 ### Changed

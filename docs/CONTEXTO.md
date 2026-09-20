@@ -17,6 +17,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - [x] Página de detalle de episodio (plantilla dinámica `episodio-detalle.html?id=...`, reproductor y transcripción simulados)
 - [x] Quiz funcional con motor separado (`quiz-detalle.html?id=...` + `quiz-engine.js`)
 - [x] Webtoon (placeholder — pendiente definición de contenido)
+- [x] Webtoon — lector con paneles scroll vertical, lazy-load, animación y barra de progreso
 - [x] Página de Perfil de ejemplo (avatar, stats, info, preferencias — sin funcionalidad real)
 - [x] Página de Contactos con WhatsApp, fondo e ícono del cliente
 - [x] Animaciones de entrada tipo flotar en todas las vistas (ampliadas a más elementos + fade de body)
@@ -48,4 +49,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Nunca hacer `git add` sobre `reference/`, archivos `.zip`, o archivos de bloqueo. Toda imagen usada en el sitio real vive en `src/assets/`, nunca se referencia directo desde `reference/`. Antes de cualquier `git add .`, confirmar que `.gitignore` está cubriendo estas rutas.
 
 ## Última actualización
-2026-08-08 — Limpieza de repositorio: `reference/` y archivos temporales fuera del tracking; `.gitignore` ampliado; regla fija agregada. CHANGELOG 1.19.23.
+2026-09-20 — Webtoon: lista de episodios + lector con scroll vertical de paneles, lazy-load, animación de entrada, barra de progreso visual y navegación entre episodios. CHANGELOG 1.20.0.

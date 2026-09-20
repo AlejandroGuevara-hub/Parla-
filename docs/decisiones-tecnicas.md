@@ -251,7 +251,8 @@ La carpeta `reference/` contiene los assets crudos del cliente (fotos, mockups, 
 │   │   ├── inicio.html            # Inicio del estudiante (dashboard, con sidebar)
 │   │   ├── video.html             # Lecciones en video (con sidebar, carga JSON)
 │   │   ├── podcast.html           # Podcast (con sidebar, carga JSON)
-│   │   ├── webtoon.html           # Placeholder Webtoon (con sidebar)
+│   │   ├── webtoon.html           # Webtoon (banner + lista de episodios)
+│   │   ├── webtoon-lector.html   # Plantilla dinámica: lector de webtoon según ?id=
 │   │   ├── cultura.html           # Cultura (con sidebar, carga JSON)
 │   │   ├── flashcards.html        # Flashcards (con sidebar, carga JSON)
 │   │   ├── quizzes.html           # Quizzes (con sidebar, carga JSON)
@@ -269,6 +270,7 @@ La carpeta `reference/` contiene los assets crudos del cliente (fotos, mockups, 
 │   ├── data/                      ← Datos de ejemplo estáticos (JSON)
 │   │   ├── lecciones.json         # Módulos y lecciones con estados
 │   │   ├── podcast.json           # Episodios con duración, estado, transcripción
+│   │   ├── webtoon.json           # Episodios de webtoon con paneles (imagen + alt)
 │   │   ├── cultura.json           # Temas culturales con estados
 │   │   ├── flashcards.json        # Mazos con total/dominadas y progreso
 │   │   └── quizzes.json           # Quizzes con preguntas, estado, puntaje
@@ -306,14 +308,16 @@ La carpeta `reference/` contiene los assets crudos del cliente (fotos, mockups, 
 └── CHANGELOG.md
 ```
 
-## Contenido en JSON + fetch (vs. HTML hardcodeado)
+## Webtoon — diálogo quemado en la imagen
 
-Las 5 secciones de contenido (Lecciones, Podcast, Cultura, Flashcards, Quizzes) cargan sus datos desde archivos JSON en `src/data/` mediante `fetch()` en lugar de tener el contenido hardcodeado en el HTML.
+El diálogo de cada panel va "quemado" en la imagen. No hay capa de texto HTML superpuesta.
 
 **Por qué:**
-- **Separación de responsabilidades**: el contenido (textos, estados, progreso) vive en datos, la presentación en HTML/CSS/JS. Facilita actualizar textos sin tocar estructura.
-- **Escalabilidad a Fase 2**: cuando haya backend real, solo se cambia el endpoint del `fetch()`; la lógica de renderizado y la UI permanecen iguales.
-- **Consistencia**: mismo patrón de banner, listas, grids y estados en las 5 secciones, con datos distintos.
-- **Mantenibilidad**: un solo archivo JSON por sección, fácil de revisar y versionar.
+- Decisión del cliente: el texto está integrado en el arte.
+- Evita problemas de posicionamiento de texto HTML sobre imágenes.
+- Accesibilidad: cada `<img>` lleva un `alt` con el texto transcrito.
 
-**Trade-off:** `fetch()` requiere servir el proyecto por HTTP (no abre con `file://` por CORS). Documentado en `README.md` cómo levantar servidor local (`npx serve`, `python -m http.server`).
+## Lector de Webtoon — scroll vertical de paneles
+
+Paneles apilados verticalmente (`max-width: 500px`, centrado), fiel al formato webtoon real.
+Scroll vertical nativo, `.animate-in` por panel, barra de progreso con scrollY / scrollTotal.

@@ -22,7 +22,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── leccion-detalle.html# Plantilla dinámica: renderiza 1 lección según ?id= (no hay un .html por lección)
 │   │   ├── podcast.html        # Podcast (banner + lista de episodios con transcripción)
 │   │   ├── episodio-detalle.html# Plantilla dinámica: renderiza 1 episodio según ?id= (reproductor y transcripción simulados)
-│   │   ├── webtoon.html        # Placeholder: Webtoon
+│   │   ├── webtoon.html        # Webtoon (banner + lista de episodios con estados)
+│   │   ├── webtoon-lector.html # Plantilla dinámica: lector de webtoon según ?id= (paneles con scroll vertical)
 │   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
 │   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)
 │   │   ├── quizzes.html        # Quizzes (banner + lista de quizzes con puntaje)
@@ -43,6 +44,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   ├── data/                   ← Datos de ejemplo estáticos (JSON) para secciones de contenido
 │   │   ├── lecciones.json      # Módulos y lecciones con estados (completado/en-progreso/pendiente)
 │   │   ├── podcast.json        # Episodios con duración, estado y transcripción
+│   │   ├── webtoon.json        # Episodios de webtoon con paneles (imagen + alt)
 │   │   ├── cultura.json        # Temas culturales con estados
 │   │   ├── flashcards.json     # Mazos con total/dominadas y barra de progreso
 │   │   ├── quizzes.json        # Quizzes con preguntas, estado y puntaje
@@ -213,3 +215,32 @@ muestra resumen "X / Y" con "Reintentar" (reinicia el motor) y "Volver a Quizzes
 
 **Texto seguro:** la pregunta y las opciones se insertan con `textContent` (no `innerHTML`
 concatenado), para evitar inyección si el contenido viniera de otra fuente.
+
+## Lector de Webtoon (webtoon-lector.html)
+
+`webtoon-lector.html?id=<id>` renderiza un episodio de webtoon desde `src/data/webtoon.json`.
+Los paneles se apilan verticalmente (estilo cómic webtoon real), con un ancho máximo de 500px
+centrado en la página.
+
+**Cómo funciona:**
+1. Lee el `id` con `URLSearchParams`.
+2. Hace `fetch()` de `src/data/webtoon.json`.
+3. Busca el episodio en `data.episodios` por `id`.
+4. Si existe → renderiza sus paneles (`<figure class="webtoon-panel">` con `<img loading="lazy">`).
+5. Si la imagen no existe (404) → muestra un placeholder visual (degradado + ícono).
+6. Si el id no existe → muestra "Episodio no encontrado" con botón a `webtoon.html`.
+
+**Barra de progreso:** fija en la parte superior (debajo del sidebar), se llena según el scroll
+de la página. Visual y de sesión — se reinicia al recargar, no se guarda.
+
+**Navegación:** al final del episodio, botones "← Episodio anterior" / "Episodio siguiente →"
+calculados desde el orden del JSON. Botón "Volver al webtoon" al final.
+
+**Lazy-load:** cada `<img loading="lazy">` carga solo cuando entra en el viewport.
+
+**Animaciones:** cada `.webtoon-panel` usa `.animate-in` (fade + flotar al entrar en pantalla),
+detectado automáticamente por el `MutationObserver` de `animations.js`.
+
+**Regla para futuro:** agregar un episodio nuevo a `webtoon.json` (con sus paneles) lo hace
+aparecer automáticamente en `webtoon.html` y funcionar en `webtoon-lector.html?id=<su-id>`,
+sin tocar código.

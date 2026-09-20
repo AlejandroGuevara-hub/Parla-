@@ -754,3 +754,65 @@ en memoria; no se persiste. **Regla de seguridad:** insertar pregunta y opciones
 - `.quiz-result` / `__score` / `__label` / `__actions` — pantalla de resultado final ("X / Y" + Reintentar / Volver a Quizzes).
 
 **Dónde se usa:** `quiz-detalle.html`.
+
+---
+
+## Bloque 3 — Componentes de Webtoon
+
+### `.webtoon-paneles`
+Contenedor de los paneles del lector de webtoon. Layout flex vertical centrado, con `gap` entre paneles y `max-width: 500px` para simular la columna de lectura de un cómic vertical real.
+
+```html
+<div class="webtoon-paneles">
+  <figure class="webtoon-panel animate-in">...</figure>
+  <figure class="webtoon-panel animate-in">...</figure>
+</div>
+```
+
+**Dónde se usa:** `webtoon-lector.html`.
+
+---
+
+### `.webtoon-panel`
+Cada panel del webtoon. Es un `<figure>` con `border-radius`, `overflow: hidden` y borde suave. Contiene una `<img>` con `loading="lazy"` y `class="animate-in"` para animación de entrada individual.
+
+```html
+<figure class="webtoon-panel animate-in">
+  <img src="../assets/webtoon/w1-panel-01.jpg" alt="Un chico pregunta en italiano" loading="lazy">
+</figure>
+```
+
+**Placeholder:** si la imagen falla al cargar (404), el `onerror` del `<img>` reemplaza el contenido por un `.webtoon-panel-placeholder` (degradado + ícono).
+
+**Dónde se usa:** `webtoon-lector.html`.
+
+---
+
+### `.webtoon-panel-placeholder`
+Bloque visual placeholder para paneles sin imagen real. Degradado con colores existentes (`--color-primary` → `--color-secondary`) + ícono Font Awesome grande + número de panel.
+
+```html
+<div class="webtoon-panel-placeholder">
+  <i class="fas fa-book-open"></i>
+  <span>Panel 1</span>
+</div>
+```
+
+**Estilo:** `aspect-ratio: 3 / 4` (proporción vertical de webtoon), ícono `3rem` blanco, texto `--fs-caption` blanco.
+
+**Dónde se usa:** Generado dinámicamente por `onerror` en `webtoon-lector.html` cuando falta la imagen.
+
+---
+
+### `.webtoon-progreso` / `.webtoon-progreso__barra`
+Barra de progreso de lectura visual, fija en la parte superior de la página (debajo del sidebar en desktop, pegada al borde superior en móvil).
+
+```html
+<div class="webtoon-progreso" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+  <div class="webtoon-progreso__barra"></div>
+</div>
+```
+
+**Comportamiento:** se llena según cuánto se ha scrolleado dentro del episodio (JS inline en `webtoon-lector.html`). Visual y de sesión — se reinicia al recargar, no se guarda en ningún lado.
+
+**Dónde se usa:** Solo `webtoon-lector.html`.
