@@ -2352,3 +2352,29 @@ a {
 }
 
 
+/* ---------- Webtoon Reading Progress ---------- */
+
+.webtoon-progreso {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: var(--color-border);
+  z-index: 150;
+}
+
+.webtoon-progreso__barra {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .webtoon-progreso {
+    left: 0;
+  }
+}
+
+

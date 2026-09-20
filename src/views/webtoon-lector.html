@@ -15,6 +15,10 @@
 </head>
 <body>
 
+  <div class="webtoon-progreso" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div class="webtoon-progreso__barra"></div>
+  </div>
+
   <parla-sidebar current="webtoon"></parla-sidebar>
   <parla-user-nav></parla-user-nav>
 
@@ -140,6 +144,16 @@
           renderizarNoEncontrado();
         });
     })();
+  </script>
+  <script>
+    // Barra de progreso de lectura (visual, de sesión)
+    window.addEventListener('scroll', function() {
+      var scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      var scrollActual = window.scrollY;
+      var porcentaje = Math.min(100, Math.max(0, (scrollActual / scrollTotal) * 100));
+      var barra = document.querySelector('.webtoon-progreso__barra');
+      if (barra) barra.style.width = porcentaje + '%';
+    });
   </script>
 </body>
 </html>
