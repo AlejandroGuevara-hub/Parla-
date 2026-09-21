@@ -263,7 +263,6 @@ usando PDF.js para dibujar páginas de un PDF en un `<canvas>` propio.
 Se carga solo en `cultura-lector.html`, no en las demás páginas.
 
 **Controles:**
-- Zoom: botones `-` / `+` con el porcentaje actual al medio (rango 50%–300%).
 - Pantalla completa: Fullscreen API del navegador.
 - Navegación de página: flecha anterior/siguiente + input numérico editable.
 

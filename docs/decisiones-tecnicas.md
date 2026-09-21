@@ -327,7 +327,7 @@ Scroll vertical nativo, `.animate-in` por panel, barra de progreso con scrollY /
 **Qué:** PDF.js v3.11.174 se carga desde cdnjs.cloudflare.com en `cultura-lector.html` para
 renderizar páginas de PDF en un `<canvas>` propio y construir controles 100% personalizados.
 
-**Por qué no un `<iframe>`:** el visor nativo del navegador no permite controlar zoom,
+**Por qué no un `<iframe>`:** el visor nativo del navegador no permite controlar
 navegación por página, ni construir una sidebar de secciones que salte a páginas específicas.
 PDF.js da control total sobre el renderizado.
 

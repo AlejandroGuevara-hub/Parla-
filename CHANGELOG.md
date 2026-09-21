@@ -4,7 +4,7 @@
 
 ### Added
 - Lector de PDF (`cultura-lector.html?id=<id>`): plantilla dinámica que renderiza páginas de un PDF en un `<canvas>` usando PDF.js v3.11.174 vía CDN.
-- Controles de zoom (botones `−`/`+`, rango 50%–300%), pantalla completa (Fullscreen API) y navegación de página (flechas + input numérico editable).
+- Controles de pantalla completa (Fullscreen API) y navegación de página (flechas + input numérico editable).
 - Sidebar de secciones del capítulo con ícono de estado (completado/pendiente), cada sección salta a su página en el PDF.
 - Barra de progreso inferior: capítulos completados + secciones completadas del capítulo actual (datos fijos del JSON).
 - Breadcrumb "Cultura > [subtítulo]" con link de vuelta a `cultura.html`.
@@ -15,6 +15,9 @@
 
 ### Changed
 - `cultura.html`: reemplaza lista de "temas" por lista de "capítulos" con enlaces al lector.
+
+### Removed
+- Controles de zoom del lector de PDF (se hacía nativo en PC/móvil).
 
 ## [1.20.0] — 2026-09-20
 

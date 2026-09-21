@@ -833,15 +833,10 @@ Navegación de migas de pan. Muestra "Cultura > [subtítulo del capítulo]".
 ```
 
 ### `.pdf-controls`
-Barra de controles sticky con zoom, pantalla completa y navegación de página.
+Barra de controles sticky con pantalla completa y navegación de página.
 
 ```html
 <div class="pdf-controls">
-  <div class="pdf-controls__group">
-    <button class="pdf-controls__btn" id="btn-zoom-out"><i class="fas fa-minus"></i></button>
-    <span class="pdf-controls__zoom">120%</span>
-    <button class="pdf-controls__btn" id="btn-zoom-in"><i class="fas fa-plus"></i></button>
-  </div>
   <div class="pdf-controls__group">
     <button class="pdf-controls__btn" id="btn-fullscreen"><i class="fas fa-expand"></i></button>
   </div>
