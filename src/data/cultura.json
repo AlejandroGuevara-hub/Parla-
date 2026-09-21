@@ -1,8 +1,18 @@
 {
-  "continuar": { "temaTitulo": "Tema 2 · Historia del Renacimiento" },
-  "temas": [
-    { "id": "t1", "titulo": "Tema 1 · Arte y pintura", "estado": "completado" },
-    { "id": "t2", "titulo": "Tema 2 · Historia del Renacimiento", "estado": "en-progreso" },
-    { "id": "t3", "titulo": "Tema 3 · Gastronomía italiana", "estado": "pendiente" }
+  "capitulos": [
+    {
+      "id": "c1",
+      "titulo": "Capitolo 1",
+      "subtitulo": "Storie e Tradizioni",
+      "archivoPdf": "cultura/capitulo-1-storie-tradizioni.pdf",
+      "capitulosCompletados": 1,
+      "capitulosTotal": 5,
+      "secciones": [
+        { "id": "s1", "titulo": "1.1 L'eredità orale", "pagina": 3, "estado": "completado" },
+        { "id": "s2", "titulo": "1.2 Miti del Mediterraneo", "pagina": 7, "estado": "pendiente" },
+        { "id": "s3", "titulo": "1.3 Rituali e Calendari Festivi", "pagina": 11, "estado": "pendiente" },
+        { "id": "s4", "titulo": "1.4 L'eredità orale", "pagina": 15, "estado": "pendiente" }
+      ]
+    }
   ]
 }
