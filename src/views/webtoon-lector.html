@@ -49,8 +49,9 @@
   <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
-  <script>
-    // Webtoon Lector - plantilla dinámica
+  <script type="module">
+    import { esFavorito, alternarFavorito } from '../scripts/favoritos.js';
+
     (function() {
       var contentEl = document.getElementById('webtoon-content');
       var params = new URLSearchParams(window.location.search);
@@ -92,6 +93,9 @@
           '<article class="episodio-detalle animate-in">' +
             '<div class="episodio-detalle__header">' +
               '<span class="episodio-detalle__badge">' + estadoLabel(episodio.estado) + '</span>' +
+              '<button class="favorito-toggle" aria-label="Agregar a favoritos">' +
+                '<i class="fa-regular fa-star"></i>' +
+              '</button>' +
             '</div>' +
             '<h2 class="episodio-detalle__title">' + episodio.titulo + '</h2>' +
 
@@ -137,6 +141,26 @@
             renderizarNoEncontrado();
           } else {
             renderizarEpisodio(episodios[index], index, episodios);
+
+            var itemFavorito = {
+              tipo: 'webtoon',
+              id: idEpisodio,
+              titulo: episodios[index].titulo,
+              subtitulo: 'Episodio de webtoon',
+              imagen: '',
+              url: 'webtoon-lector.html?id=' + idEpisodio
+            };
+            var iconoFav = contentEl.querySelector('.favorito-toggle i');
+            function actualizarFavorito() {
+              var activo = esFavorito(itemFavorito.tipo, itemFavorito.id);
+              iconoFav.classList.toggle('fa-regular', !activo);
+              iconoFav.classList.toggle('fa-solid', activo);
+            }
+            actualizarFavorito();
+            contentEl.querySelector('.favorito-toggle').addEventListener('click', function() {
+              alternarFavorito(itemFavorito);
+              actualizarFavorito();
+            });
           }
         })
         .catch(function(err) {

@@ -29,6 +29,9 @@
         <a href="cultura.html" class="breadcrumb__link">Cultura</a>
         <span class="breadcrumb__sep"><i class="fas fa-chevron-right"></i></span>
         <span class="breadcrumb__current" id="breadcrumb-chapter">Capítulo</span>
+        <button class="favorito-toggle" aria-label="Agregar a favoritos">
+          <i class="fa-regular fa-star"></i>
+        </button>
       </nav>
 
       <!-- Barra de controles (sticky) -->
@@ -95,7 +98,9 @@
   <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
-  <script>
+  <script type="module">
+    import { esFavorito, alternarFavorito } from '../scripts/favoritos.js';
+
     (function() {
       const params = new URLSearchParams(window.location.search);
       const chapterId = params.get('id');
@@ -209,6 +214,26 @@
           progressSections.textContent = completadas + ' de ' + capitulo.secciones.length + ' secciones';
 
           var rutaPdf = '../assets/' + capitulo.archivoPdf;
+
+          var itemFavorito = {
+            tipo: 'cultura',
+            id: chapterId,
+            titulo: capitulo.titulo,
+            subtitulo: capitulo.subtitulo,
+            imagen: '',
+            url: 'cultura-lector.html?id=' + chapterId
+          };
+          var iconoFav = document.querySelector('.favorito-toggle i');
+          function actualizarFavorito() {
+            var activo = esFavorito(itemFavorito.tipo, itemFavorito.id);
+            iconoFav.classList.toggle('fa-regular', !activo);
+            iconoFav.classList.toggle('fa-solid', activo);
+          }
+          actualizarFavorito();
+          document.querySelector('.favorito-toggle').addEventListener('click', function() {
+            alternarFavorito(itemFavorito);
+            actualizarFavorito();
+          });
 
           pdfjsLib.getDocument(rutaPdf).promise.then(function(pdf) {
             pdfDoc = pdf;
