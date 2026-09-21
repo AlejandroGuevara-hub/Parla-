@@ -2519,9 +2519,14 @@ a {
   min-height: 400px;
 }
 
-.pdf-canvas-wrapper:fullscreen {
+.pdf-lector:fullscreen {
   background: #1a1a1a;
   padding: var(--space-lg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
 }
 
 .pdf-canvas {

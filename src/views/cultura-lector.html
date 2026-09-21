@@ -113,6 +113,7 @@
       let pdfDoc = null;
       let paginaActual = 1;
       let escala = 1.2;
+      let renderTask = null;
 
       var canvas = document.getElementById('pdf-canvas');
       var ctx = canvas.getContext('2d');
@@ -136,11 +137,13 @@
         if (numero < 1) numero = 1;
         if (numero > pdfDoc.numPages) numero = pdfDoc.numPages;
         paginaActual = numero;
+        if (renderTask) { renderTask.cancel(); renderTask = null; }
         pdfDoc.getPage(numero).then(function(pagina) {
           var viewport = pagina.getViewport({ scale: escala });
           canvas.width = viewport.width;
           canvas.height = viewport.height;
-          pagina.render({ canvasContext: ctx, viewport: viewport });
+          renderTask = pagina.render({ canvasContext: ctx, viewport: viewport });
+          renderTask.promise.then(function() { renderTask = null; }).catch(function() {});
           pageInput.value = paginaActual;
           zoomLevel.textContent = Math.round(escala * 100) + '%';
           btnPrev.disabled = paginaActual <= 1;
@@ -170,9 +173,9 @@
       });
 
       btnFullscreen.addEventListener('click', function() {
-        var wrapper = document.getElementById('pdf-canvas-wrapper');
+        var lector = document.querySelector('.pdf-lector');
         if (!document.fullscreenElement) {
-          (wrapper.requestFullscreen || wrapper.webkitRequestFullscreen || wrapper.msRequestFullscreen).call(wrapper);
+          (lector.requestFullscreen || lector.webkitRequestFullscreen || lector.msRequestFullscreen).call(lector);
           btnFullscreen.querySelector('i').className = 'fas fa-compress';
         } else {
           (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
