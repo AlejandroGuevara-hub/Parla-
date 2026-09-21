@@ -48,6 +48,7 @@
   <script src="../scripts/animations.js"></script>
   <script type="module">
     import { crearQuizEngine } from '../scripts/quiz-engine.js';
+    import { esFavorito, alternarFavorito } from '../scripts/favoritos.js';
 
     const contentEl = document.getElementById('quiz-content');
     const params = new URLSearchParams(window.location.search);
@@ -81,6 +82,9 @@
           <header class="quiz-detail__header">
             <h2 class="quiz-detail__title"></h2>
             <span class="quiz-detail__timer"><i class="fas fa-stopwatch"></i> 04:15</span>
+            <button class="favorito-toggle" aria-label="Agregar a favoritos">
+              <i class="fa-regular fa-star"></i>
+            </button>
           </header>
 
           <div class="quiz-detail__progress">
@@ -193,6 +197,26 @@
           quizEngine = crearQuizEngine(quiz.preguntas);
           tituloQuiz = quiz.titulo;
           renderizarPregunta();
+
+          const itemFavorito = {
+            tipo: 'quiz',
+            id: idQuiz,
+            titulo: quiz.titulo,
+            subtitulo: quiz.preguntas.length + ' preguntas',
+            imagen: '',
+            url: 'quiz-detalle.html?id=' + idQuiz
+          };
+          const iconoFav = contentEl.querySelector('.favorito-toggle i');
+          function actualizarFavorito() {
+            const activo = esFavorito(itemFavorito.tipo, itemFavorito.id);
+            iconoFav.classList.toggle('fa-regular', !activo);
+            iconoFav.classList.toggle('fa-solid', activo);
+          }
+          actualizarFavorito();
+          contentEl.querySelector('.favorito-toggle').addEventListener('click', () => {
+            alternarFavorito(itemFavorito);
+            actualizarFavorito();
+          });
         })
         .catch(err => {
           console.error('Error cargando quiz:', err);
