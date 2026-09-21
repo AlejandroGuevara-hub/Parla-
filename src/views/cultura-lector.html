@@ -34,15 +34,6 @@
       <!-- Barra de controles (sticky) -->
       <div class="pdf-controls" id="pdf-controls">
         <div class="pdf-controls__group">
-          <button class="pdf-controls__btn" id="btn-zoom-out" aria-label="Reducir zoom">
-            <i class="fas fa-minus"></i>
-          </button>
-          <span class="pdf-controls__zoom" id="zoom-level">120%</span>
-          <button class="pdf-controls__btn" id="btn-zoom-in" aria-label="Aumentar zoom">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <div class="pdf-controls__group">
           <button class="pdf-controls__btn" id="btn-fullscreen" aria-label="Pantalla completa">
             <i class="fas fa-expand"></i>
           </button>
@@ -112,17 +103,14 @@
 
       let pdfDoc = null;
       let paginaActual = 1;
-      let escala = 1.2;
       let renderTask = null;
+      var escala = 1.2;
 
       var canvas = document.getElementById('pdf-canvas');
       var ctx = canvas.getContext('2d');
       var pageInput = document.getElementById('page-input');
       var pageTotal = document.getElementById('page-total');
-      var zoomLevel = document.getElementById('zoom-level');
       var breadcrumbChapter = document.getElementById('breadcrumb-chapter');
-      var btnZoomOut = document.getElementById('btn-zoom-out');
-      var btnZoomIn = document.getElementById('btn-zoom-in');
       var btnPrev = document.getElementById('btn-prev');
       var btnNext = document.getElementById('btn-next');
       var btnFullscreen = document.getElementById('btn-fullscreen');
@@ -145,19 +133,11 @@
           renderTask = pagina.render({ canvasContext: ctx, viewport: viewport });
           renderTask.promise.then(function() { renderTask = null; }).catch(function() {});
           pageInput.value = paginaActual;
-          zoomLevel.textContent = Math.round(escala * 100) + '%';
           btnPrev.disabled = paginaActual <= 1;
           btnNext.disabled = paginaActual >= pdfDoc.numPages;
         });
       }
 
-      function cambiarZoom(nuevaEscala) {
-        escala = Math.max(0.5, Math.min(3, nuevaEscala));
-        renderizarPagina(paginaActual);
-      }
-
-      btnZoomOut.addEventListener('click', function() { cambiarZoom(escala - 0.2); });
-      btnZoomIn.addEventListener('click', function() { cambiarZoom(escala + 0.2); });
       btnPrev.addEventListener('click', function() { renderizarPagina(paginaActual - 1); });
       btnNext.addEventListener('click', function() { renderizarPagina(paginaActual + 1); });
 

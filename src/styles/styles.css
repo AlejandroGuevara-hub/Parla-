@@ -2470,15 +2470,6 @@ a {
   cursor: not-allowed;
 }
 
-.pdf-controls__zoom {
-  font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
-  font-weight: 700;
-  min-width: 48px;
-  text-align: center;
-  color: var(--color-text);
-}
-
 .pdf-controls__page-input {
   width: 52px;
   height: 36px;
