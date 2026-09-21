@@ -104,5 +104,53 @@
   <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const chapterId = params.get('id');
+      if (!chapterId) return;
+
+      let pdfDoc = null;
+      let paginaActual = 1;
+      let escala = 1.2;
+
+      const canvas = document.getElementById('pdf-canvas');
+      const ctx = canvas.getContext('2d');
+      const pageInput = document.getElementById('page-input');
+      const pageTotal = document.getElementById('page-total');
+      const zoomLevel = document.getElementById('zoom-level');
+      const breadcrumbChapter = document.getElementById('breadcrumb-chapter');
+
+      function renderizarPagina(numero) {
+        if (!pdfDoc) return;
+        pdfDoc.getPage(numero).then(function(pagina) {
+          const viewport = pagina.getViewport({ scale: escala });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          pagina.render({ canvasContext: ctx, viewport: viewport });
+          pageInput.value = numero;
+          zoomLevel.textContent = Math.round(escala * 100) + '%';
+        });
+      }
+
+      fetch('../data/cultura.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var capitulo = data.capitulos.find(function(c) { return c.id === chapterId; });
+          if (!capitulo) return;
+
+          breadcrumbChapter.textContent = capitulo.subtitulo;
+          var rutaPdf = '../assets/' + capitulo.archivoPdf;
+
+          pdfjsLib.getDocument(rutaPdf).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            pageTotal.textContent = '/ ' + pdf.numPages;
+            pageInput.max = pdf.numPages;
+            renderizarPagina(paginaActual);
+          });
+        })
+        .catch(function(err) { console.error('Error cargando PDF:', err); });
+    })();
+  </script>
 </body>
 </html>
