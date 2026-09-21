@@ -2698,3 +2698,192 @@ a {
 }
 
 
+/* ============================================================
+   Favoritos (favoritos.html + favorito-toggle)
+   Botón de estrella y página de favoritos
+   ============================================================ */
+
+.favorito-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.favorito-toggle:hover {
+  color: #f59e0b;
+  transform: scale(1.15);
+}
+
+.favorito-toggle .fa-solid {
+  color: #f59e0b;
+}
+
+/* Filtros de categorías */
+.favoritos-filtros {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.favoritos-filtros__btn {
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.favoritos-filtros__btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.favoritos-filtros__btn.is-active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* Lista de favoritos */
+.favoritos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.favoritos-lista__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.favoritos-lista__item:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.favoritos-lista__img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-btn);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.favoritos-lista__placeholder {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.favoritos-lista__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.favoritos-lista__etiqueta {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+.favoritos-lista__titulo {
+  font-family: var(--font-heading);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  margin: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favoritos-lista__subtitulo {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.favoritos-lista__fecha {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+}
+
+.favoritos-lista__star {
+  width: 32px;
+  height: 32px;
+  font-size: 0.95rem;
+}
+
+/* Estado vacío */
+.favoritos-vacio {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.favoritos-vacio__icon {
+  font-size: 3rem;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  margin-bottom: var(--space-md);
+}
+
+.favoritos-vacio__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 480px) {
+  .favoritos-lista__item {
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+  }
+
+  .favoritos-lista__img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .favoritos-filtros {
+    gap: 4px;
+  }
+
+  .favoritos-filtros__btn {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--fs-caption);
+  }
+}
+
+

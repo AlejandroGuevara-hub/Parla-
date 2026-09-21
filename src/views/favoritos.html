@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favoritos — Parla!</title>
+  <script>!function(){var t=localStorage.getItem("parla-theme");"dark"===t&&document.documentElement.setAttribute("data-theme","dark")}();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+  <parla-sidebar current="favoritos"></parla-sidebar>
+  <parla-user-nav></parla-user-nav>
+
+  <main class="page-content">
+    <section class="dashboard animate-in">
+      <div class="dashboard__header animate-in">
+        <div class="icon favoritos" aria-hidden="true"><i class="fas fa-star"></i></div>
+        <h1 class="dashboard__title">Mis favoritos</h1>
+        <p class="dashboard__subtitle">Todo lo que guardaste para después</p>
+      </div>
+
+      <div class="favoritos-filtros animate-in" id="favoritos-filtros">
+        <button class="favoritos-filtros__btn is-active" data-filtro="todos">Todos</button>
+        <button class="favoritos-filtros__btn" data-filtro="leccion">Lecciones</button>
+        <button class="favoritos-filtros__btn" data-filtro="podcast">Podcast</button>
+        <button class="favoritos-filtros__btn" data-filtro="webtoon">Webtoon</button>
+        <button class="favoritos-filtros__btn" data-filtro="cultura">Cultura</button>
+        <button class="favoritos-filtros__btn" data-filtro="quiz">Quizzes</button>
+      </div>
+
+      <ul class="favoritos-lista" id="favoritos-lista" aria-label="Lista de favoritos"></ul>
+
+      <div class="favoritos-vacio" id="favoritos-vacio" style="display:none">
+        <i class="far fa-star favoritos-vacio__icon"></i>
+        <p class="favoritos-vacio__text">Aún no tienes favoritos guardados aquí</p>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-lg)">
+        <a href="inicio.html" class="btn btn-primary animate-in">&larr; Volver al inicio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer animate-in">
+    <p>&copy; 2026 Parla! — Todos los derechos reservados.</p>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <script type="module" src="../scripts/components/sidebar.js"></script>
+  <script type="module" src="../scripts/components/user-nav.js"></script>
+  <script src="../scripts/theme.js"></script>
+  <script src="../scripts/animations.js"></script>
+  <script type="module">
+    import { obtenerFavoritos, alternarFavorito } from '../scripts/favoritos.js';
+
+    const listaEl = document.getElementById('favoritos-lista');
+    const vacioEl = document.getElementById('favoritos-vacio');
+    const filtrosEl = document.getElementById('favoritos-filtros');
+    let filtroActivo = 'todos';
+
+    const etiquetas = {
+      leccion: 'Lección',
+      podcast: 'Podcast',
+      webtoon: 'Webtoon',
+      cultura: 'Cultura',
+      quiz: 'Quiz'
+    };
+
+    const iconos = {
+      leccion: 'fa-video',
+      podcast: 'fa-headphones',
+      webtoon: 'fa-book-open',
+      cultura: 'fa-landmark',
+      quiz: 'fa-circle-question'
+    };
+
+    function formatoFecha(iso) {
+      const d = new Date(iso);
+      const dia = d.getDate();
+      const mes = d.getMonth() + 1;
+      const anio = d.getFullYear();
+      return 'Guardado el ' + (dia < 10 ? '0' : '') + dia + '/' + (mes < 10 ? '0' : '') + mes + '/' + anio;
+    }
+
+    function renderizar() {
+      const favoritos = obtenerFavoritos();
+      const filtrados = filtroActivo === 'todos'
+        ? favoritos
+        : favoritos.filter(f => f.tipo === filtroActivo);
+
+      if (filtrados.length === 0) {
+        listaEl.innerHTML = '';
+        vacioEl.style.display = '';
+        return;
+      }
+
+      vacioEl.style.display = 'none';
+      listaEl.innerHTML = filtrados.map((f, idx) => {
+        const imgHtml = f.imagen
+          ? '<img src="' + f.imagen + '" alt="" class="favoritos-lista__img">'
+          : '<div class="favoritos-lista__img favoritos-lista__placeholder"><i class="fas ' + (iconos[f.tipo] || 'fa-star') + '"></i></div>';
+        return '<li class="favoritos-lista__item animate-in" style="transition-delay:' + (idx * 50) + 'ms" data-url="' + f.url + '">' +
+          imgHtml +
+          '<div class="favoritos-lista__info">' +
+            '<span class="favoritos-lista__etiqueta">' + (etiquetas[f.tipo] || f.tipo) + '</span>' +
+            '<h3 class="favoritos-lista__titulo">' + f.titulo + '</h3>' +
+            '<p class="favoritos-lista__subtitulo">' + (f.subtitulo || '') + '</p>' +
+            '<span class="favoritos-lista__fecha">' + formatoFecha(f.fechaGuardado) + '</span>' +
+          '</div>' +
+          '<button class="favorito-toggle favoritos-lista__star" aria-label="Quitar de favoritos" data-tipo="' + f.tipo + '" data-id="' + f.id + '">' +
+            '<i class="fa-solid fa-star"></i>' +
+          '</button>' +
+        '</li>';
+      }).join('');
+
+      listaEl.querySelectorAll('.favoritos-lista__item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.favorito-toggle')) return;
+          window.location.href = item.dataset.url;
+        });
+      });
+
+      listaEl.querySelectorAll('.favorito-toggle').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const tipo = btn.dataset.tipo;
+          const id = btn.dataset.id;
+          alternarFavorito({ tipo, id });
+          renderizar();
+        });
+      });
+    }
+
+    filtrosEl.querySelectorAll('.favoritos-filtros__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        filtrosEl.querySelectorAll('.favoritos-filtros__btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        filtroActivo = btn.dataset.filtro;
+        renderizar();
+      });
+    });
+
+    renderizar();
+  </script>
+</body>
+</html>
