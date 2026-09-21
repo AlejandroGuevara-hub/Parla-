@@ -11,6 +11,7 @@ class ParlaSidebar extends HTMLElement {
       { page: 'flashcards', href: 'flashcards.html', icon: 'fa-layer-group', label: 'Flashcards' },
       { page: 'quizzes', href: 'quizzes.html', icon: 'fa-circle-question', label: 'Quizzes' },
       { page: 'contacto', href: 'contacto.html', icon: 'fa-comment', label: 'Contactos' },
+      { page: 'favoritos', href: 'favoritos.html', icon: 'fa-star', label: 'Favoritos' },
     ];
 
     this.innerHTML = `
