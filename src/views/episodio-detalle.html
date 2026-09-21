@@ -46,8 +46,9 @@
   <script type="module" src="../scripts/components/user-nav.js"></script>
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
-  <script>
-    // Episodio - plantilla dinámica
+  <script type="module">
+    import { esFavorito, alternarFavorito } from '../scripts/favoritos.js';
+
     (function() {
       const contentEl = document.getElementById('episodio-content');
 
@@ -77,6 +78,9 @@
           <article class="episodio-detalle animate-in">
             <div class="episodio-detalle__header">
               <span class="episodio-detalle__badge">${estadoLabel(episodio.estado)}</span>
+              <button class="favorito-toggle" aria-label="Agregar a favoritos">
+                <i class="fa-regular fa-star"></i>
+              </button>
             </div>
             <h2 class="episodio-detalle__title">${episodio.titulo}</h2>
 
@@ -139,6 +143,26 @@
           icono.classList.toggle('fa-play', !reproduciendo);
           icono.classList.toggle('fa-pause', reproduciendo);
           boton.setAttribute('aria-label', reproduciendo ? 'Pausar' : 'Reproducir');
+        });
+
+        const itemFavorito = {
+          tipo: 'podcast',
+          id: idEpisodio,
+          titulo: episodio.titulo,
+          subtitulo: episodio.duracion,
+          imagen: '',
+          url: 'episodio-detalle.html?id=' + idEpisodio
+        };
+        const iconoFav = contentEl.querySelector('.favorito-toggle i');
+        function actualizarFavorito() {
+          const activo = esFavorito(itemFavorito.tipo, itemFavorito.id);
+          iconoFav.classList.toggle('fa-regular', !activo);
+          iconoFav.classList.toggle('fa-solid', activo);
+        }
+        actualizarFavorito();
+        contentEl.querySelector('.favorito-toggle').addEventListener('click', () => {
+          alternarFavorito(itemFavorito);
+          actualizarFavorito();
         });
       }
 
