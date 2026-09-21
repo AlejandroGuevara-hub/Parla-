@@ -24,7 +24,8 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── episodio-detalle.html# Plantilla dinámica: renderiza 1 episodio según ?id= (reproductor y transcripción simulados)
 │   │   ├── webtoon.html        # Webtoon (banner + lista de episodios con estados)
 │   │   ├── webtoon-lector.html # Plantilla dinámica: lector de webtoon según ?id= (paneles con scroll vertical)
-│   │   ├── cultura.html        # Cultura (banner + lista de temas con estados)
+│   │   ├── cultura.html        # Cultura (banner + lista de capítulos con estados)
+│   │   ├── cultura-lector.html # Plantilla dinámica: lector de PDF según ?id= (PDF.js en canvas, zoom, secciones)
 │   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)
 │   │   ├── quizzes.html        # Quizzes (banner + lista de quizzes con puntaje)
 │   │   ├── quiz-detalle.html   # Plantilla dinámica: quiz jugable según ?id= (usa quiz-engine.js)
@@ -244,3 +245,31 @@ detectado automáticamente por el `MutationObserver` de `animations.js`.
 **Regla para futuro:** agregar un episodio nuevo a `webtoon.json` (con sus paneles) lo hace
 aparecer automáticamente en `webtoon.html` y funcionar en `webtoon-lector.html?id=<su-id>`,
 sin tocar código.
+
+## Lector de PDF (cultura-lector.html)
+
+`cultura-lector.html?id=<id>` renderiza un capítulo de cultura desde `src/data/cultura.json`
+usando PDF.js para dibujar páginas de un PDF en un `<canvas>` propio.
+
+**Cómo funciona:**
+1. Lee el `id` con `URLSearchParams`.
+2. Hace `fetch()` de `src/data/cultura.json`.
+3. Busca el capítulo en `data.capitulos` por `id`.
+4. Usa `pdfjsLib.getDocument()` para cargar el PDF desde `src/assets/`.
+5. Renderiza la página actual en el `<canvas>` con `pagina.render()`.
+6. Si el id no existe → no carga nada (futuro: mostrar mensaje de error).
+
+**Dependencia externa:** PDF.js v3.11.174 vía CDN (primera dependencia externa del proyecto).
+Se carga solo en `cultura-lector.html`, no en las demás páginas.
+
+**Controles:**
+- Zoom: botones `-` / `+` con el porcentaje actual al medio (rango 50%–300%).
+- Pantalla completa: Fullscreen API del navegador.
+- Navegación de página: flecha anterior/siguiente + input numérico editable.
+
+**Sidebar de secciones:** lista las secciones del capítulo con ícono de estado
+(completado/pendiente). Al hacer clic, salta directo a la página correspondiente del PDF.
+En escritorio se muestra como drawer fijo a la derecha; en móvil se abre como drawer desde abajo.
+
+**Barra de progreso:** muestra capítulos completados y secciones completadas del capítulo actual.
+Datos fijos del JSON, sin tracking real de lectura.

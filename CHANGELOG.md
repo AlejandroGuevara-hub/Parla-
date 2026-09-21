@@ -1,5 +1,21 @@
 # Changelog — Parla!
 
+## [1.21.0] — 2026-09-20
+
+### Added
+- Lector de PDF (`cultura-lector.html?id=<id>`): plantilla dinámica que renderiza páginas de un PDF en un `<canvas>` usando PDF.js v3.11.174 vía CDN.
+- Controles de zoom (botones `−`/`+`, rango 50%–300%), pantalla completa (Fullscreen API) y navegación de página (flechas + input numérico editable).
+- Sidebar de secciones del capítulo con ícono de estado (completado/pendiente), cada sección salta a su página en el PDF.
+- Barra de progreso inferior: capítulos completados + secciones completadas del capítulo actual (datos fijos del JSON).
+- Breadcrumb "Cultura > [subtítulo]" con link de vuelta a `cultura.html`.
+- `cultura.json` reestructurado: de lista plana de `temas` a `capitulos` con `secciones` adentro (cada sección con `id`, `titulo`, `pagina`, `estado`).
+- `cultura.html` actualizado: muestra capítulos con botón "Abrir" que enlaza al lector.
+- CSS nuevos: `.breadcrumb`, `.pdf-controls`, `.pdf-canvas-wrapper`, `.pdf-sidebar`, `.pdf-progress` y variantes.
+- PDF.js documentado como primera dependencia externa del proyecto (consistencia con Font Awesome vía CDN).
+
+### Changed
+- `cultura.html`: reemplaza lista de "temas" por lista de "capítulos" con enlaces al lector.
+
 ## [1.20.0] — 2026-09-20
 
 ### Added

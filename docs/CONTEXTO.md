@@ -49,4 +49,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Nunca hacer `git add` sobre `reference/`, archivos `.zip`, o archivos de bloqueo. Toda imagen usada en el sitio real vive en `src/assets/`, nunca se referencia directo desde `reference/`. Antes de cualquier `git add .`, confirmar que `.gitignore` está cubriendo estas rutas.
 
 ## Última actualización
-2026-09-20 — Webtoon: lista de episodios + lector con scroll vertical de paneles, lazy-load, animación de entrada, barra de progreso visual y navegación entre episodios. CHANGELOG 1.20.0.
+2026-09-20 — Lector de PDF: PDF.js v3.11.174 vía CDN, controles de zoom/pantalla completa/navegación, sidebar de secciones, barra de progreso. `cultura.json` reestructurado con capítulos y secciones. CHANGELOG 1.21.0.

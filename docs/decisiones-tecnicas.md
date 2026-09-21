@@ -321,3 +321,20 @@ El diálogo de cada panel va "quemado" en la imagen. No hay capa de texto HTML s
 
 Paneles apilados verticalmente (`max-width: 500px`, centrado), fiel al formato webtoon real.
 Scroll vertical nativo, `.animate-in` por panel, barra de progreso con scrollY / scrollTotal.
+
+## PDF.js vía CDN — primera dependencia externa del proyecto
+
+**Qué:** PDF.js v3.11.174 se carga desde cdnjs.cloudflare.com en `cultura-lector.html` para
+renderizar páginas de PDF en un `<canvas>` propio y construir controles 100% personalizados.
+
+**Por qué no un `<iframe>`:** el visor nativo del navegador no permite controlar zoom,
+navegación por página, ni construir una sidebar de secciones que salte a páginas específicas.
+PDF.js da control total sobre el renderizado.
+
+**Por qué CDN y no local:** consistente con Font Awesome, ya cargado igual desde cdnjs.
+Evita sumar archivos `.js` al repositorio. Si en el futuro se necesita offline, se puede
+descargar y servir desde `src/scripts/vendor/`.
+
+**Por qué v3.11.174 y no v6.x:** a partir de v4.x, PDF.js solo publica builds ESM (`.mjs`),
+que requieren `type="module"` en el `<script>`. Para mantener consistencia con el resto del
+proyecto (scripts vanilla sin bundler), se usó la última versión con build UMD (`.js`).

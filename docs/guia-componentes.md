@@ -816,3 +816,77 @@ Barra de progreso de lectura visual, fija en la parte superior de la página (de
 **Comportamiento:** se llena según cuánto se ha scrolleado dentro del episodio (JS inline en `webtoon-lector.html`). Visual y de sesión — se reinicia al recargar, no se guarda en ningún lado.
 
 **Dónde se usa:** Solo `webtoon-lector.html`.
+
+---
+
+## Bloque 4 — Lector de PDF (cultura-lector.html)
+
+### `.breadcrumb`
+Navegación de migas de pan. Muestra "Cultura > [subtítulo del capítulo]".
+
+```html
+<nav class="breadcrumb" aria-label="Navegación">
+  <a href="cultura.html" class="breadcrumb__link">Cultura</a>
+  <span class="breadcrumb__sep"><i class="fas fa-chevron-right"></i></span>
+  <span class="breadcrumb__current">Storie e Tradizioni</span>
+</nav>
+```
+
+### `.pdf-controls`
+Barra de controles sticky con zoom, pantalla completa y navegación de página.
+
+```html
+<div class="pdf-controls">
+  <div class="pdf-controls__group">
+    <button class="pdf-controls__btn" id="btn-zoom-out"><i class="fas fa-minus"></i></button>
+    <span class="pdf-controls__zoom">120%</span>
+    <button class="pdf-controls__btn" id="btn-zoom-in"><i class="fas fa-plus"></i></button>
+  </div>
+  <div class="pdf-controls__group">
+    <button class="pdf-controls__btn" id="btn-fullscreen"><i class="fas fa-expand"></i></button>
+  </div>
+  <div class="pdf-controls__group">
+    <button class="pdf-controls__btn" id="btn-prev"><i class="fas fa-chevron-left"></i></button>
+    <input type="number" class="pdf-controls__page-input" id="page-input" min="1" value="1">
+    <span class="pdf-controls__total">/ 1</span>
+    <button class="pdf-controls__btn" id="btn-next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+```
+
+### `.pdf-canvas-wrapper` / `.pdf-canvas`
+Área del visor PDF. El wrapper centra el canvas y soporta pantalla completa.
+
+### `.pdf-sidebar`
+Sidebar de secciones del capítulo. En escritorio, drawer fijo a la derecha. En móvil, drawer desde abajo.
+
+```html
+<aside class="pdf-sidebar">
+  <button class="pdf-sidebar__toggle"><i class="fas fa-list"></i></button>
+  <div class="pdf-sidebar__drawer">
+    <h3 class="pdf-sidebar__title">Secciones</h3>
+    <ul class="pdf-sidebar__list">
+      <li class="pdf-sidebar__item" data-pagina="3">
+        <span class="pdf-sidebar__icon"><i class="fas fa-check-circle estado-icon estado-completado"></i></span>
+        <span class="pdf-sidebar__text">1.1 L'eredità orale</span>
+      </li>
+    </ul>
+  </div>
+</aside>
+```
+
+### `.pdf-progress`
+Barra de progreso inferior. Muestra capítulos completados y secciones completadas.
+
+```html
+<div class="pdf-progress">
+  <div class="pdf-progress__chapters">
+    <span class="pdf-progress__label">Capítulos completados:</span>
+    <span class="pdf-progress__value">1 de 5</span>
+  </div>
+  <div class="pdf-progress__sections">
+    <span class="pdf-progress__label">Progreso del capítulo:</span>
+    <span class="pdf-progress__value">1 de 4 secciones</span>
+  </div>
+</div>
+```
