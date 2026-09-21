@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lector PDF — Parla!</title>
+  <script>!function(){var t=localStorage.getItem("parla-theme");"dark"===t&&document.documentElement.setAttribute("data-theme","dark")}();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+</head>
+<body>
+
+  <parla-sidebar current="cultura"></parla-sidebar>
+  <parla-user-nav></parla-user-nav>
+
+  <main class="page-content">
+    <section class="pdf-lector animate-in">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Navegación">
+        <a href="cultura.html" class="breadcrumb__link">Cultura</a>
+        <span class="breadcrumb__sep"><i class="fas fa-chevron-right"></i></span>
+        <span class="breadcrumb__current" id="breadcrumb-chapter">Capítulo</span>
+      </nav>
+
+      <!-- Barra de controles (sticky) -->
+      <div class="pdf-controls" id="pdf-controls">
+        <div class="pdf-controls__group">
+          <button class="pdf-controls__btn" id="btn-zoom-out" aria-label="Reducir zoom">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="pdf-controls__zoom" id="zoom-level">120%</span>
+          <button class="pdf-controls__btn" id="btn-zoom-in" aria-label="Aumentar zoom">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+        <div class="pdf-controls__group">
+          <button class="pdf-controls__btn" id="btn-fullscreen" aria-label="Pantalla completa">
+            <i class="fas fa-expand"></i>
+          </button>
+        </div>
+        <div class="pdf-controls__group">
+          <button class="pdf-controls__btn" id="btn-prev" aria-label="Página anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <input type="number" class="pdf-controls__page-input" id="page-input" min="1" value="1" aria-label="Página actual">
+          <span class="pdf-controls__total" id="page-total">/ 1</span>
+          <button class="pdf-controls__btn" id="btn-next" aria-label="Página siguiente">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Área del PDF -->
+      <div class="pdf-canvas-wrapper" id="pdf-canvas-wrapper">
+        <canvas class="pdf-canvas" id="pdf-canvas"></canvas>
+      </div>
+
+      <!-- Sidebar de secciones -->
+      <aside class="pdf-sidebar" id="pdf-sidebar">
+        <button class="pdf-sidebar__toggle" id="sidebar-toggle" aria-label="Abrir secciones">
+          <i class="fas fa-list"></i>
+        </button>
+        <div class="pdf-sidebar__drawer" id="sidebar-drawer">
+          <h3 class="pdf-sidebar__title">Secciones</h3>
+          <ul class="pdf-sidebar__list" id="sections-list"></ul>
+        </div>
+      </aside>
+
+      <!-- Barra de progreso inferior -->
+      <div class="pdf-progress">
+        <div class="pdf-progress__chapters">
+          <span class="pdf-progress__label">Capítulos completados:</span>
+          <span class="pdf-progress__value" id="progress-chapters">0 de 0</span>
+        </div>
+        <div class="pdf-progress__sections">
+          <span class="pdf-progress__label">Progreso del capítulo:</span>
+          <span class="pdf-progress__value" id="progress-sections">0 de 0 secciones</span>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-lg)">
+        <a href="cultura.html" class="btn btn-primary animate-in">&larr; Volver a Cultura</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer animate-in">
+    <p>&copy; 2026 Parla! — Todos los derechos reservados.</p>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a tema oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <script type="module" src="../scripts/components/sidebar.js"></script>
+  <script type="module" src="../scripts/components/user-nav.js"></script>
+  <script src="../scripts/theme.js"></script>
+  <script src="../scripts/animations.js"></script>
+</body>
+</html>
