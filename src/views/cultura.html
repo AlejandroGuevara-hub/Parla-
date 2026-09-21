@@ -50,53 +50,48 @@
   <script src="../scripts/theme.js"></script>
   <script src="../scripts/animations.js"></script>
   <script>
-    // Cultura - fetch y render
     (function() {
-      const bannerEl = document.getElementById('continue-banner');
-      const listEl = document.getElementById('topics-list');
+      var bannerEl = document.getElementById('continue-banner');
+      var listEl = document.getElementById('topics-list');
 
       function estadoIcon(estado) {
         if (estado === 'completado') return '<i class="fas fa-check-circle estado-icon estado-completado" aria-label="Completado"></i>';
-        if (estado === 'en-progreso') return '<i class="fas fa-circle-notch estado-icon estado-progreso" aria-label="En progreso"></i>';
         return '<i class="far fa-circle estado-icon estado-pendiente" aria-label="Pendiente"></i>';
       }
 
-      function estadoLabel(estado) {
-        return estado === 'completado' ? 'Completado' : estado === 'en-progreso' ? 'En progreso' : 'Pendiente';
-      }
-
       function renderBanner(data) {
-        const c = data.continuar;
-        if (!c) return;
-        bannerEl.innerHTML = `
-          <div class="continue-banner__icon"><i class="fas fa-landmark"></i></div>
-          <div class="continue-banner__content">
-            <span class="continue-banner__label">Sigue explorando</span>
-            <h2 class="continue-banner__title">${c.temaTitulo}</h2>
-          </div>
-          <button class="btn btn-primary continue-banner__btn">Ver tema</button>
-        `;
+        if (!data.capitulos || !data.capitulos.length) return;
+        var activo = data.capitulos.find(function(c) {
+          return c.secciones.some(function(s) { return s.estado !== 'completado'; });
+        }) || data.capitulos[0];
+        bannerEl.innerHTML = '<div class="continue-banner__icon"><i class="fas fa-landmark"></i></div>' +
+          '<div class="continue-banner__content">' +
+            '<span class="continue-banner__label">Sigue explorando</span>' +
+            '<h2 class="continue-banner__title">' + activo.subtitulo + '</h2>' +
+          '</div>' +
+          '<a href="cultura-lector.html?id=' + activo.id + '" class="btn btn-primary continue-banner__btn">Ver capítulo</a>';
         bannerEl.classList.add('animate-in');
       }
 
-      function renderTopics(data) {
-        const temas = data.temas || [];
-        listEl.innerHTML = temas.map((t, idx) => `
-          <li class="topic-item animate-in" style="transition-delay: ${idx * 80}ms">
-            <span class="topic-item__icon">${estadoIcon(t.estado)}</span>
-            <span class="topic-item__title">${t.titulo}</span>
-            <span class="topic-item__estado">${estadoLabel(t.estado)}</span>
-          </li>
-        `).join('');
+      function renderChapters(data) {
+        var capitulos = data.capitulos || [];
+        listEl.innerHTML = capitulos.map(function(c, idx) {
+          var completadas = c.secciones.filter(function(s) { return s.estado === 'completado'; }).length;
+          return '<li class="topic-item animate-in" style="transition-delay: ' + (idx * 80) + 'ms">' +
+            '<span class="topic-item__icon">' + estadoIcon(completadas === c.secciones.length ? 'completado' : 'pendiente') + '</span>' +
+            '<span class="topic-item__title">' + c.titulo + ' · ' + c.subtitulo + '</span>' +
+            '<a href="cultura-lector.html?id=' + c.id + '" class="btn btn-small topic-item__btn">Abrir</a>' +
+          '</li>';
+        }).join('');
       }
 
       fetch('../data/cultura.json')
-        .then(r => r.json())
-        .then(data => {
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
           renderBanner(data);
-          renderTopics(data);
+          renderChapters(data);
         })
-        .catch(err => console.error('Error cargando cultura:', err));
+        .catch(function(err) { console.error('Error cargando cultura:', err); });
     })();
   </script>
 </body>
