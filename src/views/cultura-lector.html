@@ -114,24 +114,70 @@
       let paginaActual = 1;
       let escala = 1.2;
 
-      const canvas = document.getElementById('pdf-canvas');
-      const ctx = canvas.getContext('2d');
-      const pageInput = document.getElementById('page-input');
-      const pageTotal = document.getElementById('page-total');
-      const zoomLevel = document.getElementById('zoom-level');
-      const breadcrumbChapter = document.getElementById('breadcrumb-chapter');
+      var canvas = document.getElementById('pdf-canvas');
+      var ctx = canvas.getContext('2d');
+      var pageInput = document.getElementById('page-input');
+      var pageTotal = document.getElementById('page-total');
+      var zoomLevel = document.getElementById('zoom-level');
+      var breadcrumbChapter = document.getElementById('breadcrumb-chapter');
+      var btnZoomOut = document.getElementById('btn-zoom-out');
+      var btnZoomIn = document.getElementById('btn-zoom-in');
+      var btnPrev = document.getElementById('btn-prev');
+      var btnNext = document.getElementById('btn-next');
+      var btnFullscreen = document.getElementById('btn-fullscreen');
 
       function renderizarPagina(numero) {
         if (!pdfDoc) return;
+        if (numero < 1) numero = 1;
+        if (numero > pdfDoc.numPages) numero = pdfDoc.numPages;
+        paginaActual = numero;
         pdfDoc.getPage(numero).then(function(pagina) {
-          const viewport = pagina.getViewport({ scale: escala });
+          var viewport = pagina.getViewport({ scale: escala });
           canvas.width = viewport.width;
           canvas.height = viewport.height;
           pagina.render({ canvasContext: ctx, viewport: viewport });
-          pageInput.value = numero;
+          pageInput.value = paginaActual;
           zoomLevel.textContent = Math.round(escala * 100) + '%';
+          btnPrev.disabled = paginaActual <= 1;
+          btnNext.disabled = paginaActual >= pdfDoc.numPages;
         });
       }
+
+      function cambiarZoom(nuevaEscala) {
+        escala = Math.max(0.5, Math.min(3, nuevaEscala));
+        renderizarPagina(paginaActual);
+      }
+
+      btnZoomOut.addEventListener('click', function() { cambiarZoom(escala - 0.2); });
+      btnZoomIn.addEventListener('click', function() { cambiarZoom(escala + 0.2); });
+      btnPrev.addEventListener('click', function() { renderizarPagina(paginaActual - 1); });
+      btnNext.addEventListener('click', function() { renderizarPagina(paginaActual + 1); });
+
+      pageInput.addEventListener('change', function() {
+        var val = parseInt(pageInput.value, 10);
+        if (!isNaN(val)) renderizarPagina(val);
+      });
+      pageInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var val = parseInt(pageInput.value, 10);
+          if (!isNaN(val)) renderizarPagina(val);
+        }
+      });
+
+      btnFullscreen.addEventListener('click', function() {
+        var wrapper = document.getElementById('pdf-canvas-wrapper');
+        if (!document.fullscreenElement) {
+          (wrapper.requestFullscreen || wrapper.webkitRequestFullscreen || wrapper.msRequestFullscreen).call(wrapper);
+          btnFullscreen.querySelector('i').className = 'fas fa-compress';
+        } else {
+          (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
+          btnFullscreen.querySelector('i').className = 'fas fa-expand';
+        }
+      });
+
+      document.addEventListener('fullscreenchange', function() {
+        btnFullscreen.querySelector('i').className = document.fullscreenElement ? 'fas fa-compress' : 'fas fa-expand';
+      });
 
       fetch('../data/cultura.json')
         .then(function(r) { return r.json(); })
