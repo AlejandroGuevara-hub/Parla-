@@ -125,6 +125,9 @@
       var btnPrev = document.getElementById('btn-prev');
       var btnNext = document.getElementById('btn-next');
       var btnFullscreen = document.getElementById('btn-fullscreen');
+      var sidebarToggle = document.getElementById('sidebar-toggle');
+      var sidebarDrawer = document.getElementById('sidebar-drawer');
+      var sectionsList = document.getElementById('sections-list');
 
       function renderizarPagina(numero) {
         if (!pdfDoc) return;
@@ -179,6 +182,34 @@
         btnFullscreen.querySelector('i').className = document.fullscreenElement ? 'fas fa-compress' : 'fas fa-expand';
       });
 
+      sidebarToggle.addEventListener('click', function() {
+        sidebarDrawer.classList.toggle('is-open');
+        sidebarToggle.classList.toggle('is-active');
+      });
+
+      function estadoIcono(estado) {
+        if (estado === 'completado') return '<i class="fas fa-check-circle estado-icon estado-completado"></i>';
+        return '<i class="far fa-circle estado-icon estado-pendiente"></i>';
+      }
+
+      function renderizarSecciones(secciones) {
+        sectionsList.innerHTML = secciones.map(function(s) {
+          return '<li class="pdf-sidebar__item" data-pagina="' + s.pagina + '">' +
+            '<span class="pdf-sidebar__icon">' + estadoIcono(s.estado) + '</span>' +
+            '<span class="pdf-sidebar__text">' + s.titulo + '</span>' +
+          '</li>';
+        }).join('');
+
+        sectionsList.querySelectorAll('.pdf-sidebar__item').forEach(function(item) {
+          item.addEventListener('click', function() {
+            var pagina = parseInt(item.getAttribute('data-pagina'), 10);
+            if (!isNaN(pagina)) renderizarPagina(pagina);
+            sidebarDrawer.classList.remove('is-open');
+            sidebarToggle.classList.remove('is-active');
+          });
+        });
+      }
+
       fetch('../data/cultura.json')
         .then(function(r) { return r.json(); })
         .then(function(data) {
@@ -186,6 +217,7 @@
           if (!capitulo) return;
 
           breadcrumbChapter.textContent = capitulo.subtitulo;
+          renderizarSecciones(capitulo.secciones);
           var rutaPdf = '../assets/' + capitulo.archivoPdf;
 
           pdfjsLib.getDocument(rutaPdf).promise.then(function(pdf) {
