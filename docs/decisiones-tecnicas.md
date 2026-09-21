@@ -338,3 +338,21 @@ descargar y servir desde `src/scripts/vendor/`.
 **Por qué v3.11.174 y no v6.x:** a partir de v4.x, PDF.js solo publica builds ESM (`.mjs`),
 que requieren `type="module"` en el `<script>`. Para mantener consistencia con el resto del
 proyecto (scripts vanilla sin bundler), se usó la última versión con build UMD (`.js`).
+
+## Favoritos en localStorage — colección curada por el usuario
+
+**Qué:** el módulo `favoritos.js` guarda la lista de favoritos en `localStorage` bajo la
+clave `parla-favoritos`. Cada ítem almacena tipo, id, titulo, subtitulo, imagen, url y
+fechaGuardado.
+
+**Por qué localStorage y no solo visual (como el progreso):** los favoritos son una colección
+curada por el usuario — sin persistencia no cumple su función. A diferencia del progreso de
+lectura o la barra de scroll (que son indicadores visuales de sesión), un favorito guardado
+debe sobrevivir al recierre del navegador.
+
+**Por qué sin backend:** en Fase 1 no hay servidor. localStorage es la única opción de
+persistencia disponible. Se envuelve en `try/catch` para no romper si está bloqueado o lleno.
+
+**Por qué solo desde detalle (no desde listas):** el botón de estrella en listas crearía
+ruido visual y haría difícil distinguir qué es contenido y qué es acción. Desde el detalle,
+el usuario tiene contexto completo para decidir si guardar.

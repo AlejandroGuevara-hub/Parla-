@@ -1,5 +1,15 @@
 # Changelog — Parla!
 
+## [1.22.0] — 2026-09-21
+
+### Added
+- Sistema de favoritos con `localStorage`: módulo compartido `favoritos.js` con `obtenerFavoritos()`, `esFavorito()`, `alternarFavorito()`.
+- Botón de favorito (estrella) en páginas de detalle: `leccion-detalle.html`, `episodio-detalle.html`, `webtoon-lector.html`, `cultura-lector.html`, `quiz-detalle.html`.
+- Página `favoritos.html` con lista de guardados, pestañas de filtro por categoría (Todos/Lecciones/Podcast/Webtoon/Cultura/Quizzes), estado vacío y botón de quitar.
+- Enlace "Favoritos" (`fa-star`) en el sidebar de navegación.
+- CSS nuevos: `.favorito-toggle`, `.favoritos-filtros`, `.favoritos-lista`, `.favoritos-vacio` y variantes.
+- Flashcards queda fuera de favoritos por ahora (pendiente página de detalle de mazo).
+
 ## [1.21.0] — 2026-09-20
 
 ### Added

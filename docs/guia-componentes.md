@@ -885,3 +885,50 @@ Barra de progreso inferior. Muestra capítulos completados y secciones completad
   </div>
 </div>
 ```
+
+---
+
+## Bloque 5 — Favoritos
+
+### `.favorito-toggle`
+Botón de estrella para marcar/desmarcar contenido como favorito. Se usa en todas las páginas
+de detalle y en la lista de favoritos.
+
+```html
+<button class="favorito-toggle" aria-label="Agregar a favoritos">
+  <i class="fa-regular fa-star"></i>
+</button>
+```
+
+**Estados:** estrella contorno (`fa-regular`) = no guardado; estrella rellena (`fa-solid`) = guardado.
+Color activo: `#f59e0b` (ámbar/dorado).
+
+### `.favoritos-filtros`
+Barra horizontal de pestañas para filtrar por categoría.
+
+```html
+<div class="favoritos-filtros">
+  <button class="favoritos-filtros__btn is-active" data-filtro="todos">Todos</button>
+  <button class="favoritos-filtros__btn" data-filtro="leccion">Lecciones</button>
+  <button class="favoritos-filtros__btn" data-filtro="podcast">Podcast</button>
+  <button class="favoritos-filtros__btn" data-filtro="webtoon">Webtoon</button>
+  <button class="favoritos-filtros__btn" data-filtro="cultura">Cultura</button>
+  <button class="favoritos-filtros__btn" data-filtro="quiz">Quizzes</button>
+</div>
+```
+
+La clase `.is-active` resalta la pestaña seleccionada con `--color-primary`.
+
+### `.favoritos-lista`
+Lista de favoritos guardados. Cada ítem muestra miniatura, etiqueta del tipo, título,
+subtítulo, fecha de guardado y una estrella rellena para quitar.
+
+### `.favoritos-vacio`
+Estado vacío cuando no hay favoritos (en general o en la categoría seleccionada).
+
+```html
+<div class="favoritos-vacio">
+  <i class="far fa-star favoritos-vacio__icon"></i>
+  <p class="favoritos-vacio__text">Aún no tienes favoritos guardados aquí</p>
+</div>
+```

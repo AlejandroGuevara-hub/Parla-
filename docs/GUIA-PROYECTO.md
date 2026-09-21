@@ -26,6 +26,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── webtoon-lector.html # Plantilla dinámica: lector de webtoon según ?id= (paneles con scroll vertical)
 │   │   ├── cultura.html        # Cultura (banner + lista de capítulos con estados)
 │   │   ├── cultura-lector.html # Plantilla dinámica: lector de PDF según ?id= (PDF.js en canvas, zoom, secciones)
+│   │   ├── favoritos.html      # Favoritos (panel con filtros por categoría, lista de guardados)
 │   │   ├── flashcards.html     # Flashcards (banner + grid de mazos con progreso)
 │   │   ├── quizzes.html        # Quizzes (banner + lista de quizzes con puntaje)
 │   │   ├── quiz-detalle.html   # Plantilla dinámica: quiz jugable según ?id= (usa quiz-engine.js)
@@ -40,6 +41,7 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   │   ├── sidebar.js          # Drawer del sidebar (vistas autenticadas)
 │   │   ├── theme.js            # Tema claro/oscuro con persistencia
 │   │   ├── animations.js       # animate-in (IntersectionObserver), parallax hero, blur de imágenes
+│   │   ├── favoritos.js        # Módulo de favoritos: guardar/leer/alternar en localStorage (módulo ES)
 │   │   └── quiz-engine.js      # Motor de quiz: preguntas, respuestas, puntaje (módulo ES)
 │   ├── components/             ← Fragmentos HTML reutilizables (futuro)
 │   ├── data/                   ← Datos de ejemplo estáticos (JSON) para secciones de contenido
@@ -272,3 +274,15 @@ En escritorio se muestra como drawer fijo a la derecha; en móvil se abre como d
 
 **Barra de progreso:** muestra capítulos completados y secciones completadas del capítulo actual.
 Datos fijos del JSON, sin tracking real de lectura.
+
+## Sistema de Favoritos (favoritos.js + favoritos.html)
+
+Módulo compartido (`src/scripts/favoritos.js`) que guarda/lee/alterna favoritos en `localStorage`.
+Cada página de detalle (leccion, podcast, webtoon, cultura, quiz) tiene un botón de estrella que
+guarda el ítem con metadatos (tipo, id, titulo, subtitulo, imagen, url, fechaGuardado).
+
+`favoritos.html` muestra la lista de guardados con pestañas de filtro por categoría y un botón
+de estrella para quitar cada ítem. Al hacer clic en una fila (fuera de la estrella), navega a la
+`url` original del favorito.
+
+**Flashcards queda fuera de esta ronda** — se agregará cuando exista una página de detalle de mazo.

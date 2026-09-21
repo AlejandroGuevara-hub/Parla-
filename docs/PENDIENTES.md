@@ -16,7 +16,7 @@
 - [ ] **Colocar PDF real del cliente en src/assets/cultura/** — El lector de PDF (`cultura-lector.html`) referencia `cultura/capitulo-1-storie-tradizioni.pdf` pero el archivo no existe todavía. Pendiente que el cliente lo entregue y lo coloque en `src/assets/cultura/`.
 - [ ] **Retomar el glow de "Lecciones en video"** — El spec `docs/specs/prompt-eliminar-card-featured.md` ordena eliminar por completo el efecto `.card--featured` (glow) por romper el renderizado de la tarjeta, pero **el spec nunca se aplicó**: el glow sigue activo en el código (`inicio.html:79` + `styles.css` + tokens `--glow-clr-*`). Decisión: si se retoma, prototipar en una página aislada antes de aplicarlo directo al grid de producción.
 - [ ] **Barra de progreso** — Agregar barra de progreso general en el dashboard de inicio.
-- [ ] **Favoritos** — Implementar sistema de favoritos en las tarjetas.
+- [ ] **Favoritos en Flashcards** — Agregar botón de favorito en flashcards cuando exista una página de detalle de mazo individual.
 - [ ] **Fuente Hatton** — Esperando que el cliente entregue el archivo real de la fuente Hatton para reemplazar el placeholder Fraunces.
 - [ ] **Perfil: conectar edición real y guardado de preferencias cuando exista backend**.
 - [ ] **Temporizador real en quiz-detalle.html** — El temporizador del quiz es visual y fijo (`⏱ 04:15`, no cuenta). Falta la cuenta regresiva real cuando haya backend/lógica.
