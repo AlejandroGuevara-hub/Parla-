@@ -128,6 +128,8 @@
       var sidebarToggle = document.getElementById('sidebar-toggle');
       var sidebarDrawer = document.getElementById('sidebar-drawer');
       var sectionsList = document.getElementById('sections-list');
+      var progressChapters = document.getElementById('progress-chapters');
+      var progressSections = document.getElementById('progress-sections');
 
       function renderizarPagina(numero) {
         if (!pdfDoc) return;
@@ -218,6 +220,11 @@
 
           breadcrumbChapter.textContent = capitulo.subtitulo;
           renderizarSecciones(capitulo.secciones);
+
+          progressChapters.textContent = capitulo.capitulosCompletados + ' de ' + capitulo.capitulosTotal;
+          var completadas = capitulo.secciones.filter(function(s) { return s.estado === 'completado'; }).length;
+          progressSections.textContent = completadas + ' de ' + capitulo.secciones.length + ' secciones';
+
           var rutaPdf = '../assets/' + capitulo.archivoPdf;
 
           pdfjsLib.getDocument(rutaPdf).promise.then(function(pdf) {
