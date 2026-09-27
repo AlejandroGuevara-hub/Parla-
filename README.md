@@ -13,10 +13,10 @@
 ## Qué es Parla!
 
 Plataforma web para aprender italiano dirigida a un público de 20-25 años. Debe sentirse
-moderna, ligera y fácil de usar. El proyecto está en **Fase 1: prototipo clicable** — solo
-interfaz y navegación, sin backend, sin base de datos y sin autenticación real. Los
-formularios de login y registro son maquetas visuales que navegan entre sí (registro →
-login → inicio) sin validar datos.
+moderna, ligera y fácil de usar. El proyecto está en **Fase 1: COMPLETADA** — interfaz,
+navegación y prototipo funcional entregado. Solo interfaz y navegación, sin backend, sin
+base de datos y sin autenticación real. Los formularios de login y registro son maquetas
+visuales que navegan entre sí (registro → login → inicio) sin validar datos.
 
 ## Cómo correr el proyecto localmente
 
@@ -112,15 +112,16 @@ Luego visita `http://localhost:8000/src/views/index.html`.
   en desktop y angosto pegado al borde derecho en tablet/móvil; tarjetas del dashboard en grid
   `auto-fit`; sidebar con drawer en móvil.
 
-## Qué NO está implementado todavía
+## Qué queda para Fase 2
 
-- Contenido real de **Webtoon** — hoy es placeholder (pendiente definición por el cliente).
-- Barra de progreso del estudiante.
-- Sistema de favoritos.
-- Autenticación real (login/registro son maquetas visuales).
-- La fuente Hatton (se usa Fraunces como reemplazo temporal).
-- Conectar audio real en Podcast (botones de play son visuales).
-- Detalles y dependencias del cliente: ver [`docs/PENDIENTES.md`](docs/PENDIENTES.md).
+- Autenticación real (login/registro con validación, JWT/sesión, recuperación de contraseña)
+- Backend: API REST/GraphQL, base de datos (PostgreSQL/SQLite), almacenamiento de progreso y favoritos
+- Panel administrativo: gestión de contenidos (CRUD lecciones, podcasts, webtoons, cultura, flashcards, quizzes), usuarios, estadísticas
+- Contenido real: videos de lecciones, audio de podcast con transcripción real, arte de webtoons, PDFs de cultura
+- Barra de progreso del estudiante persistente (sincronizada con backend)
+- Sistema de favoritos con sincronización servidor
+- Fuente Hatton real (reemplaza Fraunces placeholder)
+- Conectar audio real en Podcast (botones de play funcionales)
 
 ## Índice de documentación
 

@@ -4,7 +4,16 @@
 Plataforma web para aprender italiano. Público: 20-25 años. Debe sentirse moderna y fácil de usar.
 
 ## Fase actual
-Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenticación real, sin panel admin.
+Fase 1: **COMPLETADA** — Interfaz, navegación y prototipo funcional entregado. Sin backend, sin base de datos, sin autenticación real, sin panel admin.
+
+## Qué queda para Fase 2
+- Cuentas reales con autenticación (login/registro con validación y sesión)
+- Backend (API, base de datos, almacenamiento de progreso y favoritos)
+- Panel administrativo (gestión de contenidos, usuarios, estadísticas)
+- Contenido real: videos de lecciones, audio de podcast, arte de webtoons, PDFs de cultura
+- Barra de progreso del estudiante persistente
+- Sistema de favoritos con sincronización servidor
+- Fuente Hatton real (reemplaza Fraunces placeholder)
 
 ## Estado de avance
 - [x] Landing Page — hero con fondo real, logo, copy actualizado
@@ -49,4 +58,4 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Nunca hacer `git add` sobre `reference/`, archivos `.zip`, o archivos de bloqueo. Toda imagen usada en el sitio real vive en `src/assets/`, nunca se referencia directo desde `reference/`. Antes de cualquier `git add .`, confirmar que `.gitignore` está cubriendo estas rutas.
 
 ## Última actualización
-2026-09-21 — Sistema de favoritos con localStorage: módulo compartido, botón de estrella en 5 páginas de detalle, página favoritos.html con filtros, enlace en sidebar. CHANGELOG 1.22.0.
+2026-09-27 — Cierre de Fase 1: prototipo funcional completo (interfaz, navegación, 11 vistas, sidebar, favoritos, PDF reader, webtoon lector, quiz engine). Documentación al día. CHANGELOG 1.23.0.

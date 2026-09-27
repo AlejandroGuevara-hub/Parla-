@@ -1,24 +1,44 @@
 # Tareas pendientes — Parla!
 
-- [x] **Inicio del estudiante** — Construir la pantalla principal del estudiante con las 6 tarjetas (Lecciones, Podcast, Webtoon, Cultura, Flashcards, Quizzes). Completado: header de usuario autenticado, grid de tarjetas, cada tarjeta enlaza a su página (aún sin construir).
-- [x] **Páginas placeholder (6)** — Páginas individuales creadas con marcador de posición y navegación continua. Pendiente desarrollar el contenido real de cada una:
-  - `src/views/video.html` — **COMPLETADO**: banner + acordeón de módulos/lecciones con estados.
-  - `src/views/podcast.html` — **COMPLETADO**: banner + lista de episodios con estados y transcripción.
-  - `src/views/webtoon.html` — **COMPLETADO**: banner + lista de episodios con estados. Lector en `webtoon-lector.html?id=<id>` con paneles scroll vertical.
-  - `src/views/cultura.html` — **COMPLETADO**: banner + lista de capítulos con estados. Enlaza a `cultura-lector.html?id=<id>`.
-  - `src/views/cultura-lector.html` — **COMPLETADO**: lector de PDF con PDF.js, controles de zoom/navegación, sidebar de secciones, barra de progreso.
-  - `src/views/flashcards.html` — **COMPLETADO**: banner + grid de mazos con barra de progreso.
-  - `src/views/quizzes.html` — **COMPLETADO**: banner + lista de quizzes con estados y puntaje.
-- [ ] **Conectar audio real y transcripción real por episodio cuando el cliente los entregue** — El reproductor y la transcripción en `episodio-detalle.html` son simulados (botón de play visual, barra en 0%, transcripción con skeleton).
-- [ ] **Conectar video real en leccion-detalle.html** — El reproductor de video de la página de detalle de lección es un placeholder visual (ícono de play); falta integrar los archivos de video reales cuando el cliente los entregue.
-- [x] **Definir contenido de Webtoon** — Completado: `webtoon.json` con episodios y paneles de ejemplo, `webtoon.html` con lista, `webtoon-lector.html` con scroll vertical de paneles, lazy-load, animación de entrada y barra de progreso.
-- [ ] **Reemplazar placeholders por arte real de los paneles de webtoon** — Las imágenes de los paneles en `webtoon-lector.html` usan placeholder visual (degradado + ícono). Pendiente que el cliente entregue el arte real de los webtoons.
-- [ ] **Colocar PDF real del cliente en src/assets/cultura/** — El lector de PDF (`cultura-lector.html`) referencia `cultura/capitulo-1-storie-tradizioni.pdf` pero el archivo no existe todavía. Pendiente que el cliente lo entregue y lo coloque en `src/assets/cultura/`.
-- [ ] **Retomar el glow de "Lecciones en video"** — El spec `docs/specs/prompt-eliminar-card-featured.md` ordena eliminar por completo el efecto `.card--featured` (glow) por romper el renderizado de la tarjeta, pero **el spec nunca se aplicó**: el glow sigue activo en el código (`inicio.html:79` + `styles.css` + tokens `--glow-clr-*`). Decisión: si se retoma, prototipar en una página aislada antes de aplicarlo directo al grid de producción.
-- [ ] **Barra de progreso** — Agregar barra de progreso general en el dashboard de inicio.
-- [ ] **Favoritos en Flashcards** — Agregar botón de favorito en flashcards cuando exista una página de detalle de mazo individual.
-- [ ] **Fuente Hatton** — Esperando que el cliente entregue el archivo real de la fuente Hatton para reemplazar el placeholder Fraunces.
-- [ ] **Perfil: conectar edición real y guardado de preferencias cuando exista backend**.
-- [ ] **Temporizador real en quiz-detalle.html** — El temporizador del quiz es visual y fijo (`⏱ 04:15`, no cuenta). Falta la cuenta regresiva real cuando haya backend/lógica.
-- [ ] **Guardar resultados de quiz** — El puntaje del quiz vive solo en memoria durante la sesión; no se guarda al salir o recargar. Falta persistir cuando exista backend.
-- [ ] **@property CSS** — La técnica de glow actual usa `@property --gradient-angle` para interpolar suavemente el ángulo del degradado. Si algún navegador de prueba no lo soporta, el degradado se ve igual pero la animación salta en vez de ser continua (sin interpolación suave). Evaluar si es necesario un polyfill o fallback cuando se amplíe el soporte de navegadores.
+## Fase 1 — COMPLETADA ✓
+- [x] Landing Page — hero con fondo real, logo, copy actualizado
+- [x] Login (maqueta visual) + Registro (maqueta visual) + flujo registro → login → inicio
+- [x] Selector de tema claro/oscuro flotante con persistencia (localStorage)
+- [x] Inicio del estudiante (6 tarjetas funcionales con imágenes reales del cliente)
+- [x] Lecciones en video — banner + acordeón de módulos/lecciones con estados
+- [x] Lección detalle — plantilla dinámica `leccion-detalle.html?id=...`
+- [x] Podcast — banner + lista de episodios con play visual, duración, estado, transcripción
+- [x] Episodio detalle — plantilla dinámica `episodio-detalle.html?id=...` (reproductor y transcripción simulados)
+- [x] Webtoon — lista de episodios + lector `webtoon-lector.html?id=...` (paneles scroll vertical, lazy-load, animación, barra de progreso)
+- [x] Cultura — lista de capítulos + lector `cultura-lector.html?id=...` (PDF.js, canvas, zoom, pantalla completa, sidebar secciones, barra de progreso)
+- [x] Flashcards — banner + grid de mazos con barra de progreso
+- [x] Quizzes — banner + lista de quizzes + quiz jugable `quiz-detalle.html?id=...` (quiz-engine.js)
+- [x] Perfil — avatar, stats, info, preferencias (demo)
+- [x] Contactos — fondo e ícono del cliente, WhatsApp
+- [x] Sidebar navegación vertical (fijo en desktop, drawer en móvil) en vistas autenticadas
+- [x] Sistema de favoritos (localStorage) — botón estrella en 5 páginas de detalle + `favoritos.html` con filtros
+- [x] Animaciones de entrada (`.animate-in`), parallax hero, blur+fade imágenes, hover/focus
+- [x] Documentación completa: CONTEXTO, GUIA-PROYECTO, guia-componentes, ERRORES, decisiones-tecnicas, GUIA-ANIMACIONES, PENDIENTES, CHANGELOG, README
+
+## Fase 2 — Pendiente (requiere backend/base de datos)
+- [ ] Autenticación real (login/registro con validación, JWT/sesión, recuperación de contraseña)
+- [ ] Backend: API REST/GraphQL, base de datos (PostgreSQL/SQLite), almacenamiento de progreso y favoritos
+- [ ] Panel administrativo: gestión de contenidos (CRUD lecciones, podcasts, webtoons, cultura, flashcards, quizzes), usuarios, estadísticas
+- [ ] Contenido real: videos de lecciones, audio de podcast con transcripción real, arte de webtoons, PDFs de cultura
+- [ ] Barra de progreso del estudiante persistente (sincronizada con backend)
+- [ ] Sistema de favoritos con sincronización servidor
+- [ ] Fuente Hatton real (reemplaza Fraunces placeholder)
+- [ ] Conectar audio real en Podcast (botones de play funcionales + transcripción real)
+- [ ] Conectar video real en leccion-detalle.html
+- [ ] Reemplazar placeholders por arte real de los paneles de webtoon
+- [ ] Perfil: conectar edición real y guardado de preferencias
+- [ ] Temporizador real en quiz-detalle.html
+- [ ] Guardar resultados de quiz (persistencia en backend)
+- [ ] @property CSS: evaluar polyfill/fallback para navegadores sin soporte
+
+## Dependencias del cliente (bloquean Fase 2)
+- [ ] Archivo real de fuente Hatton
+- [ ] Videos de lecciones
+- [ ] Audio de podcast + transcripciones
+- [ ] Arte real de webtoons (paneles)
+- [ ] PDFs de cultura (ya hay uno de ejemplo en `src/assets/cultura/`)

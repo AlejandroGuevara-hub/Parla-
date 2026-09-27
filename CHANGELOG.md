@@ -1,5 +1,18 @@
 # Changelog — Parla!
 
+## [1.23.0] — 2026-09-27
+
+### Changed
+- **Cierre de Fase 1**: prototipo funcional completo (interfaz, navegación, 11 vistas, sidebar, favoritos, PDF reader, webtoon lector, quiz engine). Documentación al día.
+
+### Removed
+- `src/scripts/sidebar.js` duplicado en raíz de scripts (código muerto).
+- `src/assets/images/contact-bg.zip` (archivo comprimido suelto).
+- Referencias obsoletas a `docs/specs/` en README y CONTEXTO → ahora apuntan a `prompts/`.
+
+### Added
+- Etiqueta de versión `fase-1` para marcar el cierre de la primera fase.
+
 ## [1.22.0] — 2026-09-21
 
 ### Added
