@@ -32,7 +32,7 @@ Fase 1: solo interfaz y navegación. Sin backend, sin base de datos, sin autenti
 - Scripts: `src/scripts/nav.js` (header móvil + `data-navegar`), `src/scripts/sidebar.js` (drawer), `src/scripts/theme.js` (tema), `src/scripts/animations.js` (entradas/parallax/imágenes), `src/scripts/quiz-engine.js` (motor de quiz)
 - Imágenes del sitio: `src/assets/images/` (logo, hero, fondos, fotos de las 6 tarjetas, contacto)
 - Recursos visuales del cliente (no se sube al repo): `reference/Diego-pagina web/` — solo consulta local
-- Especificaciones/alcances de cada bloque y fix: `docs/specs/`
+- Especificaciones/alcances de cada bloque y fix: `prompts/`
 - Fixes aplicados: ver `CHANGELOG.md`
 - Decisiones técnicas y por qué: `docs/decisiones-tecnicas.md`
 - Errores ya cometidos (no repetir): `docs/ERRORES.md`

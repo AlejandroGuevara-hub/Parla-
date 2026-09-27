@@ -134,7 +134,7 @@ Luego visita `http://localhost:8000/src/views/index.html`.
 | [`docs/ERRORES.md`](docs/ERRORES.md) | Errores ya cometidos, causa y solución — no repetir |
 | [`docs/PENDIENTES.md`](docs/PENDIENTES.md) | Tareas a medias, dependencias del cliente y blockers |
 | [`CHANGELOG.md`](CHANGELOG.md) | Historial de cambios por versión |
-| [`docs/specs/`](docs/specs/) | Especificaciones/alcances de cada bloque y fix (historial de prompts de tareas) |
+| [`prompts/`](prompts/) | Especificaciones/alcances de cada bloque y fix (historial de prompts de tareas) |
 | [`prompts/`](prompts/) | Instrucciones de proceso (releer documentación, documentación completa, commits, memoria) |
 
 ## Licencia

@@ -77,14 +77,14 @@ El proyecto sigue una estructura conceptual tipo MVC adaptada a frontend estáti
 │   ├── PENDIENTES.md           # Tareas pendientes
 │   ├── decisiones-tecnicas.md  # Decisiones de diseño/arquitectura
 │   ├── guia-componentes.md     # Catálogo de componentes CSS
-│   └── specs/                  # Especificaciones de cada bloque/fix (historial de tareas)
-│       ├── instrucciones-opencode-bloque1.md
-│       └── prompt-*.md         # Un spec por bloque o fix (15+ archivos)
-├── prompts/                    ← Instrucciones de proceso (protocolos, no specs)
+│   └── specs/                  # Solo instrucciones internas de opencode (no specs de proyecto)
+│       └── instrucciones-opencode-bloque1.md
+├── prompts/                    ← Especificaciones de cada bloque/fix (prompt-*.md) + protocolos de proceso
 │   ├── prompt-releer-documentacion.md
 │   ├── prompt-documentacion-completa.md
 │   ├── prompt-commits-github.md
-│   └── prompt-memoria-contexto.md
+│   ├── prompt-memoria-contexto.md
+│   └── prompt-*.md             # Un spec por bloque o fix (20+ archivos)
 ├── .gitignore
 ├── README.md                   ← Puerta de entrada
 └── CHANGELOG.md                ← Historial de cambios
